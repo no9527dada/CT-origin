@@ -1,0 +1,118 @@
+
+
+地图第一波出怪是什么，那么该图最后的BOSS就是那个种类的
+
+impact0078.name = 冲击区0078
+groundZero.name = 零号地区
+craters.name = 陨石带
+frozenForest.name = 冰冻森林
+ruinousShores.name = 遗迹海岸
+stainedMountains.name = 绵延群山
+desolateRift.name = 荒芜裂谷
+nuclearComplex.name = 核裂阵
+overgrowth.name = 增生区 
+tarFields.name = 焦油田
+saltFlats.name = 盐碱荒滩
+fungalPass.name = 真菌通道
+biomassFacility.name = 生物质合成区
+windsweptIslands.name = 风吹群岛
+extractionOutpost.name = 萃取前哨
+planetaryTerminal.name = 行星发射终端
+coastline.name = 边际海湾
+navalFortress.name = 海军要塞
+
+47.342，193.407，338.404
+47.392，
+
+占领地图解锁一下建筑：
+-----发射台
+-----核心定位？
+-----金机
+-----二级打包传送带
+------聚能钻头-230
+--------------------------------------4级强化钻头-127
+超级钻头-234
+-------------抽冷冻液机-243
+天尊单位工厂-231-----------
+虚灵单位工厂-199
+-----微型质驱+万象桥
+--3级动能装卸器-89
+-----------大型发射台-26
+-------微晶传送带+传送桥+导管桥
+----------微晶石油钻井-90
+6级仓库-235
+------石油+岩浆发电机
+--------高级地热-262
+-------高效涡轮
+魔能核电-61
+魔力爆炸冲击发电-53
+聚合冲击发电-288
+---------高级能量塔+超级能量塔+单位门-72
+超级微晶护盾仪-260
+-----------------------微晶超速2-258
+微晶超速3+迷你超速-62
+超级太阳能-197
+8倍迷路超速-196
+-------4级电池-110
+阻电魔微墙-193
+-----------------------------------------------拦截-147
+------花洒
+霹雳闪2（待做）给-50%血量状态-45-----------------------
+--------》正义+征服
+------------冥王+天煞-237
+---------审判-155
+霸王-152
+----------------电磁炮1-52
+
+
+*********************************超级钻头-234
+天尊单位工厂（正常解锁，没有限制）
+虚灵单位工厂-199
+*********************************6级仓库-235
+魔能核电-61
+魔力爆炸冲击发电-53
+*********************************聚合冲击发电-288
+*********************************超级微晶护盾仪-260
+*********************************微晶超速3+迷你超速-62+电磁炮2-168
+*********************************超级太阳能-197
+*********************************8倍迷路超速-196
+*********************************阻电魔微墙-193
+霸王-152
+
+
+创世神---27
+虚无---44
+1---232
+2---87
+3---64
+
+
+
+
+
+
+const Maps我 = new SectorPreset("xiwang", Planets.serpulo, 我);//解锁
+Maps我.captureWave = 71;//
+Maps我.difficulty = 13;
+Maps我.localizedName = Core.bundle.format("xiwang");//
+exports.Maps我 = Maps我;
+Events.on(ContentInitEvent, cons(e => {//
+    lib.addToResearch(Maps我, {//
+        parent: 'YX23',//
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps23),//占领
+        )
+    });
+}));
+
+const Maps我 = new SectorPreset("null00 - 副本 (1)", Planets.serpulo, 我);//解锁
+Maps我.captureWave = 99;//
+Maps我.difficulty = 13;
+Maps我.localizedName =  "[red]（该地图暂未制作）";//
+exports.Maps我 = Maps我;
+Events.on(ContentInitEvent, cons(e => {//
+    lib.addToResearch(Maps我, {//
+        parent: 'null00 - 副本 (1)',//
+    });
+}));
+
