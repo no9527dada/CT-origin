@@ -1,0 +1,67 @@
+{
+  "type": "ItemTurret",
+  "name": "T1R",
+  "description": "喷射火焰",
+  "health": 800,
+  "size": 2,
+  "targetAir": false,
+  "targetGround": true,
+  "rotateSpeed": 6,
+  "heatColor": "FF0000",
+  "reloadTime": 60,
+  "maxAmmo": 8,
+  "range": 300,
+  "shotWidth": 3,
+  "shootSound": "artillery",
+  "restitution": 1,
+  "inaccuracy": 0,
+  "shots": 1,
+  "minRange": 1,
+  "ammoTypes": {
+    "coal": {
+      "type": "FireBulletType",
+			"speed": 9,
+			"drag": 0,
+			"damage": 20,
+			"ammoMultiplier": 1,
+			"lifetime": 360,
+			"homingRange": 800,
+			"homingPower": 0.1,
+			"trailColor": "B7B7B7",
+			"width": 7,
+			"height": 21,
+			"trailEffect": "smoke",
+			"shootEffect": "shootSmall",
+			"splashDamageRadius": 80,
+			"splashDamage": 32,
+			"hitEffect": "flakExplosion",
+			"status": "burning"
+
+
+/* 
+      "pierce": true,
+      "collidesTiles": false,
+      "collides": false,
+      "drag": 0.03,
+      "hitEffect": "despawnEffect : none",
+      "trailEffect": "fireballsmoke",
+      "colorFrom": "lightFlame",
+      "colorMid": "darkFlame",
+      "colorTo": "gray",
+      "radius": 3,
+      "velMin": 0.6,
+      "velMax": 2.6,
+      "fireTrailChance": 0.04,
+      "trailEffect2": "ballfire",
+      "fireEffectChance": 0.1,
+      "fireEffectChance2": 0.1 */
+    }
+  },
+  "requirements": [
+    "copper/100",
+    "lead/60",
+    "graphite/80"
+  ],
+  "category": "turret",
+  "research": "duo"
+}

@@ -1,0 +1,46 @@
+{
+	//"name": "微晶护盾仪",
+	"health": 580,
+	"size": 4,
+	"radius": 125,
+	"phaseUseTime": 180,
+	"phaseRadiusBoost": 115, //"buildCostMultiplier": 0.8,
+	"itemCapacity": 15,
+	"shieldHealth": 1750,
+	"cooldownNormal": 2.0,
+	"cooldownLiquid": 1.6,
+	"cooldownBrokenBase": 0.3,
+	"phaseShieldBoost": 3250,
+	"consumes": {
+		"power": 4.0,
+		"items": {
+			"items": [
+				{
+					"item": "phase-fabric",
+					"amount": 1
+				}
+			],
+			"booster": true
+		}
+	},
+	"requirements": [
+		{
+			"item": "weijing1",
+			"amount": 15
+		},
+		{
+			"item": "titanium",
+			"amount": 135
+		},
+		{
+			"item": "guijingti",
+			"amount": 185
+		},
+		{
+			"item": "shimoxi",
+			"amount": 175
+		}
+	],
+	"category": "effect",
+	
+}

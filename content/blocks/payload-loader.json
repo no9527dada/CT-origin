@@ -1,0 +1,10 @@
+{ 
+    //入料
+    "maxBlockSize":3,
+    "itemsLoaded":40,
+    "loadTime":1
+    // "drawer":{
+    //     "type":"DrawAnimation",
+    //     "frameCount":3
+    // }
+}

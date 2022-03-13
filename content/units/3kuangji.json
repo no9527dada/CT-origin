@@ -1,0 +1,45 @@
+{
+	//"type": "flying",
+	//"name": "3级矿机",
+	//"description": "一采矿机，带治疗",
+	"speed": 3.5,
+	"drag": 0.01,
+	"armor": 6,
+	"buildSpeed": 1,
+	"hitSize": 18,
+	"health": 1150,
+	"itemCapacity": 60,
+	"range": 50,
+	"engineOffset": 8,
+	"engineSize": 3,
+	"flying": true,
+	"isCounted": false,
+	"mineTier": 3,
+	"mineSpeed": 4.0,
+	"weapons": [
+		{
+			"reload": 20,
+			"rotate": true,
+			"shootSound": "shootSnap",
+			"alternate": true,
+			"shots": 2, //每发子弹数量
+			"spacing": 2,
+			//"inaccuracy": 3,//精确度
+			"shotDelay": 3,
+			"bullet": {
+				"type": "BasicBulletType",
+				"width": 7,
+				"damage": 46,
+				"speed": 3,
+				"height": 11,
+				"buildingDamageMultiplier" :0.01,
+				"homingPower": 0.1, //追踪数值
+				"lifetime": 30,
+				"shootEffect": "shootSmall",
+				"smokeEffect": "shootSmallSmoke",
+				
+			}
+		}
+	],
+	"research": "2kuangji"
+}

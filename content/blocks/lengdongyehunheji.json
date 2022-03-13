@@ -1,0 +1,58 @@
+{
+    "alwaysUnlocked": false,
+    //"type": "LiquidConverter"
+    //"name": "冷冻液强效混合机",
+    //"description": "production scrap",
+    "buildCostMultiplier": 0.7,
+    "health": 360,
+    "liquidCapacity": 90,
+    "outputLiquid": {
+        "liquid": "cryofluid",
+        "amount": 20
+    },
+    "drawer": "DrawMixer",
+    "hasLiquids": true,
+    "solid": true,
+    "outputsLiquid": true,
+    "size": 3,
+    "hasPower": true,
+    "hasItems": true,
+    "craftTime": 55,
+    //"updateEffect": "smoke",
+    "consumes": {
+        "power": 4.5,
+        "items": {
+            "items": [
+                {
+                    "item": "buding",
+                    "amount": 2
+                }
+            ]
+        },
+        "liquid": {
+            "liquid": "water",
+            "amount": 1
+        }
+    },
+    "requirements": [
+        {
+            "item": "metaglass",
+            "amount": 35
+        }
+        {
+            "item": "weijing1",
+            "amount": 5
+        }{
+            "item": "titanium",
+            "amount": 65
+        }{
+            "item": "guijingti",
+            "amount": 72
+        }{
+            "item": "molizhi",
+            "amount": 2
+        }
+    ],
+    "category": "crafting",
+    //"research": "cryofluid-mixer"
+}

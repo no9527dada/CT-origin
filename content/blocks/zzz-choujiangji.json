@@ -1,0 +1,80 @@
+{
+	"canOverdrive": false,
+	//"type": "Separator",
+	//"name": "抽奖机", //名字
+	//"description": "貌似不知道", //介绍
+	"health": 500,
+	"itemCapacity": 30, //物品容量
+	"ambientSound":"jinbi",
+	"ambientSoundVolume":0.4,
+	"size": 3, //占地边长支持1~9对应贴图1x1=32x32像素.
+	"craftTime": 60, //工作时间60:1
+	 //分离产物与物品一样
+	"consumes": {
+		"power": 2,
+		"items": {
+            "items": [
+                {
+                    "item": "zz-jinbi",
+                    "amount": 1
+                }
+            ]
+        },
+		"liquid": {
+			"liquid": "moliye",
+			"amount": 0.3
+		} //工作消耗液体以水为例
+	}, //工作消耗
+	"liquidCapacity": 20, //液体容量
+	"requirements": [
+		{
+			"item": "weijing1",
+			"amount": 10
+		},
+		{
+			"item": "monengjing1",
+			"amount": 100
+		}
+		{
+			"item": "zuanjing",
+			"amount": 100
+		}
+		{
+			"item": "jin",
+			"amount": 100
+		}
+		{
+			"item": "guijingti",
+			"amount": 200
+		}
+	],
+	"category": "crafting", //游戏界面分类
+	"research": "zzz-jinbigongcang", //科技树前一项
+	//"buildVisibility": "sandboxOnly",
+	"results": [
+		{"item": "yuanshencanpian","amount": 1	},	
+		{"item": "chuangshiweichen","amount": 3	},
+		{"item": "chuangshilizi","amount": 5},
+		{"item": "jin","amount": 10000000},
+		{"item": "guijingti","amount": 10000000},
+		{"item": "weijing1","amount": 300000},
+		{"item": "weijing2","amount": 200000	},
+		{"item": "weijing3","amount": 50000	},
+		{"item": "weijing4","amount": 10000	},
+		{"item": "molishi","amount": 140000	},
+		{"item": "monengjing","amount": 130000	},
+		{"item": "monengjing1","amount": 80000},
+		{"item": "monengjing2","amount": 10000},
+		{"item": "shimoxi","amount": 3000000	},
+		{"item": "zuanjing","amount": 800000	},
+		{"item": "zijing1","amount": 2200000	},
+		
+		{"item": "surge-alloy","amount": 4500000	},
+		{"item": "plastanium","amount": 6000000	},
+		{"item": "thorium","amount": 5000000	},
+		{"item": "tanban","amount": 6500000	},
+
+
+		
+	]
+}

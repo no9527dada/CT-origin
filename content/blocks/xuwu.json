@@ -1,0 +1,28 @@
+{
+    "health": 50000,
+    //"name": "虚无",
+    "size": 3,"buildCostMultiplier": 35,
+    "phaseRadiusBoost":5000,//范围
+    "solid": true,//碰撞
+    "hasLiquids": false,
+    "hasPower": true,"itemCapacity":500,
+    //"update": true,
+    "phaseShieldBoost":1,//增强盾容
+    "shieldHealth":100,//本体盾容
+    "cooldownNormal":1,
+	"cooldownLiquid":1,
+    "radius":350,
+    //  "consumes": {
+    //     "power":500000.0 ,
+    //      "items": {
+    //          "items": [
+                 
+    //             { "item":"chuangshishenhun","amount": 200 }
+    //             ]
+    //      }
+    //  },
+    "requirements": [{ "item": "chuangshishenhun", "amount": 50000 }
+		],
+    "category": "effect",
+    //"research": "enemys-control"
+}

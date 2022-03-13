@@ -1,0 +1,16 @@
+{
+    "buildVisibility": "sandboxOnly",
+    "consumes": {
+    "items": {
+        "items": [
+            {
+                "item": "null",
+                "amount": 1
+            }
+        ]
+    }
+}
+// "research":"launch-pad"
+
+}
+

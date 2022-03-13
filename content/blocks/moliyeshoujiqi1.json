@@ -1,0 +1,37 @@
+{
+    "alwaysUnlocked": false, //永远解锁
+    // "type": "GenericCrafter",
+    //"name": "魔力液收集器",
+    //"description": "通过该星球上的特殊大气层，缓慢收集魔力液体",
+    "health": 180,
+    //"itemCapacity": 90,
+    "outputLiquid": {
+        "liquid": "moliye",
+        "amount": 0.6
+    },
+    "size": 1,
+    "hasPower": true,
+    "canOverdrive": false,
+    "hasLiquids": true,
+    "hasItems": false,
+    "craftTime": 60,
+    "updateEffect": "lightningCharge",
+    "consumes": {
+        "power": 1.5
+    },
+    "requirements": [
+        {
+            "item": "jin",
+            "amount": 80
+        }{
+            "item": "plastanium",
+            "amount": 20
+        }{
+            "item": "titanium",
+            "amount": 40
+        }
+    ],
+    "category": "crafting",
+    // "research": "f-2jinchengxingji",
+    // "details":"由于加速时这种特殊的气体会逃逸，所以该装置不可被超速"
+}

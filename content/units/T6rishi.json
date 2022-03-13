@@ -1,0 +1,186 @@
+{
+  "type": "flying",
+  "speed": 0.52,
+  "accel": 0.04,
+  "drag": 0.04,
+  "rotateSpeed": 1,
+  "flying": true,
+  "itemCapacity": 380,
+  "lowAltitude": true,
+  "health": 61200,
+  "engineOffset": 38,
+  "engineSize": 7.3,
+  "hitSize": 80,
+  "buildSpeed": 0.05, //建造速度
+  "destructibleWreck": false,
+  "armor": 25,
+  //----------
+  "targetFlags": [
+    "reactor",
+    "core"
+  ],
+  "weapons": [
+    {
+      "name": "T6rishi-laser1",
+      "reload": 20,
+      "y": -10,
+      "x": 13,
+      "rotate": true,
+      "shake": 1,
+      "shots": 2,
+      "inaccuracy": 5,
+      "velocityRnd": 0.2,
+      "shootSound": "missile",
+      "bullet": {
+        "type": "MissileBulletType",
+        "speed": 4,
+        "damage": 25,
+        "width": 15,
+        "height": 30,
+        "shrinkY": 0,
+        "drag": -0.003,
+        "homingRange": 60,
+        "hittable": false, //被激光点防击中开关
+        "keepVelocity": false,
+        "splashDamageRadius": 25,
+        "splashDamage": 15,
+        "lifetime": 80,
+        "trailColor": "d06b53",
+        "backColor": "d06b53",
+        "frontColor": "ffa665",
+        "hitEffect": "blastExplosion",
+        "despawnEffect": "blastExplosion",
+        "weaveScale": 6,
+        "weaveMag": 1
+      }
+    },
+    {
+      "y": 0,
+      "x": 0,
+      "reload":130,
+      "inaccuracy": 1, //精准
+      // "shotDelay": 4, //加上它一簇子弹的每个子弹有延迟
+      // "shots": 3, //每发一次出膛多少子弹
+      "shootSound": "artillery",
+      "bullet": {
+        "type": "FireBulletType",
+        "speed": 1.5,
+        "height": 160,
+        "damage": 45,
+        "hitEffect": "blastExplosion",
+        "lifetime": 450,
+        "hittable": true, //被激光点防击中开关
+        "radius": 18,
+        "velMin": 23,//最小距离
+        "velMax": 23,//最大距离
+        "fireTrailChance": 0.04,
+        "trailEffect2": "ballfire",
+        "fireEffectChance": 0.1,
+        "fireEffectChance2": 0.1,
+        "trailEffect": "fireballsmoke" //痕迹效果
+      }
+    },
+    {
+      "name": "T6rishi-laser2",
+      "top": false,
+      "y": 25,
+      "x": 9,
+      "reload": 60,
+      "recoil": 4,
+      "shake": 2,
+      "inaccuracy": 25, //精准
+      "shotDelay": 4, //加上它一簇子弹的每个子弹有延迟
+      "shots": 3, //每发一次出膛多少子弹
+      "ejectEffect": "casing2",
+      "shootSound": "artillery",
+      "bullet": {
+        "type": "ArtilleryBulletType",
+        "speed": 2,
+        "damage": 45,
+        "hitEffect": "blastExplosion",
+        "knockback": 0.8,
+        "lifetime": 150,
+        "width": 25,
+        "hittable": false, //被激光点防击中开关
+        "height": 25,
+        "collides": true,
+        "collidesTiles": true,
+        "splashDamageRadius": 35,
+        "splashDamage": 80,
+        "backColor": "f9c27a",
+        "frontColor": "fff8e8"
+      }
+    },
+    {
+      "name": "T6rishi-laser3",
+      "shadow": 0, //武器贴图阴影大小
+      "mirror": true, //镜像
+      "y": 10, //上下
+      "x": 25, //左右
+      "shootY": 10,
+      "reload": 130, //射速
+      "shake": 10,
+      "recoil": 10,
+      "rotateSpeed": 1,
+      "ejectEffect": "casing3",
+      "shootSound": "artillery",
+      "rotate": true,
+      "bullet": {
+        "type": "ArtilleryBulletType",
+        "hitEffect": "sapExplosion",
+        "knockback": 0.8,
+        "lifetime": 60,
+        "speed": 5,
+        "hittable": false, //被激光点防击中开关
+        "damage": 120,
+        "width": 50,
+        "height": 50,
+        //"collidesTiles":"collides",
+        "collides": true,
+        "ammoMultiplier": 2,
+        "splashDamageRadius": 80,
+        "splashDamage": 75,
+        "backColor": "ff8e1d",
+        "frontColor": "fff890",
+        "lightningColor": "fff890",
+        "lightning": 5,
+        "lightningLength": 20,
+        "lightningDamage": 65,
+        "smokeEffect": "shootBigSmoke2",
+        "hitShake": 10,
+        "lightRadius": 40,
+        "lightColor": "665c9f",
+        "lightOpacity": 0.6,
+        "status": "sapped",
+        "statusDuration": 600,
+        "fragLifeMin": 0.3,
+        "fragBullets": 9,
+        "fragBullet": {
+          "type": "ArtilleryBulletType",
+          "hitEffect": "sapExplosion",
+          "knockback": 0.8,
+          "lifetime": 90,
+          "speed": 2.5,
+          "damage": 50,
+          "width": 20,
+          "height": 20,
+          //"hittable" :false,//被激光点防击中开关
+          "collidesTiles": false,
+          "splashDamageRadius": 70,
+          "splashDamage": 40,
+          "backColor": "ff8e1d",
+          "frontColor": "fff890",
+          "lightning": 2,
+          "lightningLength": 5,
+          "smokeEffect": "shootBigSmoke2",
+          "hitShake": 5,
+          "lightRadius": 30,
+          "lightColor": "665c9f",
+          "lightOpacity": 0.5,
+          "status": "sapped",
+          "statusDuration": 600
+        }
+      }
+    }
+  ] //"research": "1kuangji"
+}

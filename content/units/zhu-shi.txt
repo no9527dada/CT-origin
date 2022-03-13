@@ -1,0 +1,26 @@
+{
+	"type": "flying",
+	"name": "雉兔",
+	"description": "一种普通的采矿机，在附近自动开采铜和铅。将开采的资源输送到最近的核心。",
+	"speed": 1.6,//移速
+	"drag": 0.01,
+	//"mass": 10,//大小
+	"hitSize": 10,
+	//"maxVelocity": 1.2,//最大速度？？？
+	"health": 240,//生命
+	"itemCapacity": 25,//容量
+	"range": 50,//范围
+	//"cellTrnsY": 1,
+	"flying": true,//能飞行
+	"isCounted": false,//已经计算？？？
+	"mineTier": 1,//采矿等级
+	"mineSpeed": 1.6,//采矿速度
+	"weapon": {
+		"bullet": {}
+	},//武器
+	"toMine": [
+		"copper",
+		"lead"
+	],//制造机器人条件
+	"research": "c-德鲁格"
+}
