@@ -261,6 +261,7 @@ exports.nai3 =
         return a;
     })();
 //奶4：有挡子弹武器，有闪电治疗，电治高一些，但范围小 5左右格，有波治疗 范围大一些，治疗低一点，有激光治疗 治疗适中
+const dropStack = new ItemStack(Items.copper, 60,);
 exports.nai4 =
     (() => {
         const a = new UnitType('nai4');
@@ -296,7 +297,20 @@ exports.nai4 =
         a.armor = 3;
         a.ammoType = new ItemAmmoType(Items.coal);
         a.visualElevation = 0.2;
-        a.constructor = prov(() => extend(UnitTypes.atrax.constructor.get().class, {}));
+        a.constructor = prov(() => extend(UnitTypes.atrax.constructor.get().class, {
+            remove(){
+                this.dropItem(Vars.player.team());
+                this.super$remove();
+            },
+            dropItem(team){
+                let dropTo = team.core();
+                if(dropTo != null){
+                    let item = dropStack.item, amount = dropStack.amount;
+                    dropTo.items.add(item, amount);
+                    Fx.itemTransfer.at(this.x, this.y, amount, item.color, dropTo);
+                }
+            },
+        }));
         a.immunities = ObjectSet.with(status.suanEffect,);
         a.abilities.add(
             (() => {

@@ -20,6 +20,11 @@ const AX = require('wupin');
 const Dw = require('units/gammaSplus');
 ///
 
+Blocks.coreShard.itemCapacity = 6000;//小型核心
+Blocks.coreShard.requirements = ItemStack.with(Items.copper, 6500,);
+Blocks.coreFoundation.itemCapacity = 13000;//中型核心
+Blocks.coreNucleus.itemCapacity = 21000;//大型核心
+
 const powerOutput = 500;
 const core = extendContent(CoreBlock, "coree", {//------------@guiYMOUR编写
     setStats() {

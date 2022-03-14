@@ -897,9 +897,6 @@ lib.addToResearch(Blocks.oilExtractor, {//石油钻井
     ),
 
 });
-Blocks.coreShard.itemCapacity = 6000;//小型核心
-Blocks.coreShard.requirements = ItemStack.with(Items.copper, 4000,);
-Blocks.coreFoundation.itemCapacity = 13000;//中型核心
 lib.addToResearch(Blocks.coreFoundation, {
     parent: 'core-shard',//
     requirements: ItemStack.with(
@@ -909,7 +906,6 @@ lib.addToResearch(Blocks.coreFoundation, {
     ),
 
 });
-Blocks.coreNucleus.itemCapacity = 21000;//大型核心
 lib.addToResearch(Blocks.coreNucleus, {
     parent: 'core-foundation',//
     requirements: ItemStack.with(
@@ -1686,7 +1682,7 @@ lib.addToResearch(Blocks.impactReactor, {//冲击
 //传输 储藏 仓库
 lib.addToResearch(weicang, {
     parent: Blocks.vault.name,
-});
+});weicang.alwaysUnlocked = true;//默认解锁
 lib.addToResearch(jicangku3, {
     parent: weicang.name,
 });

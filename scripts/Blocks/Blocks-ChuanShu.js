@@ -24,10 +24,8 @@ exports.weicang = //微仓
         a.hasItems = true;
         a.buildCostMultiplier = 0.3;
         a.requirements = ItemStack.with(
-            Items.copper, 30,
-            Items.lead, 30,
-            guijingti, 20,
-            shiying, 45,
+            Items.copper, 80,
+            Items.lead, 150,
         );
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.effect;

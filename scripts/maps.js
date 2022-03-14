@@ -1,15 +1,17 @@
 const lib = require('lib')
 
-const Maps173 = new SectorPreset("welcome", Planets.serpulo, 174);//欢迎地图
+const Maps173 = new SectorPreset("welcome", Planets.serpulo, 173);//欢迎地图
 Maps173.alwaysUnlocked = true;
 Maps173.addStartingItems = true;
-Maps173.captureWave = 3;//
+Maps173.captureWave = 2;//
 Maps173.difficulty = 1;
 Maps173.localizedName = "welcome";//
 exports.Maps173 = Maps173; 
 SectorPresets.groundZero.alwaysUnlocked = false;
 /*******************************************************************************************/
+/*
 
+*/
 const Maps189 = new SectorPreset("YuXi", Planets.serpulo, 189);//解锁硬质钻头
 Maps189.captureWave = 30;
 Maps189.difficulty = 9;
