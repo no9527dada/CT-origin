@@ -218,7 +218,8 @@ var leftFrag = (fragConfig) => {
                                         table.button(category.icon(), Styles.clearToggleTransi, run(() => {
                                             currentCategory = cc;
                                             if (Vars.control.input.block != null) {
-                                                Vars.control.input.block = getSelectedBlock(currentCategory);
+                                            	let selectedBlock = getSelectedBlock(currentCategory);
+                                                if(selectedBlock) Vars.control.input.block = selectedBlock;
                                             }
                                             rebuildCategory.run();
                                         })).group(group).update(cons(v => v.setChecked(currentCategory == v))).name("category-" + cc);
