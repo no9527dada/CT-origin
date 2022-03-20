@@ -101,16 +101,11 @@ Maps127.difficulty = 13;
 Maps127.localizedName = Core.bundle.format("SanJiaoQu")// "魔鬼三角区";//
 exports.Maps127 = Maps127;
 
-const Maps234 = new SectorPreset("null003)", Planets.serpulo, 234);//解锁超级钻头
-Maps234.captureWave = 99;//
+const Maps234 = new SectorPreset("YanYu", Planets.serpulo, 234);//解锁超级钻头
+Maps234.captureWave = 80;//
 Maps234.difficulty = 13;
-Maps234.localizedName = Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
+Maps234.localizedName = Core.bundle.format("YanYu")// "炎狱";//
 exports.Maps234 = Maps234;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps234, {//
-        parent: 'null003)',//
-    });
-}));
 
 const Maps243 = new SectorPreset("BingHaiYan", Planets.serpulo, 243);//解锁抽冷冻液机
 Maps243.captureWave = 60;//
@@ -137,7 +132,7 @@ exports.Maps199 = Maps199;
 //     });
 // }));
 
-const Maps235 = new SectorPreset("null0010)", Planets.serpulo, 235);//解锁6级仓库
+const Maps235 = new SectorPreset("null003)", Planets.serpulo, 235);//解锁6级仓库
 Maps235.captureWave = 99;//
 Maps235.difficulty = 13;
 Maps235.localizedName =  Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
@@ -169,7 +164,7 @@ Maps288.localizedName = Core.bundle.format("XingGuDao")//  "行古道";//
 exports.Maps288 = Maps288;
 
 
-const Maps53 = new SectorPreset("null0013)", Planets.serpulo, 53);//解锁聚合冲击发电
+const Maps53 = new SectorPreset("null0013)", Planets.serpulo, 53);//占用
 Maps53.captureWave = 99;//
 Maps53.difficulty = 13;
 Maps53.localizedName =  Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
@@ -187,18 +182,13 @@ Maps72.localizedName =Core.bundle.format("SuanFuDI")//   "腐酸地";//
 exports.Maps72 = Maps72;
 
 
-const Maps260 = new SectorPreset("null0016)", Planets.serpulo, 260);//解锁超级微晶护盾仪
-Maps260.captureWave = 99;//
+const Maps260 = new SectorPreset("ZiWeiHai", Planets.serpulo, 260);//解锁超级微晶护盾仪
+Maps260.captureWave = 80;//
 Maps260.difficulty = 13;
-Maps260.localizedName =  Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
+Maps260.localizedName =  Core.bundle.format("ZiWeiHai")// "紫薇海";//
 exports.Maps260 = Maps260;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps260, {//
-        parent: 'null003)',//
-    });
-}));
 
-const Maps258 = new SectorPreset("JiLiu", Planets.serpulo, 258);//解锁微晶超速2
+const Maps258 = new SectorPreset("JiLiu", Planets.serpulo, 258);//解锁微晶超速2+动磁泵
 Maps258.captureWave = 179;//
 Maps258.difficulty = 9;
 Maps258.localizedName =  Core.bundle.format("JiLiu")// "激流";//
@@ -241,16 +231,12 @@ Maps193.difficulty = 13;
 Maps193.localizedName = Core.bundle.format("ShuangZiYu")//  "双子域";//
 exports.Maps193 = Maps193;
 
-const Maps147 = new SectorPreset("null0023)", Planets.serpulo, 147);//占用
-Maps147.captureWave = 99;//
+const Maps147 = new SectorPreset("ZY3", Planets.serpulo, 147);//解锁聚合冲击发电机
+Maps147.captureWave = 4;//
 Maps147.difficulty = 13;
-Maps147.localizedName = Core.bundle.format("aaaaaaaaa")//  "[red]（该地图暂未制作）";//
+Maps147.startWaveTimeMultiplier = 0.8;
+Maps147.localizedName = Core.bundle.format("ZY3")// "资源分配区-3";//
 exports.Maps147 = Maps147;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps147, {//
-        parent: 'null003)',//
-    });
-}));
 
 const Maps45 = new SectorPreset("null0024)", Planets.serpulo, 45);//解锁霹雳闪2
 Maps45.captureWave = 99;//

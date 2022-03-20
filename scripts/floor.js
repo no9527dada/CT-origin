@@ -71,26 +71,6 @@ exports.Oreweijing4 = (() => {
     return v;
 })();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.wusha = (() => {
     const v = extend(Floor, "wusha", {});//污沙
     v.itemDrop = Items.sand;
@@ -144,3 +124,19 @@ huoqiang.variants = 2;
 
 const huoqiangg = extend(StaticTree, "huoqiangq", {});//
 huoqiangg.variants = 0;
+
+exports.huoshitou = (() => {//火石头
+    const v = extend(Prop, "huoshitou", {});//
+    v. variants = 2;
+    return v;
+})();
+exports.huoshitou = (() => {//枯萎火松
+    const v = extend(TreeBlock, "huosong-dead", {});//
+    return v;
+})();
+exports.huoshitou = (() => {//火松
+    const v = extend(TreeBlock, "huosong", {});//
+    return v;
+})();
+ //本局禁用发电机，请使用电池放电器进行生电
+

@@ -1,12 +1,14 @@
 
-const ability = require("all/ability2");
+const www = require("all/ability2");
+const sseee = require("units/cangying");
+
 const oct2 = new UnitType('oct2');
 oct2.defaultController = prov(() => new DefenderAI());
 oct2.constructor = prov(() => extend(UnitTypes.oct.constructor.get().class, {}));
 
-oct2.abilities.add(ability.TerritoryFieldAbility(150, 60 * 4, 200));
+oct2.abilities.add(www.TerritoryFieldAbility(150, 60 * 4, 200));
 oct2.abilities.add(new ForceFieldAbility(280, 4, 15000, 60 * 5), new RepairFieldAbility(280, 60 * 2, 140));
-oct2.abilities.add(new UnitSpawnAbility(UnitTypes.poly, 3600, 19.25, -31.75), new UnitSpawnAbility(UnitTypes.flare, 600, -19.25, -31.75));
+oct2.abilities.add(new UnitSpawnAbility(sseee.wenzi2, 3600, 19.25, -31.75), new UnitSpawnAbility(sseee.cangying1, 1600, -19.25, -31.75));
 oct2.rotateSpeed = 1;
 oct2.armor = 16;
 oct2.health = 58000;

@@ -36,7 +36,7 @@ const {lajixiang}=require('BlocksLibes/lajixiang')
 const { xuwu } = require('BlocksLibes/xuwu');xuwu.consumes.power(3000000/60);xuwu.consumes.items(new ItemStack.with( chuangshishenhun,200,));
 const {
     weicang, jicangku3, jicangku4, jicangku5, jicangku6, huanchongcang, csdq0, conveyor10,
-    conveyor11, conveyor12, jibaozhuangyunshudai2, conveyor2, conveyor21, conveyor3, conveyor31,
+    conveyor11, conveyor12, jibaozhuangyunshudai2, conveyor2, conveyor21, conveyor3, conveyor31,dongcibeng,
     jibaozhuangyunshudai3, weixingzhiqu, zhiqu2, zhiqu3, conduit1, conduit11, conduit2, conduit21, dabaodai,
     csdq, daoguanqiao0, daoguanqiao, daxingchuyeguan, jizhuangxieqi0, jizhuangxieqi2, jizhuangxieqi3, yetiUnloader
 } = require('Blocks/Blocks-ChuanShu');
@@ -340,7 +340,7 @@ Events.on(ContentInitEvent, cons(e => {//解锁微晶超速3+迷你超速+电磁
 }));
 Events.on(ContentInitEvent, cons(e => {//解锁虚灵单位工厂
     lib.addToResearch(Maps199, {//扭曲-油田
-        parent: 'RongHe',//融合
+        parent: 'tarFields',//油田
         objectives: Seq.with(
             new Objectives.SectorComplete(SectorPresets.tarFields),//占领油田
             new Objectives.Research(ronghui2)//研究天煞
@@ -365,8 +365,33 @@ Events.on(ContentInitEvent, cons(e => {//解锁阻电魔微墙
         )
     });
 }));
-
-
+Events.on(ContentInitEvent, cons(e => {//解锁超级微晶护盾仪
+    lib.addToResearch(Maps260, {//紫薇海
+        parent: 'BingHaiYan',//冰海堰
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps258),//激流
+            new Objectives.Research(dongcibeng)//研究动磁泵
+        )
+    });
+}));
+Events.on(ContentInitEvent, cons(e => {//解锁超级钻头
+    lib.addToResearch(Maps234, {//炎狱
+        parent: 'ZiWeiHai',//紫薇海
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps260),//紫薇海
+            new Objectives.SectorComplete(Maps152),//扭曲-风吹群岛
+        )
+    });
+}));
+Events.on(ContentInitEvent, cons(e => {//解锁聚合冲击发电机
+    lib.addToResearch(Maps147, {//资源分配区-3
+        parent: 'ZY2',//
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps234),//炎狱
+            new Objectives.SectorComplete(Maps288),//行古道
+        )
+    });
+}));
 
 
 
@@ -864,7 +889,7 @@ lib.addToResearch(Blocks.blastDrill, {
     )
 });
 Blocks.waterExtractor.pumpAmount = 0.131;
- // require('wmod');//+++++++++++
+  require('wmod');//+++++++++++
 lib.addToResearch(Blocks.waterExtractor, {//抽水机
     parent: 'pneumatic-drill',//气动钻头
     requirements: ItemStack.with(
@@ -1765,6 +1790,12 @@ lib.addToResearch(conduit2, {
 lib.addToResearch(conduit21, {
     parent: conduit2.name,
 });
+lib.addToResearch(dongcibeng, {
+    parent: "thermal-pump",
+    objectives: Seq.with(
+        new Objectives.SectorComplete(Maps258),//占领激流解锁
+    ),
+});
 lib.addToResearch(csdq, {
     parent: conveyor21.name,
     objectives: Seq.with(
@@ -2207,7 +2238,7 @@ lib.addToResearch(monengfanyingdui, {
 lib.addToResearch(juhechongji, {
     parent: molichongjifadianji.name,
     objectives: Seq.with(
-        new Objectives.SectorComplete(Maps53),//占领-
+        new Objectives.SectorComplete(Maps147),//占领-资源分配区-3
     ),
 
 });

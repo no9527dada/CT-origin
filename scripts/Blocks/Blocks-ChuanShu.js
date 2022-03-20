@@ -11,7 +11,7 @@ const {
     invalid, dabaosuan, molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou,dabaozhiwujingyou,
     dabaoJHLiquid,dabaojinglianlio,dabaomoli, dabaozhiwu, dabaojingmoli, 
-    dabaoyedan,zhiwujingyou,jinglianlio,
+    dabaoyedan,zhiwujingyou,jinglianlio,hejinboli,
     JHhejinLiquid,JHhejin,gutaiwanqin,taihejin,
 } = require('wupin');
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -523,6 +523,29 @@ exports.conduit21 =
             Items.metaglass, 3,
             weijing1, 1,
             jin, 2,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.liquid;
+        return a;
+    })();
+//-----------------------------------------------------------
+exports.dongcibeng = //动磁泵
+    (() => {
+        const a = extend(Pump, "dongcibeng", {});
+        a.size = 2;
+        a.health = 600;
+        a.liquidCapacity = 80;
+        a.hasPower = true;
+        a.consumes.power(3)
+        a.placeableLiquid = true;
+        a.pumpAmount = 18 / 60;
+        a.requirements = ItemStack.with(
+            Items.copper, 180,
+            Items.lead, 120,
+            jingliantai, 50,
+            weijing2,25,
+            hejinboli, 30,
+            taihejin, 45,
         );
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.liquid;

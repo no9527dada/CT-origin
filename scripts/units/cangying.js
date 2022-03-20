@@ -50,7 +50,8 @@ exports.cangying2 =
         a.drag = 0.01;
         a.flying = true;
         a.health = 15000;
-        a.engineOffset = 5.5;
+        a.engineSize = 4;
+        a.engineOffset = 9.5;
         //a.range = 15000;
         a.targetAir = false;
         a.targetFlags = [BlockFlag.turret]
@@ -93,7 +94,7 @@ exports.wenzi1 =
         a.flying = true;
         a.hitSize = 9;
         a.targetAir = false;
-        a.engineOffset = 7.8;
+        a.engineOffset = 6.5;
         a.range = 140;
         a.faceTarget = false;
         a.armor = 3;
@@ -143,7 +144,8 @@ exports.wenzi2 =
         a.flying = true;
         a.hitSize = 9;
         a.targetAir = false;
-        a.engineOffset = 7.8;
+        a.engineSize = 4;
+        a.engineOffset = 9.8;
         a.range = 140;
         a.faceTarget = false;
         a.armor = 3;
@@ -165,7 +167,7 @@ exports.wenzi2 =
                 b.shootSound = Sounds.none;
                 b.bullet = (() => {
                     const c = new BombBulletType();
-                   
+
                     c.splashDamage = 5;
                     c.splashDamageRadius = 2 * 8;
                     c.width = 10;
