@@ -5,7 +5,7 @@
 	"buildSpeed": 1, //建造速度
 	"drag": 0.01,
 	"hitSize": 14,
-	"health": 450, 
+	"health": 450,
 	"itemCapacity": 35,
 	"range": 50,
 	"engineOffset": 7,
@@ -15,7 +15,9 @@
 	"mineSpeed": 2.2,
 	"weapons": [
 		{
-			"reload": 20,
+			"controllable": false,
+			"autoTarget": true, //被动开火
+			"reload": 15,
 			"rotate": true,
 			"shootSound": "shootSnap",
 			"alternate": true,
@@ -25,12 +27,12 @@
 				"damage": 25,
 				"speed": 3,
 				"height": 9,
-				"lifetime": 30,
-				"buildingDamageMultiplier" :0.01,
+				"lifetime": 70,
+				"buildingDamageMultiplier": 0.01,
 				"shootEffect": "shootSmall",
 				"smokeEffect": "shootSmallSmoke"
 			}
 		}
 	],
-"research": "1kuangji"
+	"research": "1kuangji"
 }

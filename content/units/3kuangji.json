@@ -18,7 +18,9 @@
 	"mineSpeed": 4.0,
 	"weapons": [
 		{
-			"reload": 20,
+			"controllable": false,
+			"autoTarget": true, //被动开火
+			"reload": 15,
 			"rotate": true,
 			"shootSound": "shootSnap",
 			"alternate": true,
@@ -30,14 +32,13 @@
 				"type": "BasicBulletType",
 				"width": 7,
 				"damage": 46,
-				"speed": 3,
+				"speed": 4,
 				"height": 11,
-				"buildingDamageMultiplier" :0.01,
+				"buildingDamageMultiplier": 0.01,
 				"homingPower": 0.1, //追踪数值
-				"lifetime": 30,
+				"lifetime": 50,
 				"shootEffect": "shootSmall",
 				"smokeEffect": "shootSmallSmoke",
-				
 			}
 		}
 	],

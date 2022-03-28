@@ -18,24 +18,25 @@
 	"mineSpeed": 4.0,
 	"weapons": [
 		{
-			"reload": 15,
+			"controllable": false,
+			"autoTarget": true, //被动开火
+			"reload": 20,
 			"rotate": true,
 			"shootSound": "shootBig",
 			"alternate": true,
 			"shots": 50, //每发子弹数量
 			"spacing": 1,
-			"inaccuracy": 360,//精确度
+			"inaccuracy": 360, //精确度
 			"bullet": {
 				"type": "BasicBulletType",
 				"width": 12,
 				"height": 18,
-				"damage": 20,
+				"damage": 4,
 				"speed": 5,
-				"buildingDamageMultiplier" :0.01,
-				"lifetime": 35,
+				"buildingDamageMultiplier": 0.01,
+				"lifetime": 42,
 				"shootEffect": "shootSmall",
 				"smokeEffect": "shootSmallSmoke",
-				
 			}
 		}
 	],
