@@ -345,7 +345,7 @@ exports.JHhejinLiquid = (() => {
 exports.suan = (() => {
     const v = new Liquid("suan", Color.valueOf("005e13"));//酸
     v.heatCapacity = 0.3
-    v.effect = Status.suanEffect//状态：弱酸
+    v.effect = Status.suan2Effect//状态：强酸
     return v;
 })();//
 exports.yuanwan0 = (() => {
@@ -370,37 +370,16 @@ exports.liziye = (() => {
     return v;
 })();//
 exports.qiangxiaolengqueye = (() => {
-    const FxX = new Effect(40, e => {
-        Draw.color(Color.valueOf("a775f6"));
-        Angles.randLenVectors(e.id, 2, 1 + e.fin() * 2, (x, y) => {
-            Fill.circle(e.x + x, e.y + y, e.fout() * 1.2);
-        });
-    });
-    const effectX = new StatusEffect("ZT2");
-    effectX.color = Color.valueOf("ffffff");
-    effectX.speedMultiplier = 0;//移动速度
-    effectX.damage = 0
-    effectX.reloadMultiplier = 0.5;//射击速度
-    effectX.effect = FxX;
     const v = extendContent(Liquid, 'qiangxiaolengqueye', Color.valueOf("ffffff"), {});
     v.flammability = 0//可燃性
     v.temperature = 0//温度
     v.heatCapacity = 3.8//装弹速度
     v.viscosity = 0.8//粘度
     v.explosiveness = 0//爆炸
-    v.effect = effectX;
+    v.effect = Status.effectX;
     return v;
 })();
-const suanDiMian = extend(Floor, "suanshui", {});//酸水面
-suanDiMian.liquidDrop = exports.suan;
-suanDiMian.drownTime = 140;
-suanDiMian.status = Status.suan2Effect;//状态：强酸
-suanDiMian.cacheLayer = CacheLayer.water;
-suanDiMian.space = false;
-suanDiMian.isLiquid = true;
-suanDiMian.variants = 3;
-suanDiMian.emitLight = true;
-suanDiMian.lightColor = Color.valueOf("53ea0064");
+
 
 
 //天气

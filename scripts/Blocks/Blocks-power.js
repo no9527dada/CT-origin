@@ -1,4 +1,5 @@
 const lib = require('lib')
+const dsGlobal =require('BlocksLibes/qianzhi');
 const {
     // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
@@ -65,7 +66,7 @@ exports.nengliangta =
 //-----------------------------------------------------------
 exports.nengliangta2 =
     (() => {
-        const a = extend(PowerNode, "nengliangta2", {}); //能量塔2
+        const a = extend(PowerNode, "nengliangta2", {isHidden() { return !dsGlobal.H1(); },}); //能量塔2
         a.health = 800;
         a.size = 2;
         a.consumesPower = true;
@@ -114,6 +115,7 @@ exports.jidianchi4 =
         const kaiqi = new Color.valueOf("2c2c2c");
         const DianChi = lib.createBuildLimit(5);//4级电池
         const a = extend(Battery, "4jidianchi", {
+            isHidden() { return !dsGlobal.H1(); },
             setStats() {
                 this.super$setStats();
                 this.stats.remove(Stat.buildTime);
@@ -491,7 +493,7 @@ exports.yanjiangfadianji =
 // //-----------------------------------------------------------
 exports.gaoxiaowolunfadianji =
     (() => {
-        const a = extend(BurnerGenerator, "gaoxiaowolunfadianji", {}); //高效涡轮发电
+        const a = extend(BurnerGenerator, "gaoxiaowolunfadianji", {isHidden() { return !dsGlobal.H1(); },}); //高效涡轮发电
         a.health = 360;
         a.size = 3;
         a.hasItems = true;
@@ -587,7 +589,7 @@ exports.molizhifanyingdui =
 //-----------------------------------------------------------
 exports.monengfanyingdui =
     (() => {
-        const a = extend(NuclearReactor, "monengfanyingdui", {}); //魔能核电
+        const a = extend(NuclearReactor, "monengfanyingdui", {isHidden() { return !dsGlobal.H1(); },}); //魔能核电
         a.health = 6300;
         a.size = 5;
         a.buildCostMultiplier = 1.2;
@@ -626,7 +628,7 @@ exports.monengfanyingdui =
 //-----------------------------------------------------------
 exports.juhechongji =
     (() => {
-        const a = extend(ImpactReactor, "juhechongji", {}); //聚核冲击发电
+        const a = extend(ImpactReactor, "juhechongji", {isHidden() { return !dsGlobal.H1(); },}); //聚核冲击发电
         a.health = 7500; //
         a.size = 8;
         a.buildCostMultiplier = 5;

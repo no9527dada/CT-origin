@@ -1,4 +1,5 @@
 const lib = require('lib')
+const dsGlobal =require('BlocksLibes/qianzhi');
 const DrawS = require('BlocksLibes/DrawS');
 const {
     //白, 绿, 黄, 橙, 红, 蓝, 紫,
@@ -19,7 +20,7 @@ exports.weicang = //微仓
     (() => {
         const a = extend(StorageBlock, "weicang", {});
         a.size = 1;
-        a.health = 400;
+        a.health = 400; 
         a.itemCapacity = 100;
         a.hasItems = true;
         a.buildCostMultiplier = 0.3;
@@ -246,14 +247,54 @@ exports.conveyor21 =
     })();
 //a.details = "[yellow]MAX:80/s"
 //-----------------------------------------------------------
+exports.luyouqi2 =
+    (() => {
+        const a = extend(Router, "luyouqi2", {}); //路由器2
+        a.consumesPower = true;
+        a.outputsPower = true;
+        a.hasPower = true;
+        a.consumes.power(0);
+        a.health = 100;
+        a.speed = 2.0;
+        a.requirements = ItemStack.with(
+            Items.surgeAlloy, 5,
+            jin, 3,
+            weijing1, 1,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.distribution;
+        return a;
+    })();
+//-----------------------------------------------------------
+
+exports.lianjieqi2 =
+    (() => {
+        const a = extend(Junction, "lianjieqi2", {}); //连接器2
+        a.consumesPower = true;
+        a.outputsPower = true;
+        a.hasPower = true;
+        a.consumes.power(0);
+        a.capacity = 3;
+        a.health = 120;
+        a.speed = 1.0;
+        a.requirements = ItemStack.with(
+            Items.surgeAlloy, 5,
+            jingliantai, 3,
+            weijing1, 1,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.distribution;
+        return a;
+    })();
+//-----------------------------------------------------------
 exports.conveyor3 =
     (() => {
-        const a = extend(Conveyor, "3-conveyor", {}); //5级传输带
+        const a = extend(Conveyor, "3-conveyor", {isHidden() { return !dsGlobal.H1(); },}); //5级传输带
         a.consumesPower = true;
         a.outputsPower = true;
         a.hasPower = true;
         a.displayedSpeed = 240;
-        a.consumes.power(0.0333333333);
+        a.consumes.power(2/60);
 
         a.health = 500;
         a.speed = 2.0;
@@ -271,13 +312,11 @@ exports.conveyor3 =
 //-----------------------------------------------------------
 exports.conveyor31 =
     (() => {
-        const a = extend(ArmoredConveyor, "3-conveyor1", {}); //5级装甲传输带
+        const a = extend(ArmoredConveyor, "3-conveyor1", {isHidden() { return !dsGlobal.H1(); },}); //5级装甲传输带
         a.consumesPower = true;
         a.outputsPower = true;
         a.hasPower = true;
-        a.displayedSpeed = 240;
-        a.consumes.power(0.0333333333);
-
+        a.consumes.power(2/60);
         a.health = 500;
         a.speed = 2.0;
         a.displayedSpeed = 240;
@@ -311,9 +350,11 @@ exports.jibaozhuangyunshudai2 =
         return a;
     })();
 //-----------------------------------------------------------
+require('BlocksLibes/luyouqi');//塑钢路由器
+//------------------------------------------
 exports.dabaodai =
 (() => {
-    const a = extend(StackConveyor, "dabaodai", {});
+    const a = extend(StackConveyor, "dabaodai", {isHidden() { return !dsGlobal.H1(); },});
     a.health = 100; //打包传输带
     a.speed = 0.15;
     a.itemCapacity = 40;
@@ -330,12 +371,12 @@ exports.dabaodai =
 //-----------------------------------------------------------
 exports.jibaozhuangyunshudai3 =
     (() => {
-        const a = extend(StackConveyor, "3jibaozhuangyunshudai", {});
+        const a = extend(StackConveyor, "3jibaozhuangyunshudai", {isHidden() { return !dsGlobal.H1(); },});
         a.health = 300; //3级包装运输带
         a.buildCostMultiplier = 0.5;
         a.speed = 1.5;
         a.placeableLiquid = true;//可被放在深水之上
-        a.itemCapacity = 5;
+        a.itemCapacity = 10;
         a.requirements = ItemStack.with(
             Items.surgeAlloy, 30,
             weijing2, 1,
@@ -507,7 +548,7 @@ exports.conduit2 =
 //-----------------------------------------------------------
 exports.conduit21 =
     (() => {
-        const a = extend(ArmoredConduit, "2-conduit1", {}); //镀金微晶导管
+        const a = extend(ArmoredConduit, "2-conduit1", {isHidden() { return !dsGlobal.H1(); },}); //镀金微晶导管
         a.health = 300;
         a.speed = 0.35;
         a.hasLiquids = true;
@@ -686,7 +727,7 @@ exports.jizhuangxieqi2 =
 //-----------------------------------------------------------
 exports.jizhuangxieqi3 =
     (() => {
-        const a = extend(Unloader, "d-3jizhuangxieqi", {}); //在fanjiasu1里面
+        const a = extend(Unloader, "d-3jizhuangxieqi", {isHidden() { return !dsGlobal.H1(); },}); //在fanjiasu1里面
         a.health = 430; //3级装卸器
         a.size = 1;
         a.hasPower = true

@@ -35,12 +35,12 @@ const {
 const {lajixiang}=require('BlocksLibes/lajixiang')
 const { xuwu } = require('BlocksLibes/xuwu');xuwu.consumes.power(3000000/60);xuwu.consumes.items(new ItemStack.with( chuangshishenhun,200,));
 const {
-    weicang, jicangku3, jicangku4, jicangku5, jicangku6, huanchongcang, csdq0, conveyor10,
+    weicang, jicangku3, jicangku4, jicangku5, jicangku6, huanchongcang, csdq0, conveyor10,luyouqi2,lianjieqi2,
     conveyor11, conveyor12, jibaozhuangyunshudai2, conveyor2, conveyor21, conveyor3, conveyor31,dongcibeng,
     jibaozhuangyunshudai3, weixingzhiqu, zhiqu2, zhiqu3, conduit1, conduit11, conduit2, conduit21, dabaodai,
     csdq, daoguanqiao0, daoguanqiao, daxingchuyeguan, jizhuangxieqi0, jizhuangxieqi2, jizhuangxieqi3, yetiUnloader
 } = require('Blocks/Blocks-ChuanShu');
-const { wanxiangqiao } = require('BlocksLibes/wanxiangqiao');
+const { wanxiangqiao } = require('BlocksLibes/wanxiangqiao');const { crouter } = require('BlocksLibes/luyouqi');//塑钢路由器
 /************************************************************************ */
 const {
     qian1, qian2, qian3, tong3, tai3, tu3, sugang3, hejin3, moli1, moli2, hunhe3, hunhe4, shenwei, qiang,
@@ -1727,6 +1727,18 @@ lib.addToResearch(jicangku6, {
 lib.addToResearch(huanchongcang, {
     parent: weicang.name,
 });
+
+lib.addToResearch(luyouqi2, {
+    parent: Blocks.router.name,
+});
+lib.addToResearch(lianjieqi2, {
+    parent: Blocks.junction.name,
+});
+lib.addToResearch(crouter, {//塑钢路由器
+    parent: luyouqi2.name,
+});
+
+
 lib.addToResearch(csdq0, {
     parent: Blocks.phaseConduit.name,
 });

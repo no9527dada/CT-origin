@@ -30,7 +30,7 @@
     该单位与其他单位不同，其他单位type不可以建造方块
     该单位可以建造方块 
 */
-const ability1 = require('all/ability');
+const gg = require('all/ability');
 const zdan = BasicBulletType();
 zdan.width = 6.5;
 zdan.speed = 8;
@@ -67,7 +67,7 @@ gammaSplus.health = 260;
 gammaSplus.engineOffset = 6;
 gammaSplus.hitSize = 20;
 gammaSplus.commandLimit = 8;
-gammaSplus.abilities.add(ability1.ColourfulForceFieldAbilityy(40, 3, 700, 600));//彩色护盾
+gammaSplus.abilities.add(gg.ColourfulForceFieldAbilityy(40, 3, 700, 600));//彩色护盾
 gammaSplus.abilities.add(new RepairFieldAbility(5, 60 * 3, 1));//自身回血
 gammaSplus.weapons.add(
     (() => {

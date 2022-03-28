@@ -219,3 +219,21 @@ Blocks.payloadUnloader.buildType = prov(() => {
 });
 
 
+/* //对话框
+Events.on(EventType.ClientLoadEvent, cons(e => {
+
+    Vars.ui.settings = new SettingsMenuDialog();
+
+    var dialog = new JavaAdapter(BaseDialog, {}, "origin");
+    dialog.shown(run(() => {
+        dialog.cont.table(Tex.button, cons(t => {
+            t.defaults().size(20, 20).left();
+            t.button("close", Icon.trash, Styles.cleart, run(() => {
+                dialog.hide();
+            }));
+            t.add("本模组部分方块需要地图上有微晶核心才会显示在建造栏");
+        }));
+    }));
+
+    dialog.show();
+})) */

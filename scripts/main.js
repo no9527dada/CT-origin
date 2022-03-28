@@ -15,6 +15,7 @@ require('Blocks/Blocks-drills');
 
 //Vars.mods.locateMod("creators").meta.version += "----" +  "[violet]创世神-起源[]";//服务器
 //*****************************************
+require('BlocksLibes/chuansongdai');//传送带发光
 require('BlocksLibes/xuwu');//服务器禁虚无
 require('techTree');//科技树
 require('BlocksLibes/FenNei');//分类

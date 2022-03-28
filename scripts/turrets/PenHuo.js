@@ -25,7 +25,7 @@ const FXpen2 = new Effect(32, 80, cons(e => {
     });
 }));
  */
-const { ionBurningEffect1 } = require('Status');
+const { ionBurningEffect1 ,burning2,burning3,burning4} = require('Status');
 const lib = require('lib');
 const items = require('wupin');
 const {
@@ -225,21 +225,29 @@ exports.PenHuo = (() => {
     v.buildVisibility = BuildVisibility.shown;
     v.category = Category.turret;
     v.ammoTypes.put(Items.coal, flame({
+        ammoMultiplier: 1,
         damage: 16,
     }));
     v.ammoTypes.put(Items.pyratite, flame({
         ammoMultiplier: 2,
         damage: 25,
+        status:burning2
+    }));
+    v.ammoTypes.put(gutaiwanqin, flame({
+        ammoMultiplier: 4,
+        damage: 40,
+        status:burning3
     }));
     v.ammoTypes.put(Items.blastCompound, flame({
-        ammoMultiplier: 2,
-        damage: 40,
+        ammoMultiplier: 3,
+        damage: 55,
+        status:burning4
     }));
     v.ammoTypes.put(juhebaozhawu, flame2({
         flameLength: 220,//真实火焰范围
         flameCone: 12,//火焰角度
         particleNumber: 150,//粒子效果数量，原来是150
-        ammoMultiplier: 4,
+        ammoMultiplier: 6,
         damage: 120,
         //status = ionBurningEffect1,
         colorBegin: Color.valueOf("783dff"),

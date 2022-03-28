@@ -17,13 +17,56 @@ exports.ionBurningEffect1 = (() => {
     }, "ion-burning");
     v.color = Color.valueOf("ff0000");
     v.damage = 0.6;
+    v.transitionDamage = 7;
     v.healthMultiplier = 0.5;//血量倍率
     v.damageMultiplier = 0.8;//攻击倍率
     v.effect = fxIonBurning;
     v.init(run(() => {
-        v.opposite(StatusEffects.wet, StatusEffects.freezing/* exports.timeFreezingEffect */);
+        v.opposite(StatusEffects.wet, StatusEffects.freezing);
+        v.affinity(StatusEffects.burning, (unit, result, time) => {
+            unit.damagePierce(transitionDamage)
+        });
     }));
 
+    return v;
+})();
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+exports.burning2 = (() => {
+    const v = new JavaAdapter(StatusEffect, {
+    }, "burning2");
+    v.damage = 20 / 60
+    v.transitionDamage = 4;
+    v.init(run(() => {
+        v.opposite(StatusEffects.wet, StatusEffects.freezing);
+        v.affinity(StatusEffects.melting, (unit, result, time) => {
+            unit.damagePierce(transitionDamage)
+        });
+    }));
+    return v;
+})();
+
+exports.burning3 = (() => {
+    const v = new JavaAdapter(StatusEffect, {
+    }, "burning3");
+    v.damage = 32 / 60
+    v.transitionDamage = 4;
+    v.init(run(() => {
+        v.affinity(exports.burning2, (unit, result, time) => {
+            unit.damagePierce(transitionDamage)
+        });
+    }));
+    return v;
+})();
+exports.burning4 = (() => {
+    const v = new JavaAdapter(StatusEffect, {
+    }, "burning4");
+    v.damage = 55 / 60
+    v.transitionDamage = 5;
+    v.init(run(() => {
+        v.affinity(exports.burning3, (unit, result, time) => {
+            unit.damagePierce(transitionDamage)
+        });
+    }));
     return v;
 })();
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -170,6 +213,9 @@ exports.pilishan = (() => {
     const v = new JavaAdapter(StatusEffect, {
     }, "pilishan");
     v.healthMultiplier = 0.5;//血量倍率
+    v.init(run(() => {
+        v.opposite(exports.ionBurningEffect1);
+    }));
     return v;
 })();
 
@@ -182,6 +228,21 @@ cure.init(run(() => {
     cure.opposite(exports.baiwu, exports.fengsha, exports.huangxue, exports.suanEffect,);
 }));
 exports.cure = cure;
+
+
+const FxX = new Effect(40, e => {
+    Draw.color(Color.valueOf("a775f6"));
+    Angles.randLenVectors(e.id, 2, 1 + e.fin() * 2, (x, y) => {
+        Fill.circle(e.x + x, e.y + y, e.fout() * 1.2);
+    });
+});
+const effectX = new StatusEffect("ZT2");
+effectX.color = Color.valueOf("ffffff");
+effectX.speedMultiplier = 0;//移动速度
+effectX.damage = 0
+effectX.reloadMultiplier = 0.5;//射击速度
+effectX.effect = FxX;
+exports.effectX = effectX;
 
 
 
@@ -255,7 +316,7 @@ public class StatusEffects implements ContentList{
                 opposite(burning, melting);
             });
         }};
-		
+    	
         muddy = new StatusEffect("muddy"){{----------
             color = Color.valueOf("46382a");
             speedMultiplier = 0.94f;

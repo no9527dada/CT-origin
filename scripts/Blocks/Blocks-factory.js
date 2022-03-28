@@ -63,6 +63,7 @@ Blocks.liquidSource.health = 100000;//液体源
 
 
 const lib = require('lib')
+const dsGlobal =require('BlocksLibes/qianzhi');
 const DrawS = require('BlocksLibes/DrawS');
 const { abomb4GC } = require('BlocksLibes/v6');
 const { MultiCrafter1 } = require("XuanZeV7");
@@ -3470,7 +3471,7 @@ exports.fashetai0 = (() => {
 
 
 exports.fashetai = (() => {
-    const v = extend(LaunchPad, "fashetai", {});//微晶大发射台
+    const v = extend(LaunchPad, "fashetai", {isHidden() { return !dsGlobal.H1(); },});//微晶大发射台
     v.size = 5;
     v.hasPower = true;
     v.health = 2200;

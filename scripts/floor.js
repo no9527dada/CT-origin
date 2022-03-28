@@ -1,6 +1,6 @@
 //本JS是关于地面地板和一些状态
 const {
-    yuanwan0, jingliantai, molishi, jin, shiying, zuanshikuang, weijing4,
+    yuanwan0, jingliantai, molishi, jin, shiying, zuanshikuang, weijing4,suan,
 } = require('wupin');
 const status = require('Status');
 //---------------------@部分神魂编写
@@ -80,6 +80,18 @@ exports.wusha = (() => {
     v.attributes.set(Attribute.oil, 1.8);
     return v;
 })();
+
+const suanDiMian = extend(Floor, "suanshui", {});//酸水面
+suanDiMian.liquidDrop = suan;
+suanDiMian.drownTime = 140;
+suanDiMian.status = status.suan2Effect;//状态：强酸
+suanDiMian.cacheLayer = CacheLayer.water;
+suanDiMian.space = false;
+suanDiMian.isLiquid = true;
+suanDiMian.variants = 3;
+suanDiMian.emitLight = true;
+suanDiMian.lightColor = Color.valueOf("53ea0064");
+
 exports.suandiban = (() => {
     const v = extend(Floor, "suandiban", {});//酸的地面
     v.status = status.suanEffect;//状态：弱酸

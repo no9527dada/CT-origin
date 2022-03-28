@@ -1,4 +1,5 @@
 const lib = require('lib')
+const dsGlobal =require('BlocksLibes/qianzhi');
 const {
    // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
@@ -18,11 +19,11 @@ const EFF = 1
 const FFXXAA = new Color.valueOf("ff0000");
 exports.jitaiyangneng5 =
     (() => {
-        const a = extend(SolarGenerator, "5jitaiyangneng", {}); //5级超级太阳能
-        a.health = 4321;
-        a.canOverdrive = false;//不可超速 禁止超速
+        const a = extend(SolarGenerator, "5jitaiyangneng", {isHidden() { return !dsGlobal.H1(); },}); //5级超级太阳能
+        a.health = 54321;
+        //a.canOverdrive = false;//不可超速 禁止超速
         a.size = 16;
-        a.powerProduction = 800000 / 60;//被移到科技树文件
+        a.powerProduction = 800000 / 60;
         a.requirements = ItemStack.with(
             chuangshiweichen, 3,
             shimoxi, 20000,

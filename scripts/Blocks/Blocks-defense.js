@@ -1,4 +1,5 @@
 const lib = require('lib')
+const dsGlobal =require('BlocksLibes/qianzhi');
 const {
     白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
@@ -175,12 +176,14 @@ exports.moli2 =
 //-----------------------------------------------------------
 exports.hunhe3 =
     (() => {
-        const a = extend(Wall, "93hunhe3", { setBars() { lib.Health(this) } }); //狙电魔微墙
+        const a = extend(Wall, "93hunhe3", { 
+        isHidden() { return !dsGlobal.H1(); },
+        setBars() { lib.Health(this) } }); //狙电魔微墙
         a.health = 8000;
         a.size = 3;
         a.insulated = true;
         a.absorbLasers = true;
-        a.chanceDeflect = 15;
+        a.chanceDeflect = 8;
         // a.flashHit = true;
         a.requirements = ItemStack.with(
             hejinboli, 300,
@@ -222,7 +225,7 @@ exports.shenwei =
         a.lightningLength = 40;
         a.lightningColor = Color.valueOf("ff0000"); //闪电颜色
         a.lightningDamage = 20; //闪电伤害
-        a.chanceDeflect = 20;
+        a.chanceDeflect = 12;
         a.requirements = ItemStack.with(
             guijingti, 8000,
             monengjing3, 2,
@@ -245,7 +248,7 @@ exports.qiang =
         a.absorbLasers = true;
         a.lightningChance = 0.25;
         a.lightningLength = 64;
-        a.chanceDeflect = 35;
+        a.chanceDeflect = 20;
         a.requirements = ItemStack.with(
             chuangshiweichen, 1,
             guijingti, 20000,
@@ -602,12 +605,12 @@ exports.weixiudian =
         a.size = 2;
         a.hasPower = true;
         a.powerUse = 2.5;
-        a.repairRadius = 240;
-        a.cepairSpeed = 8.0;
+        a.repairRadius = 30*8;
+        a.repairSpeed = 260/60;
         a.requirements = ItemStack.with(
             Items.copper, 60,
             Items.lead, 120,
-            Items.metaglass, 120,
+            jin, 50,
             guijingti, 35,
             shimoxi, 20,
         );

@@ -26,6 +26,7 @@
 
 //---------------------部分代码 @滞人 编写
 const status = require("Status");
+const dsGlobal =require('BlocksLibes/qianzhi');
 const lib = require('lib'); 
 const {
    // 白, 绿, 黄, 橙, 红, 蓝, 紫,
@@ -1025,44 +1026,42 @@ lib.addToResearch(ZhengYi, { parent: Blocks.ripple.name, });
 exports.ZhengYi = ZhengYi;
 
 
-
 var Wweijing2 = new JavaAdapter(BasicBulletType, {});
-Wweijing2.damage = 50; //伤害
+Wweijing2.damage = 150; //伤害
 Wweijing2.width = 25; //宽
 Wweijing2.height = 30; //高
 Wweijing2.speed = 6;
 Wweijing2.lifetime = 80; //子弹最远距离
 Wweijing2.splashDamageRadius = 16; //分裂范围
-Wweijing2.splashDamage = 125; //分裂的伤害
+Wweijing2.splashDamage = 140; //分裂的伤害
 Wweijing2.hitEffect = Fx.plasticExplosion;
-Wweijing2.backColor = F.c("ffffff"); //背景颜色
-Wweijing2.frontColor = F.c("bbffbb"); //前面颜色
+Wweijing2.backColor = Color.valueOf("ffffff"); //背景颜色
+Wweijing2.frontColor = Color.valueOf("bbffbb"); //前面颜色
 Wweijing2.reloadMultiplier = 3.3; //装弹速度
-Wweijing2.ammoMultiplier = 4; //装弹数量
-Wweijing2.status = StatusEffects.electrified;; //效果
-//Wweijing2.statusDuration = 480//效果时间8秒
+Wweijing2.ammoMultiplier = 2; //装弹数量
+Wweijing2.status = StatusEffects.slow
 
 var Wweijing1 = new JavaAdapter(BasicBulletType, {});
-Wweijing1.damage = 75; //伤害
+Wweijing1.damage = 155; //伤害
 Wweijing1.width = 20; //宽
 Wweijing1.height = 30; //高
 Wweijing1.homingPower = 3; //追踪; 
 Wweijing1.lightning = 5;//闪电根数
 Wweijing1.lightningLength = 12;//闪电长度
-Wweijing1.lightningColor = F.c("ff6200");//闪电颜色
+Wweijing1.lightningColor = Color.valueOf("ff6200");//闪电颜色
 Wweijing1.lightningDamage = 20;//闪电伤害
 Wweijing1.speed = 6;
 Wweijing1.lifetime = 80; //子弹最远距离
 Wweijing1.hitEffect = Fx.plasticExplosion;
-Wweijing1.backColor = F.c("ffffff"); //背景颜色
-Wweijing1.frontColor = F.c("f8ff85"); //前面颜色
-Wweijing1.reloadMultiplier = 3.3; //装弹速度
-Wweijing1.ammoMultiplier = 3.5; //装弹数量
-
+Wweijing1.backColor = Color.valueOf("ffffff"); //背景颜色
+Wweijing1.frontColor = Color.valueOf("f8ff85"); //前面颜色
+Wweijing1.reloadMultiplier = 2; //装弹速度
+Wweijing1.ammoMultiplier = 1; //装弹数量
+Wweijing1.status = StatusEffects.sapped
 
 var WmonengjingA = new JavaAdapter(MissileBulletType, {});
 WmonengjingA.splashDamageRadius = 25;
-WmonengjingA.splashDamage = 32;
+WmonengjingA.splashDamage = 100;
 WmonengjingA.width = 7;
 WmonengjingA.damage = 19;
 WmonengjingA.height = 13;
@@ -1072,11 +1071,12 @@ WmonengjingA.homingPower = 2;
 WmonengjingA.lifetime = 1000;
 WmonengjingA.speed = 1.7;
 WmonengjingA.hitEffect = Fx.flakExplosion
+WmonengjingA.status = StatusEffects.freezing
 //WmonengjingA.collidesTiles = false;
 //WmonengjingA.collidesTeam = false;
 
 var Wmonengjing = new JavaAdapter(MissileBulletType, {});
-Wmonengjing.damage = 53; //伤害
+Wmonengjing.damage = 80; //伤害
 Wmonengjing.width = 20; //宽
 Wmonengjing.height = 34; //高
 Wmonengjing.homingRange = 320;
@@ -1084,10 +1084,10 @@ Wmonengjing.homingPower = 3; //追踪;
 Wmonengjing.speed = 3;
 Wmonengjing.lifetime = 100; //子弹最远距离
 Wmonengjing.hitEffect = Fx.plasticExplosion;
-Wmonengjing.backColor = F.c("ff6c6c"); //背景颜色
-Wmonengjing.frontColor = F.c("ffffff"); //前面颜色
+Wmonengjing.backColor = Color.valueOf("ff6c6c"); //背景颜色
+Wmonengjing.frontColor = Color.valueOf("ffffff"); //前面颜色
 Wmonengjing.reloadMultiplier = 1.3; //装弹速度
-Wmonengjing.ammoMultiplier = 3; //装弹数量
+Wmonengjing.ammoMultiplier = 2; //装弹数量
 //Wmonengjing.trailColor= B7B7B7;
 Wmonengjing.trailEffect = Fx.smoke;
 Wmonengjing.shootEffect = Fx.shootSmall;
@@ -1096,7 +1096,7 @@ Wmonengjing.fragBullet = WmonengjingA;
 
 
 var Wmonengjing2 = new JavaAdapter(MissileBulletType, {});
-Wmonengjing2.damage = 180; //伤害
+Wmonengjing2.damage = 500; //伤害
 Wmonengjing2.width = 20; //宽
 Wmonengjing2.height = 35; //高
 Wmonengjing2.homingRange = 320;
@@ -1104,10 +1104,10 @@ Wmonengjing2.homingPower = 5; //追踪;
 Wmonengjing2.speed = 5;
 Wmonengjing2.lifetime = 60; //子弹最远距离
 Wmonengjing2.hitEffect = Fx.plasticExplosion;
-Wmonengjing2.backColor = F.c("b56cff"); //背景颜色
-Wmonengjing2.frontColor = F.c("ffffff"); //前面颜色
+Wmonengjing2.backColor = Color.valueOf("b56cff"); //背景颜色
+Wmonengjing2.frontColor = Color.valueOf("ffffff"); //前面颜色
 Wmonengjing2.reloadMultiplier = 0.15; //装弹速度
-Wmonengjing2.ammoMultiplier = 5; //装弹数量
+Wmonengjing2.ammoMultiplier = 3; //装弹数量
 //Wmonengjing2.trailColor= B7B7B7;
 Wmonengjing2.trailEffect = Fx.smoke;
 Wmonengjing2.shootEffect = Fx.shootSmall;
@@ -1116,14 +1116,14 @@ Wmonengjing2.fragBullet = dafengche;
 
 //const shangdilizizidan = require('shangdilizizidan');
 /* var FxL = new Effect(40, e => {
-    Draw.color(F.c("a775f6"));
+    Draw.color(Color.valueOf("a775f6"));
     Angles.randLenVectors(e.id, 2, 1 + e.fin() * 2, (x, y) => {
         Fill.circle(e.x + x, e.y + y, e.fout() * 1.2);
     });
 });
  */
 var effectL = new StatusEffect("ZT3");
-effectL.color = F.c("ffffff");
+effectL.color = Color.valueOf("ffffff");
 effectL.damage = 1.6666667
 effectL.reloadMultiplier = 0;//射击速度
 //effectL.effect = FxL;
@@ -1138,8 +1138,8 @@ shangdilizi2.height = 20;
 shangdilizi2.trailEffect = Fx.none;
 shangdilizi2.lifetime = 200;
 shangdilizi2.speed = 6;
-shangdilizi2.backColor = F.c("f6fe76"); //背景颜色
-shangdilizi2.frontColor = F.c("7936f4"); //前面颜色
+shangdilizi2.backColor = Color.valueOf("f6fe76"); //背景颜色
+shangdilizi2.frontColor = Color.valueOf("7936f4"); //前面颜色
 shangdilizi2.status = effectL; //效果
 shangdilizi2.statusDuration = 480//效果时间8秒
 shangdilizi2.hitEffect = Fx.flakExplosion
@@ -1155,8 +1155,8 @@ shangdilizi1.homingRange = 2000;
 shangdilizi1.homingPower = 5;
 shangdilizi1.lifetime = 80; //子弹最远距离
 shangdilizi1.hitEffect = Fx.plasticExplosion;
-shangdilizi1.backColor = F.c("f6fe76"); //背景颜色
-shangdilizi1.frontColor = F.c("7936f4"); //前面颜色
+shangdilizi1.backColor = Color.valueOf("f6fe76"); //背景颜色
+shangdilizi1.frontColor = Color.valueOf("7936f4"); //前面颜色
 shangdilizi1.reloadMultiplier = 0.02; //装弹速度0.15
 shangdilizi1.ammoMultiplier = 30; //装弹数量
 shangdilizi1.status = effectL; //效果:定身
@@ -1167,7 +1167,7 @@ shangdilizi1.fragBullet = shangdilizi2;
 const PenHuo2 = require('turrets/PenHuo');//喷火器
 //const PenHuo = PenHuo2//喷火器
 
-const bawang = extend(ItemTurret, 'bawang', {})//霸王
+const bawang = extend(ItemTurret, 'bawang', {isHidden() { return !dsGlobal.H1(); },})//霸王
 bawang.ammoTypes.put(weijing1, Wweijing1);
 bawang.ammoTypes.put(weijing2, Wweijing2);
 bawang.ammoTypes.put(monengjing1, Wmonengjing);
@@ -1201,6 +1201,15 @@ bawang.category = Category.turret;
 exports.bawang = bawang;
 
 //原版海啸
+Blocks.tsunami.ammoTypes.put(suan, (() => {
+    const v = new LiquidBulletType(suan);
+    v.speed = 5;
+    v.damage = 0.8;
+    v.knockback = 1; //击退; 
+    return v;
+})());
+
+
 Blocks.tsunami.ammoTypes.put(liziye, (() => {
     const v = newIonBoltBulletType(liziye);
     v.speed = 4;
@@ -1379,7 +1388,7 @@ ffffffaa.width = 1;
 
 exports.ronghui2 = (//天煞
     (() => {
-        const a = extend(PowerTurret, "ronghui2", {});
+        const a = extend(PowerTurret, "ronghui2", {isHidden() { return !dsGlobal.H1(); },});
         a.canOverdrive = true;
         a.size = 4;
         a.health = 2600;
@@ -1417,6 +1426,7 @@ exports.ronghui2 = (//天煞
 exports.youling2 = (//冥王
     (() => {
         const a = extend(PowerTurret, "youling2", {
+            isHidden() { return !dsGlobal.H1(); },
             load() {
                 this.super$load();
                 for (var i = 0; i < 9; i++) {
@@ -1464,7 +1474,7 @@ exports.youling2 = (//冥王
                 b.width = 22;
                 b.height = 30;
                 b.speed = 4;
-                b.damage = 800;
+                b.damage = 1300;
                 b.ammoMultiplier = 3;
                 b.hitSize = 8;
                 b.lifetime = 80;
@@ -1548,6 +1558,7 @@ exports.ronghui4 = (//天谴
                 b.espawnEffect = Fx.hitMeltdown
                 b.length = 600;
                 b.damage = 120000/12;
+                b.status = status.effectX;
                 b.incendChance = 0.4;
                 b.incendSpread = 5;
                 b.incendAmount = 1;
