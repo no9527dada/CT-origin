@@ -889,7 +889,6 @@ lib.addToResearch(Blocks.blastDrill, {
     )
 });
 Blocks.waterExtractor.pumpAmount = 0.131;
-  require('wmod');//+++++++++++
 lib.addToResearch(Blocks.waterExtractor, {//抽水机
     parent: 'pneumatic-drill',//气动钻头
     requirements: ItemStack.with(
@@ -995,7 +994,7 @@ lib.addToResearch(Blocks.overflowGate, {//溢流门
         Items.lead, 120,
     ),
 
-});
+});require('wmod');//+++++++++++
 lib.addToResearch(Blocks.underflowGate, {//反向溢流门
     parent: 'overflow-gate',//溢流门
     requirements: ItemStack.with(

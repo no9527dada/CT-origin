@@ -1,5 +1,5 @@
 // by miner
-var modName = "creators" // 自己mod的名字
+var modName = "creators" 
 var wModNames = Seq.with(modName,
 	 "new-horizon","无限宇宙","btm","exogenesis","VF's Frontiers",
 	 "revision","Opore Mod","[purple]Xen[cyan]drastus","AdvanceContent",

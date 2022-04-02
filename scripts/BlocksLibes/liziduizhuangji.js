@@ -14,9 +14,6 @@ const {
     dabaoyedan,zhiwujingyou,jinglianlio,hejinboli,
     JHhejinLiquid,JHhejin,gutaiwanqin,taihejin,
 } = items;
-const rainbowRegions = [];
-
-
 const liziduizhuangjii = extend(GenericCrafter, "z-1liziduizhuangji", {});
 liziduizhuangjii.buildType = prov(() => {
     return new JavaAdapter(GenericCrafter.GenericCrafterBuild, {
@@ -68,7 +65,6 @@ liziduizhuangjii.requirements = ItemStack.with(
 );
 liziduizhuangjii.buildVisibility = BuildVisibility.shown;
 liziduizhuangjii.category = Category.crafting;
-
 exports.duizhuangji = liziduizhuangjii;
 
 

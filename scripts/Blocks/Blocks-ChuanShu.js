@@ -1,4 +1,8 @@
-const lib = require('lib')
+Blocks.conveyor.speed= 0.045;
+Blocks.conveyor.displayedSpeed=6.5;
+
+
+const lib = require('lib');
 const dsGlobal =require('BlocksLibes/qianzhi');
 const DrawS = require('BlocksLibes/DrawS');
 const {

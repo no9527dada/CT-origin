@@ -4,7 +4,7 @@ Events.on(EventType.ClientLoadEvent, cons(e => {
     Items.lead.uiIcon = Core.atlas.find("creators-lead22", Items.lead.fullIcon);
 }))
 //*************************************** */
- //a.group = BlockGroup.transportation;
+//a.group = BlockGroup.transportation;
 // a.group = BlockGroup.liquids;
 //a.floating = true; 水边缘
 //a.requiresWater= true; 水中放置
@@ -63,12 +63,12 @@ Blocks.liquidSource.health = 100000;//液体源
 
 
 const lib = require('lib')
-const dsGlobal =require('BlocksLibes/qianzhi');
+const dsGlobal = require('BlocksLibes/qianzhi');
 const DrawS = require('BlocksLibes/DrawS');
 const { abomb4GC } = require('BlocksLibes/v6');
 const { MultiCrafter1 } = require("XuanZeV7");
 const {
-   // 白, 绿, 黄, 橙, 红, 蓝, 紫,
+    // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
     kuangzajinghuawu, weijing1, weijing2, xiao, liziye, juhebaozhawu, weijing3
     , weijing4, weijing5, guijingti, molishi, monengjing, monengjing1,
@@ -78,8 +78,8 @@ const {
     invalid, dabaosuan, molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
-    dabaoyedan, zhiwujingyou, jinglianlio, canza, hejinboli,xudianchi,
-    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin,jinhuiboli,
+    dabaoyedan, zhiwujingyou, jinglianlio, canza, hejinboli, xudianchi,
+    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin, jinhuiboli,
 } = require('wupin');
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -220,7 +220,7 @@ exports.guijingtichengxingji =//硅晶体成型机,
             shiying, 1,
         ));
         a.requirements = ItemStack.with(
-           // Items.titanium, 26,
+            // Items.titanium, 26,
             Items.metaglass, 62,
             Items.silicon, 55,
             Items.copper, 85,
@@ -612,7 +612,7 @@ exports.jinhuiboliji =
         a.itemCapacity = 10;
         a.liquidCapacity = 20;
         a.craftTime = 90;
-        a. drawer = new DrawSmelter(Color.valueOf("ffef99"));
+        a.drawer = new DrawSmelter(Color.valueOf("ffef99"));
         a.boostScale = 0.15
         a.updateEffect = Fx.steam;
         a.craftEffect = DrawS.jinhuiboliSmeltsmoke;
@@ -1086,7 +1086,7 @@ exports.jiweijinggongchang3 =
         a.hasItems = true;
         a.hasLiquid = true;
         a.craftTime = 380;
-        a.drawer = new DrawSmelter;
+        a.drawer = new DrawSmelter();
         a.craftEffect = Fx.fireballsmoke;
         a.updateEffect = Fx.mine;
         a.updateEffectChance = 0.1
@@ -1736,7 +1736,7 @@ exports.jinhuiyeji =
         a.hasItems = true;
         a.hasLiquid = true;
         a.craftTime = 60;
-        a.drawer = new DrawMixer
+        a.drawer = new DrawMixer()
         a.consumes.power(2);
         a.consumes.liquid(liziye, 12 / 60);
         a.consumes.item(
@@ -1773,7 +1773,7 @@ exports.duochonbuji2 =
         a.hasItems = true;
         a.craftTime = 50;
         a.craftEffect = Fx.smeltsmoke;
-        a.drawer = new DrawWeave;
+        a.drawer = new DrawWeave();
         a.consumes.power(9);
         a.consumes.items(new ItemStack.with(
             Items.thorium, 6, Items.sand, 15));
@@ -1806,7 +1806,7 @@ exports.duochonbuji3 =
         a.hasItems = true;
         a.craftTime = 22;
         a.craftEffect = Fx.smeltsmoke;
-        a.drawer = new DrawWeave;
+        a.drawer = new DrawWeave();
         a.consumes.power(7.5);
         a.consumes.liquid(zhiwujingyou, 1 / 60);
         a.consumes.items(new ItemStack.with(
@@ -1888,7 +1888,7 @@ Object.assign(duochongsugangji, {
     ambientSound: Sounds.machine,
     ambientSoundVolume: 0.2,
     craftEffect: Fx.smeltsmoke,
-    group :BlockGroup.transportation
+    group: BlockGroup.transportation
 });
 duochongsugangji.requirements = ItemStack.with(
     taihejin, 90,
@@ -1927,7 +1927,7 @@ exports.wenshiqi =
         a.itemCapacity = 40;
         a.liquidCapacity = 12;
         a.craftTime = 15;
-        a.drawer = new DrawCultivator
+        //a.drawer = new DrawCultivator();
         a.updateEffect = Fx.bubble;
         a.consumes.power(2);
         a.consumes.liquid(moliye, 0.013);
@@ -2309,7 +2309,7 @@ exports.gaojipeiyangji =
         a.boostScale = 0.2; //地形增幅倍率
         a.attribute = Attribute.spores;
         a.legacyReadWarmup = true;
-        a.drawer = new DrawCultivator
+        a.drawer = new DrawCultivator()
         a.envRequired |= Env.spores;
         a.craftEffect = Fx.mine;
         a.updateEffectChance = 0.1;
@@ -2372,7 +2372,7 @@ exports.monengjingdamoji0 =
         a.buildCostMultiplier = 0.3;
         a.itemCapacity = 10;
         a.craftTime = 35;
-        a.drawer = new DrawSmelter
+        a.drawer = new DrawSmelter()
         a.updateEffect = Fx.steam;
         a.consumes.power(4.3);
         a.consumes.items(new ItemStack.with(
@@ -2404,7 +2404,7 @@ exports.jimonengjinglianzhiqi1 =
         a.size = 2;
         a.hasPower = true;
         a.hasItems = true;
-        a.drawer = new DrawSmelter
+        a.drawer = new DrawSmelter()
         a.buildCostMultiplier = 0.2;
         a.itemCapacity = 20;
         a.craftTime = 60;
@@ -2442,12 +2442,12 @@ exports.jimonengjinglianzhiqi2 =
         a.itemCapacity = 10;
         a.liquidCapacity = 60;
         a.craftTime = 450;
-        a.drawer = new DrawSmelter
+        a.drawer = new DrawSmelter()
         a.craftEffect = Fx.fireballsmoke;
         a.updateEffect = Fx.mine;
         a.updateEffectChance = 0.1;
         a.consumes.power(120);
-        a.consumes.liquid(molijinghuaye, 12/60);
+        a.consumes.liquid(molijinghuaye, 12 / 60);
         a.consumes.items(new ItemStack.with(
             monengjing1, 10,
             weijing2, 8,
@@ -2481,12 +2481,12 @@ exports.jimonengjinglianzhiqi3 =
         a.buildCostMultiplier = 0.2;
         a.itemCapacity = 25;
         a.craftTime = 1200;
-        a.drawer = new DrawSmelter;
+        a.drawer = new DrawSmelter();
         a.updateEffect = Fx.steam;
         a.craftEffect = Fx.fireballsmoke;
         a.updateEffectChance = 0.1;
-        a.consumes.power(85000/60);
-        a.consumes.liquid(JHhejinLiquid, 24/60);
+        a.consumes.power(85000 / 60);
+        a.consumes.liquid(JHhejinLiquid, 24 / 60);
         a.consumes.items(new ItemStack.with(
             monengjing2, 25,
             weijing4, 20,
@@ -2519,7 +2519,7 @@ exports.jimonengjinglianzhiqi4 =
         a.buildCostMultiplier = 0.2;
         a.itemCapacity = 10;
         a.craftTime = 50;
-        a.drawer = new DrawSmelter
+        a.drawer = new DrawSmelter()
         a.updateEffect = Fx.steam;
         a.consumes.power(12.5);
         a.consumes.items(new ItemStack.with(
@@ -2581,7 +2581,7 @@ exports.hejin2 =
         );
         a.requirements = ItemStack.with(
             Items.copper, 260,
-            tanban, 200, 
+            tanban, 200,
             taihejin, 45,
             guijingti, 180,
             weijing1, 120,
@@ -2787,7 +2787,7 @@ exports.zhayaozhizaoji =//炸药制造机
         const a = MultiCrafter1(GenericCrafter, GenericCrafter.GenericCrafterBuild, "zhayaozhizaoji", [
             {
                 input: {
-                    items: ["creators-tanban/2","pyratite/2","creators-xiao/2"],
+                    items: ["creators-tanban/2", "pyratite/2", "creators-xiao/2"],
                     power: 4,
                 },
                 output: {
@@ -2798,7 +2798,7 @@ exports.zhayaozhizaoji =//炸药制造机
 
             {
                 input: {
-                    items: ["creators-gutaiwanqin/1","blast-compound/2"],
+                    items: ["creators-gutaiwanqin/1", "blast-compound/2"],
                     liquids: ["creators-jinglianlio/2"],
                     power: 3,
                 },
@@ -2809,7 +2809,7 @@ exports.zhayaozhizaoji =//炸药制造机
             },
             {
                 input: {
-                    items: ["creators-gutaiwanqin/2","blast-compound/3"],
+                    items: ["creators-gutaiwanqin/2", "blast-compound/3"],
                     liquids: ["creators-yuanwan/6"],
                     power: 3,
                 },
@@ -2835,7 +2835,7 @@ exports.zhayaozhizaoji =//炸药制造机
             weijing1, 45,
             guijingti, 80,
             zuanjing, 20,
-            
+
         );
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.crafting;
@@ -2891,7 +2891,7 @@ exports.qianghuaronglu =
         a.hasItems = true;
         a.hasLiquids = true;
         a.updateEffect = Fx.steam;
-        a.drawer = new DrawLiquid
+        a.drawer = new DrawLiquid()
         a.itemCapacity = 10;
         a.liquidCapacity = 100;
         a.craftTime = 20;
@@ -2943,7 +2943,7 @@ exports.liziyeji = liziyeji;
 //-----------------------------------------------------------
 exports.yuanwanjinghuaji =
     (() => {
-        const a = extend(GenericSmelter, "yuanwanjinghuaji", {});
+        const a = extend(GenericCrafter, "yuanwanjinghuaji", {});
         a.health = 950;//沅烷净化机
         a.size = 3;
         a.itemCapacity = 20;
@@ -2952,6 +2952,7 @@ exports.yuanwanjinghuaji =
         a.hasPower = true;
         a.hasItems = true;
         a.craftTime = 180;
+        a.drawer = new DrawLiquid()
         a.updateEffect = Fx.steam;
         a.consumes.liquid(yuanwan0, 1.5);
         a.consumes.power(13.5);
@@ -2989,7 +2990,7 @@ exports.weichenshoujiqi =
         const CuangWei = lib.createBuildLimit(1);
         const a = extend(GenericCrafter, "weichenshoujiqi", {
             canBreak(tile) { return false; },//不可拆    //创微收集器
-            setStats(){
+            setStats() {
                 this.super$setStats();
                 this.stats.remove(Stat.buildTime);
             },
@@ -3003,7 +3004,7 @@ exports.weichenshoujiqi =
                 let player = Vars.player;
                 let rules = Vars.state.rules;
                 let team = player.team();
-                if((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
+                if ((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
                     this.drawPlaceText(Core.bundle.get("bar.noresources"), x, y, false);
                 }
 
@@ -3049,7 +3050,7 @@ exports.weichenshoujiqi =
         a.hasItems = true;
         a.canOverdrive = false;
         a.itemCapacity = 3;
-        a.craftTime = 3*60*60*60;//小时
+        a.craftTime = 3 * 60 * 60 * 60;//小时
         a.updateEffect = Fx.lightningCharge;
         a.updateEffectChance = 0.2;
         a.consumes.power(5.333343);
@@ -3083,7 +3084,7 @@ exports.chuangshiji =
         const a = extend(GenericCrafter, "z-2chuangshiji", {});
         a.health = 9000; //创世纪
         a.size = 3;
-      //  a.canOverdrive = false;
+        //  a.canOverdrive = false;
         a.hasPower = true;
         a.hasItems = true;;
         a.buildCostMultiplier = 50;
@@ -3119,7 +3120,7 @@ exports.chuangxingjiexiyi =
         a.hasPower = true;
         a.hasItems = true;
         //a.alwaysUnlocked = true;
-      //  a.canOverdrive = false;;
+        //  a.canOverdrive = false;;
         a.buildCostMultiplier = 30;
         a.itemCapacity = 50;
         a.craftTime = 6000;
@@ -3155,7 +3156,7 @@ exports.chuangshiyujie =
         a.size = 3;
         a.hasPower = true;
         a.hasItems = true;
-       // a.alwaysUnlocked = true;
+        // a.alwaysUnlocked = true;
         a.canOverdrive = false;;
         a.buildCostMultiplier = 600;
         a.itemCapacity = 10;
@@ -3233,7 +3234,7 @@ exports.chuangshizhishen =
     (() => {
         const CuangShen = lib.createBuildLimit(1);
         const a = extend(GenericCrafter, "z-5chuangshizhishen", {
-            setStats(){
+            setStats() {
                 this.super$setStats();
                 this.stats.remove(Stat.buildTime);
             },
@@ -3248,7 +3249,7 @@ exports.chuangshizhishen =
                 let player = Vars.player;
                 let rules = Vars.state.rules;
                 let team = player.team();
-                if((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
+                if ((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
                     this.drawPlaceText(Core.bundle.get("bar.noresources"), x, y, false);
                 }
 
@@ -3316,11 +3317,11 @@ exports.wupinyuan =
     (() => {
         const CuangGuan = lib.createBuildLimit(1);
         const a = extend(ItemSource, "z-6wupinyuan", {
-            setStats(){
+            setStats() {
                 this.super$setStats();
                 this.stats.remove(Stat.buildTime);
             },
-            
+
             canBreak(tile) { return false; },//不可拆   ///创世神 物品源
             canPlaceOn(tile, team) {
                 if (!CuangGuan.canBuild(team)) {
@@ -3332,7 +3333,7 @@ exports.wupinyuan =
                 let player = Vars.player;
                 let rules = Vars.state.rules;
                 let team = player.team();
-                if((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
+                if ((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
                     this.drawPlaceText(Core.bundle.get("bar.noresources"), x, y, false);
                 }
 
@@ -3391,7 +3392,7 @@ exports.choujiangji =
     (() => {
         const A7 = lib.createBuildLimit(2);//抽奖机
         const a = extend(Separator, "zzz-choujiangji", {
-            setStats(){
+            setStats() {
                 this.super$setStats();
                 this.stats.remove(Stat.buildTime);
             },
@@ -3405,7 +3406,7 @@ exports.choujiangji =
                 let player = Vars.player;
                 let rules = Vars.state.rules;
                 let team = player.team();
-                if((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
+                if ((team.core() != null && !team.core().items.has(this.requirements, rules.buildCostMultiplier)) && !rules.infiniteResources) {
                     this.drawPlaceText(Core.bundle.get("bar.noresources"), x, y, false);
                 }
 
@@ -3426,7 +3427,7 @@ exports.choujiangji =
                     if (this.team != Team.derelict) {
                         A7.addBuild(this.team);
                     }
-                }, 
+                },
                 readBase(read) {
                     this.super$readBase(read);
                     if (this.team != Team.derelict) {
@@ -3450,39 +3451,39 @@ exports.fashetai0 = (() => {
     v.size = 3;
     v.hasPower = true;
     v.health = 450;
-    v.launchTime = 20*60;
+    v.launchTime = 20 * 60;
     v.buildCostMultiplier = 5;
     //v.canOverdrive = false;
     v.itemCapacity = 70;
     v.alwaysUnlocked = false;
-    v.consumes.power(280/60);
+    v.consumes.power(280 / 60);
     v.requirements = ItemStack.with(
-        Items.copper, 350, 
-        shimoxi, 140, 
+        Items.copper, 350,
+        shimoxi, 140,
         Items.lead, 200,
         Items.titanium, 150,
         guijingti, 70,
     );
     v.category = Category.effect;
-   v.buildVisibility = BuildVisibility.shown;
-   v.group = BlockGroup.transportation
+    v.buildVisibility = BuildVisibility.shown;
+    v.group = BlockGroup.transportation
     return v;
 })();
 
 
 exports.fashetai = (() => {
-    const v = extend(LaunchPad, "fashetai", {isHidden() { return !dsGlobal.H1(); },});//微晶大发射台
+    const v = extend(LaunchPad, "fashetai", { isHidden() { return !dsGlobal.H1(); }, });//微晶大发射台
     v.size = 5;
     v.hasPower = true;
     v.health = 2200;
-    v.launchTime = 35*60;
+    v.launchTime = 35 * 60;
     v.buildCostMultiplier = 5;
     //v.canOverdrive = false;
     v.itemCapacity = 180;
     v.alwaysUnlocked = false;
-    v.consumes.power(500/60);
+    v.consumes.power(500 / 60);
     v.requirements = ItemStack.with(
-        shimoxi, 330, 
+        shimoxi, 330,
         weijing3, 80,
         guijingti, 150,
         jingliantai, 50,
