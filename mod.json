@@ -1,5 +1,6 @@
 {
   "name": "creators",
+  "main": "dawn.Dawn",
   "displayName": "创世神-起源",
   "author": "[pink]编[cyan]号[red]95[violet]27",
   "description": "本作为创世神前传，讲述anuke星人在serpulos星球研究行星发射器的故事
@@ -37,6 +38,6 @@ Before doing this, please backup your archive
 If you find it too difficult, you can play the previous game：https://steamcommunity.com/sharedfiles/filedetails/?id=2378403982
 -------------创世神起源
 ",
-  "version": "1.072",
+  "version": "1.081",
   "minGameVersion": 135
 }
