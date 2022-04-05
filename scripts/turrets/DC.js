@@ -26,10 +26,10 @@
 
 //---------------------部分代码 @滞人 编写
 const status = require("Status");
-const dsGlobal =require('BlocksLibes/qianzhi');
-const lib = require('lib'); 
+const dsGlobal = require('BlocksLibes/qianzhi');
+const lib = require('lib');
 const {
-   // 白, 绿, 黄, 橙, 红, 蓝, 紫,
+    // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
     kuangzajinghuawu, weijing1, weijing2, xiao, liziye, juhebaozhawu, weijing3
     , weijing4, weijing5, guijingti, molishi, monengjing, monengjing1,
@@ -141,7 +141,7 @@ var dafengche = (() => {
     bt.collides = false;
     bt.reflectable = false;
     bt.absorbable = false;
-    bt.homingRange = 40*8;
+    bt.homingRange = 40 * 8;
     bt.homingPower = 5; //追踪; 
     return bt;
 })()
@@ -203,7 +203,7 @@ DianHu2.shootType = (() => {
     a.lightningLength = 20;
     a.lightningLengthRand = 8;
     a.collidesAir = true;
-    a.status=status.pilishan
+    a.status = status.pilishan
     a.statusDuration = 60
     a.lightningColor = F.c("ef4018");
     return a;
@@ -1169,7 +1169,7 @@ shangdilizi1.fragBullet = shangdilizi2;
 const PenHuo = require('turrets/PenHuo');//喷火器
 //const PenHuo = guang2//喷火器
 
-const bawang = extend(ItemTurret, 'bawang', {isHidden() { return !dsGlobal.H1(); },})//霸王
+const bawang = extend(ItemTurret, 'bawang', { isHidden() { return !dsGlobal.H1(); }, })//霸王
 bawang.ammoTypes.put(weijing1, Wweijing1);
 bawang.ammoTypes.put(weijing2, Wweijing2);
 bawang.ammoTypes.put(monengjing1, Wmonengjing);
@@ -1201,6 +1201,84 @@ bawang.buildVisibility = BuildVisibility.shown;
 bawang.category = Category.turret;
 
 exports.bawang = bawang;
+//原版幽灵
+Blocks.spectre.ammoTypes.put(Items.surgeAlloy, (() => {
+    const v = new BasicBulletType(9, 105, "bullet");
+    v.frontColor = Color.valueOf("F3E979");
+    v.backColor = Color.valueOf("FFFFFF");
+    v.lifetime = 30;
+    v.hitSize = 5;
+    v.width = 16;
+    v.height = 23;
+    v.shootEffect = Fx.shootBig;
+    v.pierceCap = 2;
+    v.pierceBuilding = true;
+    v.reloadMultiplier = 0.9; //装弹速度
+    v.lightning = 3; //闪电根数
+    v.lightningLength = 6; //闪电长度
+    v.lightningDamage = 10;//闪电伤害
+    v.lightningColor = Color.valueOf("ffffff");//闪电颜色
+    v.knockback = 0.6;
+    return v;
+})());
+
+
+Blocks.spectre.ammoTypes.put(jingliantai, (() => {
+    const v = new BasicBulletType(7, 70, "bullet");
+    v.frontColor = Color.valueOf("B79EEE");
+    v.backColor = Color.valueOf("FFF3FF");
+    // v.speed = 5;
+    // v.damage = 120;
+    v.hitSize = 5;
+    v.width = 16;
+    v.height = 23;
+    v.shootEffect = Fx.shootBig;
+    v.pierceCap = 4;
+    v.pierceBuilding = true;
+    v.knockback = 1.2;
+    return v;
+})());
+
+Blocks.spectre.ammoTypes.put(jin, (() => {
+    const v = new BasicBulletType(9, 35, "bullet");
+    v.frontColor = Color.valueOf("DB9F00");
+    v.backColor = Color.valueOf("FFD900");
+    v.lifetime = 30;
+    v.hitSize = 5;
+    v.width = 16;
+    v.height = 23;
+    v.shootEffect = Fx.shootBig;
+    v.pierceCap = 2;
+    v.pierceBuilding = true;
+    v.reloadMultiplier = 2; //装弹速度
+    v.knockback = 1.5;
+    return v;
+})());
+
+Blocks.spectre.ammoTypes.put(zuanshikuang, (() => {
+    const v = new BasicBulletType(9, 130, "bullet");
+    v.frontColor = Color.valueOf("#2CCDB1");
+    v.backColor = Color.valueOf("#FFFFFF");
+    v.splashDamageRadius = 240; //分裂范围
+    v.splashDamage = 50; //分裂的伤害
+    v.lifetime = 30;
+    v.hitSize = 5;
+    v.width = 16;
+    v.height = 23;
+    v.shootEffect = Fx.shootBig;
+    v.pierceCap = 1;
+    v.pierceBuilding = true;
+    v.knockback = 0.5;
+    return v;
+})());
+
+
+
+
+
+
+
+
 
 //原版海啸
 Blocks.tsunami.ammoTypes.put(suan, (() => {
@@ -1390,7 +1468,7 @@ ffffffaa.width = 1;
 
 exports.ronghui2 = (//天煞
     (() => {
-        const a = extend(PowerTurret, "ronghui2", {isHidden() { return !dsGlobal.H1(); },});
+        const a = extend(PowerTurret, "ronghui2", { isHidden() { return !dsGlobal.H1(); }, });
         a.canOverdrive = true;
         a.size = 4;
         a.health = 2600;
@@ -1457,7 +1535,7 @@ exports.youling2 = (//冥王
         a.shootCone = 5;
         a.coolEffect = Fx.steam;
         a.cooldown = 1;
-        a.consumes.liquid(zhiwujinghuaye, 6/60).update = false;
+        a.consumes.liquid(zhiwujinghuaye, 6 / 60).update = false;
         a.requirements = ItemStack.with(
             Items.lead, 4500,
             Items.copper, 3200,
@@ -1504,8 +1582,8 @@ exports.youling2 = (//冥王
                     Draw.blend(Blending.additive);
                     for (var h = 0; h < tif; h++) {
                         Draw.color(F.c("ff0000").shiftHue((Time.time * tid) + (h * (360 / tif))));
-                        Draw.rect(rainbowRegions[h], 
-                            this.x + Angles.trnsx(this.rotation, 0, 0), this.y + Angles.trnsy(this.rotation, 0, 0),this.rotation - 90);
+                        Draw.rect(rainbowRegions[h],
+                            this.x + Angles.trnsx(this.rotation, 0, 0), this.y + Angles.trnsy(this.rotation, 0, 0), this.rotation - 90);
                     }
                     Draw.blend();
                     Draw.color();
@@ -1523,8 +1601,8 @@ exports.ronghui4 = (//天谴
     (() => {
         const a = extend(LaserTurret, "ronghui4", {});
         a.canOverdrive = true;
-        a.size = 6;
-        a.health = 2600;
+        a.size = 8;
+        a.health = 9600;
         a.buildCostMultiplier = 1.5;
         a.heatColor = F.c("6F00D2")
         a.shootEffect = Fx.shootBig
@@ -1559,7 +1637,7 @@ exports.ronghui4 = (//天谴
                 b.hitEffect = Fx.hitMeltdown
                 b.espawnEffect = Fx.hitMeltdown
                 b.length = 600;
-                b.damage = 120000/12;
+                b.damage = 120000 / 12;
                 b.status = status.effectX;
                 b.incendChance = 0.4;
                 b.incendSpread = 5;
