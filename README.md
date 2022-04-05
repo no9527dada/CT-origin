@@ -1,5 +1,8 @@
 # creator-origin  创世神-起源
 
+特别声明：这个库只是用来对在游戏中直接下载提供帮助的，我没要说努力的去分享代码什么的（别因为JAVA被编译后上传来对我语言攻击）
+Special statement: This library is only used to help with direct download in the game, I don't want to talk about trying to share the code or anything (don't attack my language because JAVA is compiled and uploaded)
+
 起源与前作创世神不可同时加载
   -
  起源启用模组白名单
