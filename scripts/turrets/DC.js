@@ -14,13 +14,13 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Dimension Shard.  If not, see <http://www.gnu.org/licenses/>.
-//          "sprite":"mod名-贴图"//子弹贴图，放在子弹类里
-//          "hitTiles":true,//是否打方块(子弹)
-// 			"collidesTiles":true,//是否碰撞方块(不论敌友)
-// 			"collidesGround":true,
-// 			"collidesTeam":false,//是否与同队单位碰撞
-// 			"collidesAir":true,//是否空中碰撞
-// 			"collides":true,//是否开启碰撞箱
+//          "sprite="mod名-贴图"//子弹贴图，放在子弹类里
+//          "hitTiles=true,//是否打方块(子弹)
+// 			"collidesTiles=true,//是否碰撞方块(不论敌友)
+// 			"collidesGround=true,
+// 			"collidesTeam=false,//是否与同队单位碰撞
+// 			"collidesAir=true,//是否空中碰撞
+// 			"collides=true,//是否开启碰撞箱
 //          极限值常用最大值：2147483647
 
 
@@ -34,7 +34,7 @@ const {
     kuangzajinghuawu, weijing1, weijing2, xiao, liziye, juhebaozhawu, weijing3
     , weijing4, weijing5, guijingti, molishi, monengjing, monengjing1,
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun
-    , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi,
+    , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi, jinhuiboli,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
     invalid, dabaosuan, molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
@@ -95,7 +95,7 @@ var dafengche = (() => {
         },
         update(b) {
             this.super$update(b);
-            b.data.bulletRot += SPEEF;
+            b.data.bulletRot += SPEE;
             b.data.bullet1.time = 0;
             b.data.bullet2.time = 0;
             b.data.bullet3.time = 0;
@@ -464,12 +464,12 @@ JueWang.ammoTypes.put(Items.plastanium, pi);
 JueWang.ammoTypes.put(Items.thorium, tim);
 JueWang.ammoTypes.put(Items.surgeAlloy, sa);
 JueWang.requirements = ItemStack.with(
-    Items.plastanium, 125,
-    Items.titanium, 225,
-    Items.thorium, 175,
+    Items.plastanium, 90,
+    Items.titanium, 150,
+    Items.thorium, 120,
     Items.surgeAlloy, 75,
-    guijingti, 110,
-    jin, 150
+    guijingti, 60,
+    jin, 70
 );
 JueWang.shootSound = Sounds.shotgun;
 JueWang.health = 2700;
@@ -621,7 +621,7 @@ const hur = new JavaAdapter(BasicBulletType, {
 });
 hur.width = 1;
 hur.height = 1;
-hur.damage = 25;
+hur.damage = 45;
 hur.lifetime = 60;
 hur.speed = 3;
 hur.status = StatusEffects.shocked;
@@ -638,7 +638,7 @@ hur.despawnEffect = lib.newEffectt(20, (e) => {
 });
 hur.pierceCap = 2
 hur.pierceBuilding = true
-//hur.homingPower = 1 //追踪
+hur.homingPower = 1 //追踪
 
 var guang2 = new JavaAdapter(FlakBulletType, {});
 guang2.collidesTiles = false
@@ -646,11 +646,11 @@ guang2.collides = false;
 guang2.collidesAir = false;
 guang2.damage = 30;
 guang2.splashDamageRadius = 24;
-guang2.splashDamage = 50;
+guang2.splashDamage = 150;
 guang2.width = 100;
 guang2.height = 100;
 guang2.speed = 0;
-guang2.lifetime = 70;
+guang2.lifetime = 50;
 guang2.hitEffect = Fx.plasticExplosion;
 guang2.backColor = F.c("bf92f9");
 guang2.frontColor = F.c("bf92f9");
@@ -1210,11 +1210,12 @@ Blocks.spectre.ammoTypes.put(Items.surgeAlloy, (() => {
     v.hitSize = 5;
     v.width = 16;
     v.height = 23;
+    v.ammoMultiplier = 1;
     v.shootEffect = Fx.shootBig;
     v.pierceCap = 2;
     v.pierceBuilding = true;
-    v.reloadMultiplier = 0.9; //装弹速度
-    v.lightning = 3; //闪电根数
+    v.reloadMultiplier = 0.8; //装弹速度
+    v.lightning = 2; //闪电根数
     v.lightningLength = 6; //闪电长度
     v.lightningDamage = 10;//闪电伤害
     v.lightningColor = Color.valueOf("ffffff");//闪电颜色
@@ -1306,6 +1307,705 @@ Blocks.tsunami.ammoTypes.put(qiangxiaolengqueye, (() => {
     //v.statusDuration = 30
     return v;
 })());
+
+//1111111111111111111111
+
+exports.langyong2Bullet_taihejin = (
+    (() => {
+        const v = new ArtilleryBulletType(3.7, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.status = status.zhenhan
+        v.statusDuration = 10;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 4;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 3 * 8;
+        v.splashDamage = 70;
+        v.backColor = F.c("#8393C6");
+        v.frontColor = F.c("#DCE4FF");
+        v.reloadMultiplier = 1.6; //装弹速
+        v.status = status.zhenhan
+        v.statusDuration = 10;
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+/*********
+ *             v.fragBullet = artilleryPlasticFrag;
+               v.fragBullets = 10;
+ */
+exports.langyong2Bullet_zuanjing = (
+    (() => {
+        const v = new ArtilleryBulletType(3.5, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6.2 * 8;
+        v.splashDamage = 45;
+        v.ammoMultiplier = 1;
+        v.backColor = F.c("#209581");
+        v.frontColor = F.c("#A2F6E7");
+        v.knockback = 0.8;
+        v.reloadMultiplier = 2; //装弹速
+        v.fragBullets = 12; //分裂数量
+        v.fragBullet = (
+            (() => {
+                const a = extend(BasicBulletType, {});
+                a.damage = 90; //伤害
+                a.speed = 2.5;
+                a.width = 15;
+                a.height = 20;
+                a.shrinkY = 1;
+                a.lifetime = 22;
+                a.backColor = Pal.plastaniumBack;
+                a.frontColor = Pal.plastaniumFront;
+                a.despawnEffect = Fx.none;
+                a.collidesGround = false
+                return a;
+            })());
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+exports.langyong2Bullet_zhayao = (
+    (() => {
+        const v = new ArtilleryBulletType(4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6.2 * 8;
+        v.splashDamage = 170;
+        v.backColor = F.c("#DC2E09");
+        v.frontColor = F.c("#FFDFDF");
+        v.status = StatusEffects.blasted
+        v.statusDuration = 30;
+        v.reloadMultiplier = 1.8; //装弹速
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+exports.langyong2Bullet_juhebaozhawu = (
+    (() => {
+        const v = new ArtilleryBulletType(3.2, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 2;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 4 * 8;
+        v.splashDamage = 240;
+        v.backColor = F.c("#FF51C3");
+        v.frontColor = F.c("#FEB1DF");
+        v.status = status.ionBurningEffect1
+        v.statusDuration = 30;
+        v.reloadMultiplier = 1.3; //装弹速
+        v.fragBullet = (
+            (() => {
+                const c = new FireBulletType(1, 15);
+                return c;
+            })());
+        // Bullets.artilleryPlasticFrag;
+        v.fragBullets = 10;
+        v.fragLifeMin = 0.2;
+        v.fragLifeMax = 1.5;
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+exports.langyong2Bullet_JHhejin = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 4;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6 * 8;
+        v.splashDamage = 180;
+        v.backColor = F.c("#D99F1F");
+        v.frontColor = F.c("#F3E925");
+        v.lightning = 3; //闪电根数
+        v.lightningLength = 10; //闪电长度
+        v.lightningDamage = 45;//闪电伤害
+        v.lightningColor = Color.valueOf("#E8D122");//闪电颜色
+        v.reloadMultiplier = 1.5; //装弹速
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+
+exports.langyong2Bullet_jinhuiboli = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 6;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6 * 8;
+        v.splashDamage = 750;
+        v.backColor = F.c("#F3E925");
+        v.frontColor = F.c("#FAF6DD");
+        v.lightning = 5; //闪电根数
+        v.lightningLength = 19; //闪电长度
+        v.lightningDamage = 145;//闪电伤害
+        v.lightningColor = Color.valueOf("#E8D122");//闪电颜色
+        v.reloadMultiplier = 1.3; //装弹速
+        v.fragBullets = 1;
+        v.fragBullet = hur;
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+exports.langyong2Bullet_monengjing1 = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 2;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6 * 8;
+        v.splashDamage = 140;
+        v.backColor = F.c("#282828");
+        v.frontColor = F.c("#9F9F9F");
+        v.knockback = 1.8;
+        v.reloadMultiplier = 1.5; //装弹速
+        v.fragBullets = 8
+        v.fragBullet = (
+            (() => {
+                const c = new ArtilleryBulletType(3, 20, "shell");
+                c.width = 20
+                c.height = 20
+                c.splashDamage = 40
+                c.splashDamageRadius = 80
+                c.despawnEffect = Fx.plasticExplosionFlak
+                c.backColor = F.c("#282828");
+                c.frontColor = F.c("9F9F9F");
+                return c;
+            })());
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+exports.langyong2Bullet_monengjing2 = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 6;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 8.4 * 8;
+        v.splashDamage = 520;
+        v.backColor = F.c("#9C6CD3");
+        v.frontColor = F.c("#9C6CD3");
+        v.knockback = 3;
+        v.reloadMultiplier = 1.2; //装弹速
+        v.fragBullets = 4
+        v.fragBullet = (
+            (() => {
+                const c = new ArtilleryBulletType(3, 20, "shell");
+                c.width = 20
+                c.height = 20
+                c.splashDamage = 40
+                c.splashDamageRadius = 6 * 8;
+                c.despawnEffect = Fx.plasticExplosionFlak
+                c.backColor = F.c("#D198FF");
+                c.frontColor = F.c("#FBB4E0");
+                c.fragBullets = 2
+                c.fragBullet = (
+                    (() => {
+                        const b = new ArtilleryBulletType(3, 20, "shell");
+                        b.width = 20
+                        b.height = 20
+                        b.splashDamage = 180
+                        b.splashDamageRadius = 4 * 8
+                        b.despawnEffect = Fx.plasticExplosionFlak
+                        b.backColor = F.c("#D198FF");
+                        b.frontColor = F.c("#FBB4E0");
+                        return b;
+                    })());
+                return c;
+            })());
+
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+
+
+const Bullet_water = extend(LiquidBulletType, {});
+Bullet_water.liquid = Liquids.water;
+Bullet_water.status = StatusEffects.wet;
+Bullet_water.lightColor = Pal.sap;
+Bullet_water.lightOpacity = Pal.sap;
+Bullet_water.damage = 1;
+Bullet_water.puddleSize = 9;
+Bullet_water.orbSize = 5;
+Bullet_water.lifetime = 45;
+Bullet_water.speed = 3.5;
+Bullet_water.shootEffect = Fx.shootLiquid;
+
+exports.langyong2Bullet_dabaoshui = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 2;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6 * 8;
+        v.splashDamage = 20;
+        v.backColor = F.c("#0029CF");
+        v.frontColor = F.c("#667DD6");
+        v.reloadMultiplier = 0.5; //装弹速
+        v.fragBullets = 5
+        v.fragBullet = Bullet_water
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+
+const Bullet_yedan = extend(LiquidBulletType, {});
+Bullet_yedan.liquid = qiangxiaolengqueye;
+Bullet_yedan.status = status.effectX
+Bullet_yedan.statusDuration = 60;
+Bullet_yedan.lightColor = F.c("#ffffff");
+Bullet_yedan.lightOpacity = F.c("#ffffff");
+Bullet_yedan.damage = 1;
+Bullet_yedan.puddleSize = 9;
+Bullet_yedan.orbSize = 5;
+Bullet_yedan.lifetime = 45;
+Bullet_yedan.speed = 3.5;
+Bullet_yedan.shootEffect = Fx.shootLiquid;
+exports.langyong2Bullet_dabaoyedan = (
+    (() => {
+        const v = new ArtilleryBulletType(4.4, 20, "shell");
+        v.hitEffect = Fx.plasticExplosion;
+        v.lifetime = 40;
+        v.width = 23;
+        v.height = 23;
+        v.ammoMultiplier = 6;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 6 * 8;
+        v.splashDamage = 20;
+        v.backColor = F.c("#6A6A6A");
+        v.frontColor = F.c("#D3D3D3");
+        v.reloadMultiplier = 0.5; //装弹速
+        v.fragBullets = 5
+        v.fragBullet = Bullet_yedan
+        //---
+        v.collidesTiles = false;
+        v.collides = false;
+        v.collidesAir = false;
+        v.scaleVelocity = true;
+        v.hitShake = 1;
+        v.hitSound = Sounds.explosion;
+        v.shootEffect = Fx.shootBig;
+        v.trailEffect = Fx.artilleryTrail;
+        return v;
+    })());
+
+exports.langyong2 = (//浪涌2
+    (() => {
+        const a = extend(ItemTurret, "langyong2", {});
+        a.canOverdrive = true;
+        //  a.alternate = true;
+        a.size = 4;
+        a.health = 2200;
+        //a.loopSound = Sounds.beam;
+        a.shootSound = Sounds.artillery;
+        a.range = 60 * 8;
+        a.targetAir = true;
+        a.shots = 4;
+        a.inaccuracy = 12;
+        a.reloadTime = 60;
+        a.ammoEjectBack = 5;
+        a.ammoUseEffect = Fx.casing3Double;
+        a.ammoPerShot = 2;
+        a.cooldown = 0.03;
+        a.velocityInaccuracy = 0.2;
+        a.restitution = 0.02;
+        a.recoilAmount = 6;
+        a.shootShake = 2;
+        a.minRange = 50;
+        a.ammo(
+            Items.graphite, Bullets.artilleryDense,
+            Items.silicon, Bullets.artilleryHoming,
+            Items.pyratite, Bullets.artilleryIncendiary,
+            Items.blastCompound, Bullets.artilleryExplosive,
+            Items.plastanium, Bullets.artilleryPlastic,
+            //-------------------
+            taihejin, exports.langyong2Bullet_taihejin,
+            zuanjing, exports.langyong2Bullet_zuanjing,
+            zhayao, exports.langyong2Bullet_zhayao,
+            juhebaozhawu, exports.langyong2Bullet_juhebaozhawu,
+            JHhejin, exports.langyong2Bullet_JHhejin,
+            jinhuiboli, exports.langyong2Bullet_jinhuiboli,
+            monengjing1, exports.langyong2Bullet_monengjing1,
+            monengjing2, exports.langyong2Bullet_monengjing2,
+            dabaoshui, exports.langyong2Bullet_dabaoshui,
+            dabaoyedan, exports.langyong2Bullet_dabaoyedan ,
+
+
+        );
+        a.requirements = ItemStack.with(
+            Items.lead, 750, 
+            Items.copper, 1200,
+            jingliantai, 240,
+            Items.phaseFabric, 150,
+            weijing2,35,
+            monengjing1,170,
+guijingti,360
+        );
+
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.turret;
+        return a;
+    })()
+);
+
+var Bullet_taihejinEffect = new Effect(30, e => {
+    Draw.color(Color.valueOf("FFFFFF"));
+    e.scaled(6, i => {
+        Lines.stroke(3 * i.fout());
+        Lines.circle(e.x, e.y, 3 + i.fin() * 25);
+    });
+    Draw.color(Color.gray);
+    Angles.randLenVectors(e.id, 6, 2 + 23 * e.finpow(), (x, y) => {
+        Fill.circle(e.x + x, e.y + y, e.fout() * 4 + 0.5);
+    });
+    Draw.color(Color.valueOf("F3E979"));
+    Lines.stroke(e.fout());
+    Angles.randLenVectors(e.id + 1, 4, 1 + 23 * e.finpow(), (x, y) => {
+        Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1 + e.fout() * 3);
+    });
+    Drawf.light(e.x, e.y, 60, Color.valueOf("FFFFFF"), 0.7 * e.fout());
+});
+
+exports.Bullet_surgeAlloy = (
+    (() => {
+        const v = new BasicBulletType(9, 110, "bullet");
+        v.frontColor = Color.valueOf("F3E979");
+        v.backColor = Color.valueOf("FFFFFF");
+        v.hitSize = 7;
+        v.width = 16;
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.shootEffect = Fx.shootBig;
+        //v.pierceCap = 1;
+        //v.hitEffect = Fx.flakExplosionBig;
+        v.hitEffect = Bullet_taihejinEffect;
+        v.ammoMultiplier = 1;//装弹倍率
+        v.lifetime = 40;
+        v.pierceBuilding = false;
+        v.reloadMultiplier = 1.5; //装弹速度
+        v.lightning = 3; //闪电根数
+        v.lightningLength = 8; //闪电长度
+        v.lightningDamage = 18;//闪电伤害
+        v.lightningColor = Color.valueOf("#B8DCAA");//闪电颜色
+        v.knockback = 1.6;
+        return v;
+    })());
+exports.Bullet_monengjing = (
+    (() => {
+        const v = new BasicBulletType(9, 140, "bullet");
+        v.frontColor = Color.valueOf("3d3d3d");
+        v.backColor = Color.valueOf("8c8c8c");
+        v.hitSize = 7;
+        v.width = 16
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.shootEffect = Fx.shootBig;
+        v.pierceCap = 4;
+        v.hitEffect = Fx.flakExplosionBig;
+        v.despawnEffect = Bullet_taihejinEffect;
+        v.ammoMultiplier = 2;//装弹倍率
+        v.lifetime = 40;
+        v.pierceBuilding = true;
+        v.reloadMultiplier = 1.2; //装弹速度
+        v.knockback = 1;
+        return v;
+    })());
+exports.Bullet_hejinboli = (
+    (() => {
+        const v = new BasicBulletType(9, 150, "bullet");
+        v.frontColor = Color.valueOf("F3E979");
+        v.backColor = Color.valueOf("FFFFFF");
+
+        v.hitSize = 7;
+        v.width = 16;
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.shootEffect = Fx.shootBig;
+        v.hitEffect = Bullet_taihejinEffect
+        v.ammoMultiplier = 2;//装弹倍率
+        v.lifetime = 40;
+        v.pierceBuilding = false;
+        v.reloadMultiplier = 1.5; //装弹速度
+        v.lightning = 3; //闪电根数
+        v.lightningLength = 10; //闪电长度
+        v.lightningDamage = 22;//闪电伤害
+        v.lightningColor = Color.valueOf("#B8DCAA");//闪电颜色
+        v.knockback = 1.6;
+        return v;
+    })());
+exports.Bullet_taihejin = (
+    (() => {
+        const v = new BasicBulletType(9, 130, "bullet");
+        v.frontColor = Color.valueOf("F3E979");
+        v.backColor = Color.valueOf("FFFFFF");
+
+        v.hitSize = 7;
+        v.width = 16;
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.shootEffect = Fx.shootPyraFlame
+        v.pierceCap = 10;
+        // v.frontColor = Color.valueOf("b88bda");
+        v.ammoMultiplier = 3;//装弹倍率
+        v.lifetime = 40;
+        v.despawnEffect = Bullet_taihejinEffect;
+        v.pierceBuilding = true;
+        v.splashDamage = 10;
+        v.splashDamageRadius = 40;
+        v.status = status.zhenhan
+        v.statusDuration = 10;
+        v.knockback = 0.4;
+        return v;
+    })());
+exports.Bullet_weijing3 = (
+    (() => {
+        const v = new BasicBulletType(9, 280, "bullet");
+        v.frontColor = Color.valueOf("3d3d3d");
+        v.backColor = Color.valueOf("8c8c8c");
+
+        v.hitSize = 7;
+        v.width = 16;
+        v.height = 23;
+        v.ammoMultiplier = 1;
+        v.shootEffect = Fx.shootPyraFlame;
+        v.pierceCap = 20;
+        v.hitEffect = Fx.flakExplosionBig;
+        v.despawnEffect = Bullet_taihejinEffect;
+        v.ammoMultiplier = 5;//装弹倍率
+        v.lifetime = 40;
+        v.pierceBuilding = true;
+        v.reloadMultiplier = 1.2; //装弹速度
+        v.knockback = 1;
+        return v;
+    })());
+exports.Bullet_weijing4 = (
+    (() => {
+        const v = new BasicBulletType(2, 125, "creators-qiege-1");
+        v.splashDamageRadius = 5.5*8; //分裂范围
+        v.splashDamage = 230; //分裂的伤害
+        v.width = 25;
+        v.height = 25;
+        v.shrinkY = 0;
+        v.shrinkX = 0;
+        v.spin = 18;
+        v.shootEffect = Fx.shootBig;
+        //v.pierceCap = 0;
+        v.ammoMultiplier = 4;//装弹倍率
+        v.lifetime = 240;
+        v.pierceBuilding = false;
+        v.reloadMultiplier = 0.5; //装弹速度
+        v.knockback = 1;
+        v.fragBullets = 1;
+        v.fragBullet = (
+            (() => {
+                const v = new BasicBulletType(0, 320, "creators-qiege-1");
+                // v.frontColor = Color.valueOf("3d3d3d");
+                // v.backColor = Color.valueOf("8c8c8c");
+                v.hitSize = 7;
+                v.width = 55;
+                v.height = 55;
+                v.shrinkY = 0;
+                v.shrinkX = 0;
+                v.spin = 25;
+                v.pierceCap = 4;
+                v.lifetime = 180;
+                v.pierceBuilding = false;
+                v.fragBullets = 3;
+                v.splashDamageRadius = 5.5*8; //分裂范围
+                v.splashDamage = 230; //分裂的伤害
+                v.status = status.qiege;
+                v.statusDuration = 300;
+                v.fragBullet = (
+                    (() => {
+                        const v = new BasicBulletType(3, 150, "creators-qiege-1");
+                        // v.frontColor = Color.valueOf("3d3d3d");
+                        // v.backColor = Color.valueOf("8c8c8c");
+                        v.hitSize = 7;
+                        v.width = 12;
+                        v.height = 12;
+                        v.shrinkY = 0;
+                        v.shrinkX = 0;
+                        v.spin = 10;
+                        v.pierceCap = 8;
+                        v.lifetime = 90;
+                        v.pierceBuilding = true;
+                        v.knockback = 0.8;
+                        return v;
+                    })());
+                return v;
+            })());
+        return v;
+    })());
+exports.Bullet_JHhejin = (
+    (() => {
+        const v = new BasicBulletType(9, 450, "bullet");
+        v.frontColor = Color.valueOf("3d3d3d");
+        v.backColor = Color.valueOf("8c8c8c");
+
+        v.hitSize = 7;
+        v.width = 16;
+        v.height = 23;
+        v.shootEffect = Fx.shootBig;
+        v.pierceCap = 4;
+        v.hitEffect = Fx.flakExplosionBig;
+        v.ammoMultiplier = 4;//装弹倍率
+        v.lifetime = 40;
+        v.pierceBuilding = false;
+        v.reloadMultiplier = 1.8; //装弹速度
+        v.lightning = 5; //闪电根数
+        v.lightningLength = 18; //闪电长度
+        v.lightningDamage = 33;//闪电伤害
+        v.lightningColor = Color.valueOf("#B8DCAA");//闪电颜色
+        v.knockback = 0.8;
+
+        return v;
+    })());
+exports.youling3 = (//幽灵3
+    (() => {
+        const a = extend(ItemTurret, "youling3", {});
+        a.canOverdrive = true;
+        a.size = 5;
+        a.health = 4300;
+        a.reloadTime = 7;
+        a.coolantMultiplier = 0.5;
+        a.restitution = 0.1;
+        a.ammoUseEffect = Fx.casing3Double;
+        a.range = 42 * 8;
+        a.inaccuracy = 3;
+        a.recoilAmount = 3;
+        a.spread = 5;
+        a.shots = 4;
+        a.ammoPerShot = 3;
+        a.shootShake = 4;
+        a.alternate = true;
+        a.shootCone = 24;
+        a.shootSound = Sounds.shootBig;
+        a.coolantUsage = 1.2;
+        a.limitRange();
+        a.ammo(
+            Items.surgeAlloy, exports.Bullet_surgeAlloy,
+            monengjing, exports.Bullet_monengjing,
+            hejinboli, exports.Bullet_hejinboli,
+            taihejin, exports.Bullet_taihejin,
+            weijing3, exports.Bullet_weijing3,
+            weijing4, exports.Bullet_weijing4,
+            JHhejin, exports.Bullet_JHhejin ,
+        );
+        a.requirements = ItemStack.with(
+            Items.lead, 3200, 
+            Items.copper, 4500,
+            Items.thorium, 900,
+            Items.plastanium, 1200,
+            guijingti,800,
+            weijing2,75,
+            weijing3,5,
+            zuanjing,750,
+            taihejin,120,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.turret;
+        return a;
+    })()
+);
+
+
+
+
+
 
 
 
@@ -1438,7 +2138,7 @@ var aassaas = (() => {
     bt.sprite = "duo";
     bt.reloadMultiplier = 1
     bt.ammoMultiplier = 1;
-    bt.damage = 1400;
+    bt.damage = 1800;
     bt.width = 6;
     bt.height = 6;
     bt.shrinkY = 0;
@@ -1580,7 +2280,7 @@ exports.youling2 = (//冥王
                     this.super$draw();
                     // tr2.trns(this.rotation, -this.recoil);
                     Draw.blend(Blending.additive);
-                    for (var h = 0; h < tif; h++) {
+                    for (var h = 0; h < ti; h++) {
                         Draw.color(F.c("ff0000").shiftHue((Time.time * tid) + (h * (360 / tif))));
                         Draw.rect(rainbowRegions[h],
                             this.x + Angles.trnsx(this.rotation, 0, 0), this.y + Angles.trnsy(this.rotation, 0, 0), this.rotation - 90);

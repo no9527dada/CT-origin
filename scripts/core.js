@@ -75,7 +75,7 @@ core.unitType = Dw.gammaSplus
 core.health = 12000;
 core.itemCapacity = 50000;
 core.buildCostMultiplier = 0.5;
-core.unitCapModifier = 16;
+core.unitCapModifier = 24;
 core.requirements = ItemStack.with(
     Items.copper, 2000,
     Items.lead, 2000,

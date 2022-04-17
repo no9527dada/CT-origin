@@ -1,16 +1,16 @@
 //本JS是关于地面地板和一些状态
 const {
-    yuanwan0, jingliantai, molishi, jin, shiying, zuanshikuang, weijing4,suan,
+    yuanwan0, jingliantai, molishi, jin, shiying, zuanshikuang, weijing4,suan,moliye,
 } = require('wupin');
 const status = require('Status');
 //---------------------@部分神魂编写
-exports.Orejingliantai = (() => {
+/* exports.Orejingliantai = (() => {
     const v = extend(OreBlock, "Ore-jingliantai", {});//
     v.itemDrop = jingliantai
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 24//自动生成的默认规模
     v.oreThreshold = 0.9////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 3
     v.useColor = true
     return v;
@@ -21,7 +21,7 @@ exports.Oremolishi = (() => {
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 24//自动生成的默认规模
     v.oreThreshold = 0.9////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 3
     v.useColor = true
     return v;
@@ -32,7 +32,7 @@ exports.Orejin = (() => {
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 30//自动生成的默认规模
     v.oreThreshold = 0.86////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 3
     v.useColor = true
     return v;
@@ -43,7 +43,7 @@ exports.Oreshiying = (() => {
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 30//自动生成的默认规模
     v.oreThreshold = 0.84////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 3
     v.useColor = true
     return v;
@@ -54,7 +54,7 @@ exports.Orezuankuang = (() => {
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 45//自动生成的默认规模
     v.oreThreshold = 0.92////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 4
     v.useColor = true
     return v;
@@ -65,12 +65,12 @@ exports.Oreweijing4 = (() => {
     v.oreDefault = true//自定义地图自动生成
     v.oreScale = 40//自动生成的默认规模
     v.oreThreshold = 0.93////自动生成的默认密集度
-    v.playerUnmineable = false
+    v.playerUnmineable = true
     v.variants = 3
     v.useColor = true
     return v;
 })();
-
+ */
 exports.wusha = (() => {
     const v = extend(Floor, "wusha", {});//污沙
     v.itemDrop = Items.sand;
@@ -80,6 +80,17 @@ exports.wusha = (() => {
     v.attributes.set(Attribute.oil, 1.8);
     return v;
 })();
+
+
+// const molishui = extend(Floor, "molishui", {});//魔力水
+// molishui.liquidDrop = moliye;
+// molishui.status = StatusEffects.wet;
+// molishui.cacheLayer = CacheLayer.water;
+// molishui.space = false;
+// molishui.isLiquid = true;
+// molishui.variants = 0;
+// molishui.emitLight = true;
+
 
 const suanDiMian = extend(Floor, "suanshui", {});//酸水面
 suanDiMian.liquidDrop = suan;

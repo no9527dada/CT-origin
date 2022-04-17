@@ -48,6 +48,7 @@ zdan.smokeEffect = Fx.shootSmallSmoke;
 zdan.buildingDamageMultiplier = 0.01;
 zdan.healPercent = 3;//治愈建筑百分比
 zdan.homingPower = 0.04;//追踪能力值
+exports.gammaSplusZdan = zdan;
 //------------------------
 const gammaSplus = new UnitType('gammaSplus');
 gammaSplus.defaultController = prov(() => new BuilderAI());

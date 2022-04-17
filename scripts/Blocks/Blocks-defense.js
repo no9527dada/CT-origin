@@ -186,7 +186,7 @@ exports.hunhe3 =
         a.chanceDeflect = 8;
         // a.flashHit = true;
         a.requirements = ItemStack.with(
-            hejinboli, 300,
+            hejinboli, 150,
             monengjing1, 20,
             weijing2, 12,
             shimoxi, 450,
@@ -208,7 +208,7 @@ exports.hunhe4 =
         a.requirements = ItemStack.with(
             monengjing1, 40,
             weijing2, 25,
-            hejinboli, 800,
+            hejinboli, 400,
         );
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.defense;
@@ -278,7 +278,63 @@ exports.moweimen =
         return a;
     })();
 //-----------------------------------------------------------
+//炸弹代码由 @XVX神魂 提供
 
+const bomb = extendContent(Wall, "bomb", {});//炸弹
+bomb.health = 16500
+bomb.size = 4;
+bomb.update = true;
+bomb.hasPower = true;
+bomb.consumes.power(1/60);
+bomb.buildCostMultiplier = 0.8;
+bomb.group = BlockGroup.power;
+bomb.insulated = true;
+bomb.buildVisibility = BuildVisibility.shown;
+bomb.category = Category.logic;
+bomb.requirements = ItemStack.with(
+    Items.lead, 30000,
+    Items.copper, 30000,
+    Items.silicon, 5000,
+    zhayao, 2500,
+    zuanjing, 120,
+monengjing1,70,
+);
+bomb.buildType = () => {
+	const TNTDamage = 50000;//爆炸攻击
+	const TNTRadius = 100*8;//爆炸范围
+	const TNTTime = 3*60;//爆炸延迟
+	let T = 0.0;
+	const t = extendContent(Wall.WallBuild, bomb, {
+        updateTile(){
+            if(this.consValid() && this.power.status >= 0){
+				T += Time.delta;
+				if(Vars.ui != null) {
+					Vars.ui.showLabel((Math.floor((TNTTime - T) / 60.0) + "s"), 0.01, this.x, this.y);
+				}
+				if(T >= TNTTime){
+					Units.nearby(this.team, this.x, this.y, TNTRadius, cons(other => {other.damage(TNTDamage)}))
+					this.damage(this.health);
+				}
+			}else{
+				T = 0.0;
+			}
+		},
+		draw() {
+			this.super$draw();
+			Drawf.dashCircle(this.x ,this.y , TNTRadius, this.team.color);
+		},
+		write(write) {
+            this.super$write(write);
+            write.f(T)
+        },
+		read(read, revision) {
+            this.super$read(read, revision);
+            T = read.f();
+        }
+	});
+	return t;
+};
+exports.bomb =bomb
 //-----------------------------------------------------------
 exports.jiasu3 =
     (() => {
@@ -620,5 +676,6 @@ exports.weixiudian =
     })();
 //-------------
 require('BlocksLibes/zhiliaoyi');
-
+require('BlocksLibes/jianshangyi');
+require('BlocksLibes/geshangyi');
 

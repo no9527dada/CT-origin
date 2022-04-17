@@ -562,7 +562,7 @@ exports.hejinboliji =
         a.size = 3;
         a.buildCostMultiplier = 0.5;
         a.itemCapacity = 10;
-        a.craftTime = 70;
+        a.craftTime = 45;
         a.drawer = DrawS.hejinboli
         a.updateEffect = Fx.steam;
         a.craftEffect = Fx.coalSmeltsmoke;
@@ -574,7 +574,7 @@ exports.hejinboliji =
 
         ));
         a.outputItem = new ItemStack(
-            hejinboli, 1,
+            hejinboli, 2,
         );
         a.requirements = ItemStack.with(
             Items.copper, 50,
@@ -3170,7 +3170,7 @@ exports.chuangshiyujie =
             chuangshizhixing, 1,
         );
         a.requirements = ItemStack.with(
-            chuangshiweichen, 1,
+            chuangshiweichen, 2,
             monengjing2, 15,
             zuanjing, 60,
             weijing5, 2,

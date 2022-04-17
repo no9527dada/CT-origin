@@ -26,4 +26,4 @@
     }
 写法:
   多个  muchao1.targetFlags =new ObjectSet.with(BlockFlag.launchPad, BlockFlag.storage, BlockFlag.battery);
-  单个  muchao1.targetFlags = BlockFlag.battery ;
+  单个  muchao1.targetFlags =[ BlockFlag.battery ];
