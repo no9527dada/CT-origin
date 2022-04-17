@@ -45,11 +45,13 @@ const { wanxiangqiao } = require('BlocksLibes/wanxiangqiao');const { crouter } =
 const {
     qian1, qian2, qian3, tong3, tai3, tu3, sugang3, hejin3, moli1, moli2, hunhe3, hunhe4, shenwei, qiang,
     jiasu3, jiasu4, jiasu5, jiasu6, chaojijiasuyi, deng, hudun2, hudun3, xiuli1, xiuli2, display, weixiudian,
-    moweimen, xinxiban,
+    moweimen, xinxiban,bomb,
 } = require('Blocks/Blocks-defense');
 const { jiasu7 } = require('BlocksLibes/fanjiasu');
 const { jiasu8 } = require('BlocksLibes/fanjiasu2');
-const { zhiliaoyi } = require('BlocksLibes/zhiliaoyi');
+const { zhiliaoyi } = require('BlocksLibes/zhiliaoyi');  
+const { jianshangyi } = require('BlocksLibes/jianshangyi');
+const { geshangyi } = require('BlocksLibes/geshangyi');
 /********************************************************************** */
 const {
     yingzhizuantou, weijingzuantou1, weijingzuantou2, junengzuantou, zuantou,
@@ -57,8 +59,8 @@ const {
 } = require('Blocks/Blocks-drills');
 const {
     DianHu, DianHu2, FangKong, healere, JueWang, BuHuo, LanJie, lieguang, ZhengFu, ZhengYi, bawang, ronghui3,
-    ronghui2, youling2, ronghui4, zongjipao, zongjipao2, huasha,
-} = require('turrets/DC');
+    ronghui2, youling2, ronghui4, zongjipao, zongjipao2, huasha,youling3,langyong2,
+} = require('turrets/DC');require('wmod');//+++++++++++
 const { PenHuo } = require('turrets/PenHuo');
 const {
     dianxiangan, nengliangta, nengliangta2, jidianchi3, jitaiyangneng3, jitaiyangneng4, gaojidirefadianji,
@@ -184,6 +186,15 @@ Events.on(ContentInitEvent, cons(e => {//解锁核心定位装置
         )
     });
 }));
+Events.on(ContentInitEvent, cons(e => {//
+    lib.addToResearch(Maps45, {//核心转移教程
+        parent: 'overgrowth',//
+        objectives: Seq.with(
+            new Objectives.Research(CoreJiangLuo)//研究核心定位装置
+        )
+    });
+}));
+
 Events.on(ContentInitEvent, cons(e => {// 解锁石油+岩浆发电机
     lib.addToResearch(Maps83, {// 融合
         parent: 'windsweptIslands',//风吹群岛
@@ -355,13 +366,33 @@ Events.on(ContentInitEvent, cons(e => {////解锁聚合冲击发电
         )
     });
 }));
+Events.on(ContentInitEvent, cons(e => {//解锁恶灵
+    lib.addToResearch(Maps53, {//解锁恶灵
+        parent: 'nuclearComplex',//核裂阵
+        objectives: Seq.with(
+            new Objectives.Research(Blocks.spectre)//研究幽灵
+        )
+    });
+}));
+Events.on(ContentInitEvent, cons(e => {//
+    lib.addToResearch(Maps168, {//浪潮
+        parent: 'LFangZhen',//L方阵
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps267),//占领L方阵
+            new Objectives.SectorComplete(Maps45),//占领核心转移
+            new Objectives.Research(Blocks.spectre)//研究幽灵
+        )
+    });
+}));
+
 Events.on(ContentInitEvent, cons(e => {//解锁阻电魔微墙
     lib.addToResearch(Maps193, {//双子域
         parent: 'FenLing',//分岭
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps163),//占领分岭
             new Objectives.Research(ronghui3),//研究审判
-            new Objectives.Research(zongjipao)//研究电磁炮1
+            new Objectives.Research(zongjipao),//研究电磁炮1
+            new Objectives.Research(youling3),//研究恶灵
         )
     });
 }));
@@ -392,7 +423,6 @@ Events.on(ContentInitEvent, cons(e => {//解锁聚合冲击发电机
         )
     });
 }));
-
 
 
 
@@ -994,7 +1024,7 @@ lib.addToResearch(Blocks.overflowGate, {//溢流门
         Items.lead, 120,
     ),
 
-});require('wmod');//+++++++++++
+});
 lib.addToResearch(Blocks.underflowGate, {//反向溢流门
     parent: 'overflow-gate',//溢流门
     requirements: ItemStack.with(
@@ -1531,7 +1561,18 @@ lib.addToResearch(Blocks.shockMine, {//地雷
         Items.pyratite, 20 / 4 * 200,
         Items.silicon, 15 / 4 * 200
     ),
-
+  
+});
+lib.addToResearch(bomb, {//炸弹
+    parent: "shock-mine",
+    requirements: ItemStack.with(
+        Items.lead, 30000/4*200,
+        Items.copper, 30000/4*200,
+        Items.silicon, 5000/4*200,
+        zhayao, 70000,
+        zuanjing, 12000,
+        monengjing1,1750,
+    ),
 });
 lib.addToResearch(Blocks.combustionGenerator, {//火力电
     parent: 'core-shard',
@@ -1936,19 +1977,19 @@ lib.addToResearch(LanJie, {
     ),
 
 });
-lib.addToResearch(lieguang, {
+lib.addToResearch(lieguang, {//裂光
     parent: Blocks.lancer.name,
 });
-lib.addToResearch(PenHuo, {
+lib.addToResearch(PenHuo, {//喷火器
     parent: Blocks.scorch.name,
 });
-lib.addToResearch(ZhengFu, {
+lib.addToResearch(ZhengFu, {//征服
     parent: Blocks.ripple.name,
     objectives: Seq.with(
         new Objectives.SectorComplete(Maps267),//占领L方阵
     ),
 });
-lib.addToResearch(ZhengYi, {
+lib.addToResearch(ZhengYi, {//正义
     parent: Blocks.ripple.name,
     objectives: Seq.with(
         new Objectives.SectorComplete(Maps267),//占领L方阵
@@ -1960,7 +2001,7 @@ lib.addToResearch(bawang, {//霸王
         new Objectives.SectorComplete(Maps152),//占领-
     ),
 });
-lib.addToResearch(huasha, {
+lib.addToResearch(huasha, {//花洒
     parent: Blocks.wave.name,
     objectives: Seq.with(
         new Objectives.SectorComplete(Maps76),//占领热融解锁
@@ -1972,6 +2013,20 @@ lib.addToResearch(ronghui3, {//审判
         new Objectives.SectorComplete(Maps155),//占领-
     ),
 });
+
+lib.addToResearch(youling3, {//恶灵/幽灵3
+    parent: Blocks.spectre.name,
+    objectives: Seq.with(
+        new Objectives.SectorComplete(Maps53),//占领- 恶灵
+    ),
+});
+lib.addToResearch(langyong2, {//浪潮/浪涌2
+    parent: Blocks.ripple.name,
+    objectives: Seq.with(
+        new Objectives.SectorComplete(Maps168),//占领-浪潮
+    ),
+});
+
 lib.addToResearch(ronghui2, {//天煞
     parent: ronghui3.name,
     objectives: Seq.with(
@@ -2576,6 +2631,13 @@ lib.addToResearch(chuangxingjiexiyi, {
 });
 lib.addToResearch(chuangshiyujie, {
     parent: chuangxingjiexiyi.name,
+    requirements: ItemStack.with(
+    chuangshiweichen, 10,
+    monengjing2, 15/4*200,
+    zuanjing, 60/4*200,
+    weijing5, 15,
+    jin, 300/4*200,
+    ),
 });
 lib.addToResearch(jinbigongcang, {
     parent: jinchengxingji2.name,
@@ -2606,10 +2668,21 @@ lib.addToResearch(chuansongmen, {
         new Objectives.SectorComplete(Maps72),//占领-
     ),
 });//传送门
-lib.addToResearch(display, { parent: Blocks.largeLogicDisplay.name, });//显示器
+lib.addToResearch(display, { parent: Blocks.largeLogicDisplay.name, });//显示器  
 lib.addToResearch(weixiudian, { parent: "repair-point", });//单位维修点
-lib.addToResearch(zhiliaoyi, { parent: "weixiudian", });//单位维修点
-
+lib.addToResearch(zhiliaoyi, { parent: "weixiudian", });//治疗仪
+lib.addToResearch(jianshangyi, { parent: "zhiliaoyi", });//减伤仪
+lib.addToResearch(geshangyi, { parent: "jianshangyi",     
+requirements: ItemStack.with(
+    Items.copper, 4000/4*200,
+    Items.lead, 2500/4*200,
+    JHhejin, 50/4*120,
+    jin, 300/4*200,
+    guijingti, 1700/4*200,
+    shimoxi, 600/4*200,
+    weijing2, 210/4*200,
+    weijing3, 140
+)});//割伤仪
 lib.addToResearch(xuwu, {
     parent: wupinyuan.name,
     objectives: Seq.with(

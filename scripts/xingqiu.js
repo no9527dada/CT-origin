@@ -39,21 +39,21 @@ SectorPresets.groundZero.captureWave = 20;
 //orbitTime = 60*60  公转 1小时一圈
 //rotateTime = 24f * 60f 自传 24分钟一圈
 
-const sS = require("BlocksLibes/sectorSize");
- const SSY3 = new JavaAdapter(Planet, {
-     load() {
-         this.meshLoader = prov(() => new HexMesh(SSY3, 6));
-         this.super$load();
-     }
- }, "moon", Planets.serpulo, 0.3);
- sS.planetGrid(SSY3, 1);
- SSY3.generator = new SerpuloPlanetGenerator();
- SSY3.atmosphereColor = Color.valueOf("ffa1a1");
- SSY3.atmosphereRadIn = 0.02;
- SSY3.atmosphereRadOut = 0.1;
- //SSY3.localizedName = Core.bundle.format("planet.creator.SSY3");
- SSY3.startSector = 1;
- SSY3.orbitRadius = 5;
- SSY3.accessible = true
- SSY3.orbitTime = 1*60 
- SSY3.rotateTime = 1 * 60
+// const sS = require("BlocksLibes/sectorSize");
+//  const SSY3 = new JavaAdapter(Planet, {
+//      load() {
+//          this.meshLoader = prov(() => new HexMesh(SSY3, 6));
+//          this.super$load();
+//      }
+//  }, "moon", Planets.serpulo, 0.3);
+//  sS.planetGrid(SSY3, 1);
+//  SSY3.generator = new SerpuloPlanetGenerator();
+//  SSY3.atmosphereColor = Color.valueOf("ffa1a1");
+//  SSY3.atmosphereRadIn = 0.02;
+//  SSY3.atmosphereRadOut = 0.1;
+//  //SSY3.localizedName = Core.bundle.format("planet.creator.SSY3");
+//  SSY3.startSector = 1;
+//  SSY3.orbitRadius = 5;
+//  SSY3.accessible = true
+//  SSY3.orbitTime = 1*60 
+//  SSY3.rotateTime = 1 * 60

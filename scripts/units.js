@@ -1,5 +1,5 @@
 const {
-   // 白, 绿, 黄, 橙, 红, 蓝, 紫,
+    // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
     kuangzajinghuawu, weijing1, weijing2, xiao, liziye, juhebaozhawu, weijing3
     , weijing4, weijing5, guijingti, molishi, monengjing, monengjing1,
@@ -14,10 +14,9 @@ const {
 } = require('wupin');
 const lib = require('lib')
 require('BlocksLibes/portal');//传送门
-
 const { T6rishi, T6sixing, T6tianxie, T6wangzuo, } = require('units/T6');
 const { oct2 } = require('units/oct2');
-const { } = require('units/gammaSplus');
+const {}= require('units/gammaSplus');
 const { ax1, ax2, ax3, ax4, ax5, ax6, yunshu } = require('units/kuangji');
 const { zisha } = require('units/zisha');
 const { miehuo } = require('units/miehuo');
@@ -25,7 +24,32 @@ const { } = require('units/zhuzai');
 const { } = require('units/nai');
 const { } = require('units/cangying');
 const { } = require('units/T6chuan');
+
+const { YunLuo } = require('units/YunLuo');
+/* const GGHH = extend(MoveLightningAbility, "error", {});
+//const GGHH = new JavaAdapter(MoveLightningAbility,"error", {})
+GGHH.damageX = 35;
+GGHH.lengthX = 12;
+GGHH.chanceX = 0.15;
+GGHH.offsetX = 0;
+GGHH.minSpeedX = 0.8;
+GGHH.maxSpeedX = 1.2;
+GGHH = Color.valueOf("a9d8ff");
+GGHH.bullet=gammaSplus.gammaSplusZdan
+
+
+let damageX = 35;
+let lengthX = 12;
+let chanceX = 0.15;
+let offsetX = 0;
+let minSpeedX = 0.8;
+let maxSpeedX = 1.2;
+let colorX = Color.valueOf("a9d8ff");
+UnitTypes.gamma.abilities.add(new MoveLightningAbility(damageX, lengthX, chanceX, offsetX, minSpeedX, maxSpeedX, colorX,"error",)); */
+
+
 UnitTypes.gamma.abilities.add(new RepairFieldAbility(5, 60 * 3, 1));//原版3级飞机
+
 UnitTypes.oct.abilities.add(new UnitSpawnAbility(UnitTypes.poly, 3600, 19.25, -31.75), new UnitSpawnAbility(UnitTypes.flare, 60, -19.25, -31.75));//t5护盾飞机
 //T1空军
 Blocks.airFactory.plans.add(
@@ -174,6 +198,12 @@ unitGC1.plans = Seq.with(
             Items.phaseFabric, 480,
             jin, 700
         )),
+
+    // new UnitFactory.UnitPlan(
+    //     YunLuo, 3,
+    //     ItemStack.with(
+    //         weijing2, 1,
+    //     )),
 );
 exports.unitGC1 = unitGC1;
 
@@ -223,6 +253,3 @@ lib.addToResearch(unitGC2, {
     parent: unitGC1.name,
 });
 exports.unitGC2 = unitGC2;
-
-//stop
-//host 橘子

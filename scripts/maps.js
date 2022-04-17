@@ -164,16 +164,12 @@ Maps288.localizedName = Core.bundle.format("XingGuDao")//  "行古道";//
 exports.Maps288 = Maps288;
 
 
-const Maps53 = new SectorPreset("null0013)", Planets.serpulo, 53);//占用
-Maps53.captureWave = 99;//
+const Maps53 = new SectorPreset("E'Ling", Planets.serpulo, 53);//解锁恶灵
+Maps53.captureWave = 60;//
 Maps53.difficulty = 13;
-Maps53.localizedName =  Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
+Maps53.localizedName =  Core.bundle.format("E'Ling")// "恶灵//
 exports.Maps53 = Maps53;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps53, {//
-        parent: 'null003)',//
-    });
-}));
+
 
 
 const Maps72 = new SectorPreset("SuanFuDI", Planets.serpulo, 72);//解锁高级能量塔+超级能量塔+单位门
@@ -238,16 +234,11 @@ Maps147.startWaveTimeMultiplier = 0.8;
 Maps147.localizedName = Core.bundle.format("ZY3")// "资源分配区-3";//
 exports.Maps147 = Maps147;
 
-const Maps45 = new SectorPreset("null0024)", Planets.serpulo, 45);//解锁霹雳闪2
-Maps45.captureWave = 99;//
-Maps45.difficulty = 13;
-Maps45.localizedName = Core.bundle.format("aaaaaaaaa")//  "[red]（该地图暂未制作）";//
+const Maps45 = new SectorPreset("HXZY", Planets.serpulo, 45);//核心转移教程
+Maps45.captureWave = 3;//
+Maps45.difficulty = 5;
+Maps45.localizedName = Core.bundle.format("HXZY")//  "核心转移教程";//
 exports.Maps45 = Maps45;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps45, {//
-        parent: 'null003)',//
-    });
-}));
 
 const Maps237 = new SectorPreset("TianSha", Planets.serpulo, 237);//解锁冥王+天煞王
 Maps237.difficulty = 13;
@@ -274,16 +265,12 @@ Maps52.localizedName =  Core.bundle.format("ZY2")// "资源分配区-2";//
 exports.Maps52 = Maps52;
 
 
-const Maps168 = new SectorPreset("null0029)", Planets.serpulo, 168);//占用
-Maps168.captureWave = 99;//
+const Maps168 = new SectorPreset("LangChao", Planets.serpulo, 168);//解锁浪潮
+Maps168.captureWave = 66;//
 Maps168.difficulty = 13;
-Maps168.localizedName =  Core.bundle.format("aaaaaaaaa")// "[red]（该地图暂未制作）";//
+Maps168.localizedName =  Core.bundle.format("LangChao")// "浪潮";//
 exports.Maps168 = Maps168;
-Events.on(ContentInitEvent, cons(e => {//
-    lib.addToResearch(Maps168, {//
-        parent: 'null003)',//
-    });
-}));
+
 
 
 const Maps27 = new SectorPreset("null0030)", Planets.serpulo, 27);//解锁创世神

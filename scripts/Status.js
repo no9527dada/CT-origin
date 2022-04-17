@@ -1,6 +1,7 @@
 
 StatusEffects.boss.healthMultiplier = 1.13
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+const DrawS = require('BlocksLibes/DrawS');
 //离子液
 exports.ionBurningEffect1 = (() => {
     const fxIonBurning = new Effect(35, cons(e => {
@@ -24,7 +25,7 @@ exports.ionBurningEffect1 = (() => {
     v.init(run(() => {
         v.opposite(StatusEffects.wet, StatusEffects.freezing);
         v.affinity(StatusEffects.burning, (unit, result, time) => {
-            unit.damagePierce(transitionDamage)
+
         });
     }));
 
@@ -39,7 +40,6 @@ exports.burning2 = (() => {
     v.init(run(() => {
         v.opposite(StatusEffects.wet, StatusEffects.freezing);
         v.affinity(StatusEffects.melting, (unit, result, time) => {
-            unit.damagePierce(transitionDamage)
         });
     }));
     return v;
@@ -52,7 +52,6 @@ exports.burning3 = (() => {
     v.transitionDamage = 4;
     v.init(run(() => {
         v.affinity(exports.burning2, (unit, result, time) => {
-            unit.damagePierce(transitionDamage)
         });
     }));
     return v;
@@ -64,9 +63,23 @@ exports.burning4 = (() => {
     v.transitionDamage = 5;
     v.init(run(() => {
         v.affinity(exports.burning3, (unit, result, time) => {
-            unit.damagePierce(transitionDamage)
         });
     }));
+    return v;
+})();
+
+exports.zhenhan = (() => {
+    const v = new JavaAdapter(StatusEffect, {
+    }, "zhenhan");
+    v.speedMultiplier = 0.2;//移速
+    return v;
+})();
+
+exports.qiege = (() => {
+    const v = new JavaAdapter(StatusEffect, {
+    }, "qiege");
+    v.damage = 200 / 60;
+    //v.effect = DrawS.shitassDeathEffect
     return v;
 })();
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -86,7 +99,7 @@ exports.suanEffect = (() => {
     v.effect = fxsuan;
     v.init(run(() => {
         v.affinity(StatusEffects.tarred, ((unit, result, time) => {
-            unit.damagePierce(transitionDamage);
+
             Fx.burning.at(unit.x + Mathf.range(unit.bounds() / 2), unit.y + Mathf.range(unit.bounds() / 2));
             result.set(burning, Math.min(time + result.time, 300));
         }));
@@ -111,7 +124,7 @@ exports.suan2Effect = (() => {
     v.effect = fxsuan2;
     v.init(run(() => {
         v.affinity(StatusEffects.tarred, ((unit, result, time) => {
-            unit.damagePierce(transitionDamage);
+
             Fx.burning.at(unit.x + Mathf.range(unit.bounds() / 2), unit.y + Mathf.range(unit.bounds() / 2));
             result.set(burning, Math.min(time + result.time, 300));
         }));
@@ -222,7 +235,6 @@ exports.pilishan = (() => {
 const cure = extend(StatusEffect, "cure", {});
 //const cure = new JavaAdapter(StatusEffect,{},"cure");
 cure.damage = -0.85;
-cure.statusDuration = 3;//状态持续时间
 cure.effect = Fx.heal;
 cure.init(run(() => {
     cure.opposite(exports.baiwu, exports.fengsha, exports.huangxue, exports.suanEffect,);
@@ -266,7 +278,7 @@ public class StatusEffects implements ContentList{
             init(() -> {
                 opposite(wet, freezing);
                 affinity(tarred, (unit, result, time) -> {
-                    unit.damagePierce(transitionDamage);
+                    
                     Fx.burning.at(unit.x + Mathf.range(unit.bounds() / 2f), unit.y + Mathf.range(unit.bounds() / 2f));
                     result.set(burning, Math.min(time + result.time, 300f));
                 });
@@ -284,7 +296,7 @@ public class StatusEffects implements ContentList{
                 opposite(melting, burning);
 
                 affinity(blasted, (unit, result, time) -> {
-                    unit.damagePierce(transitionDamage);
+                    
                 });
             });
         }};
@@ -308,7 +320,7 @@ public class StatusEffects implements ContentList{
 
             init(() -> {
                 affinity(shocked, (unit, result, time) -> {
-                    unit.damagePierce(transitionDamage);
+                    
                     if(unit.team == state.rules.waveTeam){
                         Events.fire(Trigger.shock);
                     }
