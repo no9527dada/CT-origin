@@ -1,9 +1,0 @@
-{
-    //name:锡提炼机
-    //description:描述
-	"outputItems":[
-    {"item":"jingliantai","amount":1},
-    {"item":"scrap","amount":3}
-    ],
-	//"research":"a-1guijingtichengxingji"
-}

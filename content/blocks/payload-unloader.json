@@ -1,6 +1,0 @@
-{ 
-    //出料
-    "maxBlockSize":3,
-    "offloadSpeed":100,
-    "loadTime":1
-}

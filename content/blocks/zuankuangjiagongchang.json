@@ -1,8 +1,0 @@
-{
-//    // name:钻矿加工厂
-// 	research:zuanjingjiagongchang
-"outputItems":[
-    {"item":"zuanjing","amount":1},
-    {"item":"scrap","amount":3}
-    ]
-} 
