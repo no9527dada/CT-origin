@@ -1,0 +1,49 @@
+{
+	//"type": "flying",
+	//"name": "5级矿机",
+	//"description": "一种采矿机,有护盾",
+	"speed": 3.8,
+	"drag": 0.1,
+	"buildSpeed": 5,
+	"hitSize": 20,
+	"armor": 12,
+	"health": 7500,
+	"itemCapacity": 150,
+	"range": 50,
+	"engineOffset": 37,
+	"engineSize": 9,
+	"flying": true,
+	
+	"mineTier": 4,
+	"mineSpeed": 8.0,
+	"weapons": [
+		{
+			"top": false,
+			"shake": 2,
+			"shootY": 4,
+			"x": 12,
+			"reload": 20,
+			"recoil": 0, 
+			"rotate": true,
+			"shootSound": "laser",
+			"alternate": true,
+			"bullet": {
+				"type": "LaserBulletType",
+				"damage": 120,
+				"recoil": 0, //后座
+				"sideAngle": 10, //角度
+				"sideWidth": 2, //边宽
+				"sideLength": 280, ///边长
+				"healPercent": 5,
+				"buildingDamageMultiplier" :0.1,
+				"collidesTeam": true,
+				"colors": [
+					"bff28d",
+					"bff28d",
+					"FFFF37"
+				]
+			}
+		}
+	],
+	//"research": "4kuangji"
+}

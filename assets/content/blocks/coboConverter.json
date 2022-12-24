@@ -1,0 +1,20 @@
+{  "alwaysUnlocked": false, //永远解锁
+    // "type": "LiquidConverter",
+    //"name": "cobo液体融合器",
+   // "description": " ",
+    "buildCostMultiplier": 1,
+    "health": 450,
+    "itemCapacity": 10,
+    "size": 3,
+    "liquidCapacity": 50,
+    "hasLiquids": true,
+    //"drawer": "DrawMixer",
+    "outputsLiquid": true,
+    "solid": true,
+    "hasPower": true,
+    "hasItems": true,
+    "craftTime": 120,
+    "updateEffect": "smoke",
+   // "category": "crafting",
+    // "research": "ground-factory"
+}

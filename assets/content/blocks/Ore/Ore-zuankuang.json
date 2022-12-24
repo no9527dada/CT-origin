@@ -1,0 +1,10 @@
+{
+	"type": "OreBlock",
+	"itemDrop": "zuankuang"
+	oreDefault : true//自定义地图自动生成
+    oreScale : 45//自动生成的默认规模
+    oreThreshold : 0.92////自动生成的默认密集度
+    playerUnmineable : true
+    variants : 4
+    useColor : true
+}

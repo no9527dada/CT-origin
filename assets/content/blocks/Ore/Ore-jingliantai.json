@@ -1,0 +1,10 @@
+{
+	"type": "OreBlock",
+	"itemDrop": "jingliantai"
+	oreDefault :true//自定义地图自动生成
+    oreScale :24//自动生成的默认规模
+    oreThreshold :0.9////自动生成的默认密集度
+    playerUnmineable :true
+    variants :3
+    useColor :true
+}

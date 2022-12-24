@@ -1,0 +1,45 @@
+{  "alwaysUnlocked": false, //永远解锁
+    //"name": "高级植物萃取工厂",
+   // "type": "LiquidConverter",
+    //"description": "0。",
+    "health": 360,
+    "size": 3,
+    "craftEffect": "bubble",
+    "updateEffect": "steam",
+    "liquidCapacity": 30,"itemCapacity": 30,
+    "hasPower": true,
+    "hasLiquids": true,
+    "solid": true,
+    "outputsLiquid": true,
+    "hasItems": true,
+    "outputLiquid": {
+        "liquid": "zhiwujinghuaye",
+       "amount": 0.6
+    },
+    "craftTime": 108,
+    "requirements": [
+        {
+            "item": "hejinboli",
+            "amount": 45
+        }
+        {
+            "item": "plastanium",
+            "amount": 150
+        },
+        {
+            "item": "jin",
+            "amount": 70
+        },
+        {
+            "item": "guijingti",
+            "amount": 150
+        },
+        {
+            "item": "weijing1",
+            "amount": 45
+        }
+    ],
+    "category": "crafting",
+   // "research": "e-1zhiwucuiqugongchang",
+
+}

@@ -1,0 +1,10 @@
+{
+	"type": "OreBlock",
+	"itemDrop": "oreweijing4"
+	oreDefault :true//自定义地图自动生成
+    oreScale :40//自动生成的默认规模
+    oreThreshold :0.93////自动生成的默认密集度
+    playerUnmineable :true
+    variants :3
+    useColor :true
+}

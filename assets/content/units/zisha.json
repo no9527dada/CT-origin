@@ -1,0 +1,10 @@
+{
+    "type": "flying",
+    "targetFlags": [
+      "factory",//工厂
+      "core"
+    ],
+     "research": "yunshu",
+     "drag": 0.017,
+    "createWreck": true, //破坏性残骸（飞行专属）.死掉是否掉落砸向地面造成伤害。false是直接爆炸。
+}   

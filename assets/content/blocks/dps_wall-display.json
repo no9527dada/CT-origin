@@ -1,0 +1,9 @@
+{
+    "health": 9999999,
+    "size": 5,
+    "requirements": [],
+    "update": true,
+    "solid": true,
+    "configurable": true,
+    "category": "defense",
+}

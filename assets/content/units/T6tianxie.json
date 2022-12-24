@@ -1,0 +1,25 @@
+{
+  "type": "legs",
+  "drag": 0.1,
+  "speed": 0.8,
+  "hitSize": 38,
+  "health": 63000,
+  "armor": 70,
+  "lightRadius": 140,
+  "rotateSpeed": 1.9,
+  "legCount": 8,
+  "legMoveSpace": 0.8,
+  "legPairOffset": 3,
+  "legLength": 75,
+  "legExtension": -20,
+  "legBaseOffset": 8,
+  "legSpeed": 0.19,
+  "legLengthScl": 0.93,
+  "rippleScale": 3,
+  "buildSpeed": 1,
+  "legSplashDamage": 120,//踩踏伤害
+  "legSplashRange": 60,//踩踏范围
+  "hovering": true,
+  "allowLegStep": true,
+  "groundLayer": 75
+}

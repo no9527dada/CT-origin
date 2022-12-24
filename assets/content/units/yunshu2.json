@@ -1,0 +1,22 @@
+{
+    "type": "flying",
+   // "name": "运输机",
+   // "description": "专业运输资源",
+    "speed": 6, //速度
+     "rotateSpeed": 20, //旋转的速度
+     "baseRotateSpeed": 50, //基础转速
+    "hitSize": 8, //范围
+   // "turnCursor": true ,
+    "health": 150, //血量
+    "itemCapacity": 100, //容量
+    //"engineColor": "84f491", //引擎的颜色
+    //"cellTrnsY": 1,
+    "flying": true, //飞行
+    //"engineSize ": 3, //引擎的大小
+    "accel": 2.08,
+    "drag": 0.016,
+    "armor": 2, //护甲
+    "weapons": [
+    ],
+    "research": "yunshu"
+}

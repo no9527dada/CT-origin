@@ -1,0 +1,40 @@
+{
+    "hitSize": 100, //单位的大小
+    "buildSpeed": 5,//建造速度
+    "health": 631113807,
+   // "description": "强制结束游戏。创作者在制作地图时加入的规则性质怪物",
+    "targetFlags": [
+        "core"//核心
+     ],
+     "armor": 2100000000,
+     "flying": true,
+    "weapons": [
+        {
+            "top": false,
+            "shootSound": "none",
+            "shootY": 2,
+            "reload": 7,
+           
+            "recoil": 0,
+            "shootStatus": "none",
+           // "reload": 1, 
+            "rotate": true,
+            "ejectEffect": "none",
+            "bullet": {
+                "type": "BasicBulletType",
+                "recoil": 0, //后座
+                "speed": 10,
+                "damage": "Infinity",
+                "lifetime": 1000,
+                "pierce": true, //穿透
+                "pierceCap": 1000, //穿透数量
+                "width": 40,
+                "height": 70,
+                "shrinkY": 1,
+                "keepVelocity": false,
+                "smokeEffect": "none",
+                "shootEffect": "none"
+            }
+        }
+    ]
+}

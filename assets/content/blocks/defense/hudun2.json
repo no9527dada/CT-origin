@@ -1,0 +1,32 @@
+{
+	//"name": "微晶护盾仪",
+	"health": 580,
+	"size": 4,
+	"radius": 125,
+	"phaseUseTime": 180,
+	"phaseRadiusBoost": 115, //"buildCostMultiplier": 0.8,
+	"itemCapacity": 15,
+	"cooldownNormal": 2,
+	"cooldownLiquid": 1.6,
+	"cooldownBrokenBase": 0.45,
+	"requirements": [
+		{
+			"item": "weijing1",
+			"amount": 25
+		},
+		{
+			"item": "titanium",
+			"amount": 135
+		},
+		{
+			"item": "guijingti",
+			"amount": 185
+		},
+		{
+			"item": "shimoxi",
+			"amount": 175
+		}
+	],
+	"category": "effect",
+	
+}

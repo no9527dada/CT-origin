@@ -1,0 +1,85 @@
+{
+    "type": "flying",
+    //"name": "6级矿机",
+    //"description": "一种采矿机,有护盾",
+    "speed": 0.5,
+    "drag": 0.01,
+    "buildSpeed": 2,
+    "armor": 8,
+    "hitSize": 30,
+    "health": 12000,
+    "itemCapacity": 350,
+    "range": 50,
+    "engineOffset": 15,
+    "engineSize": 0,
+    "flying": true,
+    "mineRange":240,//采矿范围
+    "mineTier": 10,
+    "mineSpeed": 12,
+    "weapons": [
+        {
+            "controllable": false,
+            "autoTarget": true, //被动开火
+            "name": "6kuangji1",
+            "x": -20,
+            "y": 5,
+            "top": false,
+            "rotate": true,
+            "rotateSpeed": 2, //旋转速度
+            "reload": 60,
+            "shootSound": "6kuangjim",
+            "ejectEffect": "casing1",
+            "inaccuracy": 0,
+            //"alternate": false,
+            //"ignoreRotation": false,
+            "heatColor": "ffcd00ff",
+            "bullet": {
+                "type": "ContinuousLaserBulletType",
+                "colors": [
+                    "338054",
+                    "51c263",
+                    "ffffff"
+                ],
+                "speed": 17,
+                "lifetime": 20,
+                "collidesTeam": true,
+                "damage": 30,
+                "width": 8,
+                "length": 460,
+            }
+        },
+        {
+            "controllable": false,
+            "autoTarget": true, //被动开火
+            "name": "6kuangji1",
+            "x": 20,
+            "y": 5,
+            "top": false,
+            "rotate": true,
+            "rotateSpeed": 2, //旋转速度
+            "reload": 60,
+            "shootSound": "6kuangjim",
+            "ejectEffect": "casing1",
+            "inaccuracy": 0,
+            //"alternate": false,
+            //"ignoreRotation": false,
+            "heatColor": "ffcd00ff",
+            "bullet": {
+                "type": "ContinuousLaserBulletType",
+                "colors": [
+                    "338054",
+                    "51c263",
+                    "ffffff"
+                ],
+                "speed": 17,
+                "lifetime": 20,
+                "collidesTeam": true,
+                "damage": 30,
+                "width": 8,
+                "buildingDamageMultiplier": 0.6,
+                "length": 460,
+            }
+        }
+    ],
+   // "research": "5kuangji"
+}

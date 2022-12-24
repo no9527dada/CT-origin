@@ -1,0 +1,204 @@
+
+//电力连接线颜色
+const laserColor1 = new Color.valueOf("080808");
+const laserColor2 = new Color.valueOf("cfaff6");
+
+var myBlock = extendContent(PowerNode, '1dianxiangan', {
+    setupColor() {
+        Draw.color(laserColor1, laserColor2, 2 + Mathf.absin(3, 0.1));
+        Draw.alpha(Renderer.laserOpacity);
+    }
+});
+var myBlock = extendContent(PowerNode, 'nengliangta', {
+    setupColor() {
+        Draw.color(laserColor1, laserColor2, 2 + Mathf.absin(3, 0.1));
+        Draw.alpha(Renderer.laserOpacity);
+    }
+});
+
+
+
+
+
+136新东西
+coreMerge = false;//核心禁止扩容
+
+  /** 方块放置时声音 */
+    placeSound = Sounds.place;
+    /**方块拆除时声音. */
+    breakSound = Sounds.breaks;
+    /** 方块破坏时声音.*/
+   destroySound = Sounds.boom;
+
+    /** 单位死亡音效 */
+   deathSound = Sounds.bang;
+    /** 单位在周围时循环声音 */
+loopSound = Sounds.none;
+    /** 循环声音音量，1为最大 */
+  loopSoundVolume = 0.5f;
+
+
+
+
+  Vars.state.rules.waveTeam.cores().size 控制台使用
+
+
+
+
+
+MoveLightningAbility 闪电助推能力
+
+地图第一波出怪是什么，那么该图最后的BOSS就是那个种类的
+
+impact0078.name = 冲击区0078
+groundZero.name = 零号地区
+craters.name = 陨石带
+frozenForest.name = 冰冻森林
+ruinousShores.name = 遗迹海岸
+stainedMountains.name = 绵延群山
+desolateRift.name = 荒芜裂谷
+nuclearComplex.name = 核裂阵
+overgrowth.name = 增生区 
+tarFields.name = 焦油田
+saltFlats.name = 盐碱荒滩
+fungalPass.name = 真菌通道
+biomassFacility.name = 生物质合成区
+windsweptIslands.name = 风吹群岛
+extractionOutpost.name = 萃取前哨
+planetaryTerminal.name = 行星发射终端
+coastline.name = 边际海湾
+navalFortress.name = 海军要塞
+
+子弹
+{
+  timeIncrease=3//工厂超速
+  timeDuration=3*60//超速时间
+}
+方块的接口：
+{
+    conductivePower=true可以导电
+
+    forceDark = true实现融入地形墙的黑区里
+}
+单位的接口：
+{
+    mineWalls = true,墙上采矿
+     mineFloor = true;地板采矿
+    circleTarget = true //单位会围着攻击目标绕圈攻击
+    squareShape = true,//关闭单位阴影
+    logicControllable = false//逻辑器无法控制单位
+    playerControllable = false//玩家无法操控
+    allowedInPayloads = false//禁止进入有效荷载
+    hittable = false//单位不会被子弹击中,
+    killable = false//单位不会受到伤害和死亡
+    targetable = false//单位不会攻击任何目标
+    pickupUnits = true//单位可拾取其他单位（如果有荷载容量）
+    physics = false//关闭单位之间的碰撞  
+    createWreck = false//死亡不会掉落尸体（一般指空军）,
+    createScorch = false//死亡不会产生焦痕
+    allowLegStep = false//如果单位有长腿（蜘蛛类），单位禁止跨越障碍物,
+    coreUnitDock = true//单位附身后，可以原地脱离。不用再从核心跑过来了（一般写在核心飞机上面）
+    canDrown = false,//单位不会淹死在深水中
+    hovering = true//这个单元不会被淹没，也不会受到它下面的地板的影响
+    omniMovement = true//如果为true，这个单位可以在任何方向上移动，无论旋转。如果为false，该单元只能朝它面对的方向移动。
+    rotateMoveFirst = true//*如果为true，则单位在实际移动之前需要面对其移动的方向
+    healFlash = true///单位在被治疗时会闪光,
+    singleTarget = true///**如果为true，所有武器将攻击同一目标。
+    forceMultiTarget = true//单位将同时拥有多个攻击目标，建议打开，这样单位开火更快，减少瞄准时间,
+    canAttack = false//关闭单位的武器,功能性单位,
+    hidden = true//如果为true，该单元将不会显示在数据库或各种其他ui中（也适用于blocks）
+    internal = true//单位不会生成贴图
+    alwaysCreateOutline = true//，为单位的贴图自动生成黑色轮廓
+    drawBuildBeam = false//单位在建造方块时不会强制面向该方块,
+}
+
+
+
+
+//一些可能有用的
+const c1 = Color.valueOf("faa14c"), c2 = Color.valueOf("ff3368"), out = Color.valueOf("bdf251");
+测试1.generator = extend(PlanetGenerator, {
+    getColor(position) {
+        var depth = Simplex.noise3d(2, 2, 0.56, 1.7, position.x, position.y, position.z) / 2;
+        return c1.write(out).lerp(c2, Mathf.clamp(Mathf.round(depth, 0.25)));
+    },/*
+    arr: [[Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.darksandTaintedWater, Blocks.stone, Blocks.stone],
+    [Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.darksandTaintedWater, Blocks.stone, Blocks.stone, Blocks.stone],
+    [Blocks.water, Blocks.darksandWater, Blocks.darksand, Blocks.sand, Blocks.salt, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.darksandTaintedWater, Blocks.stone, Blocks.stone, Blocks.stone],
+    [Blocks.water, Blocks.sandWater, Blocks.sand, Blocks.salt, Blocks.salt, Blocks.salt, Blocks.sand, Blocks.stone, Blocks.stone, Blocks.stone, Blocks.snow, Blocks.iceSnow, Blocks.ice],
+    [Blocks.deepwater, Blocks.water, Blocks.sandWater, Blocks.sand, Blocks.salt, Blocks.sand, Blocks.sand, Blocks.basalt, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.ice],
+    [Blocks.deepwater, Blocks.water, Blocks.sandWater, Blocks.sand, Blocks.sand, Blocks.sand, Blocks.moss, Blocks.iceSnow, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.snow, Blocks.ice],
+    [Blocks.deepwater, Blocks.sandWater, Blocks.sand, Blocks.sand, Blocks.moss, Blocks.moss, Blocks.snow, Blocks.basalt, Blocks.basalt, Blocks.basalt, Blocks.ice, Blocks.snow, Blocks.ice],
+    [Blocks.deepTaintedWater, Blocks.darksandTaintedWater, Blocks.darksand, Blocks.darksand, Blocks.basalt, Blocks.moss, Blocks.basalt, Blocks.hotrock, Blocks.basalt, Blocks.ice, Blocks.snow, Blocks.ice, Blocks.ice],
+    [Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.darksand, Blocks.moss, Blocks.sporeMoss, Blocks.snow, Blocks.basalt, Blocks.basalt, Blocks.ice, Blocks.snow, Blocks.ice, Blocks.ice],
+    [Blocks.darksandWater, Blocks.darksand, Blocks.darksand, Blocks.sporeMoss, Blocks.ice, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.ice, Blocks.ice],
+    [Blocks.deepTaintedWater, Blocks.darksandTaintedWater, Blocks.darksand, Blocks.sporeMoss, Blocks.sporeMoss, Blocks.ice, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice],
+    [Blocks.taintedWater, Blocks.darksandTaintedWater, Blocks.darksand, Blocks.sporeMoss, Blocks.moss, Blocks.sporeMoss, Blocks.iceSnow, Blocks.snow, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice],
+    [Blocks.darksandWater, Blocks.darksand, Blocks.snow, Blocks.ice, Blocks.iceSnow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice, Blocks.ice],
+    ],
+    waterOffset: 2,
+    scl: 25,
+    dec: ObjectMap.of(
+        Blocks.sporeMoss, Blocks.sporeCluster,
+        Blocks.moss, Blocks.sporeCluster,
+        Blocks.taintedWater, Blocks.water,
+        Blocks.darksandTaintedWater, Blocks.darksandWater
+    ),
+    tars: ObjectMap.of(
+        Blocks.sporeMoss, Blocks.shale,
+        Blocks.moss, Blocks.shale
+    ),
+    waterOffset: 0.07,
+    genLakes: false,
+    generateSector(sector) {
+        return false;
+    },
+
+    getHeight(position) {
+        return 0
+    },
+
+
+    getSizeScl() {
+        return 2000;
+    },
+
+    addWeather(sector, rules) {
+        return false;//no weather... yet
+    },
+    getBlock(position) {
+        var height = rawHeight(position);
+        Tmp.v31.set(position);
+        position = Tmp.v33.set(position).scl(2);
+        var temp = Simplex.noise3d(1, 8, 0.6, 1 / 2, position.x, position.y + 99, position.z);
+        height *= 1.2;
+        height = Mathf.clamp(height);
+
+
+        //float tar = (float)noise.octaveNoise3D(4, 0.55f, 1f/2f, position.x, position.y + 999f, position.z) * 0.3f + Tmp.v31.dst(0, 0, 1f) * 0.2f;
+
+        return arr[Mathf.clamp((int)(temp * arr.length), 0, arr[0].length - 1)][Mathf.clamp((int)(height * arr[0].length), 0, arr[0].length - 1)];
+    },
+     genTile(position, tile) {
+
+
+        if (tile.floor == Blocks.redmat && rand.chance(0.1)) {
+            tile.block = Blocks.redweed;
+        }
+
+        if (tile.floor == Blocks.bluemat && rand.chance(0.03)) {
+            tile.block = Blocks.purbush;
+        }
+
+        if (tile.floor == Blocks.bluemat && rand.chance(0.002)) {
+            tile.block = Blocks.yellowCoral;
+        }
+    },
+
+ */
+});     
+
+
+
+
+

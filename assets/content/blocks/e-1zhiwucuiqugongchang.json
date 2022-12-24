@@ -1,0 +1,41 @@
+{
+    "alwaysUnlocked": false, //永远解锁
+    //"name": "植物萃取工厂",
+    // "type": "LiquidConverter",
+    //"description": "0。",
+    "health": 160,
+    "size": 2,
+    "craftEffect": "bubble",
+    "updateEffect": "steam",
+    "liquidCapacity": 10,
+    "hasPower": true,
+    "hasLiquids": true,
+    "solid": true,
+    "outputsLiquid": true,
+    "hasItems": true,
+    "outputLiquid": {
+        "liquid": "zhiwujinghuaye",
+         "amount": 0.2
+    },
+    "craftTime": 45,
+    "requirements": [
+        {
+            "item": "metaglass",
+            "amount": 30
+        }
+        {
+            "item": "plastanium",
+            "amount": 40
+        },
+        {
+            "item": "jin",
+            "amount": 30
+        },
+        {
+            "item": "guijingti",
+            "amount": 55
+        }
+    ],
+    "category": "crafting",
+    //  "research": "zhiwudaosuiji",
+}

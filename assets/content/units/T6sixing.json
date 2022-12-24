@@ -1,0 +1,173 @@
+{
+    "type": "legs",
+    //死星
+    "hitSize": 45,
+    "health": 65000,
+    "armor": 18,
+    "flying": false,
+    // "landShake": 1.5,
+    "rotateSpeed": 1.5,
+    //"commandLimit": 8,
+    "legPairOffset": 3,
+    "legCount": 4,
+    "legLength": 14,
+    "legBaseOffset": 25,
+    "legMoveSpace": 1.5,
+    "itemCapacity": 320,
+    // "legTrns": 0.58,
+    "hovering": true,
+    //"visualElevation": 0.2,
+    "allowLegStep": true,
+    "speed": 0.3,
+    "drawShields": false,
+    "buildSpeed": 0.1, //建造速度
+    "deathSound" :"zhaocha",
+    //---------
+    "stepShake": 1.5,
+    "drownTimeMultiplier": 6,
+    "legForwardScl": 0.58,
+    "shadowElevation": 0.2,
+    // "ammoType": {
+    //     "PowerAmmoType": 4000
+    // },
+  //  "groundLayer": "legUnit",
+    "weapons": [
+        {
+            "soundPitchMin": 1,
+            "shake": 14, //屏幕震动
+            "shootStatusDuration": 120,
+            "parentizeEffects": true,
+            "shootSound": "laserblast",
+            "chargeSound": "lasercharge",
+            "top": false,
+            "mirror": false,
+            "continuous": true,
+            "shootY": 5,
+            "reload": 450, //子弹射速
+            "recoil": 0, //反冲
+            "x": 28,
+            "y": 13,
+            "cooldownTime": 350,
+            "shoot": {
+                "firstShotDelay": 65
+            }
+            "shootStatus": "unmoving", //发射状态
+            "bullet": {
+                "type": "LaserBulletType", //320
+                "colors": [
+                    "7aff85",
+                    "7aff85",
+                    "ffffff"
+                ],
+                "chargeEffect" :"greenLaserCharge",
+                //"shootEffect": "greenLaserCharge",
+                "length": 520,
+                "damage": 1180,
+                "width": 75,
+                "healPercent": 25,
+                "lifetime": 65,
+                "hitEffect": "hitLancer",
+                "lightningSpacing": 35,
+                "lightningLength": 5,
+                "lightningDelay": 1.1,
+                "lightningLengthRand": 15,
+                "lightningDamage": 150,
+                "lightningAngleRand": 40,
+                "lightningColor": "7aff85",
+                "largeHit": true,
+                "collidesTeam": true, //能量子弹碰撞
+                "sideAngle": 45,
+                "sideWidth": 10,
+                "sideLength": 15
+            }
+        },        {
+            "soundPitchMin": 1,
+            "shake": 14, //屏幕震动
+            "shootStatusDuration": 120,
+            "parentizeEffects": true,
+            "shootSound": "laserblast",
+            "chargeSound": "lasercharge",
+            "top": false,
+            "mirror": false,
+            "continuous": true,
+            "shootY": 5,
+            "reload": 450, //子弹射速
+            "recoil": 0, //反冲
+            "x": -28,
+            "y": 13
+            "cooldownTime": 350,
+            "shoot": {
+                "firstShotDelay": 65
+            }
+            "shootStatus": "unmoving", //发射状态
+            "bullet": {
+                "type": "LaserBulletType", //320
+                "colors": [
+                    "7aff85",
+                    "7aff85",
+                    "ffffff"
+                ],
+                "chargeEffect" :"greenLaserCharge",
+                //"shootEffect": "greenLaserCharge",
+                "length": 520,
+                "damage": 1180,
+                "width": 75,
+                "healPercent": 25,
+                "lifetime": 65,
+                "hitEffect": "hitLancer",
+                "lightningSpacing": 35,
+                "lightningLength": 5,
+                "lightningDelay": 1.1,
+                "lightningLengthRand": 15,
+                "lightningDamage": 150,
+                "lightningAngleRand": 40,
+                "lightningColor": "7aff85",
+                "largeHit": true,
+                "collidesTeam": true, //能量子弹碰撞
+                "sideAngle": 45,
+                "sideWidth": 10,
+                "sideLength": 15
+            }
+        },
+        {
+            "top": false,
+            "name": "T6sixing-weapon",
+            "reload": 70,
+            "cooldownTime": 90,
+            "mirror": false,
+            "x": 0,
+            "y": 25,
+            "rotateSpeed": 1.4,
+            "recoil": 5, //反冲
+            "rotate": false,
+            "shootY": 5,
+            "shake": 6,
+            "shadow": 0, //武器贴图阴影大小
+            "shootSound": "railgun",
+            "ejectEffect": "none",
+            "bullet": {
+                "type": "PointBulletType",
+                "hitEffect": "massiveExplosion",
+                "smokeEffect": "smokeCloud",
+                "trailEffect": {
+                    "type":"ParticleEffect",
+                    "region":"creators-shielded",
+                    "colorFrom":"7aff85",
+                    "colorTo":"7aff85",
+                    "length":16,
+                    "particles":1,
+                    "sizeFrom":10
+
+                },
+                "despawnEffect": "greenBomb",
+                "trailSpacing": 20,
+                "hitShake": 6,
+                "speed": 5,
+                "damage": 1500,
+                "ammoMultiplier": 1,
+                "shootEffect": "instShoot",
+                "buildingDamageMultiplier": 0.10
+            }
+        }
+    ]
+}

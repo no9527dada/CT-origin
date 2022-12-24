@@ -1,0 +1,32 @@
+{
+	//"name": "超级微晶护盾仪",
+	"health": 860,
+	"size": 4,
+	"radius": 184,
+	"phaseUseTime": 180,
+	"phaseRadiusBoost": 240,
+	"buildCostMultiplier": 2.5,
+	"itemCapacity": 15,
+	"cooldownNormal": 3.0,//每秒恢复3*60
+	"cooldownLiquid": 1.6,
+	"cooldownBrokenBase": 0.35,
+	"requirements": [
+		{
+			"item": "weijing2",
+			"amount": 40
+		},
+		{
+			"item": "monengjing1",
+			"amount": 20
+		},
+		{
+			"item": "guijingti",
+			"amount": 185
+		},
+		{
+			"item": "shimoxi",
+			"amount": 175
+		}
+	],
+	"category": "effect"
+}
