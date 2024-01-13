@@ -1,40 +1,44 @@
-# Mindustry Java Mod Template
-A Java Mindustry mod template that works on Android and PC. The Kotlin version of this mod can be seen [here](https://github.com/Anuken/MindustryKotlinModTemplate).
+# creator-origin  创世神-起源
 
-## Building for Desktop Testing
+特别声明：这个库只是用来对在游戏中直接下载提供帮助的，我没要说努力的去分享代码什么的（别因为JAVA被编译后上传来对我语言攻击）
 
-`gradlew.bat build`
-1. Install JDK **16**.
-2. Run `gradlew jar` [1].
-3. Your mod jar will be in the `build/libs` directory. **Only use this version for testing on desktop. It will not work with Android.**
-To build an Android-compatible version, you need the Android SDK. You can either let Github Actions handle this, or set it up yourself. See steps below.
+Special statement: This library is only used to help with direct download in the game, I don't want to talk about trying to share the code or anything (don't attack my language because JAVA is compiled and uploaded)
 
-## Building through Github Actions
+If you want to use part of the code, please feel free, this repository is completely public
 
-This repository is set up with Github Actions CI to automatically build the mod for you every commit. This requires a Github repository, for obvious reasons.
-To get a jar file that works for every platform, do the following:
-1. Make a Github repository with your mod name, and upload the contents of this repo to it. Perform any modifications necessary, then commit and push. 
-2. Check the "Actions" tab on your repository page. Select the most recent commit in the list. If it completed successfully, there should be a download link under the "Artifacts" section. 
-3. Click the download link (should be the name of your repo). This will download a **zipped jar** - **not** the jar file itself [2]! Unzip this file and import the jar contained within in Mindustry. This version should work both on Android and Desktop.
+起源与前作创世神不可同时加载
+-
+起源启用模组白名单
+-
+起源需要在设置里清空科技树和战役地图后,方能正常游戏
+在这之前，请备份好你以前的存档
+-
+本模组的战役较难，不适合初次接触此游戏的玩家
+模组难点体现在：
+波次时间短
+地形复杂
+敌人强大
+建议多多发展后勤资源
+使用发射台来提供源源不断的资源
+-
+如果觉得太难，可以玩前作创世神：https://steamcommunity.com/sharedfiles/filedetails/?id=2378403982
 
-## Building Locally
+creator-Origin, this mod is the result of many people creating together
+you may see similar blocks and functions of other mods in it
 
-Building locally takes more time to set up, but shouldn't be a problem if you've done Android development before.
-1. Download the Android SDK, unzip it and set the `ANDROID_HOME` environment variable to its location.
-2. Make sure you have API level 30 installed, as well as any recent version of build tools (e.g. 30.0.1)
-3. Add a build-tools folder to your PATH. For example, if you have `30.0.1` installed, that would be `$ANDROID_HOME/build-tools/30.0.1`.
-4. Run `gradlew deploy`. If you did everything correctlly, this will create a jar file in the `build/libs` directory that can be run on both Android and desktop. 
+The campaign of this mod is very difficult and not suitable for players who are new to this game
+It is recommended to have an understanding of the game after clearing the original version before playing this mod
+The difficulty of the module is reflected in:
+Waves are very short
+Complex terrain
+the enemy is strong
+It is recommended to develop more logistical resources
+Use launch pads to provide a steady stream of resources
+-----------------------------------
+[red]MOD needs to clear the tech tree and campaign map in the settings before it can play normally
+Before doing this, please backup your archive
 
-## Adding Dependencies
+If you find it too difficult, you can play the previous game：https://steamcommunity.com/sharedfiles/filedetails/?id=2378403982
+-------------创世神起源
 
-Please note that all dependencies on Mindustry, Arc or its submodules **must be declared as compileOnly in Gradle**. Never use `implementation` for core Mindustry or Arc dependencies. 
 
-- `implementation` **places the entire dependency in the jar**, which is, in most mod dependencies, very undesirable. You do not want the entirety of the Mindustry API included with your mod.
-- `compileOnly` means that the dependency is only around at compile time, and not included in the jar.
-
-Only use `implementation` if you want to package another Java library *with your mod*, and that library is not present in Mindustry already.
-
---- 
-
-*[1]* *On Linux/Mac it's `./gradlew`, but if you're using Linux I assume you know how to run executables properly anyway.*  
-*[2]: Yes, I know this is stupid. It's a Github UI limitation - while the jar itself is uploaded unzipped, there is currently no way to download it as a single file.*
