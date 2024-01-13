@@ -47,6 +47,8 @@ importPackage(CreatorsJavaPack.world.block)
 CreatorsModJS.RunName.add("creators")
 CreatorsModJS.DawnRun.add(run(() => {
 //***********************************/
+//require('Attribute');
+
  require('xingqiu');//星球
 require('floor');//地板
 require('Blocks/Blocks-ChuanShu');//物流
@@ -61,7 +63,7 @@ const BS = require('invincible');//沙盒测试相关方块
 require('next-wave');//跳波器
 require('Blocks/Blocks-drills');
 
-
+require('abomb4/dpsTesterUnit');
 
 require('FPS');//fps优化,贴图（优化需注释
 //require('FPSfx');//fps优化，工作效果（暂时没用了
@@ -76,7 +78,7 @@ require('BlocksLibes/FenNei');//分类
 //require("UI/ui2");//下拉核心资源显示
 require('techTree');//科技树   
 require('techTree/maps2');//挑战科技树    
-require('techTree/maps3');//挑战科技树  
+//require('techTree/maps3');//众神归位 
 require("UI/mod");//模组描述彩色文本
 require("BlocksLibes/units-factory");//沙盒兵工厂
 const {} = require('units/medal');//金牌银牌
@@ -95,7 +97,7 @@ const lib = require('lib')
 
  //对话框
 
-
+/*
  let mod = Vars.mods.locateMod("科技树全显示");
  if (mod == null) {
 	 let bd = Vars.mods.locateMod("creators");
@@ -109,7 +111,7 @@ const lib = require('lib')
 	 let fi = bd.root.child("mod")
 		 .child("LanTu3.0.zip");
 	 Vars.mods.importMod(fi);
- };
+ };*/
  Blocks.worldProcessor.canOverdrive = false;
  Blocks.worldProcessor.targetable = false;
  Blocks.worldProcessor.instructionsPerTick = 8;
@@ -124,7 +126,7 @@ const lib = require('lib')
 );
 CTBlocks.shockMine.buildCostMultiplier = 5;
 
-
+//Vars.state.rules.teams.get(Team.sharded).unitDamageMultiplier = 0.7;
 
 
 
@@ -179,7 +181,7 @@ CTBlocks.shockMine.buildCostMultiplier = 5;
 
 //clearSectorOnLose = true;//扇区丢失时是否重置地图
 //enemyCoreSpawnReplace = true;//攻击图核心变刷怪点
-
+//PlanetDialog.debugSelect = true;调试模式
 /* const 超速器测试 = new LinkAccelerator("超速器测试");
 超速器测试.addpower = true
 超速器测试.health = 222

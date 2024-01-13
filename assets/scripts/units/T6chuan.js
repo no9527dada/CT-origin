@@ -77,26 +77,13 @@ const T6chuan = extend(UnitType, "T6chuan", {
 
 })
 //const T6chuan = new UnitType('T6chuan');
-
-const dropStack = new ItemStack(sss.yuanshencanpian, 1);
+const { canpianX } = require("units/medal");
+T6chuan.abilities.add(new SpawnDeathAbility(canpianX, 1, 11));//死亡分裂
 //T6chuan.constructor = prov(() => extend(UnitTypes.retusa.constructor.get().class, {}));
-T6chuan.constructor = prov(() => extend(UnitTypes.retusa.constructor.get().class, {
-    remove() {
-        this.dropItem(Vars.player.team());
-        this.super$remove();
-    },
-    dropItem(team) {
-        let dropTo = team.core();
-        if (dropTo != null) {
-            let item = dropStack.item, amount = dropStack.amount;
-            dropTo.items.add(item, amount);
-            Fx.itemTransfer.at(this.x, this.y, amount, item.color, dropTo);
-        }
-    },
-}));
+T6chuan.constructor = prov(() => extend(UnitTypes.retusa.constructor.get().class, {}));
 T6chuan.hitSize = 80;
-T6chuan.health = 600000;
-T6chuan.speed = 0.01;
+T6chuan.health = 900000;
+T6chuan.speed = 0.1;
 T6chuan.drag = 0.17;
 T6chuan.armor = 150;
 T6chuan.accel = 0.2;
@@ -108,12 +95,13 @@ T6chuan.trailX = 23;
 T6chuan.trailY = -32;
 T6chuan.trailScl = 3.5;
 T6chuan.buildSpeed = 5.5;
+T6chuan.physics = false;//关闭碰撞
 //武器坐标 25, 50
 T6chuan.abilities.add(
-    new UnitSpawnAbility(UnitTypes.cyerce, 60, 25, -50), //
-    new UnitSpawnAbility(UnitTypes.oxynoe, 180, -25, -50),//
-    // new UnitSpawnAbility(UnitTypes.cyerce, 180, 0 - 50), //
-    new UnitSpawnAbility(UnitTypes.aegires, 600, 0, -60),//
+    new CTUnitSpawnAbility(UnitTypes.cyerce, 60, 25, -50), //
+    new CTUnitSpawnAbility(UnitTypes.oxynoe, 180, -25, -50),//
+    // new CTUnitSpawnAbility(UnitTypes.cyerce, 180, 0 - 50), //
+    new CTUnitSpawnAbility(UnitTypes.aegires, 600, 0, -60),//
 );
 
 T6chuan.abilities.add(TerritoryFieldAbility(300, 60 * 5, 1600));

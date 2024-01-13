@@ -349,7 +349,7 @@ exports.zuantou =//4级微晶砖头
 //--------------------------------------------------------------------------
 exports.weijingzuantou3_2 =
     (() => {
-        const a = extend(Drill, "3weijingzuantou", {}); //超级微晶钻头 即将删除
+        const a = extend(Drill, "3weijingzuantou", {}); //超级微晶钻头 已废弃用，游戏内隐藏
         a.health = 0;
         a.size = 3;
         a.tier = 0;
@@ -366,7 +366,7 @@ exports.weijingzuantou3_2 =
             a.requirements = ItemStack.with(
                 nulls,0
             );
-        a.buildVisibility = BuildVisibility.shown;
+        a.buildVisibility = BuildVisibility.hidden;
         a.category = Category.production;
         return a;
     })();
@@ -426,7 +426,7 @@ exports.pobiji =//破壁机
         const a = new WallBreakMachine("pobiji")
         a.health = 3250;
         a.size = 2;
-        a.drillTime = 30 * 60 * 60 * 60;//30分钟
+        a.drillTime = 30 * 60 * 60;//30分钟
         a.consumePower(100000 / 60);
         a.liquidCapacity = 90;
         a.consumeLiquid(qiangxiaolengqueye, 0.5),

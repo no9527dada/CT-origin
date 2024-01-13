@@ -3,6 +3,7 @@
   "main": "creators.Creators",
   "displayName": "创世神2-起源独立版",
   "author": "[pink]编[cyan]号[red]95[violet]27",
+  "repo": "no9527dada/CT-origin",
   "description": "
 
   本模组的战役较难，不适合初次接触此游戏的玩家
@@ -23,7 +24,7 @@ It is recommended to develop more logistical resources
 Use launch pads to provide a steady stream of resources
 ------------------创世神起源
 ",
-  "version": "2.56",
-  "minGameVersion": 140
+  "version": "2.70.1",
+  "minGameVersion": 146
 }
 //hideBrowser = true //不加入模组浏览器

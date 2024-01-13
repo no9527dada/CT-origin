@@ -143,7 +143,7 @@ const pointDefenseAbility1 = (px, py, reload, range, bulletDamage, sprite) => {
         draw(unit){
             var x = unit.x + Angles.trnsx(unit.rotation, py, px);
             var y = unit.y + Angles.trnsy(unit.rotation, py, px);
-            var region = Core.atlas.find("btm-" + sprite);
+            var region = Core.atlas.find("creators-" + sprite);
             Draw.rect(region, x, y, rotation - 90);
         },
     });

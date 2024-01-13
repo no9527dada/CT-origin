@@ -32,7 +32,7 @@ exports.ionBurningEffect1 = (() => {
     return v;
 })();
 
-var effectL = new StatusEffect("ZT3");
+var effectL = new StatusEffect("ZT3");//缴械
 effectL.color = Color.valueOf("ffffff");
 effectL.damage = 1.6666667
 effectL.reloadMultiplier = 0;//射击速度
@@ -111,7 +111,7 @@ exports.accelerate = (() => {
 exports.qiege = (() => {
     const v = new JavaAdapter(StatusEffect, {
     }, "qiege");
-    v.damage = 200 / 60;
+    v.damage = 1000 / 60;
     //v.effect = DrawS.shitassDeathEffect
     return v;
 })();
@@ -176,11 +176,10 @@ exports.superBoss = (() => {//超级BOSS
     v.color = Team.crux.color;
     //v.permanent = true;//状态永久持续
     v.statusDuration = 300;//状态持续时间
-    v.healthMultiplier = 2.2;//血量倍率
-    v.damageMultiplier = 1.4;//攻击倍率
-    v.speedMultiplier = 0.5;//移速
+    v.healthMultiplier = 2.8;//血量倍率
+      v.speedMultiplier = 0.9;//移速
     v.damageMultiplier = 1.4;//伤害倍率
-    v.damage = -1; //负数为治疗
+    v.damage = -60; //负数为治疗
     v.reloadMultiplier = 1.25;//射击速度
     v.effect = D;
     return v;
@@ -289,7 +288,12 @@ effectX.effect = FxX;
 exports.effectX = effectX;
 
 
-
+exports.stun = (() => {
+    const a = new JavaAdapter(StatusEffect, {}, "stun");
+    a.reloadMultiplier = 0
+    a.speedMultiplier = 0
+    return a;
+})()
 
 /*
 源码 方便查询：

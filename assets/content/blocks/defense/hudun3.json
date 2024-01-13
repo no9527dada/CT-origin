@@ -7,7 +7,7 @@
 	"phaseRadiusBoost": 240,
 	"buildCostMultiplier": 2.5,
 	"itemCapacity": 15,
-	"cooldownNormal": 3.0,//每秒恢复3*60
+	"cooldownNormal": 5.0,//每秒恢复3*60
 	"cooldownLiquid": 1.6,
 	"cooldownBrokenBase": 0.35,
 	"requirements": [

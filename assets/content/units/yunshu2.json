@@ -9,7 +9,7 @@
    // "turnCursor": true ,
     "health": 150, //血量
     "itemCapacity": 100, //容量
-    //"engineColor": "84f491", //引擎的颜色
+    //"engineColor": "84f491", //引擎的颜色  尾焰颜色
     //"cellTrnsY": 1,
     "flying": true, //飞行
     //"engineSize ": 3, //引擎的大小

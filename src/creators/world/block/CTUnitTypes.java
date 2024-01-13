@@ -1502,7 +1502,40 @@ public class CTUnitTypes{
             buildBeamOffset = 43;
             ammoCapacity = 1;
 
-            abilities.add(new ForceFieldAbility(140f, 4f, 7000f, 60f * 8), new RepairFieldAbility(130f, 60f * 2, 140f));
+            abilities.add(new ForceFieldAbility(140f, 4f, 7000f, 30f * 8), new RepairFieldAbility(130f, 60f * 2, 140f));
+
+            weapons.add(new Weapon(""){{
+                reload = 55f;
+                x = 7f;
+                rotate = true;
+                shake = 1f;
+                shoot.shotDelay = 10;
+                shoot.shots=3;
+                inaccuracy = 5f;
+                velocityRnd = 0.2f;
+                shootSound = Sounds.missile;
+                autoTarget = true;
+                controllable = false;
+
+                bullet = new MissileBulletType(3f, 35){{
+                    width = 18f;
+                    height = 18f;
+                    shrinkY = 0f;
+                    drag = -0.003f;
+                    homingRange = 60f;
+                    keepVelocity = false;
+                    splashDamageRadius = 25f;
+                    splashDamage = 15f;
+                    lifetime = 50f;
+                    trailColor = Color.valueOf("54f575");
+                    backColor = Color.valueOf("54f575");
+                    frontColor = Color.valueOf("a7f6b7");
+                    hitEffect = Fx.blastExplosion;
+                    despawnEffect = Fx.blastExplosion;
+                    weaveScale = 6f;
+                    weaveMag = 1f;
+                }};
+            }});
         }};
 
         //endregion

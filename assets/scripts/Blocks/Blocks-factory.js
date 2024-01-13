@@ -46,11 +46,11 @@ const {
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun, mieshishenhun
     , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi, dabaocobo, cobo,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
-      molijinghuaye, moliye, qiangxiaolengqueye,oreweijing4,
+    molijinghuaye, moliye, qiangxiaolengqueye, oreweijing4,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
     dabaoyedan, zhiwujingyou, jinglianlio, canza, hejinboli, xudianchi,
-    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin, jinhuiboli,daboayan,
+    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin, jinhuiboli, daboayan,
 } = CTItem
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -90,7 +90,7 @@ exports.fensuiji =
             jin, 50,
             Items.titanium, 120,
             Items.graphite, 250,
-           
+
         );
         a.group = BlockGroup.transportation
         a.buildVisibility = BuildVisibility.shown;
@@ -972,15 +972,15 @@ exports.jiweijinggongchang5 =
         a.group = BlockGroup.transportation
         return a;
     })();
-    //-----------------------------------------------------------
-    exports.weijingxilianji4 =//4级微晶洗练机
+//-----------------------------------------------------------
+exports.weijingxilianji4 =//4级微晶洗练机
     (() => {
         const a = new CreatorsMultiCrafter("weijingxilianji4", 1);
         a.TableColor = Color.valueOf("78ffa5");
         //a.RecipeShowIS = 3//是几个配方跳一行
         a.addRecipe(
             new CreatorsRecipe.InputContents(ItemStack.with(oreweijing4, 5,), LiquidStack.with(zhiwujingyou, 6), 12),
-            new CreatorsRecipe.OutputContents(ItemStack.with(weijing4, 5,zuanshikuang,2, Items.scrap,15,)), 240.0,
+            new CreatorsRecipe.OutputContents(ItemStack.with(weijing4, 5, zuanshikuang, 2, Items.scrap, 15,)), 240.0,
         );
         a.health = 650;
         a.size = 4;
@@ -1026,6 +1026,7 @@ exports.weijingfenjieji =//微晶分解机
         a.liquidCapacity = 10;
         a.craftEffect = Fx.pulverizeMedium;
         a.updateEffect = Fx.lancerLaserCharge;
+           a.updateEffectChance = 0.05
         a.requirements = ItemStack.with(
             Items.copper, 90,
             Items.lead, 70,
@@ -1132,6 +1133,7 @@ exports.testC =//打包机
     (() => {
         const a = new CreatorsMultiCrafter("yeti11R", 11);
         a.TableColor = Color.valueOf("78ffa5");
+        a.allRecShow = false;
         a.addRecipe(
             new CreatorsRecipe.InputContents(ItemStack.with(jingliantai, 5,), LiquidStack.with(Liquids.water, 100), 1),
             new CreatorsRecipe.OutputContents(ItemStack.with(dabaoshui, 1)), 180.0,
@@ -1198,9 +1200,9 @@ exports.testC =//打包机
 //--------------------------------------------------------------------------------
 exports.testA =//解包机
     (() => {
-        const a = new CreatorsMultiCrafter("yeti22R", 11);
+        const a = new CreatorsMultiCrafters("yeti22R", 11);
         a.TableColor = Color.valueOf("78ffa5");
-        a.RecipeShowIS = 3;
+        a.RecipeShowIS = 3; a.allRecShow = false;
         a.ItemLiquid = [
             false, false, false, false, false, false, false, false, false, false, false,
             true, true, true, true, true, true, true, true, true, true, true
@@ -1270,10 +1272,10 @@ exports.testA =//解包机
         return a;
     })();
 
-    exports.yanbaoji =//炎液包装分解机
+exports.yanbaoji =//炎液包装分解机
     (() => {
-        const a = new CreatorsMultiCrafter("yanbaoji", 2);
-        a.TableColor = Color.valueOf("78ffa5");
+        const a = new CreatorsMultiCrafters("yanbaoji", 2);
+        a.TableColor = Color.valueOf("78ffa5"); a.allRecShow = false;
         a.addRecipe(
             new CreatorsRecipe.InputContents(ItemStack.with(Items.surgeAlloy, 10,), LiquidStack.with(yuanwan0, 50), 15),
             new CreatorsRecipe.OutputContents(ItemStack.with(daboayan, 1)), 480.0,
@@ -1337,7 +1339,7 @@ exports.zuanshiyasuoji =//钻石矿压缩机
         return a;
     })();
 
-    
+
 //-----------------------------------------------------------
 exports.taihejinji =
     (() => {
@@ -1481,7 +1483,7 @@ exports.jinhuiyeji =
         a.consumePower(2);
         a.consumeLiquid(liziye, 12 / 60);
         a.consumeItem(
-            JHhejin, 2,
+            JHhejin, 1,
         );
         a.outputLiquid = new LiquidStack(
             JHhejinLiquid, 12 / 60,
@@ -1574,7 +1576,7 @@ exports.duochonbuji3 =
 exports.duochongsugangji =//多重塑钢机
     (() => {
         const a = new CreatorsMultiCrafter("duochongsugangjiR", 4);
-        a.TableColor = Color.valueOf("78ffa5");
+        a.TableColor = Color.valueOf("78ffa5"); a.allRecShow = false;
         a.addRecipe(
             new CreatorsRecipe.InputContents(ItemStack.with(Items.titanium, 5,), LiquidStack.with(Liquids.oil, 18), 6),
             new CreatorsRecipe.OutputContents(ItemStack.with(Items.plastanium, 3)), 80.0,
@@ -2312,7 +2314,7 @@ exports.jitilianji3 =
         a.liquidCapacity = 30;
         a.consumePower(3.5);
         a.consumeLiquid(Liquids.slag, 0.25);
-        a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(),  new DrawDefault());
+        a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(), new DrawDefault());
         a.results = ItemStack.with(
             Items.thorium, 13,
             jinfen, 8,
@@ -2351,7 +2353,7 @@ exports.jitilianjimoliyetilianji =
             Items.silicon, 65,
             Items.surgeAlloy, 30,
         );;
-        a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(),  new DrawDefault());
+        a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(), new DrawDefault());
         a.requirements = ItemStack.with(
             Items.titanium, 450,
             weijing2, 12,
@@ -2376,13 +2378,13 @@ exports.jitilianji4 =
         a.itemCapacity = 150;
         a.liquidCapacity = 20;
         a.consumePower(10);
-        a.consumeLiquid(JHhejinLiquid, 3 / 60);
+        a.consumeLiquid(JHhejinLiquid, 2 / 60);
         a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(), /* new DrawRegion("-spinner", 3, true),工作时贴图旋转 */ new DrawDefault());
         a.results = ItemStack.with(
             zuanjing, 250,
-            weijing1, 70,
+            weijing1, 140,
             guijingti, 450,
-            weijing3, 20,
+            weijing3, 40,
             kuangzajinghuawu, 900,
         );;
         a.requirements = ItemStack.with(
@@ -2695,6 +2697,95 @@ exports.molijinghuatilianji =
         a.buildVisibility = BuildVisibility.shown;
         return a;
     })()
+
+
+const At = require('Attribute');
+/*exports.molijinghuatilianji2 =//魔力精华液T2
+    (() => {
+        const a = extend(Fracker, "molijinghuatilianji2", {});
+        a.attribute = At.moliyeD;
+        a.health = 600;
+        a.size = 2;
+        a.buildCostMultiplier = 0.5;
+        a.updateEffect = Fx.pulverize;
+        a.updateEffectChance = 0.05;
+        a.pumpAmount = 0.01;
+        a.result = molijinghuaye;
+        a.rotateSpeed = 6;//输出物的产量
+        a.baseEfficiency = 0
+        a.coolEffect = Fx.steam;
+        a.warmupSpeed = 0.21;
+        a.itemUseTime = 60;
+        a.liquidCapacity = 3;
+        a.consumePower(4.3);
+        //a.consumeLiquid();
+        a.consumeItems(new ItemStack.with(
+            buding,3,
+        ));
+        a.requirements = ItemStack.with(
+            monengjing2,15,
+            hejinboli,130,
+            weijing2, 50,
+            guijingti, 225,
+            buding,800,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.production;
+        return a;
+    })();*/
+
+ var breakProp2= new Effect(23, e => {
+        let scl2 = Math.max(e.rotation, 1);
+       // Draw.color(Tmp.c1.set(e.color).mul(1.1));
+        Draw.color(Color.valueOf("a06cff"));
+        Draw.z(Layer.debris);//特效在底部
+        Angles.randLenVectors(e.id, 6, 19 * e.finpow() * scl2, (x, y) => {
+             Fill.circle(e.x + x, e.y + y, e.fout() * 3.5 * scl2 + 0.3);
+         });
+     });
+
+
+    exports.molijinghuatilianji2 =//魔力精华液T2
+    (() => {
+        const a = extend(AttributeCrafter, "molijinghuatilianji2", {});
+        a.attribute = At.moliyeD;
+        a.health = 600;
+        a.size = 2;
+        // a.updateEffect = Fx.breakProp;
+        // a.updateEffectChance = 0.05;
+
+        a.updateEffect = breakProp2
+        a.updateEffectChance = 0.3;
+        a.boostScale = 0.0625*16;
+        a.craftEffect = Fx.smeltsmoke;
+        a.craftTime = 120;
+        a.hasPower = true;
+        a.hasLiquids = true;
+        a.itemCapacity = 30;
+        a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(molijinghuaye), new DrawDefault())
+        a.consumeLiquid(moliye, 12 / 60);
+        a.outputLiquid = new LiquidStack(
+            molijinghuaye, 0.5 / 60,
+        );
+        a.liquidCapacity = 3;
+        a.consumePower(4.3);
+        a.consumeItems(new ItemStack.with(
+            buding,1,
+        ));
+        a.requirements = ItemStack.with(
+            monengjing2,15,
+            hejinboli,130,
+            weijing2, 50,
+            guijingti, 225,
+            buding,800,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.crafting;
+        return a;
+    })();
+
+
+
 //-----------------------------------------------------------
 exports.liziyeji =
     (() => {
@@ -2741,19 +2832,19 @@ exports.yuanwanjinghuaji =
         const a = extend(GenericCrafter, "yuanwanjinghuaji", {});
         a.health = 950;//沅烷净化机
         a.size = 3;
-        a.itemCapacity = 20;
+        a.itemCapacity = 250;
         a.liquidCapacity = 200;
         a.hasLiquid = true;
         a.hasPower = true;
         a.hasItems = true;
-        a.craftTime = 180;
+        a.craftTime = 60*60*2;//2分钟
         a.drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(yuanwan0), new DrawDefault(),);
         a.updateEffect = Fx.steam;
         a.consumeLiquid(yuanwan0, 1.5);
         a.consumePower(13.5);
         a.consumeItems(new ItemStack.with(
-            monengjing1, 7,
-            guijingti, 12,
+            monengjing1, 50,
+            guijingti, 120,
         )
         );
         a.outputLiquid = new LiquidStack(
@@ -2927,7 +3018,7 @@ exports.chanpianji =
         //  a.canOverdrive = false;
         a.hasPower = true;
         a.hasItems = true;;
-        //a.buildCostMultiplier = 2;
+        a.buildCostMultiplier = 0.5;
         a.itemCapacity = 50;
         a.craftTime = 36000;
         a.updateEffect = Fx.steam;
@@ -3157,6 +3248,9 @@ exports.wupinyuan =
     (() => {
         const CuangGuan = lib.createBuildLimit(1);
         const a = extend(ItemSource, "z-6wupinyuan", {
+          icons(){
+                return [Core.atlas.find("creators-CTsource-bottom"),Core.atlas.find("creators-CTsource-bottom"), this.region];
+            },
             drawPlanConfig(plan, list) {
                 this.drawPlanConfigCenter(plan, plan.config, "creators-center2", true);
             },
@@ -3189,6 +3283,7 @@ exports.wupinyuan =
                     );
                 }
             },
+
         });
         a.buildType = prov(() => {
             return new JavaAdapter(ItemSource.ItemSourceBuild, {
@@ -3216,7 +3311,7 @@ exports.wupinyuan =
                     if (this.added) { CuangGuan.removeBuild(this.team); }
                     this.super$remove();
                 },
-                draw() {
+/*                 draw() {
                     this.super$draw();
                     if (this.outputItem == null) {
                         Draw.rect("creators-cross2-full", this.x, this.y);
@@ -3226,6 +3321,18 @@ exports.wupinyuan =
                         Draw.color();
                     };
                 },
+                  */
+             draw(){
+                this.super$draw();
+    
+                if(this.outputItem == null){
+                    Draw.rect("creators-cross2-full", this.x, this.y);
+                }else{
+                    Draw.color(this.outputItem.color);
+                    Draw.rect("center", this.x, this.y);
+                    Draw.color();
+                }
+                }
             }, a);
         });
         a.health = 1999999999;//创世神 物品源

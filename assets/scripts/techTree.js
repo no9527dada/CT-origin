@@ -9,16 +9,16 @@ const {
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun
     , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
-      molijinghuaye, moliye, qiangxiaolengqueye,
+    molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
     dabaoyedan, zhiwujingyou, jinglianlio, jinhuiboli, nulls, medal1, medal2,
-    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin, hejinboli,oreweijing4,
+    JHhejinLiquid, JHhejin, gutaiwanqin, taihejin, hejinboli, oreweijing4,
 } = CTItem
 const {
     oiljinglianchang, taihejinji, zuanshiyasuoji, jinhuiyasuoji, zhiwujingyoutilianji, zhiwujingyoutiquji, jinhuiyeji,
     xitilianji, zuankuangjiagongchang, meitantiliangongchang, zhiwudaosuiji, fensuiji, liuji,
-    hejinboliji, jinhuiboliji,yanbaoji,
+    hejinboliji, jinhuiboliji, yanbaoji, molijinghuatilianji2,
     shiyingronglu, guijingtichengxingji, guilu, guijingtihechengji, guijingtigongchang,
     shimoxiji, budingjiagongchang, budingjiagongchang2, jinfentilianji, jinchengxingji, jinchengxingji2,
     zijinggongchang, zijingronglianji, jiweijinggongchang1, jiweijinggongchang2, jiweijinggongchang3, jiweijinggongchang4,
@@ -29,12 +29,12 @@ const {
     jimonengjinglianzhiqi3, jimonengjinglianzhiqi4, hejin2, luzhayasuoji, jitilianji3, jitilianji4, jitilianjimoliyetilianji,
     xiaofentilianji, zhayaozhizaoji, jhgtbzwj, qianghuaronglu, lengdongyehunheji, moliyehunheji, molijinghuatilianji,
     liziyeji, yuanwanjinghuaji, qiangxiaolengqueyehunheji, chuangshiji, chuangxingjiexiyi, chuangshiyujie, jinbigongcang, weichenshoujiqi,
-    chuangshizhishen, choujiangji, wupinyuan, testC, testA, fashetai0, fashetai, achievement,weijingxilianji4,
+    chuangshizhishen, choujiangji, wupinyuan, testC, testA, fashetai0, fashetai, achievement, weijingxilianji4,
 } = require('Blocks/Blocks-factory');
 const { lajixiang } = require('BlocksLibes/lajixiang')
 const { xuwu } = require('BlocksLibes/xuwu');
 const {
-    weicang, jicangku3, jicangku4, jicangku5, jicangku6, jicangku7,huanchongcang, csdq0, conveyor10, luyouqi2, lianjieqi2,
+    weicang, jicangku3, jicangku4, jicangku5, jicangku6, jicangku7, huanchongcang, csdq0, conveyor10, luyouqi2, lianjieqi2,
     conveyor11, conveyor12, jibaozhuangyunshudai2, conveyor2, conveyor21, conveyor3, conveyor31, dongcibeng, jizhuangxieqi4,
     jibaozhuangyunshudai3, weixingzhiqu, zhiqu2, zhiqu3, conduit1, conduit11, conduit2, conduit21, dabaodai,
     csdq, daoguanqiao0, daoguanqiao, ctunitCargoLoader, ctUnitCargoUnloadPoint, daxingchuyeguan, jizhuangxieqi0, jizhuangxieqi2, jizhuangxieqi22, jizhuangxieqi3, jizhuangxieqi31, yetiUnloader
@@ -57,18 +57,18 @@ const {
     weijingzuantou3, shiyou, sui, sui2, sui3, sui4, suanzhuanjing, junengzuantou2,
 } = require('Blocks/Blocks-drills');
 const {
-    DianHu, DianHu2, FangKong, healere, JueWang, BuHuo, LanJie, lieguang, ZhengFu, ZhengYi, bawang, ronghui3, lanse2,
-    ronghui2, youling2, ronghui4, zongjipao, zongjipao2, huasha, youling3, langyong2, bomb, Acker, yunyu, qishe2, kuoshan,
+    DianHu, DianHu2, FangKong, healere, JueWang, BuHuo, LanJie, lieguang, ZhengFu, ZhengYi, bawang, ronghui3, LanSeS, lanse2,
+    ronghui2, youling2, ronghui4, zongjipao, zongjipao2, huasha, youling3, langyong2, bomb, Acker, yunyu, qishe2, kuoshan, EZao,
 } = require('turrets/DC'); //require('wmod');//+++++++++++
 const { PenHuo } = require('turrets/PenHuo');
 const {
-    dianxiangan, nengliangta, nengliangta2, jidianchi3, jitaiyangneng3, jitaiyangneng4, gaojidirefadianji,
-    shuilifadianji, shiyoufadianji, yanjiangfadianji, gaoxiaowolunfadianji, molichongjifadianji, molizhifanyingdui,
+    dianxiangan, nengliangta, nengliangta2, jidianchi3, jitaiyangneng3, jitaiyangneng4, gaojidirefadianji,nengliangtas,
+    nengliangtas2,shuilifadianji, shiyoufadianji, yanjiangfadianji, gaoxiaowolunfadianji, molichongjifadianji, molizhifanyingdui,
     monengfanyingdui, juhechongji, jidianchi4, chongdianqi, fangdianqi, CP2Link, lichangjiedian, lichangjiedian2,
 } = require('Blocks/Blocks-power');
 const { jitaiyangneng5 } = require("Blocks/chaojitaiyangneng");
 const { jiasuyi } = require('BlocksLibes/jiasuyi');
-const { CT_core, CT_core2, CT_core3, CoreJiangLuo, WJcore, CT_core32,CoreJiangLuoT2, } = require('core');
+const { CT_core, CT_core2, CT_core3, CoreJiangLuo, WJcore, CT_core32, CoreJiangLuoT2, } = require('core');
 const { unitGC1, unitGC2 } = require('units');//单位构造机
 
 const { poly2, mega2 } = require('units/poly2');
@@ -149,15 +149,15 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(CoreJiangLuoT2, {//核心定位装置t2
         parent: CoreJiangLuo.name,
         requirements: ItemStack.with(
-            Items.copper, 22000/4*200,
-            Items.lead, 35000/4*200,
-            Items.silicon, 5500/4*200,
-            Items.titanium, 3200/4*200,
-            Items.thorium, 2400/4*200,
-           guijingti, 2500/4*200,
-           monengjing3,20,
-           JHhejin,24500/4*200,
-           jinhuiboli,100/4*200,
+            Items.copper, 22000 / 4 * 200,
+            Items.lead, 35000 / 4 * 200,
+            Items.silicon, 5500 / 4 * 200,
+            Items.titanium, 3200 / 4 * 200,
+            Items.thorium, 2400 / 4 * 200,
+            guijingti, 2500 / 4 * 200,
+            monengjing3, 20,
+            JHhejin, 24500 / 4 * 200,
+            jinhuiboli, 100 / 4 * 200,
         ),
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps87),//占领解锁奇异空间
@@ -175,9 +175,9 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         CTBlocks.liquidTank,
         // CTBlocks.liquidContainer,
     );
-/*     CTBlocks.payloadLoader.maxBlockSize = 2;
-    CTBlocks.payloadUnloader.maxBlockSize = 2;
-    CTBlocks.payloadUnloader.consumePower(180 / 60); */
+    /*     CTBlocks.payloadLoader.maxBlockSize = 2;
+        CTBlocks.payloadUnloader.maxBlockSize = 2;
+        CTBlocks.payloadUnloader.consumePower(180 / 60); */
 
     /*
     //使方块无法被单位拾起，更改会导致毁存档
@@ -191,7 +191,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
                 return false;
             }
         }); */
-   // CTBlocks.largeConstructor.buildVisibility = BuildVisibility.sandboxOnly;//仅沙盒hidden;//隐藏
+    // CTBlocks.largeConstructor.buildVisibility = BuildVisibility.sandboxOnly;//仅沙盒hidden;//隐藏
     Blocks.deepTaintedWater.attributes.set(Attribute.spores, 0.23);//原版的地板
     // Blocks.snowBoulder.variants = 4;//地形点缀物 雪块
     // Blocks.sandBoulder.variants = 3;//地形点缀物 沙块
@@ -819,9 +819,6 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             Items.lead, 10 / 4 * 200,
             Items.graphite, 10 / 4 * 200
         ),
-        objectives: Seq.with(
-            new Objectives.SectorComplete(Maps83),//占领融合
-        )
     });
     lib.addToResearch(CTBlocks.massDriver, {//质驱
         parent: CTBlocks.phaseConveyor.name,//布桥
@@ -1164,9 +1161,11 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         parent: CTBlocks.salvo.name,//齐射
     });
 
-
-    lib.addToResearch(lanse2, {//T2兰瑟，飞逝
+    lib.addToResearch(LanSeS, {//T2兰瑟
         parent: CTBlocks.lancer.name,//兰瑟
+    });
+    lib.addToResearch(lanse2, {//T3兰瑟，飞逝
+        parent: LanSeS,//兰瑟
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps196),//占领-磁暴
         ),
@@ -1284,7 +1283,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
 
     });
 
-    lib.addToResearch(CTBlocks.overdriveProjector, {
+    lib.addToResearch(CTBlocks.overdriveProjector, {//相位机
         parent: CTBlocks.mendProjector.name,
         requirements: ItemStack.with(
             Items.lead, 100 / 4 * 200,
@@ -1292,7 +1291,9 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             Items.silicon, 40 / 4 * 200,
             Items.copper, 50 / 4 * 200
         ),
-
+        objectives: Seq.with(
+            new Objectives.SectorComplete(windsweptIslands)//占领风吹群岛
+        )
     });
 
     lib.addToResearch(CTBlocks.overdriveDome, {
@@ -1444,7 +1445,9 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             Items.silicon, 65 / 4 * 200,
             Items.metaglass, 50 / 4 * 200
         ),
-
+        objectives: Seq.with(
+            new Objectives.Research(CTBlocks.cryofluidMixer,),//研究冷冻液机
+        ),
     });
     lib.addToResearch(CTBlocks.rtgGenerator, {//RTG
         parent: CTBlocks.differentialGenerator.name,
@@ -1972,7 +1975,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             new Objectives.Research(windsweptIslands)//占领风吹群岛
         ),
     });
-    
+
     lib.addToResearch(CTBlocks.repairPoint, { //单位维修点
         parent: CTBlocks.groundFactory.name,
         requirements: ItemStack.with(
@@ -2015,13 +2018,13 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(jicangku7, {//7级仓库
         parent: jicangku6.name,
         requirements: ItemStack.with(
-            Items.copper, 20000/4*200,
-            Items.lead, 20000/4*200,
-            monengjing, 10000/4*200,
-            zuanjing, 45000/4*200,
+            Items.copper, 20000 / 4 * 200,
+            Items.lead, 20000 / 4 * 200,
+            monengjing, 10000 / 4 * 200,
+            zuanjing, 45000 / 4 * 200,
             weijing5, 20,
-            guijingti, 4300/4*200,
-            shimoxi,5000/4*200,
+            guijingti, 4300 / 4 * 200,
+            shimoxi, 5000 / 4 * 200,
         ),
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps193),//占领-双子
@@ -2246,7 +2249,10 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         parent: hunhe4.name,
     });
     lib.addToResearch(qiang, {
-        parent: hunhe4.name,
+        parent: shenwei.name,
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps232),//占领-黄昏与黎明
+        ),
         requirements: ItemStack.with(
             guijingti, 20000 / 4 * 200,
             jinhuiboli, 150000,
@@ -2386,9 +2392,15 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps237),//占领-
         ),
+    });//EZao   
+    lib.addToResearch(EZao, {
+        parent: CTBlocks.foreshadow.name,
+        objectives: Seq.with(
+            new Objectives.SectorComplete(coastline),//占领-边际海湾
+        ),
     });
     lib.addToResearch(zongjipao, {
-        parent: CTBlocks.foreshadow.name,
+        parent: EZao.name,
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps52),//占领-
         ),
@@ -2452,10 +2464,6 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             Items.titanium, 20 / 4 * 200,
             Items.surgeAlloy, 70 / 4 * 200,
         ),
-        objectives: Seq.with(
-            new Objectives.SectorComplete(Maps258),//占领-
-        ),
-
     });
     lib.addToResearch(jiasu4, {//2级微晶超速
         parent: jiasu3.name,
@@ -2465,6 +2473,9 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             weijing2, 50 / 4 * 200,
             jin, 40 / 4 * 200,
             Items.titanium, 80 / 4 * 200,
+        ),
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps258),//占领-
         ),
     });
     lib.addToResearch(jiasu5, {//3级微晶超速
@@ -2609,7 +2620,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         ),
     });
 
-    
+
 
     lib.addToResearch(zuantou, {
         parent: junengzuantou.name,
@@ -2690,14 +2701,14 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(CP2Link, {//十字节点
         parent: nengliangta.name,
     });
-    lib.addToResearch(lichangjiedian, {//力场节点
+    lib.addToResearch(nengliangtas, {//力场节点
         parent: CP2Link.name,
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps196),//占领-占领-磁暴区
         ),
     });
-    lib.addToResearch(lichangjiedian2, {//力场节点大
-        parent: lichangjiedian.name,
+    lib.addToResearch(nengliangtas2, {//力场节点大
+        parent: nengliangtas.name,
     });
 
     lib.addToResearch(jidianchi3, {
@@ -2878,7 +2889,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(jiweijinggongchang4, {
         parent: jiweijinggongchang3.name,
     });
-    
+
     lib.addToResearch(weijingxilianji4, {
         parent: jiweijinggongchang4.name,
         objectives: Seq.with(
@@ -2899,11 +2910,14 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(liziduizhuangji, {
         parent: jiweijinggongchang5.name,
         requirements: ItemStack.with(
-            weijing5, 8/4*200,
-            monengjing, 120/4*200,
-            zijing1, 2650/4*200,
-            zuanjing, 3400/4*200,
+            weijing5, 8 / 4 * 200,
+            monengjing, 120 / 4 * 200,
+            zijing1, 2650 / 4 * 200,
+            zuanjing, 3400 / 4 * 200,
             jinhuiboli, 3200
+        ),
+        objectives: Seq.with(
+            new Objectives.SectorComplete(Maps147),//资源3
         ),
     });
     lib.addToResearch(duochonbuji2, {
@@ -3083,6 +3097,10 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
             guijingti, 420 / 4 * 200,
         ),
     });
+    lib.addToResearch(molijinghuatilianji2, {
+        parent: molijinghuatilianji.name,
+    });
+
     lib.addToResearch(liziyeji, {
         parent: molijinghuatilianji.name,
         requirements: ItemStack.with(
@@ -3108,6 +3126,20 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     });
     lib.addToResearch(yuanwanjinghuaji, {
         parent: liziyeji.name,
+        requirements: ItemStack.with(
+            juhebaozhawu, 15 * 200,
+            zhayao, 5000,
+            Items.surgeAlloy, 90 / 4 * 200,
+            Items.plastanium, 120 / 4 * 200,
+            jingliantai, 300 / 4 * 200,
+            guijingti, 150 / 4 * 200,
+            zuanjing, 500 / 4 * 200,
+            hejinboli, 350 / 4 * 200,
+            weijing2, 180 / 4 * 200,
+            weijing3, 130 / 4 * 200,
+            taihejin, 70 / 4 * 200,
+            monengjing2, 20 / 4 * 200,
+        ),
     });
     lib.addToResearch(chuangshiji, {
         parent: liziduizhuangji.name,
@@ -3158,7 +3190,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(wupinyuan, {//物品源
         parent: chuangshizhishen.name,
         requirements: ItemStack.with(
-        ), 
+        ),
         objectives: Seq.with(
             new Objectives.SectorComplete(Maps27),//占领-神与神
             new Objectives.Research(chuangshizhishen)//研究棺材
@@ -3239,14 +3271,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     });
 
 
-    lib.addToResearch(achievement, {
-        parent: wupinyuan.name,
-        requirements: ItemStack.with(
-            medal1, 15,
-            medal2, 15,
-            nulls, 1,
-        )
-    });
+
 
     /*/////
     欢迎游玩创世神模组

@@ -31,6 +31,7 @@ const dsGlobal = require('BlocksLibes/qianzhi');
 const lib = require('lib');
 const Bullet_s = require('turrets/Bullets');
 const kuosanBullet = require('turrets/kuosanBullet');
+const F = require("all/kuangjiAI");
 const {
     // 白, 绿, 黄, 橙, 红, 蓝, 紫,
     jingliantai, zuanshikuang, zuanjing, hua1, hua2, hua3, tanban, zhiwumo,
@@ -39,7 +40,7 @@ const {
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun
     , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi, jinhuiboli,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
-      molijinghuaye, moliye, qiangxiaolengqueye,
+    molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
     dabaoyedan, zhiwujingyou, jinglianlio, hejinboli,
@@ -48,7 +49,6 @@ const {
 const fangkongSound = CreatorsSound.loadSound("fangkong");
 const zhiliaoSound = CreatorsSound.loadSound("zhiliao");
 const { newIonBoltBulletType } = require('turrets/index');//离子液
-const F = require("all/kuangjiAI");
 
 
 //--------------------------------------------------------------------------//
@@ -75,6 +75,7 @@ yunyu.ammo(
     liziye, Bullet_s.yunyulizi,
     qiangxiaolengqueye, Bullet_s.yunyuyedan,
 );
+yunyu.unitSort = UnitSorts.strongest;//攻击单位时的优先选择/closest/farthest/strongest/weakest
 yunyu.buildCostMultiplier = 5;//建造时间倍
 yunyu.cooldownTime = 240;//炮口过热消退时间 
 yunyu.heatColor = Color.valueOf("f9db82");
@@ -133,7 +134,7 @@ exports.qishe2 = (
         );
         a.size = 4;
         a.range = 48 * 8;
-        a.reload = 60;
+        a.reload = 80;
         a.ammoEjectBack = 3;
         a.recoil = 3;
         a.shake = 1;
@@ -218,7 +219,8 @@ exports.qishe2 = (
             zuanjing, 75,
             guijingti, 150,
         );
-        a.consume(new ConsumeCoolant(0.2));
+        a.coolantMultiplier = 2.8;
+        a.consume(new ConsumeCoolant(0.1));
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.turret;
         return a;
@@ -226,10 +228,10 @@ exports.qishe2 = (
 )
 
 
-exports.kuoshan = (
+exports.kuoshan = (//希望
     (() => {
         const a = extend(ItemTurret, "kuoshan", {
-                //微晶核心限制
+            //微晶核心限制
             canPlaceOn(tile, team, rotation) {
                 return this.super$canPlaceOn(tile, team, rotation) && dsGlobal.duoQianZhi.isValid();
             },
@@ -277,79 +279,79 @@ exports.kuoshan = (
         a.consume(new ConsumeCoolant(0));
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.turret;
-        var haloY = -15,circleY=18,circleStroke = 1.6,circleRad = 11,
-            haloRotSpeed = 1,circleRotSpeed = 3.5,
+        var haloY = -15, circleY = 18, circleStroke = 1.6, circleRad = 11,
+            haloRotSpeed = 1, circleRotSpeed = 3.5,
             circleProgress = DrawPart.PartProgress.warmup.delay(0.9),
             haloProgress = DrawPart.PartProgress.warmup.delay(0.5),
             LColor = Color.valueOf("4ec7f8");
         a.drawer = ((() => {
-            const b = new DrawTurret("") //炮塔底座    
+            var b = new DrawTurret("") //炮塔底座    
             b.parts.addAll(
+                // (() => {
+                //     const c = new RegionPart("");
+
+                //     return c;
+                // })(),
+
                 (() => {
-                    const c = new RegionPart("");
-        
+                    const c = new ShapePart();
+                    c.progress = circleProgress;
+                    c.color = LColor;
+                    c.circle = true;
+                    c.hollow = true;
+                    c.stroke = 0;
+                    c.strokeTo = circleStroke;
+                    c.radius = circleRad;
+                    c.layer = Layer.effect;
+                    c.y = circleY;
                     return c;
                 })(),
 
                 (() => {
                     const c = new ShapePart();
-                   c.progress = circleProgress;
-                   c.color = LColor;
-                   c.circle = true;
-                   c.hollow = true;
-                   c.stroke = 0;
-                   c.strokeTo = circleStroke;
-                   c.radius = circleRad;
-                   c.layer = Layer.effect;
-                   c.y = circleY;
+                    c.progress = circleProgress;
+                    c.rotateSpeed = -circleRotSpeed;
+                    c.color = LColor;
+                    c.sides = 4;
+                    c.hollow = true;
+                    c.stroke = 0;
+                    c.strokeTo = circleStroke;
+                    c.radius = circleRad - 1;
+                    c.layer = Layer.effect;
+                    c.y = circleY;
                     return c;
                 })(),
-            
+
                 (() => {
                     const c = new ShapePart();
-                   c.progress = circleProgress;
-                   c.rotateSpeed = -circleRotSpeed;
-                   c.color = LColor;
-                   c.sides = 4;
-                   c.hollow = true;
-                   c.stroke = 0;
-                   c.strokeTo = circleStroke;
-                   c.radius = circleRad - 1;
-                   c.layer = Layer.effect;
-                   c.y = circleY;
+                    c.progress = circleProgress;
+                    c.rotateSpeed = circleRotSpeed;
+                    c.color = LColor;
+                    c.sides = 4;
+                    c.hollow = true;
+                    c.stroke = 0;
+                    c.strokeTo = circleStroke;
+                    c.radius = circleRad - 1;
+                    c.layer = Layer.effect;
+                    c.y = circleY;
                     return c;
                 })(),
-            
+
                 (() => {
                     const c = new ShapePart();
-                   c.progress = circleProgress;
-                   c.rotateSpeed = -circleRotSpeed;
-                   c.color = LColor;
-                   c.sides = 4;
-                   c.hollow = true;
-                   c.stroke = 0;
-                   c.strokeTo = circleStroke;
-                   c.radius = circleRad - 1;
-                   c.layer = Layer.effect;
-                   c.y = circleY;
+                    c.progress = circleProgress;
+                    c.rotateSpeed = -circleRotSpeed / 2;
+                    c.color = LColor;
+                    c.sides = 4;
+                    c.hollow = true;
+                    c.stroke = 0;
+                    c.strokeTo = 2;
+                    c.radius = 3;
+                    c.layer = Layer.effect;
+                    c.y = circleY;
                     return c;
                 })(),
-            
-                (() => {
-                    const c = new ShapePart();
-                   c.progress = circleProgress;
-                   c.rotateSpeed = -circleRotSpeed/2;
-                   c.color = LColor;
-                   c.sides = 4;
-                   c.hollow = true;
-                   c.stroke = 0;
-                   c.strokeTo = 2;
-                   c.radius = 3;
-                   c.layer = Layer.effect;
-                   c.y = circleY;
-                    return c;
-                })(),
-            
+
 
                 //-----------------------
                 /* 
@@ -778,13 +780,13 @@ healere.range = 200;
 healere.shootSound = zhiliaoSound;
 healere.knockback = 3;//击退
 healere.inaccuracy = 3;//精准
-healere.consumePower(1.5);
+healere.consumePower(2);
 healere.consume(new ConsumeCoolant(0));
 healere.shootType = (() => {
     const a = new JavaAdapter(LaserBoltBulletType, {});
     a.speed = 6;//子弹速度
     a.ammoMultiplier = 1; //装弹数量
- 
+
     a.lifetime = 40;
     a.healPercent = 2;
     a.damage = 0;//子弹伤
@@ -1068,6 +1070,78 @@ lieguang.category = Category.turret;
 lieguang.consume(new ConsumeCoolant(0.2));
 exports.lieguang = lieguang;
 
+
+
+
+//蓝瑟2
+// const LanSeSBullet = extend(ShrapnelBulletType, {});
+// LanSeSBullet.length = 45 * 8;
+// LanSeSBullet.damage = 200;
+// LanSeSBullet.width = 25;
+// LanSeSBullet.chargeEffect = new MultiEffect(Fx.lancerLaserCharge, Fx.lancerLaserChargeBegin);
+// LanSeSBullet.buildingDamageMultiplier = 0.25;
+// LanSeSBullet.hitEffect = Fx.hitLancer;
+// LanSeSBullet.ammoMultiplier = 1;
+
+const LanSeS = extend(PowerTurret, 'LanSeSpuer', {})
+LanSeS.shootType = (
+    (() => {
+        const b = new ShrapnelBulletType()
+        b.length = 45 * 8;
+        b.damage = 140;
+        b.width = 25;
+        b.chargeEffect = new MultiEffect(Fx.lancerLaserCharge, Fx.lancerLaserChargeBegin);
+        b.buildingDamageMultiplier = 0.15;
+        b.hitEffect = Fx.hitLancer;
+        b.ammoMultiplier = 1;
+        return b;
+    })()
+);//LanSeSBullet
+LanSeS.health = 1300;
+LanSeS.inaccuracy = 0; //精准
+
+//LanSeS.ammoPerShot=2;//每发消耗的资源
+LanSeS.targetGround = true; //地
+LanSeS.targetAir = false;//空
+LanSeS.range = 44 * 8;
+LanSeS.liquidCapacity = 10; //液体容量
+LanSeS.consumePower(1700 / 60);
+//LanSeS.outputsPower = true;//导电
+
+
+LanSeS.shoot.firstShotDelay = 90;
+LanSeS.shoot.shotDelay = 20
+LanSeS.recoil = 2;
+LanSeS.reload = 180;
+LanSeS.shake = 2;
+LanSeS.shootEffect = Fx.lancerLaserShoot;
+LanSeS.smokeEffect = Fx.none;
+LanSeS.heatColor = Color.red;
+LanSeS.size = 3;
+LanSeS.scaledHealth = 280;
+LanSeS.shootY = 6;
+LanSeS.moveWhileCharging = false;
+LanSeS.accurateDelay = false;
+LanSeS.shootSound = Sounds.laser;
+
+
+LanSeS.requirements = ItemStack.with(
+    Items.lead, 130,
+    Items.copper, 160,
+    jin, 50,
+    Items.surgeAlloy, 120,
+    Items.plastanium, 80,
+    guijingti, 100,
+    shimoxi, 80
+);
+LanSeS.consume(new ConsumeCoolant(0.2));
+LanSeS.buildVisibility = BuildVisibility.shown;
+LanSeS.category = Category.turret;
+//lib.addToResearch(LanSeS, { parent: Blocks.ripple.name, });
+exports.LanSeS = LanSeS;
+
+
+
 exports.lanse2 = (//飞逝
     (() => {
         const v = extend(PowerTurret, 'lanse2', {})
@@ -1103,6 +1177,24 @@ exports.lanse2 = (//飞逝
         v.cooldownTime = 120;//炮口过热消退时间 
         v.drawer = ((() => {
             const b = new DrawTurret("") //炮塔底座    
+            for (let i = 0; i < 1; i++) {
+                b.parts.add(
+                    Object.assign(new RegionPart("-4"), {
+                        progress: DrawPart.PartProgress.warmup.delay(i / 8),
+                        heatProgress: DrawPart.PartProgress.warmup.sin((4 - i) * 10, 10, 1),
+                        under: false,
+                        mirror: true,
+                        moveRot : -15,//角度
+                        moveY : 9,//上下
+                        moveX : -4,//左右
+                        layerOffset: -0.0001,
+                        turretHeatLayer: 50 - 0.0001,
+                        moves: Seq.with(new DrawPart.PartMove(DrawPart.PartProgress.recoil.delay((4 - i) / 8), 0, 0, -15)),
+                        color: Color.valueOf("4e9cf4"),
+                        heatColor:Color.valueOf("7bb5f6")
+                    })
+                )
+            };
             b.parts.addAll(
                 (() => {
                     const c = new RegionPart("-1");
@@ -1137,7 +1229,7 @@ exports.lanse2 = (//飞逝
                     //c.heatColor = CD3//颜色
                     return c;
                 })(),
-                (() => {
+                /* (() => {
                     const c = new RegionPart("-4");
                     c.progress = DrawPart.PartProgress.charge;
                     c.mirror = true;//镜像
@@ -1147,7 +1239,7 @@ exports.lanse2 = (//飞逝
                     c.under = true;//关闭再上面，开启再下面
                     // c.heatColor = CD3//颜色
                     return c;
-                })(),
+                })(), */
             )
             return b;
         })());
@@ -1372,7 +1464,7 @@ ZhengFu.requirements = ItemStack.with(
 ZhengFu.consume(new ConsumeCoolant(0.2));
 ZhengFu.buildVisibility = BuildVisibility.shown;
 ZhengFu.category = Category.turret;
-lib.addToResearch(ZhengFu, { parent: Blocks.ripple.name, });
+//lib.addToResearch(ZhengFu, { parent: Blocks.ripple.name, });
 exports.ZhengFu = ZhengFu;
 //-----------------------------------------------------------------------------------------------------------
 var Wzuanjing = new JavaAdapter(BasicBulletType, {});
@@ -1598,7 +1690,7 @@ Wbuding.trailEffect = (
         return b;
     })()
 );
-
+//"collidesAir": true,
 
 const ZhengYi = extend(ItemTurret, 's-zhengyi', {})
 ZhengYi.ammoTypes.put(zuanjing, Wzuanjing);
@@ -1631,7 +1723,7 @@ ZhengYi.requirements = ItemStack.with(
 ZhengYi.consume(new ConsumeCoolant(0.2));
 ZhengYi.buildVisibility = BuildVisibility.shown;
 ZhengYi.category = Category.turret;
-lib.addToResearch(ZhengYi, { parent: Blocks.ripple.name, });
+//lib.addToResearch(ZhengYi, { parent: Blocks.ripple.name, });
 exports.ZhengYi = ZhengYi;
 
 
@@ -1658,12 +1750,13 @@ bawang.ammoTypes.put(weijing1, Bullet_s.Wweijing1);
 bawang.ammoTypes.put(weijing2, Bullet_s.Wweijing2);
 bawang.ammoTypes.put(monengjing1, Bullet_s.Wmonengjing);
 bawang.ammoTypes.put(monengjing2, Bullet_s.Wmonengjing2);
-bawang.ammoTypes.put(chuangshilizi, Bullet_s.shangdilizi1);
+bawang.ammoTypes.put(chuangshilizi, CTBullet.bawanglizi);
+//bawang.ammoTypes.put(chuangshilizi, Bullet_s.shangdilizi1);//这个删除粒子子弹
 //bawang.itemCapacity = 50;
 bawang.health = 2100;
 bawang.inaccuracy = 8; //精准
 bawang.size = 4;
-bawang.ammoPerShot=3;//每发消耗的资源
+bawang.ammoPerShot = 3;//每发消耗的资源
 bawang.targetAir = true; //空
 bawang.targetGround = true; //地
 bawang.coolantMultiplier = 0.3; //液体冷却倍率
@@ -1787,8 +1880,8 @@ CTBlocks.tsunami.ammoTypes.put(qiangxiaolengqueye, (() => {
     v.speed = 6;
     v.damage = 0.2;
     v.lifetime = 30
-    //v.status = StatusEffects.unmoving; //效果:定身
-    //v.statusDuration = 30
+    v.status = StatusEffects.unmoving; //效果:定身
+    v.statusDuration = 30
     return v;
 })());
 
@@ -1868,8 +1961,8 @@ exports.youling3 = (//幽灵3
         a.size = 5;
         a.health = 4300;
         a.reload = 30;
-        a.coolantMultiplier = 0.5;
-        a.consume(new ConsumeCoolant(1.2));
+        a.coolantMultiplier = 1.8;
+        a.consume(new ConsumeCoolant(0.3));
         a.restitution = 0.1;
         a.ammoUseEffect = Fx.casing3Double;
         a.range = 42 * 8;
@@ -1883,7 +1976,7 @@ exports.youling3 = (//幽灵3
         a.shootCone = 24;
         a.shootSound = Sounds.shootBig;
         a.coolantUsage = 1.2;
-        a.ammoPerShot=3;//每发消耗的资源
+        a.ammoPerShot = 3;//每发消耗的资源
         a.limitRange();
         a.ammo(
             Items.surgeAlloy, Bullet_s.Bullet_surgeAlloy,
@@ -1963,6 +2056,7 @@ exports.ronghui3 = (//审判
     })()
 );
 
+
 exports.ronghui2 = (//天煞
     (() => {
         const a = extend(PowerTurret, "ronghui2", {
@@ -2003,7 +2097,7 @@ exports.ronghui2 = (//天煞
                     })()
                 ); */
         a.canOverdrive = true;
-        a.consumePower(7000 / 60);
+        a.consumePower(12000 / 60);
         a.size = 4;
         a.health = 2600;
         a.buildCostMultiplier = 0.4;
@@ -2073,10 +2167,10 @@ exports.youling2 = (//冥王
                 },
             }, a);
         });
-        a.consumePower(18500 / 60);
+        a.consumePower(13500 / 60);
         a.size = 5;
         a.shootSound = CreatorsSound.loadSound("youling22");
-        a.reload = 60/0.6;
+        a.reload = 60 / 0.6;
         a.canOverdrive = true;
         a.liquidCapacity = 10;
         a.health = 4200;
@@ -2129,7 +2223,7 @@ exports.ronghui4 = (//天谴
         a.heatColor = F.c("6F00D2")
         a.shootEffect = Fx.shootBig
         a.shootSound = CreatorsSound.loadSound("ronghui4");
-        a.range = 600;
+        a.range = 85*8;
         a.firingMoveFract = 0.5;
         a.inaccuracy = 0;
         a.rotateSpeed = 2.5; //旋转速度
@@ -2146,6 +2240,7 @@ exports.ronghui4 = (//天谴
         a.chargeMaxDelay = 12
         a.chargeEffects = 6
         a.shoot.firstShotDelay = 110
+        a.unitSort = UnitSorts.strongest;//攻击单位时的优先选择/closest/farthest/strongest/weakest
         a.consumeLiquid(qiangxiaolengqueye, 9 / 60,)
         a.consumePower(80000 / 60);
         a.coolantMultiplier = 5; //液体冷却倍率
@@ -2164,6 +2259,7 @@ exports.ronghui4 = (//天谴
         return a;
     })()
 )
+const EZao = extend(ItemTurret, 'EZao', {});//T2噩爪 具体参数在最下面
 const z = require('turrets/zongjipao');
 exports.zongjipao = z.xipao1;
 const x = require('turrets/zongjipao2');
@@ -2244,7 +2340,7 @@ const Acker = extend(PowerTurret, 'acker', {
         }
     },
 })//艾克尔
-const CCf=Color.valueOf("9B61FFFF")
+const CCf = Color.valueOf("9B61FFFF")
 Acker.buildType = prov(() => {
     const tif = 1; //贴图间的延迟变色速度，越大越不同
     const tid = 0.5; //贴图变色速度，越大越快
@@ -2289,7 +2385,7 @@ Acker.shootCone = 360;//射击瞄准角度
 Acker.cooldownTime = 600;//炮口过热消退时间 
 Acker.restitution = 33//什么玩意的恢复
 //Acker.coolantUsage = 1;//液体消耗量-失效
-Acker.consume(new ConsumeCoolant(1));//液体消耗量
+Acker.consume(new ConsumeCoolant(2));//液体消耗量
 Acker.coolantMultiplier = 0.5; //液体冷却倍率
 Acker.range = 150 * 8;
 Acker.shootY = 0;//中心发射子弹
@@ -2306,7 +2402,7 @@ Acker.inaccuracy = 0;
 Acker.spread = 1;
 Acker.targetAir = true;
 Acker.targetGround = true;
-Acker.consumePower(500000.1 / 60);
+Acker.consumePower(500000.00001 / 60);
 Acker.hasPower = true;
 Acker.shootEffect = new Effect(300, e => {
     Draw.color(CCf, e.color, e.fin());
@@ -2365,7 +2461,7 @@ Acker.shootType = (
             Lines.circle(e.x, e.y, e.finpow() * 100);
         });
         a.trailChance = 0.05;
-        a. trailRotation = true;//旋转
+        a.trailRotation = true;//旋转
         a.trailEffect = (
             (() => {
                 const v = new MultiEffect();
@@ -2516,14 +2612,492 @@ Acker.shootType = (
         a.shootEffect = Fx.none;
         a.smokeEffect = Fx.none;
         a.incendChance = 0;
-        a.status = (() => {
-            const a = new JavaAdapter(StatusEffect, {}, "stun");
-            a.reloadMultiplier = 0
-            a.speedMultiplier = 0
-            return a;
-        })()
-        a.statusDuration = 180;
+
+        a.status = status.stun//眩晕状态
+        a.statusDuration = 120;
         return a;
     })()
 );
 exports.Acker = Acker;
+
+/* 
+    一种新写法
+    function dm(size) {
+    return new MultiEffect(
+        Fx.dynamicSpikes.wrap(Pal.redLight, size),
+        Fx.mineImpactWave.wrap(Pal.redLight, size * 1.5),
+        Fx.mineImpactWave.wrap(Pal.redLight, size * 1.2)
+    )
+
+} */
+
+const instShoot = new Effect(24, e => {
+    e.scaled(10, b => {
+        Draw.color(Color.white, Pal.bulletYellowBack, b.fin());
+        Lines.stroke(b.fout() * 3 + 0.2);
+        Lines.circle(b.x, b.y, b.fin() * 50);
+    });
+});
+
+
+
+
+/*
+const instShoot = new Effect(24, e => {
+    e.scaled(10, b => {
+        Draw.color(Color.white, Pal.bulletYellowBack, b.fin());
+        Lines.stroke(b.fout() * 3 + 0.2);
+        Lines.circle(b.x, b.y, b.fin() * 50);
+    });
+});
+//转换：
+function instShoot1(YanSe) {
+    return new Effect(24, e => {
+        e.scaled(10, b => {
+            Draw.color(Color.white, YanSe, b.fin());
+            Lines.stroke(b.fout() * 3 + 0.2);
+            Lines.circle(b.x, b.y, b.fin() * 50);
+        });
+    })
+};
+*/
+function EZaoTrailEffect(YanSe1,YanSe2) {
+    return new Effect(10, e => {
+            for (let i = 0; i < 2; i++) {
+                Draw.color(i == 0 ? YanSe1 : YanSe2);
+                let m = i == 0 ? 1 : 0.5;
+                let rot = e.rotation ;
+                let w = 15 * e.fout() * m;
+                Drawf.tri(e.x, e.y, w, (30 + Mathf.randomSeedRange(e.id, 15)) * m, rot);
+                Drawf.tri(e.x, e.y, w, 10 * m, rot + 180);
+            }
+            Drawf.light(e.x, e.y, 60, YanSe1, 0.6 * e.fout());
+        })
+};
+//exports.
+const EZaoShootEffect= new Effect(24, e => {
+    e.scaled(10, b => {
+        Draw.color(Color.white, Pal.bulletYellowBack, b.fin());
+        Lines.stroke(b.fout() * 3 + 0.2);
+        Lines.circle(b.x, b.y, b.fin() * 20);
+    });
+});
+/*const 测试e = new Effect(24, e => {
+    Draw.color(e.color);
+    Lines.stroke(e.fout() * 2);
+    let circleRad = 4 + e.finpow() * e.rotation;
+    Lines.circle(e.x, e.y, circleRad);
+    Draw.color(Pal.bulletYellowBack);
+    for (let i of Mathf.signs) {
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  + 45 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  + 90 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  - 90 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  + 180 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  - 180 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30, - 45 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  - 130 * i);
+        Drawf.tri(e.x, e.y, 13 * e.fout(), 30,  + 130 * i);
+    };
+    Drawf.light(e.x, e.y, circleRad * 1.6, Pal.heal, e.fout());
+});*/
+EZao.ammo(
+    Items.surgeAlloy, (() => {
+        var b = new PointBulletType();
+        b.shootEffect = Fx.instShoot;
+        b.hitEffect = Fx.dynamicSpikes.wrap(Pal.redLight, 60);
+        b.smokeEffect = Fx.smokeCloud;
+        b.trailEffect = EZaoTrailEffect(Pal.bulletYellowBack,Pal.bulletYellow);
+        b.despawnEffect = Fx.none;
+        b.trailSpacing = 20;
+        b.hitSound = Sounds.railgun;//击中声音
+        b.damage = 200;
+        b.buildingDamageMultiplier = 0.2;
+        b.reloadMultiplier = 1.5; //装弹速
+        b.speed = 58 * 8;
+        b.hitShake = 6;
+        b.ammoMultiplier = 1;
+        b.fragBullets = 8;
+        b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+        //b. fragVelocityMin= 0.2;//最小散布距离
+        /*       //另一种写法
+                     b.fragBullet = Object.assign(extend(PointBulletType, {}), {
+                    hitSound : CreatorsSound.loadSound("none"),//自定义音效
+                    collidesAir : true,             
+                    splashDamageRadius : 24,
+                    splashDamage : 150,
+                    // buildingDamageMultiplier : 150*0.4,
+                    hitEffect : Fx.none,
+                    despawnEffect : DrawS.EZaoEffect,
+                    trailEffect:Fx.none,                
+                    lifetime : 12,
+                    speed : 8
+                }) */
+        b.fragBullet =
+            ((() => {
+                const b = new PointBulletType();
+                b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+                b.collidesAir = true;
+                 b.trailEffect =Fx.none;
+                b.splashDamageRadius = 16;
+                b.splashDamage = 150;
+                b.buildingDamageMultiplier = 0.2;
+                b.hitEffect = Fx.none;
+                b.despawnEffect = DrawS.EZaoEffect;
+                b.lifetime = 12;
+                b.speed = 8
+                return b;
+            })());
+        return b;
+    })(),
+    zuanjing, (() => {
+        var b = new PointBulletType();
+        b.shootEffect =EZaoShootEffect;
+        b.hitEffect = Fx.dynamicSpikes.wrap(Color.valueOf("41e9f4"), 60);
+        b.smokeEffect = Fx.smokeCloud;
+        b.trailEffect = EZaoTrailEffect(Color.valueOf("318082"),Color.valueOf("46e4e9"));
+        b.despawnEffect = Fx.none;
+        b.trailSpacing = 20;
+        b.hitSound = Sounds.railgun;//击中声音
+        b.damage = 230;
+        b.buildingDamageMultiplier = 0.2;
+        b.speed = 58 * 8;
+        b.hitShake = 6;
+        b.ammoMultiplier = 1;
+        b.reloadMultiplier = 1.5; //装弹速
+        b.fragBullets = 8;
+        b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+        b.fragBullet =
+            ((() => {
+                const b = new PointBulletType();
+                b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+                b.trailEffect =Fx.none;
+                b.collidesAir = true;
+                 b.trailEffect =Fx.none;
+                b.splashDamageRadius = 16;
+                b.splashDamage = 250;
+                b.buildingDamageMultiplier = 0.2;
+                b.hitEffect = Fx.none
+                b.despawnEffect = DrawS.EZaoEffect;
+                b.lifetime = 12;
+                b.speed = 8;
+                return b;
+            })());
+        return b;
+    })(),
+    hejinboli, (() => {
+        var b = new PointBulletType();
+        b.shootEffect =EZaoShootEffect;
+        b.hitEffect = Fx.dynamicSpikes.wrap(Pal.redLight, 60);
+        b.smokeEffect = Fx.smokeCloud;
+        b.trailEffect = EZaoTrailEffect(Pal.bulletYellowBack,Pal.bulletYellow);
+        b.despawnEffect = Fx.none;
+        b.trailSpacing = 20;
+        b.hitSound = Sounds.railgun;//击中声音
+        b.damage = 250;
+        b.buildingDamageMultiplier = 0.2;
+        b.speed = 58 * 8;
+        b.hitShake = 6;
+        b.ammoMultiplier = 1;
+        b.lightning = 5; //闪电根数
+        b.lightningLength = 10; //闪电长度
+        b.lightningDamage = 45;//闪电伤害
+        b.lightningColor = F.c("#ffdf2d");//闪电颜色
+        b.reloadMultiplier = 1.5; //装弹速
+        b.fragBullets = 8;
+        b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+        b.fragBullet =
+            ((() => {
+                const b = new PointBulletType();
+                b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+                b.collidesAir = true;
+                 b.trailEffect =Fx.none;
+                b.splashDamageRadius = 16;
+                b.splashDamage = 320;
+                b.buildingDamageMultiplier = 0.2;
+                b.hitEffect = Fx.none
+                b.despawnEffect = DrawS.EZaoEffect;
+                b.lifetime = 12;
+                b.speed = 8
+                b.lightning = 3; //闪电根数
+                b.lightningLength = 5; //闪电长度
+                b.lightningDamage = 7;//闪电伤害
+                b.lightningColor = F.c("#ffdf2d");//闪电颜色
+                return b;
+            })());
+        return b;
+    })(),
+    Items.blastCompound, (() => {
+        var b = new PointBulletType();
+        b.shootEffect =EZaoShootEffect;
+        b.hitEffect = Fx.dynamicSpikes.wrap(Color.valueOf("f88e37"), 60);
+        b.smokeEffect = Fx.smokeCloud;
+        b.trailEffect = EZaoTrailEffect(Color.valueOf("d94c4c"),Color.valueOf("642a2a"));
+        b.despawnEffect = Fx.none;
+        b.trailSpacing = 20;
+        b.hitSound = Sounds.railgun;//击中声音
+        b.damage = 180;
+        b.buildingDamageMultiplier = 0.2;
+        b.speed = 58 * 8;
+        b.hitShake = 6;
+        b.ammoMultiplier = 1;
+        b.reloadMultiplier = 1.5; //装弹速
+        b.status = StatusEffects.burning;
+        b.statusDuration = 300;
+        b.fragBullets = 8;
+        b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+        b.fragBullet =
+            ((() => {
+                const b = new PointBulletType();
+                b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+                b.collidesAir = true;
+                 b.trailEffect =Fx.none;
+                b.splashDamageRadius = 16;
+                b.splashDamage = 120;
+                b.buildingDamageMultiplier = 0.2;
+                b.hitEffect = Fx.none
+                b.despawnEffect = DrawS.EZaoEffect;
+                b.lifetime = 12;
+                b.speed = 8;
+                b.status = StatusEffects.burning;
+                b.statusDuration = 180;
+                return b;
+            })());
+        return b;
+    })(),
+    taihejin, (() => {
+        var b = new PointBulletType();
+        b.shootEffect =EZaoShootEffect;
+        b.hitEffect = Fx.dynamicSpikes.wrap(Color.valueOf("7aa6ff"), 60);
+        b.smokeEffect = Fx.smokeCloud;
+        b.trailEffect = EZaoTrailEffect(Color.valueOf("284761"),Color.valueOf("65b1f1"));
+        b.despawnEffect = Fx.none;
+        b.trailSpacing = 20;
+        b.hitSound = Sounds.railgun;//击中声音
+        b.damage = 280;
+        b.buildingDamageMultiplier = 0.2;
+        b.speed = 58 * 8;
+        b.hitShake = 6;
+        b.ammoMultiplier = 1;
+        b.reloadMultiplier = 1.5; //装弹速
+        b.status = status.zhenhan;
+        b.statusDuration = 20;
+        b.fragBullets = 8;
+        b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+        b.fragBullet =
+            ((() => {
+                const b = new PointBulletType();
+                b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+                b.collidesAir = true;
+                 b.trailEffect =Fx.none;
+                b.splashDamageRadius = 16;
+                b.splashDamage = 550;
+                b.buildingDamageMultiplier = 0.2;;
+                b.hitEffect = Fx.none
+                b.despawnEffect = DrawS.EZaoEffect;
+                b.lifetime = 12;
+                b.speed = 8;
+                b.status = status.zhenhan;
+                b.statusDuration = 20;
+                return b;
+            })());
+        return b;
+    })(),
+   
+);
+EZao.health = 2300;
+EZao.range = 65 * 8;
+EZao.maxAmmo = 40;
+EZao.ammoPerShot = 4;//每发射击消耗资源
+EZao.rotateSpeed = 2;
+EZao.inaccuracy = 5;//精准
+EZao.reload = 220;
+EZao.cooldownTime = 210;
+EZao.ammoUseEffect = Fx.casing3Double;
+EZao.shoot.firstShotDelay = 30//第一枪的延迟//蓄力射击特效必须有这个接口做前置
+EZao.recoil = 5;
+EZao.shake = 4;
+EZao.size = 5;
+EZao.shootCone = 2;
+EZao.shootSound = Sounds.railgun;
+EZao.unitSort = UnitSorts.closest;//攻击单位时的优先选择/closest/farthest/strongest/weakest
+EZao.envEnabled |= Env.space;
+EZao.buildCostMultiplier = 2.5;
+EZao.coolantMultiplier = 0.7;
+EZao.scaledHealth = 150;
+EZao.consume(new ConsumeCoolant(1));
+EZao.consumePower(3500/60);
+EZao.setupRequirements(
+	Category.turret,
+	BuildVisibility.shown,
+	ItemStack.with(
+        Items.copper, 2500,
+        Items.phaseFabric, 150,
+        hejinboli, 120,
+        weijing1, 200,
+        guijingti, 360,
+        shimoxi, 400,
+       // molishi,50,
+	)
+);
+var CD2 = Color.valueOf("007bff");
+EZao.drawer = ((() => {
+    const b = new DrawTurret() ;//炮塔底座    
+    for (let i = 0; i < 4; i++) {
+		b.parts.add(
+			Object.assign(new RegionPart("-3"), {
+				progress: DrawPart.PartProgress.warmup.delay(i / 8),
+				heatProgress: DrawPart.PartProgress.warmup.sin((4 - i) * 10, 10, 1),
+				under: false,
+				mirror: true,
+                moveY: 8 * i,
+				moveX: -3,
+				layerOffset: -0.0001,
+				turretHeatLayer: 50 - 0.0001,
+				moves: Seq.with(new DrawPart.PartMove(DrawPart.PartProgress.recoil.delay((4 - i) / 8), 0, 0, -15)),
+				color: Color.valueOf("FF9C5A"),
+				heatColor:Color.valueOf("F03B0E")
+			})
+		)
+	};
+    for (let i = 0; i < 5; i++) {
+		b.parts.add(
+			Object.assign(new RegionPart("-4"), {
+				progress: DrawPart.PartProgress.warmup.delay(i / 8),
+				heatProgress: DrawPart.PartProgress.warmup.sin((4 - i) * 10, 10, 1),
+				under: false,
+				mirror: true,
+                moveY: -3 * i,
+				moveX: 17,
+				layerOffset: -0.0001,
+				turretHeatLayer: 50 - 0.0001,
+				moves: Seq.with(new DrawPart.PartMove(DrawPart.PartProgress.recoil.delay((4 - i) / 8), 0, 0, -15)),
+				color: Color.valueOf("FF9C5A"),
+				heatColor:Color.valueOf("F03B0E")
+			})
+		)
+	};
+    b.parts.addAll(
+        (() => {
+            const c = new RegionPart("-1");
+            c.progress = DrawPart.PartProgress.warmup;
+            //c.mirror = true;
+            //c.moveRot = -40;
+            c.moveY = -2;
+            c.under = true;//在主体下面
+            c.heatColor = CD2
+            return c;
+        })(),
+        (() => {
+            const c = new RegionPart("-2");
+            c.progress = DrawPart.PartProgress.warmup;
+            //
+            c.mirror = true;
+            c.moveRot = 0;//倾斜角度
+            c.moveY = 13;//上下
+            c.moveX = -1.3;//左右
+            c.under = true;
+            c.heatColor = CD2
+            return c;
+        })(),
+        // (() => {
+        //     const c = new RegionPart("-3");
+        //     c.progress = DrawPart.PartProgress.warmup;
+        //     c.mirror = true;
+        //     //c.moveRot = 10;
+        //     c.moveY = 3;//上下
+        //     c.moveX = 1//左右
+        //     c.under = false;
+        //     c.heatColor = CD2
+        //     return c;
+        // })(),
+
+
+    )
+    return b;
+})());
+
+exports.EZao = EZao;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//实验
+const fuse2 = extend(ShrapnelBulletType, {});
+//fuse2.length = 110;//+10
+fuse2.damage = 120;//+15
+fuse2.toColor = Color.valueOf("fec3ff");
+fuse2.shootEffect = Fx.thoriumShoot;
+fuse2.smokeEffect = Fx.thoriumShoot;
+const fuseS2 = extend(BasicBulletType, {
+    despawned(b) {
+        for (var i = 0; i < 3; i++) {
+            fuse2.create(b, b.x, b.y, b.rotation() + 20 * (1 - i), 0.01, 1);
+        }
+    }
+});
+fuseS2.speed = 0.01;
+fuseS2.lifetime = 1;
+fuseS2.damage = 1;
+
+
+
+const fuse1 = extend(BasicBulletType, {});
+fuse1.length = 110;//+10
+fuse1.damage = 80;//+14
+fuse1.width = 17;
+const fuseS1 = extend(BasicBulletType, {
+    despawned(b) {
+        for (var i = 0; i < 3; i++) {
+            fuse1.create(b, b.x, b.y, b.rotation() + 20 * (1 - i), 0.01, 1);
+        }
+    }
+});
+fuseS1.speed = 4;
+fuseS1.lifetime = 120;
+fuseS1.damage = 1;
+
+// const TianZai = extend(ItemTurret, '天灾', {})
+// TianZai.ammo(
+//     Items.graphite, fuseS1,
+// );
+// TianZai.health = 2100;
+// TianZai.inaccuracy = 8; //精准
+// TianZai.size = 3;
+// //TianZai.ammoPerShot=2;//每发消耗的资源
+// TianZai.targetAir = true; //空false
+// TianZai.targetGround = true; //地
+// // TianZai.coolantMultiplier=0.8; //液体冷却倍率
+// TianZai.itemCapacity = 50; //资源容量
+// TianZai.reload = 30; //每秒发射数60:1;30:2
+// TianZai.range = 360;
+// TianZai.liquidCapacity = 20; //液体容量
+// TianZai.shootSound = Sounds.shootBig; //统一射击音效
+// TianZai.consumePower(2);
+// TianZai.outputsPower = true;
+// TianZai.requirements = ItemStack.with(
+//     Items.lead, 1420,
+//     Items.copper, 1760,
+//     jin, 150,
+//     weijing1, 75,
+//     guijingti, 220
+// );
+// TianZai.consume(new ConsumeCoolant(0.2));
+// TianZai.buildVisibility = BuildVisibility.shown;
+// TianZai.category = Category.turret;
+// //lib.addToResearch(TianZai, { parent: Blocks.ripple.name, });
+// exports.TianZai = TianZai;
+

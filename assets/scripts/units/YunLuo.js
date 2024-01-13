@@ -135,7 +135,7 @@ z1111.weapons.add(
                 v.speed = 0.1;
                 v.splashDamageRadius = 55;
                 v.instantDisappear = true;
-                v.splashDamage = 6000;
+                v.splashDamage = 20000;
                 v.killShooter = true;
                 v.hittable = false;
                 v.collidesAir = true;

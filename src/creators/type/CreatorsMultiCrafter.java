@@ -1,8 +1,10 @@
 package creators.type;
+/*选择多合成*/
 
 import arc.Core;
 import arc.func.Prov;
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
 import arc.scene.style.TextureRegionDrawable;
@@ -29,6 +31,9 @@ import mindustry.type.LiquidStack;
 import mindustry.ui.*;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.consumers.ConsumePower;
+import mindustry.world.draw.DrawBlock;
+import mindustry.world.draw.DrawDefault;
+import mindustry.world.draw.DrawMulti;
 import mindustry.world.meta.Stat;
 import mindustry.world.meta.StatUnit;
 
@@ -66,14 +71,43 @@ public class CreatorsMultiCrafter extends GenericCrafter {
         saveConfig = true;
         configurable = true;
 
-        config(Integer.class, (ChooseMultiCrafterBuild b, Integer i) ->{
+        config(Integer.class, (ChooseMultiCrafterBuild b, Integer i) -> {
             b.IDD = i;
         });
 
+/*        this.buildType = ChooseMultiCrafterBuild::new;
+
+        this.drawer = new DrawMulti(new DrawDefault(), new DrawBlock() {
+            @Override
+            public void draw(Building b) {
+             // 画物品
+                    ChooseMultiCrafterBuild build = (ChooseMultiCrafterBuild) b;
+                if (build.IDD != -1) {
+                    Draw.rect(recs[build.IDD].output.items[0].item.fullIcon, build.x, build.y);
+                }
+            }
+        });*/
+
         this.buildType = ChooseMultiCrafterBuild::new;
+        this.drawer = new DrawMulti(new DrawDefault(), new DrawBlock() {
+            @Override
+            public void draw(Building b) {
+                // 画物品
+                ChooseMultiCrafterBuild build = (ChooseMultiCrafterBuild) b;
+                if (build.IDD != -1) {
+                    if (recs[build.IDD].output.items.length > 0) {
+
+                        Draw.rect(recs[build.IDD].output.items[0].item.fullIcon, build.x, build.y);
+                    } else {
+                        Draw.rect(recs[build.IDD].output.liquids[0].liquid.fullIcon, build.x, build.y);
+                    }
+                }
+            }
+        });
+
     }
 
-    public CreatorsMultiCrafter(String name, int recLen){
+    public CreatorsMultiCrafter(String name, int recLen) {
         this(name, new CreatorsRecipe[recLen]);
     }
 
@@ -110,6 +144,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
                 )
         );
     }
+
     @Override
     public void setStats() {
         super.setStats();
@@ -171,7 +206,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
     }
 
     @Override
-    public void init(){
+    public void init() {
         for (CreatorsRecipe rec : recs) {
             if (rec.input.power > 0f) {
                 powerBarI = true;
@@ -205,7 +240,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
         }
 
         hasPower = powerBarI || powerBarO;
-        if(powerBarI) consPower = new MultiConsumePower();
+        if (powerBarI) consPower = new MultiConsumePower();
         consumesPower = powerBarI;
         outputsPower = powerBarO;
 
@@ -213,16 +248,16 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
         super.init();
 
-        if(!headless) infoStyle = scene.getStyle(Button.ButtonStyle.class);
+        if (!headless) infoStyle = scene.getStyle(Button.ButtonStyle.class);
     }
 
-    public void addRecipe(CreatorsRecipe.InputContents input, CreatorsRecipe.OutputContents output, float craftTime){
+    public void addRecipe(CreatorsRecipe.InputContents input, CreatorsRecipe.OutputContents output, float craftTime) {
         recs[index++] = new CreatorsRecipe(input, output, craftTime);
     }
 
     public class MultiConsumePower extends ConsumePower {
-        public float requestedPower(Building entity){
-            if(entity instanceof ChooseMultiCrafterBuild) {
+        public float requestedPower(Building entity) {
+            if (entity instanceof ChooseMultiCrafterBuild) {
                 var build = (ChooseMultiCrafterBuild) entity;
                 if (build.IDD != -1) {
                     if (recs[build.IDD].input.power > 0) {
@@ -238,13 +273,13 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
     public boolean allRecShow = true;
 
-    public class ChooseMultiCrafterBuild extends GenericCrafterBuild{
+    public class ChooseMultiCrafterBuild extends GenericCrafterBuild {
         public int IDD = 0;
         public boolean[] 生产状态 = new boolean[recs.length];
         public float[] 加工时间 = new float[recs.length];
 
         @Override
-        public void draw(){
+        public void draw() {
             super.draw();
         }
 
@@ -256,12 +291,12 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
             int A = 0;
 
-            for(var i = 0; i < recs.length; i++) {
+            for (var i = 0; i < recs.length; i++) {
                 int finalI = i;
 
                 ImageButton button = table.button(Tex.whiteui, clearToggleTransi, 40, () -> {
                 }).group(group).get();
-                button.clicked(() -> configure(button.isChecked() ? finalI : -1));
+                button.clicked(() -> configure(finalI));
 
                 TextureRegion icon;
                 if (ItemLiquid == null) {
@@ -273,15 +308,15 @@ public class CreatorsMultiCrafter extends GenericCrafter {
                             recs[i].output.items[0].item.uiIcon : recs[i].output.liquids[0].liquid.uiIcon;
                 }
 
-                if(icon == Core.atlas.find("error")){
-                    icon = (TextureRegion) Icon.power.tint(Color.white);
+                if (icon != null) {
+                    Core.atlas.find("error");
                 }
 
                 button.getStyle().imageUp = new TextureRegionDrawable(icon);
                 button.update(() -> button.setChecked(IDD == finalI));
 
                 A += 1;
-                if (A == (RecipeShowIS != 0 ? RecipeShowIS : size+1)) {
+                if (A == (RecipeShowIS != 0 ? RecipeShowIS : size + 1)) {
                     A = 0;
                     table.row();
                 }
@@ -289,7 +324,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
         }
 
         @Override
-        public void displayConsumption(Table table){
+        public void displayConsumption(Table table) {
             if (IDD == -1) {
                 return;
             }
@@ -330,7 +365,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
                     y = 0;
                     z = 0;
                 }
-            }else{
+            } else {
                 int z = 0;
 
                 table.left();
@@ -352,26 +387,26 @@ public class CreatorsMultiCrafter extends GenericCrafter {
         }
 
         @Override
-        public Integer config(){
+        public Integer config() {
             return IDD;
         }
 
-        public float 进度条(int i){
-            if(i == -1){
+        public float 进度条(int i) {
+            if (i == -1) {
                 return 0f;
             }
             return 加工时间[i] / recs[i].craftTime;
         }
 
-        public boolean 检测消耗(CreatorsRecipe.InputContents a){
-            if(a.items != null) {
+        public boolean 检测消耗(CreatorsRecipe.InputContents a) {
+            if (a.items != null) {
                 for (var A : a.items) {
                     if (items.get(A.item) < A.amount) {
                         return false;
                     }
                 }
             }
-            if(a.liquids != null) {
+            if (a.liquids != null) {
                 for (var A : a.liquids) {
                     if (liquids.get(A.liquid) < A.amount) {
                         return false;
@@ -382,67 +417,67 @@ public class CreatorsMultiCrafter extends GenericCrafter {
             return true;
         }
 
-        public void 资源消耗(CreatorsRecipe.InputContents a){
-            if(a.items != null) {
+        public void 资源消耗(CreatorsRecipe.InputContents a) {
+            if (a.items != null) {
                 for (var A : a.items) {
                     items.remove(A.item, A.amount);
                 }
             }
-            if(a.liquids != null) {
+            if (a.liquids != null) {
                 for (var A : a.liquids) {
                     liquids.remove(A.liquid, A.amount);
                 }
             }
         }
 
-        public float 副检测器(CreatorsRecipe.InputContents a, CreatorsRecipe.OutputContents b){
-            for(var i : b.items){
-                if(items.get(i.item) >= this.block.itemCapacity){
+        public float 副检测器(CreatorsRecipe.InputContents a, CreatorsRecipe.OutputContents b) {
+            for (var i : b.items) {
+                if (items.get(i.item) >= this.block.itemCapacity) {
                     return 0;
                 }
             }
-            for(var i : b.liquids){
-                if(liquids.get(i.liquid) >= this.block.liquidCapacity){
+            for (var i : b.liquids) {
+                if (liquids.get(i.liquid) >= this.block.liquidCapacity) {
                     return 0;
                 }
             }
 
-            if(a.power > 0){
+            if (a.power > 0) {
                 return power.status * edelta();
             }
             return delta();
         }
 
-        public void 存储资源输出(CreatorsRecipe.OutputContents a){
-            if(a.items != null) {
+        public void 存储资源输出(CreatorsRecipe.OutputContents a) {
+            if (a.items != null) {
                 for (var A : a.items) {
-                    for(var i = 0; i < A.amount; i++) {
+                    for (var i = 0; i < A.amount; i++) {
                         dump(A.item);
                     }
                 }
             }
-            if(a.liquids != null) {
+            if (a.liquids != null) {
                 for (var A : a.liquids) {
-                    for(var i = 0; i < A.amount; i++) {
+                    for (var i = 0; i < A.amount; i++) {
                         dumpLiquid(A.liquid);
                     }
                 }
             }
         }
 
-        public void 资源输出(CreatorsRecipe.OutputContents a){
-            if(wasVisible){
+        public void 资源输出(CreatorsRecipe.OutputContents a) {
+            if (wasVisible) {
                 craftEffect.at(x, y);
             }
 
-            if(a.items != null) {
+            if (a.items != null) {
                 for (var A : a.items) {
-                    for(var i = 0; i < A.amount; i++) {
+                    for (var i = 0; i < A.amount; i++) {
                         offload(A.item);
                     }
                 }
             }
-            if(a.liquids != null) {
+            if (a.liquids != null) {
                 for (var A : a.liquids) {
                     liquids.add(A.liquid, A.amount);
                 }
@@ -451,22 +486,22 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
         @Override
         public void updateTile() {
-            if(IDD != -1 ){
-                if(生产状态[IDD]){
+            if (IDD != -1) {
+                if (生产状态[IDD]) {
                     加工时间[IDD] += 副检测器(recs[IDD].input, recs[IDD].output);
-                    if(加工时间[IDD] >= recs[IDD].craftTime){
+                    if (加工时间[IDD] >= recs[IDD].craftTime) {
                         资源输出(recs[IDD].output);
                         生产状态[IDD] = false;
                         加工时间[IDD] = 0;
                     }
 
-                    if(wasVisible && (Mathf.chanceDelta(updateEffectChance * 副检测器(recs[IDD].input, recs[IDD].output)))){
+                    if (wasVisible && (Mathf.chanceDelta(updateEffectChance * 副检测器(recs[IDD].input, recs[IDD].output)))) {
                         updateEffect.at(x + Mathf.range(size * 4f), y + Mathf.range(size * 4));
                     }
-                }else{
-                    if(cheating()){
+                } else {
+                    if (cheating()) {
                         生产状态[IDD] = true;
-                    }else {
+                    } else {
                         if (检测消耗(recs[IDD].input)) {
                             资源消耗(recs[IDD].input);
                             生产状态[IDD] = true;
@@ -475,7 +510,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
                 }
             }
 
-            if(timer(timerDump, dumpTime)) {
+            if (timer(timerDump, dumpTime)) {
                 for (CreatorsRecipe rec : recs) {
                     存储资源输出(rec.output);
                 }
@@ -483,9 +518,9 @@ public class CreatorsMultiCrafter extends GenericCrafter {
         }
 
         @Override
-        public float getPowerProduction(){
-            if(IDD != -1 ){
-                if(recs[IDD].output.power > 0) {
+        public float getPowerProduction() {
+            if (IDD != -1) {
+                if (recs[IDD].output.power > 0) {
                     if (生产状态[IDD]) {
                         return recs[IDD].output.power;
                     }
@@ -500,7 +535,7 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
             write.i(IDD);
 
-            for(var i = 0; i < recs.length; i++) {
+            for (var i = 0; i < recs.length; i++) {
                 write.bool(生产状态[i]);
                 write.f(加工时间[i]);
             }
@@ -512,21 +547,21 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
             IDD = read.i();
 
-            for(var i = 0; i < recs.length; i++) {
+            for (var i = 0; i < recs.length; i++) {
                 生产状态[i] = read.bool();
                 加工时间[i] = read.f();
             }
         }
 
-        public boolean accept(UnlockableContent content){
-            if(IDD != -1 ){
-                for(var i : recs[IDD].input.items){
-                    if(i.item == content){
+        public boolean accept(UnlockableContent content) {
+            if (IDD != -1) {
+                for (var i : recs[IDD].input.items) {
+                    if (i.item == content) {
                         return true;
                     }
                 }
-                for(var l : recs[IDD].input.liquids){
-                    if(l.liquid == content){
+                for (var l : recs[IDD].input.liquids) {
+                    if (l.liquid == content) {
                         return true;
                     }
                 }
@@ -536,17 +571,18 @@ public class CreatorsMultiCrafter extends GenericCrafter {
 
         @Override
         public boolean acceptItem(Building source, Item item) {
-            if(items.get(item) < this.block.itemCapacity) {
+            if (items.get(item) < this.block.itemCapacity) {
                 return accept(item);
-            }else{
+            } else {
                 return false;
             }
         }
+
         @Override
-        public boolean acceptLiquid(Building source, Liquid liquid){
-            if(liquids.get(liquid) < this.block.liquidCapacity) {
+        public boolean acceptLiquid(Building source, Liquid liquid) {
+            if (liquids != null && liquids.get(liquid) < this.block.liquidCapacity) {
                 return accept(liquid);
-            }else{
+            } else {
                 return false;
             }
         }

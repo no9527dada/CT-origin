@@ -10,7 +10,7 @@
 //     "edge": "stone",
 //     "blendGroup": "stone",
 
-    "type": "floor",
+    //"type": "floor",
     //"name": "魔力水"
     // "isLiquid": true,
     "liquidDrop": "moliye",

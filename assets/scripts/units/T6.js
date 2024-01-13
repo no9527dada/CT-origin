@@ -249,6 +249,7 @@ var dafengche = (() => {
     bt.collides = true;
     bt.reflectable = false;
     bt.absorbable = false;
+   bt. collidesAir = true;
     // bt.homingRange = 480;
     //bt.homingPower = 5; //追踪; 
     return bt;
@@ -297,6 +298,7 @@ T6tianxie.weapons.add(
         w.x = 0;
         w.y = -25;
         w.inaccuracy = 25
+       // w.targetAir= true;
         w.reload = 200;//射速
         w.rotate = false;//旋转
         w.bullet = dafengche;
@@ -407,6 +409,7 @@ bt32.height = 1;
 bt32.damage = 25;
 bt32.lifetime = 40;
 bt32.speed = 3;
+bt32.collidesAir = true;
 bt32.status = StatusEffects.shocked;
 bt32.despawnEffect = exports.newEffectt(20, (e) => {
     Draw.color(dec, dec2, e.fin());
@@ -432,6 +435,7 @@ bt31.width = 25;
 bt31.height = 25;
 bt31.collidesTiles = true;
 bt31.ollidess = true;
+bt31.collidesAir = true;
 bt31.ammoMultiplier = 4;
 bt31.splashDamageRadius = 80;
 bt31.splashDamage = 75;
@@ -452,9 +456,10 @@ bt31.fragBullets = 5;//破片分裂数量
 bt31.homingRange = 320;//追踪范围
 bt31.homingPower = 3;//追踪
 const bt3 = new JavaAdapter(ShrapnelBulletType, {});
-bt3.length = 90;
+bt3.length = 3*90;
 bt3.damage = 2300;
 bt3.width = 75;
+bt3.collidesAir = true;
 //bt3.height = 250;
 bt3.serrationLenScl = 7;
 bt3.serrationSpaceOffset = 60;
@@ -466,14 +471,14 @@ bt3.fromColor = Pal.sapBullet;
 bt3.toColor = Pal.sapBulletBack;
 bt3.shootEffect = Fx.sparkShoot;
 bt3.smokeEffect = Fx.sparkShoot;
-bt3.fragRandomSpread = 60;//破片散布角度
-bt3.fragAngle =0
-bt3.fragBullets = 1
-bt3.fragVelocityMin = 1, 
-bt3.fragVelocityMax = 1;
-bt3.fragLifeMin = 1,
-bt3.fragLifeMax = 1;
-bt3.fragBullet = bt31
+// bt3.fragRandomSpread = 60;//破片散布角度
+// bt3.fragAngle =0
+// bt3.fragBullets = 1
+// bt3.fragVelocityMin = 1, 
+// bt3.fragVelocityMax = 1;
+// bt3.fragLifeMin = 1,
+// bt3.fragLifeMax = 1;
+// bt3.fragBullet = bt31
 T6tianxie.weapons.add(
     (() => {
         const w = new Weapon("creators-T6tianxie4");
@@ -487,6 +492,7 @@ T6tianxie.weapons.add(
             c.shotDelay = 15;
             return c;
         })()
+        
         w.rotate = true;
         w.mirror = false;//镜像
         w.top = false;
@@ -504,7 +510,37 @@ T6tianxie.weapons.add(
         return w;
     })()
 );
-
+T6tianxie.weapons.add(
+    (() => {
+        const w = new Weapon("");
+        w.x = 0;
+        w.y = 0;
+        w.shoot = (() => {
+            const c = new ShootAlternate()
+          //  c.spread = 4.7;
+            c.shots = 4;
+           // c.barrels = 4
+            c.shotDelay = 15;
+            return c;
+        })()
+        //w.targetAir= true
+        w.rotate = true;
+        w.mirror = false;//镜像
+        w.top = false;
+        w.shootY = 15;
+        w.shake = 4;
+        w.rotateSpeed = 4;//武器转速
+        w.ejectEffect = Fx.casing1;
+        w.shootSound = Sounds.shootBig;
+        w.shadow = 12;
+        w.recoil = 3;
+        //w.shots = 1;
+        //w.spacing = 17;
+        w.reload = 100;//射速
+        w.bullet = bt31;
+        return w;
+    })()
+);
 exports.T6tianxie = T6tianxie
 
 
@@ -716,7 +752,7 @@ T6bullet3.trailSpacing=50
 T6bullet3.lightningDamage = 15;
 T6wangzuo.weapons.add(
     (() => {
-        const v   = new Weapon("reign-weapon");
+        const v   = new Weapon("creators-reign-weaponCT");
         v.shoot = (() => {
             const c = new ShootAlternate()
             c.spread = 4.7;
@@ -773,7 +809,7 @@ T6wangzuo.weapons.add(
 )
 T6wangzuo.weapons.add(
     (() => {
-        const v   = new Weapon("reign-weapon");
+        const v   = new Weapon("creators-reign-weaponCT");
         v.shoot = (() => {
             const c = new ShootAlternate()
             c.spread = 4.7;

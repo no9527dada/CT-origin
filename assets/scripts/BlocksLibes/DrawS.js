@@ -238,7 +238,36 @@ exports.chuangshiyujieBubble = (() => {
 
 
 
-
+    exports.EZaoEffect = new MultiEffect(
+        new Effect(130, e => {
+            Draw.color(Pal.missileYellow);
+            e.scaled(6, i => {
+                Lines.stroke(3 * i.fout());
+                Lines.circle(e.x, e.y, 3 + i.fin() * 15);
+            });
+        }),
+        new Effect(70, e => {//粒子
+            Draw.color(Pal.missileYellowBack);
+            Lines.stroke(e.fout());
+            Angles.randLenVectors(e.id + 1, 4, 1 + 23 * e.finpow(), (x, y) => {
+                Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1 + e.fout() * 3);
+            });
+        }),
+        new Effect(350, e => {
+            Drawf.light(e.x, e.y, 45, Pal.missileYellowBack, 0.8 * e.fout());
+        }),
+        new Effect(32, e => {//烟雾
+            Draw.color(Color.valueOf("#bf9c70"));
+            Angles.randLenVectors(e.id, 5, 2 + 23 * e.finpow(), (x, y) => {
+                Fill.circle(e.x + x, e.y + y, e.fout() * 4 + 0.5);
+            })
+        }),
+        new Effect(30, e => {//波纹
+            Draw.color(Pal.missileYellow);
+            Lines.stroke(e.fout() * 2);
+            Lines.circle(e.x, e.y, 4 + e.finpow() * 10);
+        })
+    );
 
 
 
@@ -324,3 +353,22 @@ const destruction = new Effect(60, e => {
     Fill.poly(e.x, e.y, 3, e.fslope() * 20, e.fin() * 360)
   });
   exports.deathHaloShoot =deathHaloShoot
+
+
+  const fxLightningBall = new Effect(10, 500, cons(e => {
+    Lines.stroke(3 * e.fout());
+    Draw.color(e.color, Color.white, e.fin());
+    // select two point at circle, draw line between them
+    const radius = 4;
+    const radiusRandom = 12;
+    for (var i = 0; i < 3; i++) {
+        var angle = Mathf.range(360);
+        var angle2 = Mathf.range(120) + 120;
+        tmp.trns(angle, radius + Mathf.range(radiusRandom));
+        tmp2.trns(angle2, radius + Mathf.range(radiusRandom));
+        Lines.line(e.data.getX() + tmp.x, e.data.getY() + tmp.y, e.data.getX() + tmp2.x, e.data.getY() + tmp2.y, false);
+        Fill.circle(e.data.getX() + tmp.x, e.data.getY() + tmp.y, Lines.getStroke() / 2);
+        Fill.circle(e.data.getX() + tmp2.x, e.data.getY() + tmp2.y, Lines.getStroke() / 2);
+    }
+}));
+exports.fxLightningBall =fxLightningBall

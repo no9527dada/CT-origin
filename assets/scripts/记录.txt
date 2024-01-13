@@ -30,7 +30,7 @@ coreMerge = false;//核心禁止扩容
     /** 方块破坏时声音.*/
    destroySound = Sounds.boom;
 
-    /** 单位死亡音效 */
+    /** 单位自杀音效 ，被子弹打死不生效*/
    deathSound = Sounds.bang;
     /** 单位在周围时循环声音 */
 loopSound = Sounds.none;

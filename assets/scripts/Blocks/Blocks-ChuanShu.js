@@ -173,7 +173,7 @@ exports.huanchongcang =
 
 exports.csdq0 =
     (() => {
-        const a = extend(ItemBridge, "csqd0", {}); //短桥
+        const a = CTConveyor.csdq0//extend(ItemBridge, "csqd0", {}); //短桥
         a.health = 90;
         a.range = 6;
         //a.hasLiquids = true;
@@ -191,6 +191,47 @@ exports.csdq0 =
     })();
 
 //-----------------------------------------------------------
+exports.csdq =
+    (() => {
+         //const a = CTConveyor.csdq //微晶桥
+         const a = extend(ItemBridge, "csdq", {});   
+        a.health = 500;
+        a.range = 50;
+        a. transportTime = 0.01;
+        //a.bufferCapacity = 20;
+        a.itemCapacity = 20;
+        a.consumePower(1.2)
+        a.requirements = ItemStack.with(
+            Items.silicon, 20,
+            Items.surgeAlloy, 10,
+            Items.phaseFabric, 2,
+            weijing1, 10,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.distribution;
+        return a;
+    })();
+/*     exports.csdq =
+    (() => {
+         const a = CTConveyor.csdq //微晶桥
+         //const a = extend(ItemBridge, "csdq2", {});   
+        a.health = 500;
+        a.range = 50;
+        a. transportTime = 0.01;
+        //a.bufferCapacity = 20;
+        a.itemCapacity = 20;
+        a.consumePower(1.2)
+        a.requirements = ItemStack.with(
+            Items.silicon, 20,
+            Items.surgeAlloy, 10,
+            Items.phaseFabric, 2,
+            weijing1, 30,
+        );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.distribution;
+        return a;
+    })(); */
+    //-----------------------------------------------------------
 exports.conveyor10 =
     (() => {
         const a = extend(ArmoredConveyor, "0-conveyor1", {}); //减速装甲传输带
@@ -211,7 +252,7 @@ exports.conveyor10 =
 //-----------------------------------------------------------
 exports.conveyor11 =
     (() => {
-        const a = extend(Conveyor, "1-conveyor", {}); //3级传输带
+        const a = CTConveyor.conveyor1 //extend(Conveyor, "1-conveyor", {}); //3级传输带
         a.health = 220;
         a.displayedSpeed = 30;
         a.speed = 0.3;
@@ -219,7 +260,7 @@ exports.conveyor11 =
             Items.surgeAlloy, 1,
             jingliantai, 1,
             jin, 1,
-        );
+        );a.ambientSoundVolume=0.05;
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.distribution;
         return a;
@@ -230,7 +271,7 @@ exports.conveyor11 =
 //-----------------------------------------------------------
 exports.conveyor12 =
     (() => {
-        const a = extend(ArmoredConveyor, "1-conveyor1", {}); //3级装甲传输带
+        const a = CTConveyor.conveyor12//extend(ArmoredConveyor, "1-conveyor1", {}); //3级装甲传输带
         a.health = 220;
         a.displayedSpeed = 30;
         a.speed = 0.3;
@@ -239,7 +280,7 @@ exports.conveyor12 =
             Items.thorium, 1,
             jingliantai, 1,
             jin, 1,
-        );
+        );a.ambientSoundVolume=0.05;
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.distribution;
         return a;
@@ -250,7 +291,7 @@ exports.conveyor12 =
 //-----------------------------------------------------------
 exports.conveyor2 =
     (() => {
-        const a = extend(Conveyor, "2-conveyor", {}); //4级传输带
+        const a = CTConveyor.conveyor2//extend(Conveyor, "2-conveyor", {}); //4级传输带
         a.health = 350;
         a.speed = 0.8;
         a.displayedSpeed = 70;
@@ -259,7 +300,7 @@ exports.conveyor2 =
             jingliantai, 1,
             jin, 1,
             weijing1, 1,
-        );
+        );a.ambientSoundVolume=0.05;
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.distribution;
         return a;
@@ -268,7 +309,7 @@ exports.conveyor2 =
 //-----------------------------------------------------------
 exports.conveyor21 =
     (() => {
-        const a = extend(ArmoredConveyor, "2-conveyor1", {}); //4级装甲传输带
+        const a = CTConveyor.conveyor21//1extend(ArmoredConveyor, "2-conveyor1", {}); //4级装甲传输带
         a.health = 350;
         a.speed = 0.8;
         a.displayedSpeed = 70;
@@ -278,7 +319,7 @@ exports.conveyor21 =
             jingliantai, 1,
             jin, 1,
             weijing1, 1,
-        );
+        );a.ambientSoundVolume=0.05;
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.distribution;
         return a;
@@ -307,7 +348,7 @@ exports.luyouqi2 =
 
 exports.lianjieqi2 =
     (() => {
-        const a = extend(Junction, "lianjieqi2", {}); //连接器2
+        const a =CTConveyor.lianjieqi2// extend(Junction, "lianjieqi2", {}); //连接器2
         a.consumesPower = true;
         a.outputsPower = true;
         a.hasPower = true;
@@ -341,13 +382,21 @@ exports.conveyor3 =
                     this.drawPlaceText(Core.bundle.format("message.creators.weijinghexinxianzhi") + missingMsg, x, y, valid);
                 }
             },
+
+
+
+
+
+
         }); //5级传输带
+        a.junctionReplacement = CTConveyor.lianjieqi2;
+        a.bridgeReplacement = exports.csdq;
         a.consumesPower = true;
         a.outputsPower = true;
         a.hasPower = true;
         a.displayedSpeed = 240;
         a.consumePower(2 / 60);
-
+a.ambientSoundVolume=0.05;
         a.health = 500;
         a.speed = 2.0;
         a.requirements = ItemStack.with(
@@ -378,7 +427,14 @@ exports.conveyor31 =
                     this.drawPlaceText(Core.bundle.format("message.creators.weijinghexinxianzhi") + missingMsg, x, y, valid);
                 }
             },
+                         init() {
+                                this.super$init();
+                                       junctionReplacement = exports.lianjieqi2;
+                                      bridgeReplacement = exports.csdq;
+                            },
         }); //5级装甲传输带
+                a.junctionReplacement = CTConveyor.lianjieqi2;
+                a.bridgeReplacement = exports.csdq;
         a.consumesPower = true;
         a.outputsPower = true;
         a.hasPower = true;
@@ -393,6 +449,7 @@ exports.conveyor31 =
             jin, 1,
             weijing2, 1,
         );
+        a.ambientSoundVolume=0.05;
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.distribution;
         return a;
@@ -850,31 +907,7 @@ exports.dongcibeng = //动磁泵
         return a;
     })();
 //-----------------------------------------------------------
-exports.csdq =
-    (() => {
-        const a = extend(ItemBridge, "csdq", { //微晶桥
-            updateTransport(tile, other) {
-                for (var i = 0; i < 36; i++) {
-                    this.super$updateTransport(tile, other);
-                }
-            }
-        });
-        a.health = 500;
-        a.range = 50;
-        a.transportTime = 1;
-        //a.bufferCapacity = 20;
-        a.itemCapacity = 20;
-        a.consumePower(1.2)
-        a.requirements = ItemStack.with(
-            Items.silicon, 20,
-            Items.surgeAlloy, 10,
-            Items.phaseFabric, 2,
-            weijing1, 2,
-        );
-        a.buildVisibility = BuildVisibility.shown;
-        a.category = Category.distribution;
-        return a;
-    })();
+
 //-----------------------------------------------------------
 exports.daoguanqiao0 =
     (() => {
@@ -1040,6 +1073,7 @@ exports.jizhuangxieqi3 =//准备删除
             guijingti, 180,
             weijing2, 5,
         );
+         a.buildVisibility = BuildVisibility.hidden;
         //准备删除
       //  a.buildVisibility = BuildVisibility.shown;
         a.group = BlockGroup.transportation

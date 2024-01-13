@@ -11,11 +11,7 @@ import mindustry.world.blocks.environment.*;
 
 import static mindustry.content.Blocks.*;
 
-/**
- * @author WOW
- * @date 2022/10/04
- * 存放全部物品
- */
+
 public class CTItem {
     //注册物品/液体 变量
     public static Item  shiying,guijingti,shimoxi,hejinboli,jinhuiboli,xudianchi,jingliantai,taihejin,buding,hua1,hua2,hua3,zhiwumo,
@@ -260,6 +256,8 @@ public class CTItem {
 
 //液体
         zhiwujingyou = new Liquid("zhiwujingyou",Color.valueOf("2f5d42")){{
+            gas = true;
+            barColor = Color.valueOf("a9ffac");
             flammability = 1f;
             temperature = 0.6f;
             heatCapacity = 0f;
@@ -274,11 +272,13 @@ public class CTItem {
             explosiveness = 0f;
         }};
         jinglianlio = new Liquid("jinglianlio",Color.valueOf("6b675f")){{
+            gas = true;
+            //barColor = Color.valueOf("d699f0");
             viscosity = 0;
             flammability = 1.2f;
             explosiveness = 1.5f;
             heatCapacity = 0.7f;
-            barColor = Color.valueOf("8e8e8c");
+            barColor = Color.valueOf("ffffff");
             effect = StatusEffects.tarred;
         }};
         moliye = new Liquid("moliye",Color.valueOf("28004D")){{

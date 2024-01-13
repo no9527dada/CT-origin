@@ -13,7 +13,7 @@
   "hitSize": 80,
   "buildSpeed": 0.05, //建造速度
   "armor": 25,
-  "deathSound" :"renwuwancengla",
+  //"deathSound": "renwuwancengla",//死亡时的声音，貌似没效果
   //----------
   "targetFlags": [
     "reactor",
@@ -21,6 +21,7 @@
   ],
   "weapons": [
     {
+      "targetAir" :true,
       "name": "T6rishi-laser1",
       "shootCone": 30,
       "reload": 80,
@@ -44,7 +45,8 @@
         "shrinkY": 0,
         "drag": -0.003,
         "homingRange": 60,
-        "hittable": false, //被激光点防击中开关
+       // "hittable": false, //被激光点防击中开关
+       "collidesAir": true,
         "keepVelocity": false,
         "splashDamageRadius": 25,
         "splashDamage": 15,
@@ -72,10 +74,10 @@
       "bullet": {
         "type": "FireBulletType",
         "speed": 1.5,
-        "damage": 45,
+        "damage": 80,
         "hitEffect": "blastExplosion",
         "lifetime": 450,
-        "hittable": true, //被激光点防击中开关
+        //"hittable": true, //被激光点防击中开关
         "radius": 18,
         "velMin": 23, //最小距离
         "velMax": 23, //最大距离
@@ -87,6 +89,7 @@
       }
     },
     {
+      "targetAir" :true,
       "name": "T6rishi-laser2",
       "top": false,
       "shootCone": 30,
@@ -110,18 +113,19 @@
         "knockback": 0.8,
         "lifetime": 150,
         "width": 25,
-        "hittable": false, //被激光点防击中开关
+        //"hittable": false, //被激光点防击中开关
         "height": 25,
         "collides": true,
         "collidesTiles": true,
+        "collidesAir": false,
         "splashDamageRadius": 35,
-        "splashDamage": 80,
+        "splashDamage": 30,
         "backColor": "f9c27a",
         "frontColor": "fff8e8"
       }
     },
     {
-      //"name": "T6rishi-laser3",
+      "targetAir" :true,
       "shootCone": 30,
       "shadow": 0, //武器贴图阴影大小
       "mirror": true, //镜像
@@ -148,8 +152,9 @@
         "damage": 50,
         "width": 20,
         "height": 20,
+        "collidesAir": true,
         //"hittable" :false,//被激光点防击中开关
-        "collidesTiles": false,
+        "collidesTiles": true,
         "splashDamageRadius": 70,
         "splashDamage": 40,
         "backColor": "ff8e1d",
@@ -166,6 +171,7 @@
       }
     },
     {
+      "collidesAir": true,
       "name": "T6rishi-laser3",
       "shootCone": 30,
       "shadow": 0, //武器贴图阴影大小
@@ -173,11 +179,11 @@
       "y": 10, //上下
       "x": 25, //左右
       "shootY": 10,
-      "reload": 130, //射速
+      "reload": 210, //射速
       "shake": 10,
       "recoil": 10,
-      "shoot":{
-        "shots" :5,
+      "shoot": {
+        "shots": 3,
         "shotDelay": 20
       },
       "rotateSpeed": 1,
@@ -190,21 +196,21 @@
         "knockback": 0.8,
         "lifetime": 60,
         "speed": 5,
-        "hittable": false, //被激光点防击中开关
-        "damage": 120,
+       // "hittable": false, //被激光点防击中开关
+        "damage": 90,
         "width": 50,
         "height": 50,
-        //"collidesTiles":"collides",
+        "collidesAir":true,
         "collides": true,
         "ammoMultiplier": 2,
         "splashDamageRadius": 80,
-        "splashDamage": 75,
+        "splashDamage": 130,
         "backColor": "ff8e1d",
         "frontColor": "fff890",
         "lightningColor": "fff890",
         "lightning": 5,
         "lightningLength": 20,
-        "lightningDamage": 65,
+        "lightningDamage": 25,
         "smokeEffect": "shootBigSmoke2",
         "hitShake": 10,
         "lightRadius": 40,
@@ -224,9 +230,9 @@
           "width": 20,
           "height": 20,
           //"hittable" :false,//被激光点防击中开关
-          "collidesTiles": false,
+         // "collidesTiles": false,
           "splashDamageRadius": 70,
-          "splashDamage": 40,
+          "splashDamage": 70,
           "backColor": "ff8e1d",
           "frontColor": "fff890",
           "lightning": 2,

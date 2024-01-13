@@ -23,7 +23,7 @@ exports.qian1 =
         const a = extend(Wall, "1qian1", {
             setBars() { lib.Health(this) }
         }); //小铅墙
-        a.armor = 10
+        a.armor = 2
         a.health = 320;
         a.size = 1;
         a.requirements = ItemStack.with(
@@ -39,6 +39,7 @@ exports.qian2 =
         const a = extend(Wall, "2qian2", { setBars() { lib.Health(this) } }); //铅墙
         a.health = 1280;
         a.size = 2;
+        a.armor = 3
         a.requirements = ItemStack.with(
             Items.lead, 24,
         );
@@ -52,6 +53,7 @@ exports.qian3 =
         const a = extend(Wall, "3qian3", { setBars() { lib.Health(this) } }); //大铅墙
         a.health = 2280;
         a.size = 3;
+        a.armor = 4
         a.requirements = ItemStack.with(
             Items.lead, 54,
         );
@@ -222,7 +224,7 @@ exports.moli2 =
 //-----------------------------------------------------------
 exports.hunhe3 =
     (() => {
-        const a = extend(Wall, "93hunhe3", {
+        const a = extend(Wall, "93hunhe3", {//狙电魔微墙
             //微晶核心限制
             canPlaceOn(tile, team, rotation) {
                 return this.super$canPlaceOn(tile, team, rotation) && dsGlobal.duoQianZhi.isValid();
@@ -237,7 +239,7 @@ exports.hunhe3 =
                 }
             },
             setBars() { lib.Health(this) }
-        }); //狙电魔微墙
+        }); 
         a.health = 8000;
         a.size = 3;
         a.insulated = true;
@@ -259,9 +261,9 @@ exports.hunhe3 =
 exports.hunhe4 =
     (() => {
         const a = extend(Wall, "92hunhe4", { setBars() { lib.Health(this) } }); //魔微墙
-        a.health = 16000;
+        a.health = 18000;
         a.size = 4;
-        a.buildCostMultiplier = 100;
+        a.buildCostMultiplier = 50;
         a.lightningChance = 0.1;
         a.lightningColor = Color.valueOf("54a841"); //闪电颜色
         a.lightningLength = 40;
@@ -278,13 +280,13 @@ exports.hunhe4 =
 exports.shenwei =
     (() => {
         const a = extend(Wall, "shenwei", { setBars() { lib.Health(this) } }); //神威城防
-        a.health = 50000 //14000;
+        a.health = 100000 //14000;
         a.size = 5;
-        a.buildCostMultiplier = 20;
-        a.lightningChance = 0.15;
-        a.lightningLength = 40;
+        a.buildCostMultiplier = 8;
+        a.lightningChance = 0.05;
+        a.lightningLength = 64;
         a.lightningColor = Color.valueOf("ff0000"); //闪电颜色
-        a.lightningDamage = 20; //闪电伤害
+        a.lightningDamage = 50; //闪电伤害
         a.chanceDeflect = 12;
         a.requirements = ItemStack.with(
             guijingti, 8000,
@@ -300,19 +302,19 @@ exports.shenwei =
 exports.qiang =
     (() => {
         const a = extend(Wall, "qiang", { setBars() { lib.Health(this) } }); //创世城防墙
-        a.health = 1999999999;
+        a.health = 2000000;
         a.size = 4;
         a.placeableLiquid = true;//可被放在深水之上
-        a.buildCostMultiplier = 2;
+        a.buildCostMultiplier = 3;
         a.insulated = true;
         a.absorbLasers = true;
-        a.lightningChance = 0.25;
-        a.lightningLength = 64;
+       // a.lightningChance = 0.25;
+       // a.lightningLength = 64;
         a.chanceDeflect = 20;
         a.requirements = ItemStack.with(
             chuangshiweichen, 1,
             guijingti, 20000,
-            hejinboli, 18000,
+            jinhuiboli, 18000,
         );
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.defense;
@@ -326,6 +328,9 @@ exports.invincible2 =
             isPlaceable() { return lib.techDsAvailable() && this.super$isPlaceable(); },//非沙盒禁止建造
         });
         a.health = 2147483647;
+        a.placeableLiquid = true;//可被放在深水之上
+        a.insulated = true;
+        a.absorbLasers = true;
         a.placeableLiquid = true;
         a.size = 2;
         a.requirements = ItemStack.with(
@@ -343,6 +348,7 @@ exports.moweimen =
         a.placeableLiquid = true;//可被放在深水之上
         a.health = 3500
         a.size = 2;
+        a.buildCostMultiplier = 0.5;
         a.requirements = ItemStack.with(
             molishi, 380,
             guijingti, 120,
@@ -357,7 +363,6 @@ exports.moweimen =
 exports.radar =
     (() => {
         const a = extend(Radar, "radar", { setBars() { lib.Health(this) } }); //雷达
-
         //a.placeableLiquid = true;//可被放在深水之上
         a.outlineColor = Color.valueOf("4a4b53");
         a.fogRadius = 60;
@@ -532,16 +537,16 @@ fp.buildType = prov(() => {
 fp.consumePower(6);
 fp.itemConsumer = fp.consumeItem(Items.phaseFabric, 1).boost();
 
-fp.shieldHealth = 2450
-fp.phaseShieldBoost = 3850 - 2450
+fp.shieldHealth = 2600
+fp.phaseShieldBoost = 5200 - 2600
 exports.hudun2 = fp;
 
 const fp2 = extend(ForceProjector, "hudun3", {});
 
 fp2.consumePower(12);
 fp2.itemConsumer = fp2.consumeItem(buding).boost();
-fp2.shieldHealth = 3200
-fp2.phaseShieldBoost = 7430 - 3200
+fp2.shieldHealth = 4500
+fp2.phaseShieldBoost = 12000 - 4500
 exports.hudun3 = fp2;
 exports.jianzaota = //建造塔
     (() => {

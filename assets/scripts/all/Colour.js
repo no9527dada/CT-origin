@@ -1,6 +1,6 @@
 //guiY
 const Colour = (radius, regen, max, cooldown) => {
-    var realRad;
+    var realRad=ForceFieldAbility.realRad;
     var paramUnit;
     var paramField;
     //var i = 0;

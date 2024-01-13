@@ -3,17 +3,17 @@
     "type": "flying",
     //"name": "终极",
     // "description": "本模组的最终BOSS 普通武器有150电击伤害 武器可以用阻电墙格挡电击",
-    "speed": 0.2, //速度
+    "speed": 0.3, //速度
     "lowAltitude": true,
     "rotateSpeed": 0.5, //单位转速
     "hitSize": 100, //单位的大小
     // "turnCursor": true,
-    "health": 60000000, //血量
+    "health": 120000000, //血量
     "itemCapacity": 2000, //容量
     "flying": true, //飞行
     "engineOffset": 70,
     "engineSize": 20,
-    
+    "engineColor": "ae7efe",
     "armor": 800, //护甲
     //优先攻击目标，首要目标，首要攻击目标，优先目标
     "targetFlags": [
@@ -25,8 +25,291 @@
         // "reactor" //反应堆
         "core", //核心
     ],
+    "immunities":["burning"],
+
     "weapons": [
+        //4个喷火
         {
+            "name": "engine2",
+            "x": 75,
+            "y": 10,
+            "mirror": true,
+            "alternate": false,
+            "top": true,
+            "display": false,
+            "rotate": false,
+            "baseRotation": 195,//角度
+            "shootY": 14,
+            "shootSound": "none",
+            "alwaysShooting": true,
+            "alwaysContinuous": true,
+            "continuous": true,
+            "parentizeEffects": true,
+            "bullet": {
+                "type": "ContinuousFlameBulletType",
+                "colors": [
+                    "9681fb50",
+                    "9681fb",
+                    "bf92f9",
+                    "ffffff"
+                ],
+                "damage": 4,
+                "layer": 110,
+                "intervalBullets": 2,
+                "intervalRandomSpread": 1,
+                "bulletInterval": 2.7,
+                "intervalBullet": {
+                    "type": "BulletType",
+                    "despawnHit": true,
+                    "despawnEffect": "none",
+                    "shootEffect": "none",
+                    "hitEffect": {
+                        "type": "multiEffect",
+                        "followParent": true,
+                        "rotWithParent": true,
+                        "effects": [
+                            {
+                                "type": "ParticleEffect",
+                                "followParent": true,
+                                "rotWithParent": true,
+                                "line": true,
+                                "layer": 108,
+                                "particles": 1,
+                                "lifetime": 31,
+                                "interp": "circleOut",
+                                "length": 45,
+                                "baseLength": 8,
+                                "cone": 25,
+                                "strokeFrom": 2,
+                                "lenFrom": 6,
+                                "lenTo": 0,
+                                "colorFrom": "9681fb",
+                                "colorTo": "9681fb"
+                            }
+                        ]
+                    },
+                    "lifetime": 0,
+                    "instantDisappear": true
+                },
+                "drawFlare": false,
+                "collides": false,
+                "width": 5.3,
+                "divisions": 20,
+                "length": 20
+            }
+        },
+        {
+            "name": "engine2",
+            "x": 100,
+            "y": 0,
+            "mirror": true,
+            "alternate": false,
+            "top": true,
+            "display": false,
+            "rotate": false,
+            "baseRotation": 195,//角度
+            "shootY": 14,
+            "shootSound": "none",
+            "alwaysShooting": true,
+            "alwaysContinuous": true,
+            "continuous": true,
+            "parentizeEffects": true,
+            "bullet": {
+                "type": "ContinuousFlameBulletType",
+                "colors": [
+                    "9681fb50",
+                    "9681fb",
+                    "bf92f9",
+                    "ffffff"
+                ],
+                "damage": 4,
+                "layer": 110,
+                "intervalBullets": 2,
+                "intervalRandomSpread": 1,
+                "bulletInterval": 2.7,
+                "intervalBullet": {
+                    "type": "BulletType",
+                    "despawnHit": true,
+                    "despawnEffect": "none",
+                    "shootEffect": "none",
+                    "hitEffect": {
+                        "type": "multiEffect",
+                        "followParent": true,
+                        "rotWithParent": true,
+                        "effects": [
+                            {
+                                "type": "ParticleEffect",
+                                "followParent": true,
+                                "rotWithParent": true,
+                                "line": true,
+                                "layer": 108,
+                                "particles": 1,
+                                "lifetime": 31,
+                                "interp": "circleOut",
+                                "length": 45,
+                                "baseLength": 8,
+                                "cone": 25,
+                                "strokeFrom": 2,
+                                "lenFrom": 6,
+                                "lenTo": 0,
+                                "colorFrom": "9681fb",
+                                "colorTo": "9681fb"
+                            }
+                        ]
+                    },
+                    "lifetime": 0,
+                    "instantDisappear": true
+                },
+                "drawFlare": false,
+                "collides": false,
+                "width": 5.3,
+                "divisions": 20,
+                "length": 20
+            }
+        },
+        {
+            "name": "engine",
+            "x": 38,
+            "y": -60,
+            "mirror": true,
+            "alternate": false,
+            "top": true,
+            "display": false,
+            "rotate": false,
+            "baseRotation": 180,//角度
+            "shootY": 10,
+            "shootSound": "none",
+            "alwaysShooting": true,
+            "alwaysContinuous": true,
+            "continuous": true,
+            "parentizeEffects": true,
+            "bullet": {
+                "type": "ContinuousFlameBulletType",
+                "colors": [
+                    "9681fb50",
+                    "9681fb",
+                    "bf92f9",
+                    "ffffff"
+                ],
+                "damage": 4,
+                "layer": 110,
+                "intervalBullets": 2,
+                "intervalRandomSpread": 1,
+                "bulletInterval": 2.7,
+                "intervalBullet": {
+                    "type": "BulletType",
+                    "despawnHit": true,
+                    "despawnEffect": "none",
+                    "shootEffect": "none",
+                    "hitEffect": {
+                        "type": "multiEffect",
+                        "followParent": true,
+                        "rotWithParent": true,
+                        "effects": [
+                            {
+                                "type": "ParticleEffect",
+                                "followParent": true,
+                                "rotWithParent": true,
+                                "line": true,
+                                "layer": 108,
+                                "particles": 1,
+                                "lifetime": 31,
+                                "interp": "circleOut",
+                                "length": 35,
+                                "baseLength": 8,
+                                "cone": 20,
+                                "strokeFrom": 2,
+                                "lenFrom": 10,
+                                "lenTo": 0,
+                                "colorFrom": "9681fb",
+                                "colorTo": "9681fb"
+                            }
+                        ]
+                    },
+                    "lifetime": 0,
+                    "instantDisappear": true
+                },
+                "drawFlare": false,
+                "collides": false,
+                "width": 4,
+                "divisions": 20,
+                "length": 27
+            }
+        },
+        {
+            "name": "engine",
+            "x": 70,
+            "y": -75,
+            "mirror": true,
+            "alternate": false,
+            "top": true,
+            "display": false,
+            "rotate": false,
+            "baseRotation": 180,
+            "shootY": 10,
+            "shootSound": "none",
+            "alwaysShooting": true,
+            "alwaysContinuous": true,
+            "continuous": true,
+            "parentizeEffects": true,
+            "bullet": {
+                "type": "ContinuousFlameBulletType",
+                "colors": [
+                    "9681fb50",
+                    "9681fb",
+                    "bf92f9",
+                    "ffffff"
+                ],
+                "damage": 4,
+                "layer": 110,
+                "intervalBullets": 2,
+                "intervalRandomSpread": 1,
+                "bulletInterval": 2.7,
+                "intervalBullet": {
+                    "type": "BulletType",
+                    "despawnHit": true,
+                    "despawnEffect": "none",
+                    "shootEffect": "none",
+                    "hitEffect": {
+                        "type": "multiEffect",
+                        "followParent": true,
+                        "rotWithParent": true,
+                        "effects": [
+                            {
+                                "type": "ParticleEffect",
+                                "followParent": true,
+                                "rotWithParent": true,
+                                "line": true,
+                                "layer": 108,
+                                "particles": 1,
+                                "lifetime": 31,
+                                "interp": "circleOut",
+                                "length": 35,
+                                "baseLength": 8,
+                                "cone": 20,//角度
+                                "strokeFrom": 2,
+                                "lenFrom": 10,
+                                "lenTo": 0,
+                                "colorFrom": "9681fb",
+                                "colorTo": "9681fb"
+                            }
+                        ]
+                    },
+                    "lifetime": 0,
+                    "instantDisappear": true
+                },
+                "drawFlare": false,
+                "collides": false,
+                "width": 4,
+                "divisions": 20,
+                "length": 27
+            }
+        },
+
+
+////3个武器：
+        {
+            //长束激光：
             "shootCone": 30,
             "shootSound": "s-zhongji",
             //"chargeSound": "s-zhongji",
@@ -39,20 +322,20 @@
             "shootY": 5,
             "reload": 14, //子弹射速
             "recoil": 3, //反冲
-           // "reload": 15,
-            "x": 30,
-            "y": -20,
+            // "reload": 15,
+            "x": 70,//左右
+            "y": 20,//前后
             "ejectEffect": "casing1",
             // "firstShotDelay":65,
             // "shootStatus":"unmoving",//发射状态
             "bullet": {
                 "type": "LaserBulletType", //320
-                "colors": [
+                          "colors": [
                     "ab57ff",
                     "e2c5ff",
                     "ffffff"
                 ],
-                "width": 75,
+                       "width": 75,
                 "length": 460,
                 "damage": 3200,
                 "despawnEffect": "none",
@@ -68,16 +351,22 @@
             }
         },
         {
+            //大范围主武器
             "name": "",
             "mirror": false,
             "top": false,
             "x": 0,
             "y": 0,
-           "shootCone": 30//射击瞄准角度
+            "shootCone": 30 ,//射击瞄准角度
+            "shoot": {
+				"shots": 3,
+				"shotDelay": 15
+			},
+            "inaccuracy":5,
             "shootY": 3,
             "reload": 135,
             "recoil": 4,
-           // "shots": 1,
+            // "shots": 1,
             "shootSound": "railgun",
             "rotate": false,
             "rotateSpeed": 1.4,
@@ -253,13 +542,15 @@
                 },
                 "fragBullets": 12,
                 "fragVelocityMin": 1,
-                "fragRandomSpread" :120,//破片散布角度
+                "fragRandomSpread": 120, //破片散布角度
                 "fragBullet": {
                     "type": "FlakBulletType",
                     "speed": 8,
                     "damage": 300,
                     "sprite": "missile-large",
-                    //for targeting
+                    pierce : true,
+                    pierceBuilding : true,
+                  //  pierceCap : 3, //穿透数量
                     "collidesGround": true,
                     "collidesAir": true,
                     "explodeRange": 40,
@@ -303,80 +594,99 @@
             }
         },
         {
+            //散射机枪：
+            "shoot": {
+                "shots": 4,
+                "shotDelay": 7
+            },
+            "inaccuracy": 15,
             "shootCone": 30,
             "mirror": false,
             "top": false,
-            "shootSound": "shootBig",
+            "shootSound": "bang",
             "name": "zhongji-s-large",
             "rotate": false, //武器旋转
             "shootY": 2,
-            "reload": 14,
+            "reload": 20,
             "recoil": 1,
-          //  "reload": 15,
             "ejectEffect": "casing1",
-            "x": 25,
-            "y": 15,
+            "x": 115,
+            "y": 70,
             "bullet": {
                 "type": "BasicBulletType", //320
-                "recoil": 0, //反冲
-                "width": 22,
-                "height": 30,
-                "speed": 4,
+                "sprite" : "creators-shoot7",
+                  "recoil": 0, //反冲
+                "width": 50,
+                "height": 50,
+                "speed": 13,
                 "damage": 1500,
                 "hitSize": 8,
-                "lifetime": 110,
+                "lifetime": 70,
                 "pierce": false,
                 "shootEffect": "shootBig",
-                //"hitEffect": "hitFlameSmall",
-                //"despawnEffect": "none",
                 "lightning": 100, //闪电根数
                 "lightningLength": 7, //闪电长度
                 "lightningDamage": 25, //闪电伤害
-                //"status": "burning",
                 "keepVelocity": false,
                 "backColor": "cbb0ff", //背景颜色
                 "frontColor": "cbb0ff", //前面颜色
-                "hittable": false
+                "hittable": false,
+                "trailWidth": 5,
+                "trailLength": 8,
+                "trailRotation": 3,
+                "trailEffect": "none",
+                "trailColor" :"ab80ffff"
             }
         },
         {
+            "shoot": {
+                "shots": 4,
+                "shotDelay": 7
+            },
+            "inaccuracy": 15,
             "shootCone": 30,
             "mirror": false,
             "top": false,
-            "shootSound": "shootBig",
+            "shootSound": "bang",
             "name": "zhongji-s-large",
             "rotate": false, //武器旋转
             "shootY": 2,
-            "reload": 14,
+            "reload": 20,
             "recoil": 1,
-          //  "reload": 15,
             "ejectEffect": "casing1",
-            "x": -25,
-            "y": 15,
+            "x": -115,
+            "y": 70,
             "bullet": {
                 "type": "BasicBulletType", //320
+                "sprite" : "creators-shoot7",
                 "recoil": 0, //反冲
-                "width": 22,
-                "height": 30,
-                "speed": 4,
+              "width": 50,
+              "height": 50,
+                "speed": 13,
                 "damage": 1500,
                 "hitSize": 8,
-                "lifetime": 110,
+                "lifetime": 70,
                 "pierce": false,
                 "shootEffect": "shootBig",
                 //"hitEffect": "hitFlameSmall",
-                //"despawnEffect": "none",
                 "lightning": 100, //闪电根数
                 "lightningLength": 7, //闪电长度
                 "lightningDamage": 25, //闪电伤害
-                //"status": "burning",
                 "keepVelocity": false,
                 "backColor": "cbb0ff", //背景颜色
                 "frontColor": "cbb0ff", //前面颜色
-                "hittable": false
+                "hittable": false,
+                "trailWidth": 5,
+                "trailLength": 8,
+                "trailRotation": true,
+                "trailEffect": "none",
+                "trailColor" :"ab80ffff"
             }
         }
-       
     ]
-
 }
+// trailWidth = 5f;
+// trailLength = 8;
+// trailRotation = true;
+// trailInterval = 3f;
+// trailEffect = Fx.none;

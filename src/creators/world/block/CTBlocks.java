@@ -235,6 +235,78 @@ public class CTBlocks{
         Creators.CTBlock.put(Blocks.deconstructor, deconstructor);
     }
 
+
+/*
+static {
+        ((ItemTurret) Blocks.cyclone).ammo(
+
+                Items.metaglass, new FlakBulletType(4f, 6){{
+                    ammoMultiplier = 2f;
+                    shootEffect = Fx.shootSmall;
+                    reloadMultiplier = 0.8f;
+                    width = 6f;
+                    height = 8f;
+                    hitEffect = Fx.flakExplosion;
+                    splashDamage = 45f;
+                    splashDamageRadius = 25f;
+                    fragBullet = new BasicBulletType(3f, 12, "bullet"){{
+                        width = 5f;
+                        height = 12f;
+                        shrinkY = 1f;
+                        lifetime = 20f;
+                        backColor = Pal.gray;
+                        frontColor = Color.white;
+                        despawnEffect = Fx.none;
+                    }};
+                    fragBullets = 4;
+                    explodeRange = 20f;
+                    collidesGround = true;
+                }},
+                Items.blastCompound, new FlakBulletType(4f, 8){{
+                    shootEffect = Fx.shootBig;
+                    ammoMultiplier = 5f;
+                    splashDamage = 45f;
+                    splashDamageRadius = 60f;
+                    collidesGround = true;
+
+                    status = StatusEffects.blasted;
+                    statusDuration = 60f;
+                }},
+                Items.plastanium, new FlakBulletType(4f, 8){{
+                    ammoMultiplier = 4f;
+                    splashDamageRadius = 40f;
+                    splashDamage = 37.5f;
+                    fragBullet = new BasicBulletType(2.5f, 12, "bullet"){{
+                        width = 10f;
+                        height = 12f;
+                        shrinkY = 1f;
+                        lifetime = 15f;
+                        backColor = Pal.plastaniumBack;
+                        frontColor = Pal.plastaniumFront;
+                        despawnEffect = Fx.none;
+                    }};
+                    fragBullets = 6;
+                    hitEffect = Fx.plasticExplosion;
+                    frontColor = Pal.plastaniumFront;
+                    backColor = Pal.plastaniumBack;
+                    shootEffect = Fx.shootBig;
+                    collidesGround = true;
+                    explodeRange = 20f;
+                }},
+                Items.surgeAlloy, new FlakBulletType(4.5f, 13){{
+                    ammoMultiplier = 5f;
+                    splashDamage = 50f * 1.5f;
+                    splashDamageRadius = 38f;
+                    lightning = 2;
+                    lightningLength = 7;
+                    shootEffect = Fx.shootBig;
+                    collidesGround = true;
+                    explodeRange = 20f;
+                }}
+        );}
+*/
+
+
     public static void load(){
         pyratiteMixer = new GenericCrafter("pyratite-mixer"){{
             requirements(Category.crafting, with(Items.copper, 50, Items.lead, 25));
@@ -679,7 +751,7 @@ public class CTBlocks{
             speedBoost = 1.45f;
             speedBoostPhase = 0.55f;
             size = 2;
-            consumeItem(Items.phaseFabric).boost();
+            consumeItem(Items.silicon).boost();
         }};
 
         overdriveDome = new OverdriveProjector("overdrive-dome"){{
@@ -727,6 +799,7 @@ public class CTBlocks{
             speed = 0.045f;
             displayedSpeed = 6.5f;
             buildCostMultiplier = 2f;
+            ambientSoundVolume=0.05f;
         }
             @Override
             public void init(){
@@ -742,6 +815,7 @@ public class CTBlocks{
             health = 65;
             speed = 0.08f;
             displayedSpeed = 11f;
+            ambientSoundVolume=0.05f;
         }
             @Override
             public void init(){
@@ -1632,46 +1706,46 @@ public class CTBlocks{
         swarmer = new ItemTurret("swarmer"){{
             requirements(Category.turret, with(Items.graphite, 35, Items.titanium, 35, Items.plastanium, 45, Items.silicon, 30));
             ammo(
-                Items.blastCompound, new MissileBulletType(3.7f, 10){{
-                    width = 8f;
-                    height = 8f;
-                    shrinkY = 0f;
-                    splashDamageRadius = 30f;
-                    splashDamage = 30f * 1.5f;
-                    ammoMultiplier = 5f;
-                    hitEffect = Fx.blastExplosion;
-                    despawnEffect = Fx.blastExplosion;
+                    Items.blastCompound, new MissileBulletType(3.7f, 10){{
+                        width = 8f;
+                        height = 8f;
+                        shrinkY = 0f;
+                        splashDamageRadius = 30f;
+                        splashDamage = 30f * 1.5f;
+                        ammoMultiplier = 5f;
+                        hitEffect = Fx.blastExplosion;
+                        despawnEffect = Fx.blastExplosion;
 
-                    status = StatusEffects.blasted;
-                    statusDuration = 60f;
-                }},
-                Items.pyratite, new MissileBulletType(3.7f, 12){{
-                    frontColor = Pal.lightishOrange;
-                    backColor = Pal.lightOrange;
-                    width = 7f;
-                    height = 8f;
-                    shrinkY = 0f;
-                    homingPower = 0.08f;
-                    splashDamageRadius = 20f;
-                    splashDamage = 30f * 1.5f;
-                    makeFire = true;
-                    ammoMultiplier = 5f;
-                    hitEffect = Fx.blastExplosion;
-                    status = StatusEffects.burning;
-                }},
-                Items.surgeAlloy, new MissileBulletType(3.7f, 18){{
-                    width = 8f;
-                    height = 8f;
-                    shrinkY = 0f;
-                    splashDamageRadius = 25f;
-                    splashDamage = 25f * 1.4f;
-                    hitEffect = Fx.blastExplosion;
-                    despawnEffect = Fx.blastExplosion;
-                    ammoMultiplier = 4f;
-                    lightningDamage = 10;
-                    lightning = 2;
-                    lightningLength = 10;
-                }}
+                        status = StatusEffects.blasted;
+                        statusDuration = 60f;
+                    }},
+                    Items.pyratite, new MissileBulletType(3.7f, 12){{
+                        frontColor = Pal.lightishOrange;
+                        backColor = Pal.lightOrange;
+                        width = 7f;
+                        height = 8f;
+                        shrinkY = 0f;
+                        homingPower = 0.08f;
+                        splashDamageRadius = 20f;
+                        splashDamage = 30f * 1.5f;
+                        makeFire = true;
+                        ammoMultiplier = 5f;
+                        hitEffect = Fx.blastExplosion;
+                        status = StatusEffects.burning;
+                    }},
+                    Items.surgeAlloy, new MissileBulletType(3.7f, 18){{
+                        width = 8f;
+                        height = 8f;
+                        shrinkY = 0f;
+                        splashDamageRadius = 25f;
+                        splashDamage = 25f * 1.4f;
+                        hitEffect = Fx.blastExplosion;
+                        despawnEffect = Fx.blastExplosion;
+                        ammoMultiplier = 4f;
+                        lightningDamage = 10;
+                        lightning = 2;
+                        lightningLength = 10;
+                    }}
             );
 
             shoot = new ShootAlternate(){{
@@ -1972,7 +2046,7 @@ public class CTBlocks{
         }};
 
         cyclone = new ItemTurret("cyclone"){{
-            requirements(Category.turret, with(Items.copper, 200, Items.titanium, 125, Items.plastanium, 80));
+            requirements(Category.turret, with(Items.copper, 200, Items.titanium, 125, Items.thorium, 75,Items.plastanium, 80));
             ammo(
                 Items.metaglass, new FlakBulletType(4f, 9){{
                     ammoMultiplier = 3f;
@@ -1980,6 +2054,7 @@ public class CTBlocks{
                     reloadMultiplier = 0.8f;
                     width = 6f;
                     height = 8f;
+                        lifetime = 80f;
                     hitEffect = Fx.flakExplosion;
                     splashDamage = 32f * 1.5f;
                     splashDamageRadius = 25f;
@@ -2009,6 +2084,7 @@ public class CTBlocks{
                 Items.plastanium, new FlakBulletType(4f, 6){{
                     splashDamageRadius = 40f;
                     splashDamage = 25f * 1.5f;
+                        lifetime = 80f;
                     fragBullet = new BasicBulletType(2.5f, 12, "bullet"){{
                         width = 10f;
                         height = 12f;
@@ -2027,11 +2103,12 @@ public class CTBlocks{
                     explodeRange = 20f;
                 }},
                 Items.surgeAlloy, new FlakBulletType(4.5f, 13){{
+                        lifetime = 90f;
                     ammoMultiplier = 5f;
                     splashDamage = 50f * 1.5f;
                     splashDamageRadius = 38f;
-                    lightning = 2;
-                    lightningLength = 7;
+                    lightning = 3;
+                    lightningLength = 8;
                     shootEffect = Fx.shootBig;
                     collidesGround = true;
                     explodeRange = 20f;
@@ -2046,7 +2123,7 @@ public class CTBlocks{
                 };
             }};
             reload = 8f;
-            range = 200f;
+            range = 232f;
             size = 3;
             recoil = 3f;
             rotateSpeed = 10f;

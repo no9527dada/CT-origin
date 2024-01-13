@@ -1,6 +1,6 @@
 {
     "type": "mech",
-    "speed": 0.2,
+    "speed": 0.4,
     "hitSize": 40,
     "rotateSpeed": 1.65,
     "health": 66000,

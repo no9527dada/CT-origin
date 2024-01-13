@@ -33,6 +33,7 @@ exports.nai1 =
         a.legMoveSpace = 1.4;
         a.hovering = true;
         a.armor = 3;
+        a.physics = false;//关闭碰撞
         a.ammoType = new ItemAmmoType(Items.coal);
         a.constructor = prov(() => extend(UnitTypes.dagger.constructor.get().class, {}));
         a.immunities.add(status.suanEffect);
@@ -86,6 +87,7 @@ exports.nai2 =
         a.legMoveSpace = 1.4;
         a.hovering = true;
         a.armor = 3;
+          a.physics = false;//关闭碰撞
         a.ammoType = new ItemAmmoType(Items.coal);
         a.shadowElevation = 0.2;
         a.constructor = prov(() => extend(UnitTypes.dagger.constructor.get().class, {}));
@@ -128,6 +130,7 @@ exports.nai3 =
         a.hitSize = 15;
         a.flying = true;
         a.rotateSpeed = 3;
+          a.physics = false;//关闭碰撞
         a.targetAir = false;
         a.payloadCapacity = (99 * 99) * Vars.tilePayload;
         a.health = 12000;
@@ -279,7 +282,7 @@ exports.nai4 =
         a.payloadCapacity = (99 * 99) * Vars.tilePayload;
         a.health = 48000;
         a.legCount = 6;//脚
-
+  a.physics = false;//关闭碰撞
         a.legMoveSpace = 1;
         a.legPairOffset = 3;
         a.legLength = 13;

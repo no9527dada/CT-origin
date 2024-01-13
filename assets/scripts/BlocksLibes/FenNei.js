@@ -7,7 +7,7 @@ const {
     shimoxiji, budingjiagongchang, budingjiagongchang2, jinfentilianji, jinchengxingji, jinchengxingji2,
     zijinggongchang, jiweijinggongchang1, jiweijinggongchang2, jiweijinggongchang3, jiweijinggongchang4,
     jiweijinggongchang5, weijingfenjieji, jiweijinggongchang21, liziduizhuangji, fashetai, zhisuanji,
-    duochonbuji2, duochonbuji3, duochongsugangji, moliyeshoujiqi1, moliyeshoujiqi2, wenshiqi,
+    duochonbuji2, duochonbuji3, duochongsugangji, moliyeshoujiqi1, moliyeshoujiqi2, wenshiqi,molijinghuatilianji2,
     zhiwucuiqugongchang, zhiwucuiqugongchang2, feiliaoji, zhuanhuantai, zizhuanTu, tanbanyasuoji, zuanjingjiagongchang,
     tanbanyasuoji2, gaojipeiyangji, molishizhizaoqi, monengjingdamoji0, jimonengjinglianzhiqi1, jimonengjinglianzhiqi2,
     jimonengjinglianzhiqi3, jimonengjinglianzhiqi4, hejin2, luzhayasuoji, jitilianji3, jitilianji4, jitilianjimoliyetilianji,
@@ -77,7 +77,7 @@ Events.on(ClientLoadEvent, cons(() => {
             //MOD液体
             moliyeshoujiqi1, moliyeshoujiqi2, oiljinglianchang, moliyehunheji, lengdongyehunheji,
             zhiwujingyoutilianji, zhisuanji, zhiwucuiqugongchang, zhiwucuiqugongchang2,
-            zhiwujingyoutiquji, molijinghuatilianji, liziyeji, yuanwanjinghuaji,
+            zhiwujingyoutiquji, molijinghuatilianji, molijinghuatilianji2,liziyeji, yuanwanjinghuaji,
             qiangxiaolengqueyehunheji, testC, testA, yanbaoji,jinhuiyeji,
             jitilianji3, jitilianji4, jitilianjimoliyetilianji, sui4
         ),

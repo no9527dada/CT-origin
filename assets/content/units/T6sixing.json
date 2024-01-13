@@ -18,10 +18,10 @@
     "hovering": true,
     //"visualElevation": 0.2,
     "allowLegStep": true,
-    "speed": 0.3,
+    "speed": 0.4,
     "drawShields": false,
     "buildSpeed": 0.1, //建造速度
-    "deathSound" :"zhaocha",
+    //"deathSound" :"zhaocha",//死亡时的声音，貌似没效果
     //---------
     "stepShake": 1.5,
     "drownTimeMultiplier": 6,
@@ -166,7 +166,7 @@
                 "damage": 1500,
                 "ammoMultiplier": 1,
                 "shootEffect": "instShoot",
-                "buildingDamageMultiplier": 0.10
+                "buildingDamageMultiplier": 2
             }
         }
     ]

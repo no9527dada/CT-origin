@@ -61,7 +61,7 @@ SSY3.rotateTime = 1 * 60
 
 
 
-
+/*
 const GThree = new JavaAdapter(Planet, {
     load() {
         this.meshLoader = prov(() => new HexMesh(GThree, 6));
@@ -75,7 +75,6 @@ GThree.atmosphereColor = Color.valueOf("9F35FF");
 GThree.atmosphereRadIn = 0.05;
 GThree.atmosphereRadOut = 0.2;
 GThree.localizedName = Core.bundle.format("creators.GThree");
-GThree.startSector = 1;
 GThree.orbitRadius = 40;
 GThree.alwaysUnlocked = true;
 GThree.clearSectorOnLose = true;//扇区丢失时是否重置地图
@@ -84,19 +83,19 @@ GThree.allowLaunchSchematics = true;//开启发射核心蓝图
 GThree.allowLaunchLoadout = true;//开启携带资源发射
 GThree.allowSectorInvasion = false;//模拟攻击图入侵
 GThree.allowWaveSimulation = true;//模拟后台波次
-GThree.lightSrcFrom = 0.2,
-    GThree.lightSrcTo = 0.9,
-    GThree.lightDstFrom = 0.05,
-    GThree.lightDstTo = 1
+GThree.lightSrcFrom = 0.2
+GThree.lightSrcTo = 0.9
+GThree.lightDstFrom = 0.05
+GThree.lightDstTo = 1
 GThree.startSector = 173;
 GThree.accessible = true;
 GThree.landCloudColor = new Color(1, 1, 1, 0.5);
 GThree.atmosphereColor = new Color(0.3, 0.7, 1.0);
 
 GThree.defaultCore = CTBlocks.coreShard;
-
+GThree.unlockedOnLand.add(CTBlocks.coreShard);*/
 //GThree.hiddenItems.addAll(Items.serpuloItems,Items.erekirItems)/* .removeAll(Items.erekirItems) */;
-GThree.unlockedOnLand.add(CTBlocks.coreShard);
+
 /* GThree.ruleSetter = r => {
     r.waveTeam = Team.malis;
     r.placeRangeCheck = false; //TODO true or false?
@@ -113,9 +112,9 @@ GThree.unlockedOnLand.add(CTBlocks.coreShard);
     //r. dynamicColor = new Color(0.74, 0.49, 1,0.2)//已经探索过的区域颜色
     r.dynamicColor = new Color(0, 0, 0, 0.2);
 }; */
-exports.NaMeiXing = GThree;
+exports.NaMeiXing = CTplanet.CTGThree;
 const { whiteList } = require('white_list')//白名单
-Creators.setPlanet(GThree, whiteList);
+Creators.setPlanet(CTplanet.CTGThree, whiteList);
 
 
 
@@ -163,7 +162,7 @@ TiaoZan.updateLighting = false;
 Creators.setPlanet(TiaoZan, whiteList);
 exports.SY1 = TiaoZan;
 
-const ZiDingYi = new JavaAdapter(Planet, {
+/* const ZiDingYi = new JavaAdapter(Planet, {
     load() {
         this.meshLoader = prov(() => new HexMesh(ZiDingYi, 4));
         this.super$load();
@@ -201,7 +200,7 @@ ZiDingYi.allowLaunchLoadout = false;//开启携带资源发射
 ZiDingYi.allowSectorInvasion = false;//模拟攻击图入侵
 ZiDingYi.allowWaveSimulation = false;//模拟后台波次
 ZiDingYi.updateLighting = false;
-exports.ZiDingYi = ZiDingYi;
+exports.ZiDingYi = ZiDingYi; */
 
 
 
@@ -210,7 +209,7 @@ const SY2 = new JavaAdapter(Planet, {
         this.meshLoader = prov(() => new HexMesh(SY2, 6));
         this.super$load();
     }
-}, "satellite2", GThree, 0.2);
+}, "satellite2", CTplanet.CTGThree, 0.2);
 sS.planetGrid(SY2, 0);
 SY2.generator = new SerpuloPlanetGenerator();
 SY2.atmosphereColor = Color.valueOf("645bff");
@@ -224,7 +223,7 @@ SY2.accessible = false
 
 
 
-/* 
+/*
 const 测试1 = new JavaAdapter(Planet, {
     load() {
         this.meshLoader = prov(() => new HexMesh(测试1, 6));

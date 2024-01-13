@@ -81,15 +81,19 @@ exports.wusha = (() => {
     return v;
 })();
 
-
-// const molishui = extend(Floor, "molishui", {});//魔力水
+const At = require('Attribute');
+ const molishui = extend(Floor, "molishui", {});//魔力水
+ molishui.attributes.set(At.moliyeD,0.5)
 // molishui.liquidDrop = moliye;
 // molishui.status = StatusEffects.wet;
 // molishui.cacheLayer = CacheLayer.water;
 // molishui.space = false;
-// molishui.isLiquid = true;
+ molishui.isLiquid = true;
 // molishui.variants = 0;
 // molishui.emitLight = true;
+
+
+
 
 
 const suanDiMian = extend(Floor, "suanshui", {});//酸水面
@@ -103,7 +107,7 @@ suanDiMian.variants = 3;
 suanDiMian.emitLight = true;
 suanDiMian.lightColor = Color.valueOf("53ea0064");
 
-const At = require('Attribute');
+
 
 
 exports.suandiban = (() => {

@@ -1,6 +1,6 @@
 const lib = require('lib')
 const { NaMeiXing } = require('xingqiu');//星球 
-SectorPresets.groundZero.difficulty = 330;
+//SectorPresets.groundZero.difficulty = 330;
 const groundZero = new SectorPreset("groundZero-CT", NaMeiXing, 15);//零号地区
 groundZero.alwaysUnlocked = false;//
 groundZero.captureWave = 30;
@@ -74,7 +74,7 @@ impact0078.difficulty = 13;
 exports.impact0078 = impact0078;
 
 const desolateRift = new SectorPreset("desolateRift-CT", NaMeiXing, 123);//荒芜裂谷
-desolateRift.captureWave = 60;//荒芜裂谷 占领后解锁3级动能装卸器
+desolateRift.captureWave = 60;//荒芜裂谷 //占领后解锁3级动能装卸器
 desolateRift.difficulty = 13;
 // desolateRift.alwaysUnlocked = true;//默认解锁 调试
 exports.desolateRift = desolateRift;

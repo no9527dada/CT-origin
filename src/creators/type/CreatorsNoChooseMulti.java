@@ -1,5 +1,5 @@
 package creators.type;
-
+/*多合成并行*/
 import arc.Core;
 import arc.graphics.Color;
 import arc.math.Mathf;
@@ -50,6 +50,7 @@ public class CreatorsNoChooseMulti extends GenericCrafter {
         this.recs = recs;
 
         this.buildType = CreatorsNoChooseMultiBuild::new;
+
     }
 
     public CreatorsNoChooseMulti(String name, int recLen){

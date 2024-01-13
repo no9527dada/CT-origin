@@ -15,7 +15,7 @@ blockType.buildCostMultiplier = 0.3;//建造时间倍
 blockType.size = 4;
 blockType.health = 1750;
 blockType.hasPower = true;
-blockType.consumePower(1200 / 60);
+blockType.consumePower(15000 / 60);
 blockType.repairRadius = 240;
 blockType.repairSpeed = 1.8;
 blockType.solid = true;

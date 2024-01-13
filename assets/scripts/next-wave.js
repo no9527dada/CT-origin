@@ -74,7 +74,7 @@ lib.setBuilding(extend(Block, "next-wave",{
             case 0: {
                 // Evil thing, any one can call next wave
                 if (Vars.net.client()) {
-                    Call.adminRequest(Vars.player, Packages.mindustry.net.Packets.AdminAction.wave);
+                    Call.adminRequest(Vars.player, Packets.AdminAction.wave, null)
                 } else {
                     Vars.state.wavetime = 0;
                 }
@@ -83,7 +83,8 @@ lib.setBuilding(extend(Block, "next-wave",{
             case 1: {
                 for (var i = 10; i > 0; i--) {
                     if (Vars.net.client()) {
-                        Call.adminRequest(Vars.player, Packages.mindustry.net.Packets.AdminAction.wave);
+                        Call.adminRequest(Vars.player, Packets.AdminAction.wave, null)
+                        //Call.adminRequest(Vars.player, Packages.mindustry.net.Packets.AdminAction.wave,null);//老版本
                     } else {
                         Vars.logic.runWave();
                     }

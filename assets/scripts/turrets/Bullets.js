@@ -20,6 +20,7 @@ const hur = new JavaAdapter(BasicBulletType, {
     }
 
 });
+
 hur.width = 1;
 hur.height = 1;
 hur.damage = 145;
@@ -320,13 +321,13 @@ exports.Bullet_taihejin = (
         v.splashDamage = 10;
         v.splashDamageRadius = 40;
         v.status = status.zhenhan
-        v.statusDuration = 10;
+        v.statusDuration = 30;
         v.knockback = 0.4;
         return v;
     })());
 exports.Bullet_weijing3 = (
     (() => {
-        const v = new BasicBulletType(9, 280 * 0.8, "bullet");
+        const v = new BasicBulletType(9, 280, "bullet");
         v.frontColor = F.c("fa74ec");
         v.backColor = F.c("feb9ffFF");
         v.trailParam = 4
@@ -472,7 +473,7 @@ exports.Bullet_JHhejin = (
 
 exports.yunyukuangzha = (() => {
     const v = new PointLaserBulletType();
-    v.damage = 65;
+    v.damage = 120;
     v.color = Color.white;
     //v.sprite="point-laser"
     v.beamEffect = Fx.none;
@@ -484,7 +485,7 @@ exports.yunyukuangzha = (() => {
 })();
 exports.yunyuleng = (() => {
     const v = new PointLaserBulletType();
-    v.damage = 45;
+    v.damage = 70;
     v.color = Color.white;
     v.sprite = "creators-yunyu2-laser"
     v.beamEffect = Fx.none;
@@ -496,7 +497,7 @@ exports.yunyuleng = (() => {
 })();
 exports.yunyuyan = (() => {
     const v = new PointLaserBulletType();
-    v.damage = 280;
+    v.damage = 330;
     v.color = Color.white;
     v.sprite = "creators-yunyu3-laser"
     v.beamEffect = Fx.none;
@@ -509,7 +510,7 @@ exports.yunyuyan = (() => {
 
 exports.yunyulizi = (() => {
     const v = new PointLaserBulletType();
-    v.damage = 350;
+    v.damage = 500;
     v.color = Color.white;
     v.sprite = "creators-yunyu3-laser"
     v.beamEffect = Fx.none;
@@ -522,7 +523,7 @@ exports.yunyulizi = (() => {
 })();
 exports.yunyuyedan = (() => {
     const v = new PointLaserBulletType();
-    v.damage = 750;
+    v.damage = 1100;
     v.color = Color.white;
     v.sprite = "creators-yunyu4-laser"
     v.beamEffect = Fx.none;
@@ -532,8 +533,6 @@ exports.yunyuyedan = (() => {
     v.statusDuration = 60;
     return v;
 })();
-
-
 
 exports.mingwang =//冥王
     ((() => {
@@ -550,13 +549,13 @@ exports.mingwang =//冥王
         b.width = 22;
         b.height = 30;
         b.speed = 4;
-        b.damage = 1300;
-        b.ammoMultiplier = 3;
+        b.damage = 1500;
+        b.ammoMultiplier = 1;
         b.hitSize = 8;
         b.lifetime = 120;
         b.pierce = false;
         b.lightning = 50;//根数
-        b.lightningLength = 16; //闪电长度
+        b.lightningLength = 20; //闪电长度
         b.lightningDamage = 20; //闪电伤害
         b.status = StatusEffects.electrified;
         b.keepVelocity = false;
@@ -672,12 +671,12 @@ exports.tianqian = (//天谴
         const b = new JavaAdapter(LaserBulletType, {});
         b.hitEffect = Fx.hitMeltdown
         b.status = status.effectX;
-        b.statusDuration = 140;
+        b.statusDuration = 90;
         b.hittable = false;//被激光点防击中
         b.despawnEffect = Fx.none;
         b.hitShake = 1;
         b.hitSize = 70;
-        b.length = 78 * 8
+        b.length = 90 * 8
         b.width = 240;
         b.lifetime = 60;
         b.drawSize = 130;
@@ -928,21 +927,21 @@ exports.tiansha = (//天煞
 exports.artilleryDense = (
     (() => {
         const v = new ArtilleryBulletType(3, 20,);
-       v. knockback = 0.8;
-       v. lifetime = 80;
-       v. width = height = 11;
-       //v. collidesTiles = false;
-       v. splashDamageRadius = 25*0.75;
-       v. splashDamage = 33;
+        v.knockback = 0.8;
+        v.lifetime = 80;
+        v.width = v.height = 11;
+        //v. collidesTiles = false;
+        v.splashDamageRadius = 25 * 0.75;
+        v.splashDamage = 33;
         return v;
     })());
-    
+
 exports.artilleryHoming = (
     (() => {
         const v = new ArtilleryBulletType(3, 20,);
         v.knockback = 0.8;
         v.lifetime = 80;
-        v.width = height = 11;
+        v.width = v.height = 11;
         //v.collidesTiles = false;
         v.splashDamageRadius = 25 * 0.75;
         v.splashDamage = 33;
@@ -958,12 +957,12 @@ exports.artilleryIncendiary = (
         v.hitEffect = Fx.blastExplosion;
         v.knockback = 0.8;
         v.lifetime = 80;
-        v.width = height = 13;
+        v.width = v.height = 13;
         //v.collidesTiles = false;
-        v.splashDamageRadius = 25*0.75;
+        v.splashDamageRadius = 25 * 0.75;
         v.splashDamage = 45;
         v.status = StatusEffects.burning;
-        v.statusDuration = 60*12;
+        v.statusDuration = 60 * 12;
         v.frontColor = Pal.lightishOrange;
         v.backColor = Pal.lightOrange;
         v.makeFire = true;
@@ -971,52 +970,52 @@ exports.artilleryIncendiary = (
         v.ammoMultiplier = 4;
         return v;
     })());
-    
+
 
 exports.artilleryExplosive = (
 
     (() => {
         const v = new ArtilleryBulletType(3, 20, "shell");
 
-       v.hitEffect = Fx.blastExplosion;
-       v.knockback = 0.8;
-       v.lifetime = 80;
-       v.width = height = 14;
-       //v.collidesTiles = false;
-       v.ammoMultiplier = 4;
-       v.splashDamageRadius = 45*0.75;
-       v.splashDamage = 55;
-       v.backColor = Pal.missileYellowBack;
-       v.frontColor = Pal.missileYellow;
-       v. status = StatusEffects.blasted;
+        v.hitEffect = Fx.blastExplosion;
+        v.knockback = 0.8;
+        v.lifetime = 80;
+        v.width = v.height = 14;
+        //v.collidesTiles = false;
+        v.ammoMultiplier = 4;
+        v.splashDamageRadius = 45 * 0.75;
+        v.splashDamage = 55;
+        v.backColor = Pal.missileYellowBack;
+        v.frontColor = Pal.missileYellow;
+        v.status = StatusEffects.blasted;
         return v;
     })());
-    
+
 exports.artilleryPlastic = (
     (() => {
         const v = new ArtilleryBulletType(3.4, 20, "shell");
-       v. hitEffect = Fx.plasticExplosion;
-       v. knockback = 1;
-       v. lifetime = 80;
-       v. width = height = 13;
-       v. collidesTiles = false;
-       v. splashDamageRadius = 35*0.75;
-       v. splashDamage = 45;
-       v. fragBullets = 10;
-       v. fragBullet =((()=> { 
-        const v2 =  new BasicBulletType(2.5, 10, "bullet");
-           v2.width = 10;
-           v2.height = 12;
-           v2.shrinkY = 1;
-           v2.lifetime = 15;
-           v2.backColor = Pal.plastaniumBack;
-           v2.frontColor = Pal.plastaniumFront;
-           v2.despawnEffect = Fx.none;
-           //v2.collidesAir = false;
-           return v2;
+        v.hitEffect = Fx.plasticExplosion;
+        v.knockback = 1;
+        v.lifetime = 80;
+        v.width = v.height = 13;
+        v.collidesTiles = false;
+        v.splashDamageRadius = 35 * 0.75;
+        v.splashDamage = 45;
+        v.fragBullets = 10;
+        v.fragBullet = ((() => {
+            const v2 = new BasicBulletType(2.5, 10, "bullet");
+            v2.width = 10;
+            v2.height = 12;
+            v2.shrinkY = 1;
+            v2.lifetime = 15;
+            v2.backColor = Pal.plastaniumBack;
+            v2.frontColor = Pal.plastaniumFront;
+            v2.despawnEffect = Fx.none;
+            //v2.collidesAir = false;
+            return v2;
         })());
-       v. backColor = Pal.plastaniumBack;
-       v. frontColor = Pal.plastaniumFront;
+        v.backColor = Pal.plastaniumBack;
+        v.frontColor = Pal.plastaniumFront;
         return v;
     })());
 exports.langyong2Bullet_taihejin = (
@@ -1446,7 +1445,7 @@ exports.qishe_zuanjing = (//钻晶
 );
 exports.qishe_taihejin = (//钛合金
     (() => {
-        const v = new BasicBulletType(8, 100 * 2.5, "mine-bullet");
+        const v = new BasicBulletType(8, 180, "mine-bullet");
         v.width = 22
         v.height = 22;
         v.shrinkY = 0.3;
@@ -1466,8 +1465,8 @@ exports.qishe_taihejin = (//钛合金
         v.hitEffect = Fx.hitBulletColor;
         v.despawnEffect = Fx.hitBulletColor;
         v.status = status.zhenhan
-        v.statusDuration = 2 * 60;
-        v.reloadMultiplier = 1.2
+        v.statusDuration = 0.2 * 60;
+        v.reloadMultiplier = 1
         v.weaveMag = 2.5;//曲线，拐弯
         v.weaveScale = 4;
         v.spin = 20;//子弹旋转
@@ -1626,7 +1625,7 @@ exports.qishe_gutaiwanqin = (//固态晚轻
 var dafengche = (() => {
     const SPEEF = 4;
     const laser01 = new JavaAdapter(ContinuousLaserBulletType, {
-    }, 70);
+    }, 900/60);
     laser01.colors = [F.c("ec555555"), F.c("ec8888aa"), F.c("ff6c6a"), Color.white];
     laser01.width = 5;//宽
     laser01.length = 70//长
@@ -1638,7 +1637,7 @@ var dafengche = (() => {
     laser01.incendSpread = 5
     laser01.incendAmount = 1
     const laser02 = new JavaAdapter(ContinuousLaserBulletType, {
-    }, 40);
+    }, 900/60);
     laser02.colors = [F.c("dc91ff"), F.c("973af5"), F.c("e8d1ff"), Color.white];
     laser02.width = 5;//宽
     laser02.length = 70//长
@@ -1697,7 +1696,7 @@ var dafengche = (() => {
     });
     bt.sprite = "duo";
     bt.reloadMultiplier = 2;
-    bt.damage = 200;
+    bt.damage = 800;
     bt.width = 6;
     bt.height = 6;
     bt.shrinkY = 0;
@@ -1839,14 +1838,14 @@ exports.Wweijing2 = (
         v.trailWidth = 5;
 
 
-        v.intervalBullet = FBullet
+     
         v.fragBullet = FBullet
         v.fragBullets = 20;
         v.fragVelocityMin = 0.5;
         v.fragVelocityMax = 1.5;
         v.fragLifeMin = 2.5;
 
-
+        v.intervalBullet = FBullet
         v.bulletInterval = 3;
         v.intervalRandomSpread = 20;
         v.intervalBullets = 2;
@@ -1936,8 +1935,8 @@ Wmonengjing2.lifetime = 60; //子弹最远距离
 Wmonengjing2.hitEffect = Fx.plasticExplosion;
 Wmonengjing2.backColor = F.c("b56cff"); //背景颜色
 Wmonengjing2.frontColor = F.c("ffffff"); //前面颜色
-Wmonengjing2.reloadMultiplier = 0.15; //装弹速度
-Wmonengjing2.ammoMultiplier = 2; //装弹数量
+Wmonengjing2.reloadMultiplier = 0.1; //装弹速度
+Wmonengjing2.ammoMultiplier = 3; //装弹数量
 Wmonengjing2.buildingDamageMultiplier = 0.2;//对建筑的伤害
 Wmonengjing2.trailEffect = Fx.smoke;
 Wmonengjing2.shootEffect = Fx.shootSmall;
@@ -1956,6 +1955,8 @@ exports.Wmonengjing2 = Wmonengjing2
 
 
 var shangdilizi2 = new JavaAdapter(MissileBulletType, {});
+shangdilizi2.weaveMag = 0
+shangdilizi2.weaveScale = 15
 shangdilizi2.width = 12;
 shangdilizi2.damage = 3200;//15
 shangdilizi2.height = 20;
@@ -1965,7 +1966,7 @@ shangdilizi2.speed = 6;
 shangdilizi2.backColor = F.c("f6fe76"); //背景颜色
 shangdilizi2.frontColor = F.c("7936f4"); //前面颜色
 shangdilizi2.status = status.effectL; //效果
-shangdilizi2.statusDuration = 480//效果时间8秒
+shangdilizi2.statusDuration = 180//效果时间8秒
 shangdilizi2.hitEffect = Fx.flakExplosion
 shangdilizi2.pierce = true;
 shangdilizi2.pierceCap = 6;
@@ -1980,6 +1981,9 @@ shangdilizi2.trailEffect = (
         return b;
     })()
 );
+shangdilizi2.homingRange = 0;
+shangdilizi2.homingPower = 0; //追踪
+
 
 var shangdilizi1 = new JavaAdapter(BasicBulletType, {});
 shangdilizi1.sprite = "creators-shoot31";
@@ -1988,8 +1992,8 @@ shangdilizi1.damage = 15000; //伤害300
 shangdilizi1.width = 30; //宽
 shangdilizi1.height = 30; //高
 shangdilizi1.speed = 6;
-shangdilizi1.homingRange = 2000;
-shangdilizi1.homingPower = 5;
+// shangdilizi1.homingRange = 2000;
+// shangdilizi1.homingPower = 5; //追踪
 shangdilizi1.lifetime = 80; //子弹最远距离
 shangdilizi1.hitEffect = (() => {
     const c = new WaveEffect()
@@ -2005,7 +2009,7 @@ shangdilizi1.hitEffect = (() => {
 shangdilizi1.backColor = F.c("ffffff"); //背景颜色
 shangdilizi1.frontColor = F.c("b099db"); //前面颜色
 shangdilizi1.reloadMultiplier = 0.02; //装弹速度0.15
-shangdilizi1.ammoMultiplier = 30; //装弹数量
+shangdilizi1.ammoMultiplier = 15; //装弹数量
 shangdilizi1.status = status.effectL; //效果:定身
 shangdilizi1.statusDuration = 30
 shangdilizi1.fragBullets = 50;
@@ -2040,7 +2044,7 @@ exports.shangdilizi1 = shangdilizi1
 
 
 
- exports.lanseBU = (//蓝瑟2 飞逝
+exports.lanseBU = (//蓝瑟2 飞逝
     (() => {
         const b = extend(ContinuousLaserBulletType, {})
 
@@ -2066,8 +2070,8 @@ exports.shangdilizi1 = shangdilizi1
                 return c;
             })(),
         );
-        b.pierceCap= 3, //穿透数量
-        b.lightning = 3;
+        b.pierceCap = 3, //穿透数量
+            b.lightning = 3;
         b.lightningLength = 10;
         b.lightningColor = F.c("73dfff");//闪电颜色
         b.lightningDamage = 5;
@@ -2088,16 +2092,19 @@ exports.shangdilizi1 = shangdilizi1
         // b.pierceCap=2;
         // b.pierceBuilding = false;
         b.damage = 600 / 12
+
         b.width = 4
         b.length = 300
         b.colors = [F.c("73dfff"), F.c("51c263"), F.c("ffffff"),]
-        b.fragBullets = 4; //分裂数量
+        b.fragBullets = 3; //分裂数量
+      b.fragOnHit = true;//是否碰撞就会分裂子弹
         b.fragBullet = (
             (() => {
                 const b = extend(ContinuousLaserBulletType, {})
                 b.speed = 0
-                b.pierceCap= 3, //穿透数量
+               // b.pierceCap = 3, //穿透数量
                 b.lifetime = 20
+                 b.buildingDamageMultiplier = 0.1//对建筑的伤害
                 b.collidesTeam = true
                 b.damage = 220 / 12
                 b.width = 2
@@ -2107,7 +2114,7 @@ exports.shangdilizi1 = shangdilizi1
             })()
         );
         return b;
-    })()); 
+    })());
 
 //灭世神子弹
 
@@ -2401,6 +2408,46 @@ exports.beijixing_mieshishen = (//北极星
             Lines.stroke(5 - e.finpow() * 5);
             Lines.circle(e.x, e.y, e.finpow() * 100);
         });// Fx.greenBomb;//子弹打在目标点上的效果
+        D.fragBullets = 7
+        D.fragBullet = (
+            (() => {
+                const c = new ArtilleryBulletType(3, 20, "shell");
+                c.width = 35
+                c.height = 35
+                c.splashDamage = 60
+                c.splashDamageRadius = 6 * 8;
+                c.despawnEffect = Fx.plasticExplosionFlak
+                c.backColor = F.c("#ff9898");
+                c.frontColor = F.c("#fbb4b4");
+                c.fragBullets = 3
+                c.fragBullet = (
+                    (() => {
+                        const b = new ArtilleryBulletType(2, 20, "shell");
+                        b.width = 35
+                        b.height = 35
+                        b.splashDamage = 180
+                        b.splashDamageRadius = 4 * 8
+                        b.despawnEffect = Fx.plasticExplosionFlak
+                        b.backColor = F.c("#ff9898");
+                        b.frontColor = F.c("#fbb4b4");
+                        c.fragBullets = 2
+                        b.fragBullet = (
+                            (() => {
+                                const b = new ArtilleryBulletType(1, 20, "shell");
+                                b.width = 35
+                                b.height = 35
+                                b.lifetime = 80;
+                                b.splashDamage = 180
+                                b.splashDamageRadius = 4 * 8
+                                b.despawnEffect = Fx.plasticExplosionFlak
+                                b.backColor = F.c("#ff9898");
+                                b.frontColor = F.c("#fbb4b4");
+                                return b;
+                            })());
+                        return b;
+                    })());
+                return c;
+            })());
         D.scaleLife = true;
         D.updateEffectSeg = 40;
         D.color = Color.valueOf("f87979FF");
@@ -2462,6 +2509,8 @@ exports.mieshishenAcker = (
     (() => {
         const a = new JavaAdapter(BasicBulletType, {});
         a.sprite = "bullet";
+        a.frontColor = Color.valueOf("ff3232ff");
+        a.backColor = Color.valueOf("ffa3a3ff");
         a.collidesTiles = true;
         a.reflectable = false;
         a.hittable = false;
@@ -2473,30 +2522,32 @@ exports.mieshishenAcker = (
         a.shrinkY = 0;
         a.drawSize = 0;
         a.collidesTeam = true;
-        a.healPercent = 100;
+        a.healPercent = 100;//建筑治疗
         a.hitSize = 36;
         a.pierce = true;
-        a.pierceCap = 100;
-        a.pierceBuilding = true;
-        a.lifetime = 0.7 * 60;
-        a.damage = 2000;
-        a.frontColor = Color.valueOf("ff3232ff");
-        a.backColor = Color.valueOf("ffa3a3ff");
+        // a.pierceCap = 100;
+         a.pierceBuilding = true;
+        a.lifetime = 1.4 * 60;
+        a.damage = 100000;
+        a.buildingDamageMultiplier = 0;
         a.hitEffect = Fx.none;
         a.despawnEffect = Fx.none;
         a.shootEffect = Fx.none;
         a.smokeEffect = Fx.none;
         a.incendChance = 0;
+        a.status = status.effectL;
+        a.statusDuration = 60 * 3;
         return a;
     })()
 );
+
 exports.mieshishen = (
     (() => {
         const bt2 = new JavaAdapter(ContinuousLaserBulletType, {});
         bt2.damage = 80000;
         bt2.hitEffect = Fx.hitMeltHeal;
         bt2.drawSize = 420;
-        bt2.lifetime = 22 * 60;
+        bt2.lifetime = 25 * 60;
         bt2.width = 60;//宽
         bt2.oscScl = 0.8;
         bt2.oscMag = 0;

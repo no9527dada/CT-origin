@@ -182,7 +182,54 @@ Events.on(ContentInitEvent, cons(e => {
         parent: 'CT2-ShuangGuan',
     });
 }));
+const Map12 = new SectorPreset("CT2-BeiShuiYiZhan", SY1, 12);//背水一战
+Map12.alwaysUnlocked = false;//
+Map12.addStartingItems = true;
+Map12.captureWave =5;
+Map12.difficulty = 13
+Map12.localizedName = Core.bundle.format("CT-12")
+Events.on(ContentInitEvent, cons(e => {
+    lib.addToResearch(Map12, {
+        parent: 'coastline-CT',//边际海湾
+        objectives: Seq.with(
+            new Objectives.SectorComplete(coastline),//占领边际海湾
+        ),
+    });
+}));
 /********************************************************* */
+const bo= require('Blocks/Blocks-factory');
+lib.addToResearch(bo.achievement, {
+    parent: bo.wupinyuan.name,
+    requirements: ItemStack.with(
+        CTItem. medal1, 1,
+        CTItem.medal2, 1,
+        CTItem. nulls, 1,
+    ),
+    objectives: Seq.with(
+        new Objectives.SectorComplete(Map1),//占领-
+        new Objectives.SectorComplete(Map7),//占领-
+        new Objectives.SectorComplete(Map6),//占领-
+        new Objectives.SectorComplete(Map9),//占领-
+        new Objectives.SectorComplete(Map12),//占领-
+    ),
+});
+
+// exports.Map0 = Map0;
+// exports.Map1 = Map1;
+// exports.Map2 = Map2;
+// exports.Map3 = Map3;
+// exports.Map4 = Map4;
+// exports.Map5 = Map5;
+// exports.Map6 = Map6;
+// exports.Map7 = Map7;
+// exports.Map8 = Map8;
+// exports.Map9 = Map9;
+// exports.Map10 = Map10;
+// exports.Map11 = Map11;
+// exports.Map12 = Map12;
+//exports.Map13 = Map13;
+
+
 
 
 

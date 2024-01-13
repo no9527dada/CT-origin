@@ -17,5 +17,5 @@
 			"parentizeEffects":true
 		}
 	],
-	"deathSound" :"jitanglailuo"
+	//"deathSound" :"jitanglailuo"//死亡时的声音，貌似没效果
 }

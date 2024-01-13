@@ -33,7 +33,8 @@ exports.ax1 = ax1
 
 const ax2 = new UnitType('2kuangji');
 ax2.controller = u => new MinerAI();
-ax2.mineItems = Seq.with(shiying, Items.copper, Items.lead, Items.sand,)
+ax2.mineItems = Seq.with(shiying, Items.copper, Items.lead, Items.coal,)
+//ax2.mineItems = Seq.with(shiying, Items.copper, Items.lead)
 ax2.ammoType = new ItemAmmoType(Items.blastCompound, 1);
 ax2.logicControllable = false//逻辑器无法控制单位
 ax2.playerControllable = false//玩家无法操控
@@ -41,7 +42,8 @@ ax2.constructor = prov(() => extend(UnitTypes.mono.constructor.get().class, {}))
 exports.ax2 = ax2
 
 const ax3 = new UnitType('3kuangji');
-ax3.mineItems = Seq.with(shiying, jingliantai, Items.copper, Items.lead, Items.thorium, Items.coal,)
+//ax3.mineItems = Seq.with(shiying, jingliantai, Items.copper, Items.lead, Items.thorium, Items.coal,)
+ax3.mineItems = Seq.with(shiying, jingliantai, Items.copper, Items.lead, Items.thorium)
 ax3.abilities.add(new RepairFieldAbility(Infinity, 60, 8 * 8));
 ax3.logicControllable = false//逻辑器无法控制单位
 ax3.playerControllable = false//玩家无法操控
@@ -51,7 +53,8 @@ ax3.constructor = prov(() => extend(UnitTypes.mono.constructor.get().class, {}))
 exports.ax3 = ax3
 
 const ax4 = new UnitType('4kuangji');
-ax4.mineItems = Seq.with(shiying, jingliantai, jin, Items.copper, Items.lead, Items.thorium, Items.titanium, Items.scrap,)
+//ax4.mineItems = Seq.with(shiying, jingliantai, jin, Items.copper, Items.lead, Items.thorium, Items.titanium, Items.scrap,)
+ax4.mineItems = Seq.with(shiying, jingliantai, jin,  Items.thorium, Items.titanium)
 ax4.abilities.add(new ForceFieldAbility(40, 110, 60 * 1, 160));//(40半径, 60重新生成, 500盾容, 60 * 6冷却)20f, 40f, 60f * 5, 60f//Infinity 无穷大
 ax4.controller = u => new MinerAI();
 ax4.logicControllable = false//逻辑器无法控制单位
@@ -61,7 +64,8 @@ ax4.constructor = prov(() => extend(UnitTypes.mono.constructor.get().class, {}))
 exports.ax4 = ax4
 
 const ax5 = new UnitType('5kuangji');
-ax5.mineItems = Seq.with(shiying, jingliantai, jin, Items.copper, Items.lead, Items.thorium, Items.titanium,)
+//ax5.mineItems = Seq.with(shiying, jingliantai, jin, Items.copper, Items.lead, Items.thorium, Items.titanium,)
+ax5.mineItems = Seq.with(shiying, jingliantai, jin,  Items.thorium, Items.titanium,)
 ax5.payloadCapacity = (4.5 * 4.5) * Vars.tilePayload;
 ax5.logicControllable = false//逻辑器无法控制单位
 //ax5.playerControllable = false//玩家无法操控

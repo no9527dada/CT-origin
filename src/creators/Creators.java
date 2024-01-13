@@ -2,132 +2,81 @@ package creators;
 
 import arc.Core;
 import arc.Events;
-import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
-import arc.math.Mathf;
 import arc.scene.ui.ImageButton;
 import arc.struct.ObjectMap;
 import arc.struct.ObjectSet;
 import arc.struct.Seq;
-import arc.util.Tmp;
-
+import arc.util.Time;
+import arc.util.Timer;
+import creators.type.CT2PlanetDialog;
+import creators.type.CTUnitSpawnAbility;
+import creators.type.CTplanet;
+import creators.type.abomb4.DsShaders;
 import creators.ui.CreatorsClassification;
 import creators.world.block.*;
+import creators.xvx.CTUpdater;
+import creators.xvx.WorldDifficulty;
+import creators.xvx.XVXDawnResearchDialog.CTPausedDialog;
+import creators.xvx.XVXDawnResearchDialog.CTResearchDialog;
 import creators.xvx.XVXSource;
 import mindustry.Vars;
 import mindustry.game.EventType;
+import mindustry.game.Team;
 import mindustry.graphics.Layer;
 import mindustry.mod.Mod;
 import mindustry.mod.Scripts;
-import mindustry.type.*;
+import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.type.Planet;
+import mindustry.type.UnitType;
 import mindustry.ui.dialogs.BaseDialog;
+import mindustry.ui.dialogs.PausedDialog;
+import mindustry.ui.dialogs.PlanetDialog;
+import mindustry.ui.dialogs.ResearchDialog;
 import mindustry.world.Block;
 import mindustry.world.blocks.distribution.Sorter;
 import mindustry.world.blocks.sandbox.ItemSource;
 import mindustry.world.blocks.sandbox.LiquidSource;
+import mindustry.world.meta.BuildVisibility;
 import rhino.Context;
 import rhino.Scriptable;
 import rhino.ScriptableObject;
+
 import java.util.Objects;
 
-import mindustry.world.meta.BuildVisibility;
 import static arc.Core.camera;
 import static mindustry.Vars.*;
-import static mindustry.Vars.tilesize;
-import static mindustry.Vars.indexer;
 
-import creators.MyPlanet;
-import creators.MySector;
 public class Creators extends Mod {
 
 
 
 
     public Creators() {
+
         //地图禁用建筑隐藏
         Events.on(EventType.WorldLoadEvent.class, event -> {
-            Vars.state.rules.hideBannedBlocks = false;
+            Vars.state.rules.hideBannedBlocks = false;//现在是没启用中
         }
-    );
+
+
+
+            );
    //
 
     };
-
-    public static boolean CTBlockBool = true;//原版蓝图系统解锁
-    public static ObjectMap<Block, Block> CTBlock = new ObjectMap<>();
-    public static void setCTSchematic() {
-        Events.run(EventType.Trigger.update, () -> {
-            if (CTBlockBool && Vars.control.input.selectPlans.size != 0) {
-                for (var ct : Vars.control.input.selectPlans) {
-                    if (ct.block == null) {
-                        continue;
-                    }
-
-                    if (CTBlock.containsKey(ct.block)) {
-                        ct.set(ct.x, ct.y, ct.rotation, CTBlock.get(ct.block));
-                    }
-                }
-            }
-        });
-    }
-
-    public static void setPlanet(Planet planet, String[] names) {
-        planet.ruleSetter = r -> {
-            var B = new ObjectSet<Block>();
-            for (var b : content.blocks()) {
-                if (b.minfo.mod == null) {
-                    B.add(b);
-                    continue;
-                }
-
-                boolean yes = true;
-
-                for(var name : names){
-                    if (Objects.equals(b.minfo.mod.meta.name, name) || Objects.equals(b.minfo.mod.name, name)) {
-                        yes = false;
-                        break;
-                    }
-                }
-
-                if(yes){
-                    B.add(b);
-                }
-            }
-            r.bannedBlocks.addAll(B);
-
-            var U = new ObjectSet<UnitType>();
-            for (var u : content.units()) {
-                if (u.minfo.mod == null) {
-                    U.add(u);
-                    continue;
-                }
-
-                boolean yes = true;
-
-                for(var name : names){
-                    if (Objects.equals(u.minfo.mod.meta.name, name) || Objects.equals(u.minfo.mod.name, name)) {
-                        yes = false;
-                        break;
-                    }
-                }
-
-                if(yes){
-                    U.add(u);
-                }
-            }
-            r.bannedUnits.addAll(U);
-        };
-    }
-
     public void loadContent(){
         //载入物品     //载入液体
+        CTplanet.load();
         CTItem.load();
         CTUnitTypes.load();
         CTBlocks.load();
-
-
+        CTConveyor.load();
+        CTBullet.load();
+        MieShistatu.load();
+        DsShaders.load();//电力节点力场的动画效果
         new XVXSource("Automatic-adaptation-source") {
             {
                 this.requirements(Category.distribution, BuildVisibility.sandboxOnly, ItemStack.with(new Object[0]));
@@ -149,18 +98,137 @@ public class Creators extends Mod {
 
     }
 
+
+
+    public static boolean CTBlockBool = true;//原版蓝图系统解锁
+    public static ObjectMap<Block, Block> CTBlock = new ObjectMap<>();
+    public static void setCTSchematic() {
+        Events.run(EventType.Trigger.update, () -> {
+            if (CTBlockBool && Vars.control.input.selectPlans.size != 0) {
+                for (var ct : Vars.control.input.selectPlans) {
+                    if (ct.block == null) {
+                        continue;
+                    }
+
+                    if (CTBlock.containsKey(ct.block)) {
+                        ct.set(ct.x, ct.y, ct.rotation, CTBlock.get(ct.block));
+                    }
+                }
+            }
+        });
+    }
+
+    public static void setPlanet(Planet planet, String[] names) {
+
+        planet.ruleSetter = r -> {
+            r.teams.get(Team.sharded).unitDamageMultiplier =  0.67f;
+            var B = new ObjectSet<Block>();
+            for (var b : content.blocks()) {
+                if (b.minfo.mod == null) {
+                    B.add(b);
+                    continue;
+                }
+                boolean yes = true;
+                for(var name : names){
+                    if (Objects.equals(b.minfo.mod.meta.name, name) || Objects.equals(b.minfo.mod.name, name)) {
+                        yes = false;
+                        break;
+                    }
+                }
+                if(yes){
+                    B.add(b);
+                }
+            }
+            r.bannedBlocks.addAll(B);
+            var U = new ObjectSet<UnitType>();
+            for (var u : content.units()) {
+                if (u.minfo.mod == null) {
+                    U.add(u);
+                    continue;
+                }
+                boolean yes = true;
+                for(var name : names){
+                    if (Objects.equals(u.minfo.mod.meta.name, name) || Objects.equals(u.minfo.mod.name, name)) {
+                        yes = false;
+                        break;
+                    }
+                }
+                if(yes){
+                    U.add(u);
+                }
+            }
+            r.bannedUnits.addAll(U);
+        };
+    }
+
+
+
     public final static Seq<Runnable> BlackListRun = new Seq<>();
 
     public Seq<String> BaiMingDan = new Seq<>();
 
     @Override
     public void init() {
+        //new WaveSpawner();//刷怪圈显示  暂时没用
+        new CTUnitSpawnAbility();//单位生产单位时移除动画效果
+        //new CTPlacementFragment();
 
-            Events.on(EventType.ClientLoadEvent.class, e -> 选择方块显示图标());
+        //檢測更新
+        Events.on(EventType.ClientLoadEvent.class, e -> Timer.schedule(CTUpdater::checkUpdate, 4));
 
+     //战役区块资源统计信息
+        /*   可以用，不过暂时不用
+        CTPlanetDialog dialog3 = new CTPlanetDialog();
+        PlanetDialog planet = Vars.ui.planet;
+        Vars.ui.paused.shown(() -> {
+            dialog3.show();
+            Objects.requireNonNull(planet);
+            Time.runTask(5.0F, planet::hide);
+        });
+*/
+
+        //new CT波次();
+        //esc键显示：
+        CTPausedDialog dialog2 = new CTPausedDialog();
+        PausedDialog paused = Vars.ui.paused;
+        Vars.ui.paused.shown(() -> {
+            dialog2.show();
+            Objects.requireNonNull(paused);
+            Time.runTask(1.0F, paused::hide);
+        });
+
+
+        //科技树全线：
+        CTResearchDialog dialog = new CTResearchDialog();
+        ResearchDialog research = Vars.ui.research;
+        research.shown(() -> {
+            dialog.show();
+            Objects.requireNonNull(research);
+            Time.runTask(1.0F, research::hide);
+        });
+        //难度调整难度：
+        Events.on(EventType.ClientLoadEvent.class, e -> {
+            ui.settings.game.sliderPref(
+                    "游戏难度", 3, 0, 5, 1, i -> Core.bundle.format("Difficulty-" + i)
+            );
+            Core.settings.get("游戏难度",true);
+            new WorldDifficulty().set();
+        });
+
+        //区块名显示
+        CT2PlanetDialog planet2 = new CT2PlanetDialog();
+        PlanetDialog planet = Vars.ui.planet;
+        planet.shown(() -> {
+            planet2.show();
+            Objects.requireNonNull(planet);
+            Time.runTask(1.0F, planet::hide);
+        });
+        //方块显示图标
+        Events.on(EventType.ClientLoadEvent.class, e -> 选择方块显示图标());
         Events.on(EventType.ClientLoadEvent.class, e -> {
             CTBlocks.SETCT();
             setCTSchematic();
+
 
             for (var a : Vars.mods.list()) {
                 if(Objects.equals(a.meta.name, "creators")){
@@ -199,7 +267,9 @@ public class Creators extends Mod {
                     BlackListRun.get(i).run();
                 }
             }
+
         });
+
     }
 
     //选择方块显示图标
@@ -232,83 +302,6 @@ public class Creators extends Mod {
             }
         });
     }
-
-
-/*     public void ini() {
-        Events.on(EventType.ClientLoadEvent.class, e -> {
-            ui.settings.game.sliderPref("难度调整难度", 3, 1, 5, 1, i -> Core.bundle.format("Difficulty-" + i));
-            new WorldDifficulty().set();
-        });
-    } */
-
-    /*public Seq<LiquidSource.LiquidSourceBuild> liquidSource = new Seq<>();
-    public Seq<ItemSource.ItemSourceBuild> itemSource = new Seq<>();
-    public Seq<Sorter.SorterBuild> sorter = new Seq<>();
-    public float timeMax = 0;
-    public void 选择方块显示图标() {
-        if (Vars.ui == null)return;
-        Events.on(EventType.WorldLoadEvent.class, e -> {
-            liquidSource.clear();
-            itemSource.clear();
-            sorter.clear();
-        });
-        Events.run(EventType.Trigger.update, () -> {
-            if (timeMax < 300f) {
-                indexer.eachBlock(
-                        null,
-                        camera.position.x,
-                        camera.position.y,
-                        50 * tilesize,
-                        b -> b instanceof LiquidSource.LiquidSourceBuild ||
-                                b instanceof ItemSource.ItemSourceBuild ||
-                                b instanceof Sorter.SorterBuild,
-                        b -> {
-                            if(b instanceof LiquidSource.LiquidSourceBuild){
-                                var bb = (LiquidSource.LiquidSourceBuild)b;
-                                if(!liquidSource.contains(bb)){
-                                    liquidSource.add(bb);
-                                }
-                            }
-                            if(b instanceof ItemSource.ItemSourceBuild){
-                                var bb = (ItemSource.ItemSourceBuild)b;
-                                if(!itemSource.contains(bb)){
-                                    itemSource.add(bb);
-                                }
-                            }
-                            if(b instanceof Sorter.SorterBuild){
-                                var bb = (Sorter.SorterBuild)b;
-                                if(!sorter.contains(bb)){
-                                    sorter.add(bb);
-                                }
-                            }
-                        });
-                timeMax = 0;
-            } else {
-                timeMax += Time.delta;
-            }
-        });
-        Events.run(EventType.Trigger.draw, () -> {
-            for(var source : liquidSource){
-                if (source.config() != null) {
-                    Draw.z(Layer.block + 1);
-                    Draw.rect(source.config().fullIcon, source.x, source.y, 3, 3);
-                }
-            }
-            for(var source : itemSource){
-                if (source.config() != null) {
-                    Draw.z(Layer.block + 1);
-                    Draw.rect(source.config().fullIcon, source.x, source.y, 3, 3);
-                }
-            }
-            for(var source : sorter){
-                if (source.config() != null) {
-                    Draw.z(Layer.block + 1);
-                    Draw.rect(source.config().fullIcon, source.x, source.y, 3, 3);
-                }
-            };
-        });
-    }*/
-
     public static ImageButton CreatorsIcon(String IconName, ImageButton.ImageButtonStyle imageButtonStyle, BaseDialog dialog) {
         TextureRegion A = Core.atlas.find("creators-" + IconName);
 

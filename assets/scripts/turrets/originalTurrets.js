@@ -30,29 +30,27 @@ fragPlastic.explodeRange = 20;
 fragPlastic.knockback = 0.3;//击退
 
 const xudianciBullet = extend(FlakBulletType, {});
-xudianciBullet.damage = 4; //伤害
+xudianciBullet.damage = 5; //伤害
 xudianciBullet.speed = 5;
-xudianciBullet.lightning = 3;//闪电根数
+xudianciBullet.lifetime = 50;
+xudianciBullet.lightning = 5;//闪电根数
 xudianciBullet.lightningLength = 16;//闪电长度
-//xudianciBullet.lightningColor = Color.valueOf("ff6200");//闪电颜色
 xudianciBullet.lightningDamage = 20;//闪电伤害
-// xudianciBullet.backColor = Color.valueOf("ffffff"); //背景颜色
-// xudianciBullet.frontColor = Color.valueOf("f8ff85"); //前面颜色
 
-CTBlocks.cyclone.ammo(
-    Items.metaglass, CreatorsBullets.fragGlass,
-    Items.blastCompound, CreatorsBullets.fragExplosive,
-    Items.plastanium, fragPlastic,
-    Items.surgeAlloy, CreatorsBullets.fragSurge,
+const xudianciBullet2 = extend(FlakBulletType, {});
+xudianciBullet2.damage = 5; //伤害
+xudianciBullet2.speed = 5;
+xudianciBullet2.lightning = 5;//闪电根数
+xudianciBullet2.lightningLength = 16;//闪电长度
+xudianciBullet2.lightningDamage = 20;//闪电伤害
+
+CTBlocks.cyclone.ammoTypes.put(
     xudianchi, xudianciBullet,
 );//气旋子弹
-Blocks.cyclone.ammo(
-    Items.metaglass, CreatorsBullets.fragGlass,
-    Items.blastCompound, CreatorsBullets.fragExplosive,
-    Items.plastanium, fragPlastic,
-    Items.surgeAlloy, CreatorsBullets.fragSurge,
-    xudianchi, xudianciBullet,
+Blocks.cyclone.ammoTypes.put(
+    xudianchi, xudianciBullet2,
 );//气旋子弹
+//Blocks.cyclone.range = 232;//原版的气旋属性不去改它
 //********************************************************* 
 const saaas = new JavaAdapter(FlakBulletType, {});
 saaas.reloadMultiplier = 2;
@@ -60,9 +58,10 @@ saaas.damage = 2; //伤害
 saaas.splashDamageRadius = 12; //分裂范围
 saaas.splashDamage = 18; //分裂的伤害
 saaas.speed = 3
+saaas.lifetime = 70;
 saaas.ammoMultiplier = 2; //装弹数量;
-CTBlocks.scatter.ammoTypes.put(Items.sand, saaas); //原版分裂炮
-
+CTBlocks.scatter.ammoTypes.put(Items.sand, saaas); //分裂炮
+Blocks.scatter.ammoTypes.put(Items.sand, saaas); //原版分裂炮
 //********************************************************* 
 
 CTBlocks.salvo.ammoTypes.put(Items.titanium,//
@@ -104,7 +103,12 @@ var asa = (() => {
     c.colorTo = Color.valueOf("b4f8ffFF");
     return c;
 })();
-CTBlocks.foreshadow.ammoTypes.put(zuanjing,//
+
+//恶兆
+
+Blocks.foreshadow.consumePower(1100/60);
+CTBlocks.foreshadow.consumePower(1100/60);
+Blocks.foreshadow.ammoTypes.put(zuanjing,//恶兆
     (() => {
         const D = new JavaAdapter(PointBulletType, {});
         D.hitEffect=Fx.massiveExplosion;
@@ -112,7 +116,6 @@ CTBlocks.foreshadow.ammoTypes.put(zuanjing,//
         D.trailEffect=asa//子弹的弹道效果（那条直线）
         D.despawnEffect=Fx.greenBomb;//子弹打在目标点上的效果
         D.updateEffectSeg = 40;
-
         D.color=Color.valueOf("79f4f8FF");
         D.trailSpacing=20;
         D.tileDamageMultiplier=0.5;
@@ -135,7 +138,7 @@ CTBlocks.foreshadow.ammoTypes.put(zuanjing,//
         return D;
     })(),
 );
-Blocks.foreshadow.ammoTypes.put(zuanjing,//
+CTBlocks.foreshadow.ammoTypes.put(zuanjing,//CT恶兆
     (() => {
         const D = new JavaAdapter(PointBulletType, {});
         D.hitEffect=Fx.massiveExplosion;
@@ -143,7 +146,6 @@ Blocks.foreshadow.ammoTypes.put(zuanjing,//
         D.trailEffect=asa//子弹的弹道效果（那条直线）
         D.despawnEffect=Fx.greenBomb;//子弹打在目标点上的效果
         D.updateEffectSeg = 40;
-
         D.color=Color.valueOf("79f4f8FF");
         D.trailSpacing=20;
         D.tileDamageMultiplier=0.5;

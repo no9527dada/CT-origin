@@ -34,10 +34,12 @@ exports.raycaster = (func) => new Geometry.Raycaster({ accept: func });
 exports.isDev = () => exports.mod.meta.version.indexOf("dev") >= 0;
 exports.addToResearch = (content, research) => {
     if (!content) {
-        throw new Error('子内容为空!,');
+        //throw new Error('子内容为空!,');
+        throw new Error('ZiKong!,');
     }
     if (!research.parent) {
-        throw new Error('研究。父母为空!');
+       // throw new Error('研究。父母为空!');
+       throw new Error('FuKong!');
     }
     var researchName = research.parent;
     var customRequirements = research.requirements;
@@ -65,7 +67,8 @@ exports.addToResearch = (content, research) => {
     //     throw new Error("Content '" + researchName + "' isn't in the tech tree, but '" + content.name + "' requires it to be researched.");
     // }
     if (parent == null) {
-        throw new Error("'内容 '" + researchName + "' 不在科技树上, 但 '" + content.name + "'需要对其研究.");
+       // throw new Error("'内容 '" + researchName + "' 不在科技树上, 但 '" + content.name + "'需要对其研究.");
+       throw new Error("'??? '" + researchName + "' ??? '" + content.name + "'???.");
     }
     // add this node to the parent
     if (!parent.children.contains(node)) {

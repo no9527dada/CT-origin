@@ -41,6 +41,7 @@ exports.dianxiangan =
         return a;
     })();
 //-----------------------------------------------------------
+
 exports.nengliangta =
     (() => {
         const a = extend(PowerNode, "nengliangta", {}); //能量塔
@@ -51,7 +52,7 @@ exports.nengliangta =
         a.outputsPower = true;
         a.laserRange = 90;
         a.maxNodes = 2;
-        a.consumePowerBuffered(1000);
+       a.consumePowerBuffered(1000);
         a.requirements = ItemStack.with(
             Items.surgeAlloy, 20,
             shimoxi, 100,
@@ -161,6 +162,52 @@ exports.CP2Link =
         return a;
     })();
 //-----------------------------------------------------------
+exports.nengliangtas = //力场节点新1
+    (() => {
+        const a =CTConveyor.nengliangtas
+        a.health = 1000;
+        a.size = 2;
+              a.consumePowerBuffered(13000);
+    a.range = 60;
+
+
+          a.requirements = ItemStack.with(
+                 Items.copper, 40,
+                 Items.lead, 35,
+                 jingliantai, 45,
+                 shimoxi, 100,
+                 guijingti, 150,
+                 monengjing, 35,
+             );
+        a.buildVisibility = BuildVisibility.shown;
+        a.category = Category.power;
+        return a;
+    })();
+
+    exports.nengliangtas2 =//力场节点新2
+        (() => {
+            const a =CTConveyor.nengliangtas2
+            a.health = 2530;
+            a.size = 3;
+           // a.Z_POWER_NET_EFFECT = 26
+        a.range = 90;
+
+        a.consumePowerBuffered(50000);
+        a.requirements = ItemStack.with(
+            Items.copper, 55,
+            Items.lead, 40,
+            jingliantai, 70,
+            shimoxi, 200,
+            guijingti, 150,
+            monengjing2, 120,
+        );
+        a.buildCostMultiplier = 20;//建造时间倍
+            a.buildVisibility = BuildVisibility.shown;
+            a.category = Category.power;
+            return a;
+        })();
+
+
 exports.lichangjiedian =
     (() => {
         //力场节点
@@ -169,7 +216,7 @@ exports.lichangjiedian =
         a.laserRange = 30;
         a.consumesPower = true
         a.insulated = false;
-        a.health = 500;
+        a.health = 1000;
         a.size = 2;
         a.drawAlphaA = 0.1
         a.drawAlphaB = 1
@@ -183,7 +230,7 @@ exports.lichangjiedian =
             guijingti, 150,
             monengjing, 35,
         );
-        a.buildVisibility = BuildVisibility.shown;
+        a.buildVisibility = BuildVisibility.hidden;
         a.category = Category.power;
         return a;
     })();
@@ -199,7 +246,7 @@ exports.lichangjiedian2 =
         a.drawAlphaB = 1
         a.drawColor = Color.valueOf("c0f8ff")   //Team.sharded.color;
         a.consumePower(2200 / 60);
-        a.health = 720;
+        a.health = 2530;
         a.size = 3;
         a.requirements = ItemStack.with(
             Items.copper, 55,
@@ -209,7 +256,7 @@ exports.lichangjiedian2 =
             guijingti, 150,
             monengjing1, 120,
         );
-        a.buildVisibility = BuildVisibility.shown;
+        a.buildVisibility = BuildVisibility.hidden;
         a.category = Category.power;
         return a;
     })();
@@ -745,7 +792,7 @@ exports.juhechongji =
         a.ambientSoundVolume = 0.15;
         a.consumeLiquid(qiangxiaolengqueye, 0.1666666667);
         a.consumeItems(ItemStack.with(
-            juhebaozhawu, 3,
+            juhebaozhawu, 2,
         ));
         a.requirements = ItemStack.with(
             Items.copper, 7500,

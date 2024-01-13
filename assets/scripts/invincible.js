@@ -45,29 +45,29 @@ const InvincibleForceFieldAbility = (radius, regen, max, cooldown) => {
 const invincibleBulletType = (() => {
 
     const bt = extend(BasicBulletType, {
-        hitEntity(b, other, initialHealth) {
-            if (other && other.kill) {
-                other.kill();
-                if (!other.dead && !Vars.net.client()) {
-                    other.health = 0
-                    other.dead = true
-                    Call.unitDeath(other.id)
-                }
-            }
-        },
-        hitTile(b, tile, health, direct) {
-            this.super$hitTile(b, tile, health, direct);
-            if (tile) {
-                Tile.tileDestroyed(tile);
-            }
-        },
+        // hitEntity(b, other, initialHealth) {
+        //     if (other && other.kill) {
+        //         other.kill();
+        //         if (!other.dead && !Vars.net.client()) {
+        //             other.health = 0
+        //             other.dead = true
+        //             Call.unitDeath(other.id)
+        //         }
+        //     }
+        // },
+        // hitTile(b, tile, health, direct) {
+        //     this.super$hitTile(b, tile, health, direct);
+        //     if (tile) {
+        //         Tile.tileDestroyed(tile);
+        //     }
+        // },
     });
     //bt.collidesTeam = true//子弹碰撞
     bt.scaleLife = true;//开启指哪打哪
     bt.width = 10;
     bt.height = 16;
     bt.damage = Infinity;
-    bt.splashDamage = Infinity;
+    //bt.splashDamage = Infinity;
     bt.speed = 10;
     // bt.bulletWidth = 7;
     //bt.bulletHeight = 9;

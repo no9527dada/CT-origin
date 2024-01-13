@@ -30,7 +30,7 @@
     该单位与其他单位不同，其他单位type不可以建造方块
     该单位可以建造方块 
 */
-const gg = require('all/Colour');
+//const gg = require('all/Colour');
 const zdan = BasicBulletType();
 zdan.width = 6.5;
 zdan.speed = 8;
@@ -65,6 +65,12 @@ const effect2 = new Effect(50, e => {
         Fill.circle(e.x + x, e.y + y, 0.1 + e.fout() * 1.4);
     });
 })
+// const v1 = new JavaAdapter(StatusEffect, {
+// }, "superBoss2");;
+// //v.permanent = true;//状态永久持续
+// v1.statusDuration = 300;//状态持续时间
+// v1.reloadMultiplier = 2;//射击速度
+
 var wwee = (
     (() => {
         const w = new MoveEffectAbility(0, -7, Color.valueOf("89f08e"), effect2, 1.7);
@@ -76,6 +82,7 @@ var wwee = (
         return w;
     })()
 );
+
 exports.gammaSpluswwee = wwee;
 const gammaSplus = extend(UnitType, "gammaSplus", {
     draw(unit) {
@@ -129,7 +136,7 @@ gammaSplus.hitSize = 20;
 //gammaSplus.engineColor =  Color.valueOf("b67bff");//这是调颜色
 gammaSplus.physics = false;//关闭碰撞
 gammaSplus.buildRange = 220 + 8 * 8;//默认建造距离27.5格
-gammaSplus.abilities.add(gg.Colour(40, 3, 700, 600));//彩色护盾
+gammaSplus.abilities.add(CTForceFieldAbility(40, 3, 700, 600));//彩色护盾
 gammaSplus.abilities.add(new RepairFieldAbility(5, 60 * 3, 1));//自身回血
 
 gammaSplus.parts.add(
@@ -323,7 +330,7 @@ CT_core3Unit.weapons.add(
         return w;
     })()
 );
-CT_core3Unit.abilities.add(gg.Colour(4 * 8, 1800 / 60, 50000, 8 * 60));//彩色护盾
+CT_core3Unit.abilities.add(CTForceFieldAbility(4 * 8, 1800 / 60, 50000, 8 * 60));//彩色护盾
 CT_core3Unit.constructor = prov(() => extend(UnitTypes.emanate.constructor.get().class, {}));
 exports.CT_core3Unit = CT_core3Unit;
 
@@ -354,7 +361,7 @@ CT_core3Unit2.killable = false;
 CT_core3Unit2.targetable = false;
 CT_core3Unit2.mineWalls = true;
 CT_core3Unit2.buildRange = 220 + 13 * 8
-CT_core3Unit2.abilities.add(gg.Colour(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
+CT_core3Unit2.abilities.add(CTForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
 CT_core3Unit2.setEnginesMirror(new UnitType.UnitEngine(7.5, -7.5, 2.3, 315));//(float x, float y, float radius, float rotation)
 CT_core3Unit2.weapons.add(
     (() => {
@@ -422,7 +429,7 @@ CT_core3Unit2.mineWalls = true;
 CT_core3Unit2.buildRange = 220 + 13 * 8
 
 
-CT_core3Unit2.abilities.add(gg.Colour(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
+CT_core3Unit2.abilities.add(CTForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
 CT_core3Unit2.setEnginesMirror(new UnitType.UnitEngine(7.5, -7.5, 2.3, 315));//(float x, float y, float radius, float rotation)
 CT_core3Unit2.weapons.add(
     (() => {

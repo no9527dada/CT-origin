@@ -4,7 +4,6 @@ import arc.Core;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.util.Tmp;
-import mindustry.content.Planets;
 import mindustry.type.Sector;
 import org.jetbrains.annotations.NotNull;
 

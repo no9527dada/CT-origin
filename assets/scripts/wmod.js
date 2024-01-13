@@ -1,4 +1,5 @@
-// by miner
+//本文件已经停用，新文件见 white_list文件
+ //by miner
 const {whiteList} = require('白名单列表')
 Creators.BlackListRun.add(run(() => {
 	var modName = "creators" 

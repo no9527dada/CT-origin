@@ -28,4 +28,5 @@ oct2.buildBeamOffset = 43;
 oct2.ammoCapacity = 1300;
 //oct2.accel = 0.04;逐渐加速
 oct2.itemCapacity = 300;
+  oct2.physics = false;//关闭碰撞
 exports.oct2 = oct2;

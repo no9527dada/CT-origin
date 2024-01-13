@@ -6,7 +6,7 @@ const {
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun
     , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
-     molijinghuaye, moliye, qiangxiaolengqueye,
+    molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
     dabaoyedan, zhiwujingyou, jinglianlio, hejinboli,
@@ -14,7 +14,7 @@ const {
 } = CTItem
 const lib = require('lib')
 require('BlocksLibes/jiasuyi');//传送门
-const { poly2,mega2 } = require('units/poly2');
+const { poly2, mega2 } = require('units/poly2');
 const { T6rishi, T6sixing, T6tianxie, T6wangzuo, } = require('units/T6');
 const { oct2 } = require('units/oct2');
 const { } = require('units/gammaSplus');
@@ -26,6 +26,42 @@ const { } = require('units/nai');
 const { } = require('units/T6chuan');
 const { } = require('units/BOSS');
 
+
+
+
+/* CTUnitTypes.oct.weapons.add(//给要塞增加的武器
+    (() => {
+        const w = new Weapon("point-defense-mount");
+        w.mirror = false;
+        w.rotate = true;
+        w.reload = 90;
+        //w.shots = 3;
+        //w.shotDelay = 7;
+        w.x = 0;
+        w.y = 0;
+        //w.inaccuracy = 7;
+        w.shootX = 0;
+        w.shootY = 0;
+        w.shootSound = Sounds.mineDeploy;
+        w.rotateSpeed = 150;
+        w.autoTarget = true;
+        w.controllable = false;
+        w.bullet = ((() => {
+
+            const v = new PointLaserBulletType();
+            v.damage = 70;
+            v.color = Color.white;
+            v.sprite = "creators-yunyu2-laser"
+            v.beamEffect = Fx.none;
+            v.buildingDamageMultiplier = 1//对建筑的伤害 10%
+            v.ammoMultiplier = 2;//装填倍率
+            v.status = StatusEffects.freezing
+            v.statusDuration = 120;
+            return v;
+
+        })())
+        return w;
+    })());; */
 CTUnitTypes.mega.weapons.add(//给巨像增加的武器
     (() => {
         const w = new Weapon("point-defense-mount");
@@ -59,8 +95,8 @@ CTUnitTypes.mega.weapons.add(//给巨像增加的武器
             a.lightOpacity = 0.7;
             a.lightColor = Pal.heal;
             a.splashDamageRadius = 30;
-            a.buildingDamageMultiplier= 0.01,//对建筑的伤害
-            a.splashDamage = 37;
+            a.buildingDamageMultiplier = 0.01,//对建筑的伤害
+                a.splashDamage = 37;
             a.lifetime = 120;
             a.backColor = Pal.heal;
             a.frontColor = Color.white;
@@ -97,7 +133,7 @@ CTUnitTypes.oct.abilities.add(new UnitSpawnAbility(CTUnitTypes.poly, 3600, 19.25
 CTBlocks.airFactory.plans.add(
     new UnitFactory.UnitPlan(yunshu, 2400, ItemStack.with(Items.lead, 50, shiying, 35)),
     new UnitFactory.UnitPlan(ax1, 2400, ItemStack.with(Items.lead, 20, shiying, 25)),
-    new UnitFactory.UnitPlan(poly2, 2400, ItemStack.with(Items.lead, 80, guijingti, 33,shimoxi,25)),
+    new UnitFactory.UnitPlan(poly2, 2400, ItemStack.with(Items.lead, 80, guijingti, 33, shimoxi, 25)),
 
 );
 //T2
@@ -290,9 +326,9 @@ unitGC2.category = Category.units;
 
 exports.unitGC2 = unitGC2;
 
-UnitTypes.reign. weapons.set(0,
+UnitTypes.reign.weapons.set(0,
     (() => {
-        const v   = new Weapon("reign-weapon");
+        const v = new Weapon("reign-weapon");
         v.shoot = (() => {
             const c = new ShootAlternate()
             c.spread = 4.7;
@@ -301,54 +337,54 @@ UnitTypes.reign. weapons.set(0,
             c.shotDelay = 3;
             return c;
         })()
-        
-       v. top = false;
-       v. y = 1;
-       v. x = 21.5;
-       v. shootY = 11;
-       v. reload = 35;
-       v. recoil = 5;
-       v. shake = 2;
-       v. ejectEffect = Fx.casing4;
-       v. shootSound = Sounds.bang;
-       v.bullet = (() => {
-        const v   = new BasicBulletType(13, 80);
-       v. pierce = true;
-       v. pierceCap = 10;
-       v. width = 14;
-       v. height = 33;
-       v. lifetime = 15;
-       v. shootEffect = Fx.shootBig;
-       v. fragVelocityMin = 0.4;
-       v. hitEffect = Fx.blastExplosion;
-       v. splashDamage = 18;
-       v. splashDamageRadius = 13;
-       v. fragBullets = 3;
-       v. fragLifeMin = 0;
-       v. fragRandomSpread = 30;
-       v.fragBullet =   (() => {
-        const v   = new BasicBulletType(9, 20);
-       v.width = 10;
-       v.height = 10;
-       v.pierce = true;
-       v.pierceBuilding = true;
-       v.pierceCap = 3;
-       v.lifetime = 20;
-       v.hitEffect = Fx.flakExplosion;
-       v.splashDamage = 15;
-       v.splashDamageRadius = 10;
+
+        v.top = false;
+        v.y = 1;
+        v.x = 21.5;
+        v.shootY = 11;
+        v.reload = 35;
+        v.recoil = 5;
+        v.shake = 2;
+        v.ejectEffect = Fx.casing4;
+        v.shootSound = Sounds.bang;
+        v.bullet = (() => {
+            const v = new BasicBulletType(13, 80);
+            v.pierce = true;
+            v.pierceCap = 10;
+            v.width = 14;
+            v.height = 33;
+            v.lifetime = 15;
+            v.shootEffect = Fx.shootBig;
+            v.fragVelocityMin = 0.4;
+            v.hitEffect = Fx.blastExplosion;
+            v.splashDamage = 18;
+            v.splashDamageRadius = 13;
+            v.fragBullets = 3;
+            v.fragLifeMin = 0;
+            v.fragRandomSpread = 30;
+            v.fragBullet = (() => {
+                const v = new BasicBulletType(9, 20);
+                v.width = 10;
+                v.height = 10;
+                v.pierce = true;
+                v.pierceBuilding = true;
+                v.pierceCap = 3;
+                v.lifetime = 20;
+                v.hitEffect = Fx.flakExplosion;
+                v.splashDamage = 15;
+                v.splashDamageRadius = 10;
+                return v;
+            })()
+            return v;
+        })()
         return v;
-         })()
-        return v;
-      })()
-        return v;
-      })()
+    })()
 
 
 )
-CTUnitTypes.reign. weapons.set(0,
+CTUnitTypes.reign.weapons.set(0,
     (() => {
-        const v   = new Weapon("reign-weapon");
+        const v = new Weapon("reign-weapon");
         v.shoot = (() => {
             const c = new ShootAlternate()
             c.spread = 4.7;
@@ -357,45 +393,45 @@ CTUnitTypes.reign. weapons.set(0,
             c.shotDelay = 3;
             return c;
         })()
-       v. top = false;
-       v. y = 1;
-       v. x = 21.5;
-       v. shootY = 11;
-       v. reload = 35;
-       v. recoil = 5;
-       v. shake = 2;
-       v. ejectEffect = Fx.casing4;
-       v. shootSound = Sounds.bang;
-       v.bullet = (() => {
-        const v   = new BasicBulletType(13, 80);
-       v. pierce = true;
-       v. pierceCap = 10;
-       v. width = 14;
-       v. height = 33;
-       v. lifetime = 15;
-       v. shootEffect = Fx.shootBig;
-       v. fragVelocityMin = 0.4;
-       v. hitEffect = Fx.blastExplosion;
-       v. splashDamage = 18;
-       v. splashDamageRadius = 13;
-       v. fragBullets = 3;
-       v. fragLifeMin = 0;
-       v. fragRandomSpread = 30;
-       v.fragBullet =   (() => {
-        const v   = new BasicBulletType(9, 20);
-       v.width = 10;
-       v.height = 10;
-       v.pierce = true;
-       v.pierceBuilding = true;
-       v.pierceCap = 3;
-       v.lifetime = 20;
-       v.hitEffect = Fx.flakExplosion;
-       v.splashDamage = 15;
-       v.splashDamageRadius = 10;
+        v.top = false;
+        v.y = 1;
+        v.x = 21.5;
+        v.shootY = 11;
+        v.reload = 35;
+        v.recoil = 5;
+        v.shake = 2;
+        v.ejectEffect = Fx.casing4;
+        v.shootSound = Sounds.bang;
+        v.bullet = (() => {
+            const v = new BasicBulletType(13, 80);
+            v.pierce = true;
+            v.pierceCap = 10;
+            v.width = 14;
+            v.height = 33;
+            v.lifetime = 15;
+            v.shootEffect = Fx.shootBig;
+            v.fragVelocityMin = 0.4;
+            v.hitEffect = Fx.blastExplosion;
+            v.splashDamage = 18;
+            v.splashDamageRadius = 13;
+            v.fragBullets = 3;
+            v.fragLifeMin = 0;
+            v.fragRandomSpread = 30;
+            v.fragBullet = (() => {
+                const v = new BasicBulletType(9, 20);
+                v.width = 10;
+                v.height = 10;
+                v.pierce = true;
+                v.pierceBuilding = true;
+                v.pierceCap = 3;
+                v.lifetime = 20;
+                v.hitEffect = Fx.flakExplosion;
+                v.splashDamage = 15;
+                v.splashDamageRadius = 10;
+                return v;
+            })()
+            return v;
+        })()
         return v;
-         })()
-        return v;
-      })()
-        return v;
-      })()
+    })()
 )

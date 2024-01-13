@@ -1,3 +1,4 @@
+//全屏修复仪
 var built = {};
 const limit = 1;
 function _init_built_(team) {

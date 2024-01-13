@@ -1,10 +1,24 @@
+//灭世神
 var lib = require('lib');
 var { mieshishenhun } = CTItem
 var dropStack = new ItemStack(mieshishenhun, 1,);
-const Striders = extend(UnitType, "Striders", {});
+const Striders = extend(UnitType, "Striders", {
+    // update(unit){
+    //    this. hitTime=0
+    // },
+});
 Striders.itemCapacity = 0;
 Striders.groundLayer = Layer.legUnit;
 Striders.constructor = prov(() => extend(UnitTypes.toxopid.constructor.get().class, {
+
+
+    damage(amount){
+        this.health -= amount;
+        //hitTime = 1f;
+        if(this.health <= 0 && !this.dead){
+            this.kill();
+        }
+    },
     remove() {
         this.dropItem(Vars.player.team());
         this.super$remove();
@@ -20,7 +34,7 @@ Striders.constructor = prov(() => extend(UnitTypes.toxopid.constructor.get().cla
 }));
 
 Striders.drag = 0.1;
-Striders.speed = 0.15;
+Striders.speed = 0.3;
 Striders.hitSize = 300;
 Striders.health = 1300000000;//13亿血
 Striders.armor = 4500;
@@ -35,9 +49,10 @@ Striders.legLengthScl = 0.93;
 Striders.legExtension = -50;//腿部伸展
 Striders.legBaseOffset = 208;
 Striders.legSpeed = 0.19;
-Striders.legSplashDamage = 1200;//踩踏伤害
+Striders.legSplashDamage = 12000;//踩踏伤害
 Striders.legSplashRange = 10 * 8;//踩踏范围
-
+const CTStatus = require('Status');
+Striders.immunities.add(CTStatus.stun);//免疫眩晕状态
 Striders.targetFlags = [BlockFlag.core];//目标直指核心
 Striders.rippleScale = 3;
 Striders.buildSpeed = 1;
@@ -47,6 +62,30 @@ Striders.allowLegStep = true;
 Striders.shadowElevation = 0.95;
 Striders.groundLayer = 75
 
+const { mieshiX } = require("units/medal");
+Striders.abilities.add(new SpawnDeathAbility(mieshiX, 1, 11));//死亡分裂
+/* Striders.abilities.add(
+    (() => {
+        const w = new RepairFieldAbility(90000000, 1600, 0.1 * 8)//(amount, reload, range)给自己(oct那种治疗)
+        w.healEffect = Fx.none;
+        w.activeEffect = Fx.none;
+        w.parentizeEffects = true;
+        return w;
+    })()
+); */
+const DrawS = require('BlocksLibes/DrawS');
+MieShistatu.fury.effect =new Effect(20, e => {
+    Draw.color(Color.black);
+    Fill.circle(e.x, e.y, 10 * e.fslope());
+  
+    Angles.randLenVectors(e.id, 10, 30 - (e.finpow() * 30), (x, y) => {
+      Draw.color(Color.black, Color.valueOf("b9fff2"), e.finpow());
+      Fill.circle(e.x + x, e.y + y, e.fin() * 8);
+    });
+    Draw.color(Color.valueOf("b9fff2"));
+    Fill.circle(e.x, e.y, 8 * e.fslope());
+  });
+Striders.abilities.add(new MieShistatu.CTStatusFieldAbility(MieShistatu.fury,8*60, 30*60, 0.1 * 8));
 exports.qixuan_mieshishen = (//气旋
     (() => {
         const v = extend(FlakBulletType, {});
@@ -491,7 +530,7 @@ Striders.weapons.add(//天谴
         w.bullet = Bullet_s.tianqian_mieshishen;
         return w;
     })());
-Striders.weapons.add(//波
+    Striders.weapons.add(//波
     (() => {
         const w = new Weapon("");
         w.x = 0;//横向
@@ -502,9 +541,9 @@ Striders.weapons.add(//波
         w.top = false;
         w.recoil = 0;//反冲
         w.shootSound = Sounds.none;
-        w.reload = 0.7 * 60;//射速
+        w.reload = 3 * 60;//射速
         w.shoot.shots = 360;
-         w.shootCone = 720;//射击瞄准角度
+        w.shootCone = 720;//射击瞄准角度
         w.inaccuracy = 360;
         w.bullet = Bullet_s.mieshishenAcker;
         return w;
@@ -512,6 +551,7 @@ Striders.weapons.add(//波
 Striders.weapons.add(//Striders
     (() => {
         const w = new Weapon("creators-StridersBU");
+        w.autoTarget = true//被动开火
         w.shootY = 80
         w.x = 0;//横向
         w.y = -120;//纵向
@@ -527,7 +567,7 @@ Striders.weapons.add(//Striders
         w.continuous = true;
         w.cooldownTime = 200;
         w.inaccuracy = 25;
-        w.reload = 40 * 60;//射速
+        w.reload = 20 * 60;//射速
         w.bullet = Bullet_s.mieshishen;
         return w;
     })());

@@ -1,5 +1,6 @@
 package creators.type;
 
+import arc.graphics.g2d.TextureRegion;
 import mindustry.type.*;
 
 import static mindustry.type.ItemStack.*;
@@ -9,7 +10,7 @@ public class CreatorsRecipe{
 	public final OutputContents output;
 	public final float craftTime;
 
-	public CreatorsRecipe(InputContents input, OutputContents output, float craftTime){
+    public CreatorsRecipe(InputContents input, OutputContents output, float craftTime){
 		this.input = input;
 		this.output = output;
 		this.craftTime = craftTime;

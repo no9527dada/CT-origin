@@ -1,5 +1,18 @@
 //---------------------@滞人编写
-
+const DrawS = require('BlocksLibes/DrawS');const status = require("Status");
+function EZaoTrailEffect(YanSe1,YanSe2) {
+    return new Effect(10, e => {
+            for (let i = 0; i < 2; i++) {
+                Draw.color(i == 0 ? YanSe1 : YanSe2);
+                let m = i == 0 ? 1 : 0.5;
+                let rot = e.rotation ;
+                let w = 15 * e.fout() * m;
+                Drawf.tri(e.x, e.y, w, (30 + Mathf.randomSeedRange(e.id, 15)) * m, rot);
+                Drawf.tri(e.x, e.y, w, 10 * m, rot + 180);
+            }
+            Drawf.light(e.x, e.y, 60, YanSe1, 0.6 * e.fout());
+        })
+};
 function percent(x, y, tx, ty, radius) {
     var dst = Mathf.dst(x, y, tx, ty);
     var falloff = 0.4;
@@ -99,7 +112,7 @@ fsb1.despawnEffect = fxHole;
 fsb1.trailSpacing = 20;
 fsb1.damage = 1;
 fsb1.tileDamageMultiplier = 0.3;
-fsb1.buildingDamageMultiplier =2;//对建筑的伤害
+fsb1.buildingDamageMultiplier =1.2;//对建筑的伤害
 fsb1.speed = 500;
 fsb1.hitShake = 8;
 fsb1.ammoMultiplier = 1;
@@ -107,7 +120,7 @@ fsb1.ammoPerShot = 2;
 fsb1.reloadMultiplier = 4.0;
 fsb1.hitSize = 100;
 fsb1.splashDamageRadius = 40;
-fsb1.splashDamage = 220;
+fsb1.splashDamage = 250;
 fsb1.knockback = -4;
 
 var fsb2 = new JavaAdapter(PointBulletType, {
@@ -153,14 +166,14 @@ fsb2.despawnEffect = fxHole;
 fsb2.trailSpacing = 20;
 fsb2.damage = 0;
 fsb2.tileDamageMultiplier = 0.3;
-fsb2.buildingDamageMultiplier =2;//对建筑的伤害
+fsb2.buildingDamageMultiplier =1.2;//对建筑的伤害
 fsb2.speed = 500;
 fsb2.hitShake = 8;
 fsb2.ammoMultiplier = 1;
 fsb2.reloadMultiplier = 1.8;
 fsb2.hitSize = 100;
 fsb2.splashDamageRadius = 64;
-fsb2.splashDamage = 700;
+fsb2.splashDamage = 900;
 fsb2.knockback = -7;
 
 var fxHole1Bomb = new Effect(8, 80, cons(e => {
@@ -256,7 +269,7 @@ fsb3.despawnEffect = fxHole1;
 fsb3.trailSpacing = 20;
 fsb3.damage = 80;
 fsb3.tileDamageMultiplier = 0.3;
-fsb3.buildingDamageMultiplier =2;//对建筑的伤害
+fsb3.buildingDamageMultiplier =1.2;//对建筑的伤害
 fsb3.speed = 500;
 fsb3.hitShake = 8;
 fsb3.ammoMultiplier = 2;
@@ -264,7 +277,7 @@ fsb3.ammoPerShot = 2;
 fsb3.reloadMultiplier = 2.5;
 fsb3.hitSize = 100;
 fsb3.splashDamageRadius = 8*13;
-fsb3.splashDamage = 1300;
+fsb3.splashDamage = 1700;
 fsb3.knockback = 5;
 const AXQ = CTItem
 var xipao = extend(ItemTurret, 'xipao', {
@@ -293,9 +306,59 @@ xipao.buildType = prov(() => {
 
     }, xipao);
 });
-xipao.ammoTypes.put(AXQ.molishi, fsb1)
-xipao.ammoTypes.put(AXQ.monengjing1, fsb2)
-xipao.ammoTypes.put(AXQ.weijing3, fsb3)
+// xipao.ammoTypes.put(AXQ.molishi, fsb1)
+// xipao.ammoTypes.put(AXQ.monengjing1, fsb2)
+// xipao.ammoTypes.put(AXQ.weijing3, fsb3)
+const EZaoShootEffect= new Effect(24, e => {
+    e.scaled(10, b => {
+        Draw.color(Color.white, Pal.bulletYellowBack, b.fin());
+        Lines.stroke(b.fout() * 3 + 0.2);
+        Lines.circle(b.x, b.y, b.fin() * 20);
+    });
+});
+xipao.ammo(
+    AXQ.molishi, fsb1,
+    AXQ.monengjing1, fsb2,
+    AXQ.weijing3, fsb3,
+    
+    AXQ.JHhejin, (() => {
+    var b = new PointBulletType();
+    b.shootEffect =EZaoShootEffect;
+    b.hitEffect = Fx.dynamicSpikes.wrap(Pal.redLight, 60);
+    b.smokeEffect = Fx.smokeCloud;
+    b.trailEffect = EZaoTrailEffect(Pal.bulletYellowBack,Pal.bulletYellow);
+    b.despawnEffect = Fx.none;
+    b.reloadMultiplier = 1.7; //装弹速
+    b.trailSpacing = 20;
+    b.hitSound = Sounds.railgun;//击中声音
+    b.damage = 500;
+    b.buildingDamageMultiplier = 0.2;
+    b.speed = 58 * 8;
+    b.hitShake = 6;
+    b.ammoMultiplier = 1;
+    b.status = StatusEffects.electrified;//麻痹状态
+    b.statusDuration = 30;
+    b.fragBullets = 5;
+    b.despawnSound = CreatorsSound.loadSound("none");//Sounds.plasmaboom
+    b.fragBullet =
+        ((() => {
+            const b = new PointBulletType();
+            b.despawnSound = CreatorsSound.loadSound("none");//自定义音效
+            b.collidesAir = true;
+             b.trailEffect =Fx.none;
+            b.splashDamageRadius = 16;
+            b.splashDamage = 1300;
+            b.buildingDamageMultiplier = 0.2;
+            b.hitEffect = Fx.none
+            b.despawnEffect = DrawS.EZaoEffect;
+            b.lifetime = 12;
+            b.speed = 8;
+            b.status = StatusEffects.electrified;//麻痹状态
+            b.statusDuration = 40;
+            return b;
+        })());
+    return b;
+})(),)
 xipao.health = 6500;
 xipao.size = 4;
 xipao.ammoPerShot = 2;
@@ -307,6 +370,7 @@ xipao.reload = 500;
 xipao.range = 70*8;
 xipao.liquidCapacity = 10;
 xipao.shootSound = Sounds.railgun;
+xipao.unitSort = UnitSorts.strongest;//攻击单位时的优先选择/closest/farthest/strongest/weakest
 xipao.consumePower(300);
 xipao.consume(new ConsumeCoolant(9/60));
 //xipao.consumeLiquid(AXQ.molijinghuaye, 0.025);
