@@ -21,7 +21,7 @@
   ],
   "weapons": [
     {
-      "targetAir" :true,
+      "targetAir": true,
       "name": "T6rishi-laser1",
       "shootCone": 30,
       "reload": 80,
@@ -45,8 +45,8 @@
         "shrinkY": 0,
         "drag": -0.003,
         "homingRange": 60,
-       // "hittable": false, //被激光点防击中开关
-       "collidesAir": true,
+        // "hittable": false, //被激光点防击中开关
+        "collidesAir": true,
         "keepVelocity": false,
         "splashDamageRadius": 25,
         "splashDamage": 15,
@@ -89,7 +89,7 @@
       }
     },
     {
-      "targetAir" :true,
+      "targetAir": true,
       "name": "T6rishi-laser2",
       "top": false,
       "shootCone": 30,
@@ -125,7 +125,7 @@
       }
     },
     {
-      "targetAir" :true,
+      "targetAir": true,
       "shootCone": 30,
       "shadow": 0, //武器贴图阴影大小
       "mirror": true, //镜像
@@ -156,7 +156,7 @@
         //"hittable" :false,//被激光点防击中开关
         "collidesTiles": true,
         "splashDamageRadius": 70,
-        "splashDamage": 40,
+        "splashDamage": 140,
         "backColor": "ff8e1d",
         "frontColor": "fff890",
         "lightning": 2,
@@ -196,11 +196,11 @@
         "knockback": 0.8,
         "lifetime": 60,
         "speed": 5,
-       // "hittable": false, //被激光点防击中开关
+        // "hittable": false, //被激光点防击中开关
         "damage": 90,
         "width": 50,
         "height": 50,
-        "collidesAir":true,
+        "collidesAir": true,
         "collides": true,
         "ammoMultiplier": 2,
         "splashDamageRadius": 80,
@@ -230,7 +230,7 @@
           "width": 20,
           "height": 20,
           //"hittable" :false,//被激光点防击中开关
-         // "collidesTiles": false,
+          // "collidesTiles": false,
           "splashDamageRadius": 70,
           "splashDamage": 70,
           "backColor": "ff8e1d",

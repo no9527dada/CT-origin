@@ -314,7 +314,7 @@ public class CTItem {
             heatCapacity = 0f;//低温
             effect = StatusEffects.melting;//状态：融化燃烧
         }};
-        liziye = new Liquid("liziye",Color.valueOf("ff0000")){{
+        liziye = new Liquid("liziye",Color.red){{
             heatCapacity = 0f;
             temperature = 2f;
             flammability = 2f;

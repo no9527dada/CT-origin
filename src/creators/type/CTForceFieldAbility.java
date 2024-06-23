@@ -80,10 +80,10 @@ public class CTForceFieldAbility extends Ability {
     @Override
     public void draw(Unit unit){
         checkRadius(unit);
-
+        var c1 = new Color();
         if(unit.shield > 0){
             Draw.z(Layer.shields);
-            Draw.color(Color.valueOf("ff0000").shiftHue((float) ((Time.time * 0.2) + (1 * (360 / 16)))), Color.white, Mathf.clamp(this.alpha));//变色
+            Draw.color(c1.set(Color.red).shiftHue((float) ((Time.time * 0.2) + (1 * (360 / 16)))), Color.white, Mathf.clamp(this.alpha));//变色
             if (Core.settings.getBool("animatedshields")) {
                 Fill.poly(unit.x, unit.y, 6, realRad);
             }else{

@@ -760,4 +760,4 @@ exports.weixiudian =
 require('BlocksLibes/zhiliaoyi');
 require('BlocksLibes/jianshangyi');
 require('BlocksLibes/geshangyi');
-
+require('BlocksLibes/fanghuyi');

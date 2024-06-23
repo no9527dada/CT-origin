@@ -11,6 +11,7 @@ import arc.struct.Seq;
 import arc.util.Time;
 import arc.util.Timer;
 import creators.type.CT2PlanetDialog;
+import creators.type.CTSpawnDraw;
 import creators.type.CTUnitSpawnAbility;
 import creators.type.CTplanet;
 import creators.type.abomb4.DsShaders;
@@ -172,7 +173,10 @@ public class Creators extends Mod {
         //new WaveSpawner();//刷怪圈显示  暂时没用
         new CTUnitSpawnAbility();//单位生产单位时移除动画效果
         //new CTPlacementFragment();
+        //增加敌人寻路显示 //显示怪物路径
 
+        CTSpawnDraw.init();
+        CTSpawnDraw.setEnable2(true, true, true);
         //檢測更新
         Events.on(EventType.ClientLoadEvent.class, e -> Timer.schedule(CTUpdater::checkUpdate, 4));
 
@@ -216,13 +220,13 @@ public class Creators extends Mod {
         });
 
         //区块名显示
-        CT2PlanetDialog planet2 = new CT2PlanetDialog();
+/*        CT2PlanetDialog planet2 = new CT2PlanetDialog();
         PlanetDialog planet = Vars.ui.planet;
         planet.shown(() -> {
             planet2.show();
             Objects.requireNonNull(planet);
             Time.runTask(1.0F, planet::hide);
-        });
+        });*/
         //方块显示图标
         Events.on(EventType.ClientLoadEvent.class, e -> 选择方块显示图标());
         Events.on(EventType.ClientLoadEvent.class, e -> {

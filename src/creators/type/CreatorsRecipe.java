@@ -1,10 +1,10 @@
 package creators.type;
 
-import arc.graphics.g2d.TextureRegion;
-import mindustry.type.*;
+import mindustry.type.ItemStack;
+import mindustry.type.LiquidStack;
 
-import static mindustry.type.ItemStack.*;
-
+import static mindustry.type.ItemStack.with;
+//多合成的配方代码
 public class CreatorsRecipe{
 	public final InputContents input;
 	public final OutputContents output;

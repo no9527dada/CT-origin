@@ -336,7 +336,7 @@ xipao2.ammo(
                 b.lifetime = 12;
                 b.speed = 8
                 b.status = status.ionBurningEffect1;
-                b.statusDuration = 50;
+                b.statusDuration = 120;
                 return b;
             })());
         return b;

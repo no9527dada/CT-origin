@@ -294,7 +294,38 @@ exports.stun = (() => {
     a.speedMultiplier = 0
     return a;
 })()
-
+exports.fanghu = (() => {
+    const v = new JavaAdapter(StatusEffect, {}, "fanghu");
+    v.speedMultiplier = 1.2;//移速
+    v.healthMultiplier = 2.5;//血量倍率
+     v.damage = -3000/60;//负数是回血，每秒3000血
+    v.effect = new Effect(38, cons(e => {
+        const radius = 2 * 8 * 1.25;
+        Draw.color(Color.valueOf("ff0000"));
+        Lines.stroke(e.fout() + 0.2);
+        Angles.randLenVectors(e.id, 2, 1 + 20 * e.fout(), e.rotation, 120, (x, y) => {
+            Lines.circle(e.x + x, e.y + y, 1 + e.fin() * 3);
+            Drawf.tri(e.x + x, e.y + y, e.fslope() * 3 + 1, e.fslope() * 3 + 1, Mathf.angle(x, y));
+        });
+        Draw.color(Color.valueOf("#ff0000"));
+    
+        Angles.randLenVectors(e.id, 1, radius * e.fout(), 0, 360, new Floatc2({
+            get: (x, y) => {
+                var angle = Angles.angle(0, 0, x, y);
+                var trnsx = Angles.trnsx(angle, 2);
+                var trnsy = Angles.trnsy(angle, 2);
+                var trnsx2 = Angles.trnsx(angle, 4);
+                var trnsy2 = Angles.trnsy(angle, 4);
+                Fill.circle(
+                    e.x + trnsx + x + trnsx2 * e.fout(),
+                    e.y + trnsy + y + trnsy2 * e.fout(),
+                    e.fslope() * 0.8
+                );
+            }
+        }));
+    }));
+    return v;
+})();
 /*
 源码 方便查询：
 public class StatusEffects implements ContentList{

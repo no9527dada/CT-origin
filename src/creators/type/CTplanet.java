@@ -24,7 +24,7 @@ public class CTplanet{
             );
             atmosphereColor = Color.valueOf("9F35FF");
             atmosphereRadIn = 0.05f;
-            atmosphereRadOut = 0.2f;
+            atmosphereRadOut = 0.4f;
             localizedName = Core.bundle.format("creators.GThree");
             orbitRadius = 40;
             alwaysUnlocked = true;
