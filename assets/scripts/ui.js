@@ -16,24 +16,8 @@
             t.top().left().marginTop(155);
         }));
     })); */
-//缩放
-Vars.renderer.minZoom = 0.5;
-Vars.renderer.maxZoom = 32;
-//蓝图大小
-Vars.maxSchematicSize = 128;
-//变速  游戏速度  游戏调速 游戏变速
-Events.on(EventType.ClientLoadEvent, e => {
-    let first = true;
-    Vars.ui.settings.game.sliderPref(Core.bundle.format("9527xiao"), 100, 100, 10000, 1000, /*默认,最小,最大,每次多少*/i => {
-        if (first) {
-            first = false;
-            return;
-        };
-        let s = i / 100;
-        Time.setDeltaProvider(() => Math.min(Core.graphics.getDeltaTime() * 60 * s, 3 * s));
-        return i / 100 + "X";
-    });
-});
+
+
 
 // Events.on(EventType.ClientLoadEvent, e => {
 //     let first2 = true;
@@ -48,42 +32,7 @@ Events.on(EventType.ClientLoadEvent, e => {
 // });
 
 
-//---------下列代码由 @miner 提供授权仅在（创世神）使用，任何人不得擅自盗取，要使用需通知作者：@9527或者@miner
 
-//核心物资显示 #1
-const myCoreItems = require("UI/myCoreItems2");
-Events.on(EventType.ClientLoadEvent, e => {
-    let ui = Vars.ui;
-    let hudGroup = ui.hudGroup;
-    let hudfrag = ui.hudfrag;
-    let settings = Core.settings;
-
-    myCoreItems.load();
-
-    let myItems = myCoreItems.rebuild();
-    let collapser = hudGroup.find("coreinfo").getChildren().get(1).getChildren().get(0);
-    let oldItems = collapser.getChildren().get(0);
-
-    let change = () => {
-        let s = settings.getBool("mycoreitems9527", false);
-        let set = s ? myItems : oldItems;
-        collapser.setTable(set);
-    }
-
-
-    collapser.setCollapsed(boolp(() => !(hudfrag.shown && settings.getBool("coreitems", true))));
-    if (Vars.mobile) collapser.touchable = Touchable.disabled;
-
-
-    if (Vars.mobile) ui.settings.graphics.checkPref("coreitems", true);//原版的核心显示默认开启或关闭
-    ui.settings.graphics.checkPref("mycoreitems9527", false, s => change());//默认开启或关闭
-
-    change();
-});
-
-Events.on(ResetEvent, e => {
-    myCoreItems.resetUsed();
-});
 
 
 // Vars.ui.hudGroup.fill(cons(t => {
@@ -557,33 +506,48 @@ Events.on(EventType.ClientLoadEvent, cons(e => {
         }, false, () => shown).left();
         table.top().left().marginTop(110);
     }));
-    Vars.ui.hudGroup.fill(cons(cundang => {
-        function exportData(fi) {
-            Vars.ui.settings.exportData(fi)
-        }
-        cundang.button(Icon.upload, Styles.defaulti, run(() => {
-            if (Vars.ios) {
-                let file = Core.files.local("mindustry-data-export.zip");
-                try {
-                    exportData(file);
-                } catch (e) {
-                    Vars.showException(e)
-                }
-                Vars.platform.shareFile(file)
-            } else {
-                Vars.platform.showFileChooser(false, "zip", file => {
-                    try {
-                        exportData(file);
-                        Vars.showInfo("@data.exported");
-                    } catch (e) {
-                        // e.printStackTrace()
-                        // Vars.showException(e)
-                    }
-                });
-            }
-        })).width(40).height(40).name("ores").tooltip("@data.export");//存档
-        cundang.top().left().marginTop(110).marginLeft(40);
-    }));
+       Vars.ui.hudGroup.fill(cons(cundang => {//存档
+           if (
+               //在加载了自动存档模组后执行自动存档
+               Vars.mods.locateMod("auto-saver") == null
+               ) {
+               //原版的存档方式
+               function exportData(fi) {
+                   Vars.ui.settings.exportData(fi)
+               }
+               cundang.button(Icon.upload, Styles.defaulti, run(() => {
+                   if (Vars.ios) {
+                       let file = Core.files.local("mindustry-data-export.zip");
+                       try {
+                           exportData(file);
+                       } catch (e) {
+                           Vars.showException(e)
+                       }
+                       Vars.platform.shareFile(file)
+                   } else {
+                       Vars.platform.showFileChooser(false, "zip", file => {
+                           try {
+                               exportData(file);
+                               Vars.showInfo("@data.exported");
+                           } catch (e) {
+                               // e.printStackTrace()
+                               // Vars.showException(e)
+                           }
+                       });
+                   }
+               })).width(40).height(40).name("ores").tooltip("@data.export");
+
+           } else {
+               //自动存档方式
+               let  mod = Vars.mods.locateMod("auto-saver");
+               let  dialog = Reflect.get(mod.main, "recoverDialog");
+               cundang.button(Icon.upload, Styles.defaulti, run(() => {
+                    dialog.show();
+                   })).width(40).height(40).name("ores").tooltip("@data.export");
+               //  Reflect.invoke(?????)
+           }
+           cundang.top().left().marginTop(110).marginLeft(40);
+       }));
 }));
 
 Events.on(EventType.ClientLoadEvent, cons(e => {

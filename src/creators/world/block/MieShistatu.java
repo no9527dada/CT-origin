@@ -11,7 +11,7 @@ import mindustry.game.Team;
 import mindustry.gen.Unit;
 import mindustry.graphics.Pal;
 import mindustry.type.StatusEffect;
-
+//灭世神的暴走状态
 public class MieShistatu {
 
     public static StatusEffect fury;

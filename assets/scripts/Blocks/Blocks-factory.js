@@ -2940,6 +2940,7 @@ exports.weichenshoujiqi =
         a.updateEffect = Fx.lightningCharge;
         a.updateEffectChance = 0.2;
         a.consumePower(5.333343);
+        a.buildCostMultiplier = 0;
         a.outputItem = new ItemStack(
             chuangshiweichen, 1,
         );

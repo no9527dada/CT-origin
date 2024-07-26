@@ -9,7 +9,7 @@ import mindustry.ui.dialogs.LoadDialog;
 import mindustry.ui.dialogs.SaveDialog;
 
 import static mindustry.Vars.*;
-
+//esc键显示：
 public class CTPausedDialog extends BaseDialog {
     private SaveDialog save = new SaveDialog();
     private LoadDialog load = new LoadDialog();

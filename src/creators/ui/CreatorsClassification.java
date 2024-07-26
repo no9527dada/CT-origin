@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import static creators.draw.CreatorsStyles.*;
 import static mindustry.game.EventType.UnlockEvent;
 import static mindustry.game.EventType.WorldLoadEvent;
-
+//分类栏ui
 public class CreatorsClassification {
     public static TextureRegionDrawable clearIcon = new TextureRegionDrawable(Core.atlas.find("clear"));
 

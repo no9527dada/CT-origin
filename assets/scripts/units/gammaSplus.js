@@ -136,7 +136,7 @@ gammaSplus.hitSize = 20;
 //gammaSplus.engineColor =  Color.valueOf("b67bff");//这是调颜色
 gammaSplus.physics = false;//关闭碰撞
 gammaSplus.buildRange = 220 + 8 * 8;//默认建造距离27.5格
-gammaSplus.abilities.add(CTForceFieldAbility(40, 3, 700, 600));//彩色护盾
+gammaSplus.abilities.add(CT2ForceFieldAbility(40, 3, 700, 600));//彩色护盾
 gammaSplus.abilities.add(new RepairFieldAbility(5, 60 * 3, 1));//自身回血
 
 gammaSplus.parts.add(
@@ -330,7 +330,7 @@ CT_core3Unit.weapons.add(
         return w;
     })()
 );
-CT_core3Unit.abilities.add(CTForceFieldAbility(4 * 8, 1800 / 60, 50000, 8 * 60));//彩色护盾
+CT_core3Unit.abilities.add(CT2ForceFieldAbility(4 * 8, 1800 / 60, 50000, 8 * 60));//彩色护盾
 CT_core3Unit.constructor = prov(() => extend(UnitTypes.emanate.constructor.get().class, {}));
 exports.CT_core3Unit = CT_core3Unit;
 
@@ -361,7 +361,7 @@ CT_core3Unit2.killable = false;
 CT_core3Unit2.targetable = false;
 CT_core3Unit2.mineWalls = true;
 CT_core3Unit2.buildRange = 220 + 13 * 8
-CT_core3Unit2.abilities.add(CTForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
+CT_core3Unit2.abilities.add(CT2ForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
 CT_core3Unit2.setEnginesMirror(new UnitType.UnitEngine(7.5, -7.5, 2.3, 315));//(float x, float y, float radius, float rotation)
 CT_core3Unit2.weapons.add(
     (() => {
@@ -429,7 +429,7 @@ CT_core3Unit2.mineWalls = true;
 CT_core3Unit2.buildRange = 220 + 13 * 8
 
 
-CT_core3Unit2.abilities.add(CTForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
+CT_core3Unit2.abilities.add(CT2ForceFieldAbility(4 * 8, 5000 / 60, 50000, 2 * 60));//彩色护盾
 CT_core3Unit2.setEnginesMirror(new UnitType.UnitEngine(7.5, -7.5, 2.3, 315));//(float x, float y, float radius, float rotation)
 CT_core3Unit2.weapons.add(
     (() => {
