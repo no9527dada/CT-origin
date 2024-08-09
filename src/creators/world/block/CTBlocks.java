@@ -1,10 +1,15 @@
 package creators.world.block;
 
+import CtCoreSystem.CoreSystem.type.VXV.powerShowBlock;
+import arc.Core;
 import arc.graphics.Color;
+import arc.scene.event.Touchable;
+import arc.scene.ui.Label;
 import arc.struct.EnumSet;
 import arc.struct.Seq;
 import creators.Creators;
 import mindustry.content.*;
+import mindustry.core.UI;
 import mindustry.entities.UnitSorts;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.MultiEffect;
@@ -17,6 +22,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.type.LiquidStack;
 import mindustry.type.UnitType;
+import mindustry.ui.Styles;
 import mindustry.world.Block;
 import mindustry.world.blocks.campaign.Accelerator;
 import mindustry.world.blocks.defense.*;
@@ -41,6 +47,9 @@ import mindustry.world.consumers.ConsumeItemRadioactive;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
+import java.util.Iterator;
+
+import static mindustry.type.Category.power;
 import static mindustry.type.ItemStack.with;
 
 public class CTBlocks{
@@ -77,7 +86,7 @@ public class CTBlocks{
     additiveReconstructor, multiplicativeReconstructor, exponentialReconstructor, tetrativeReconstructor,
     repairPoint, repairTurret,
 
-    payloadConveyor, payloadRouter,
+    payloadConveyor, payloadRouter,powerShowBlock,
 
     message, switchBlock, microProcessor, logicProcessor, hyperProcessor, largeLogicDisplay, logicDisplay, memoryCell, memoryBank,
 
@@ -468,7 +477,36 @@ static {
             consumeItem(Items.titanium);
             consumeLiquid(Liquids.water, 12f / 60f);
         }};
+        powerShowBlock = new powerShowBlock("powerShowBlock") {//电量查看器
+            public static void loadPowerShow() {
+                Core.scene.find("minimap/position").parent.fill((t) -> {
+                    Label label = new Label("");
+                    label.update(() -> {
+                        label.setText(() -> {
+                            StringBuilder text = new StringBuilder();
+                            Iterator var1 = powerShowBuild.iterator();
 
+                            while(var1.hasNext()) {
+                                powerShowBuild build = (powerShowBuild)var1.next();
+                                text.append("<").append(build.message.toString()).append("> ").append(Core.bundle.get("category.power") + ": ");
+                                text.append(build.power.graph.getPowerBalance() > 0.0F ? "+" : "").append(UI.formatAmount((long)(build.power.graph.getPowerBalance() * 60.0F)));
+                                text.append("\n");
+                            }
+                            return text;
+                        });
+                    });
+                    t.row();
+                    t.add(label).touchable(Touchable.disabled).style(Styles.outlineLabel);
+                    t.right();
+                });
+            }{
+                health = 10;
+                size = 1;
+                solid= targetable = false;//被单位攻击？
+                requirements(power, with(
+                        Items.silicon,  20,Items.graphite, 20
+                ));
+            }};
         blastMixer = new GenericCrafter("blast-mixer"){{
             requirements(Category.crafting, with(Items.lead, 30, Items.titanium, 20));
             hasItems = true;

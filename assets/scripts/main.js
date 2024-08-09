@@ -31,7 +31,8 @@
                      不见满街漂亮妹，哪个归得程序员？
 
 */
-if(Vars.mods.locateMod("coreunloader-mod")==null){
+   if(Vars.mods.locateMod("coreunloader-mod") ==null){
+if(Vars.mods.locateMod("ctcoresystem")!=null){
 //Java核心系统  勿删！//
 function CreatorsPackage(name) {
 	var p = Packages.rhino.NativeJavaPackage(name, Vars.mods.mainLoader());
@@ -44,12 +45,10 @@ importPackage(CreatorsJavaPack.draw)
 importPackage(CreatorsJavaPack.type)
 importPackage(CreatorsJavaPack.world.block)
 
-
 CT2ModJS.RunName.add("creators")
 CT2ModJS.DawnRun.add(run(() => {
 //***********************************/1
 //require('Attribute');
-
  require('xingqiu');//星球
 require('floor');//地板
 require('Blocks/Blocks-ChuanShu');//物流
@@ -195,6 +194,6 @@ CTBlocks.shockMine.buildCostMultiplier = 5;
 }));
 
 }
-
+}
 
 

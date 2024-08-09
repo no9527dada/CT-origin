@@ -1348,6 +1348,8 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         ),
 
     });
+
+
     lib.addToResearch(CTBlocks.powerNode, {//小电节点
         parent: CTBlocks.combustionGenerator.name,
         requirements: ItemStack.with(
@@ -1356,6 +1358,12 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         ),
 
     });
+       lib.addToResearch(CTBlocks.powerShowBlock, {
+              parent: CTBlocks.powerNode.name,
+                      requirements: ItemStack.with(
+                      Items.silicon,  600,Items.graphite, 500
+                      ),
+          });
     lib.addToResearch(CTBlocks.powerNodeLarge, {//电节点
         parent: CTBlocks.powerNode.name,
         requirements: ItemStack.with(
@@ -2683,6 +2691,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
         ),
     });
     //电力
+
     lib.addToResearch(dianxiangan, {
         parent: CTBlocks.powerNodeLarge.name,
     });

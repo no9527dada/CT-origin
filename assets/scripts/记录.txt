@@ -37,7 +37,7 @@ loopSound = Sounds.none;
     /** 循环声音音量，1为最大 */
   loopSoundVolume = 0.5f;
 
-
+scaleLife为true的就会根据炮台的射程来缩放健康
 
 
   Vars.state.rules.waveTeam.cores().size 控制台使用

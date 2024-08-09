@@ -24,7 +24,7 @@ It is recommended to develop more logistical resources
 Use launch pads to provide a steady stream of resources
 ------------------创世神起源
 ",
-  "version": "3.01",
+  "version": "3.03",
   "minGameVersion": 146,
   "java":true,
   "dependencies": ["ctcoresystem"]

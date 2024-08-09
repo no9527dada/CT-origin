@@ -13,7 +13,7 @@ const shieldConsumer = (paramEntity) => cons(trait => {
     }
 });
 
-const fanghublockType = extend(ForceProjector, "fanghuyi", {});//加速仪
+const fanghublockType = extend(ForceProjector, "fanghuyi", {});//防护仪
 fanghublockType.buildVisibility = BuildVisibility.shown;
 fanghublockType.category = Category.effect;
 fanghublockType.size = 6;
@@ -28,7 +28,7 @@ fanghublockType.update = true;
 fanghublockType.targetable = true;
 fanghublockType.hasPower = true;
 fanghublockType.hasLiquids = false;
-fanghublockType.phaseUseTime = 30 * 60;//30秒消耗1个资源
+fanghublockType.phaseUseTime = 60 * 60*3;//3分消耗1个资源
 fanghublockType.shieldHealth = 0;
 fanghublockType.phaseShieldBoost = 0;
 fanghublockType.radius = 0 * 8;//初始范围0

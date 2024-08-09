@@ -18,6 +18,7 @@ const {
 const guanbi = new Color.valueOf("ffffff");
 const kaiqi = new Color.valueOf("2c2c2c");
 const heDian = CreatorsSound.loadSound("shuiDi");
+
 exports.dianxiangan =
     (() => {
         const a = extend(PowerNode, "1dianxiangan", {}); //能量节点

@@ -7,7 +7,7 @@ import arc.util.Time;
 import mindustry.ui.dialogs.BaseDialog;
 
 
-public class creatorsInfoDialog {
+public class CreatorsInfoDialog {
     public static BaseDialog hghghg;
 
 
