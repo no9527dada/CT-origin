@@ -116,7 +116,7 @@ Events.on(EventType.ClientLoadEvent, cons(e => {
     })).size(210, 64);
     independent.addCloseListener();//按esc关闭
 
-    //恰饭↓↓↓↓↓
+    //难度↓↓↓↓↓
     var love = new BaseDialog("[yellow]Creators[#7bebf2] " + version + "[] Adapt 140+" + "\n" + framer);
     love.buttons.button("@close", run(() => {
         love.hide();
@@ -128,7 +128,6 @@ Events.on(EventType.ClientLoadEvent, cons(e => {
         table.row();
         table.image().color(Color.valueOf("69dcee")).fillX().height(3).pad(9);
         table.row();
-        // table.image(Core.atlas.find("creators-nandu")).height(955).width(477).pad(3);//捐赠
         table.image(Core.atlas.find("creators-nandu")).height(210).width(440).pad(3);//难度
         table.row();
         table.button("@settings", run(() => {
@@ -397,7 +396,7 @@ Events.on(EventType.ClientLoadEvent, cons(e => {
               })).size(210, 64);
               t.row(); */
 
-        t.button(Core.bundle.format("9527love"), run(() => {
+        t.button(Core.bundle.format("9527love"), run(() => {//难度调整公示
             love.show();
         })).size(210, 64);
         /*     let t = Vars.turnDuration - Universe.turnCounter;

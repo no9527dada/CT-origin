@@ -1,5 +1,7 @@
 package creators.world.block;
 
+import CtCoreSystem.CoreSystem.type.Ovulam5480.CTMendProjector2;
+import CtCoreSystem.CoreSystem.type.Ovulam5480.CTOverdriveProjector;
 import CtCoreSystem.CoreSystem.type.VXV.powerShowBlock;
 import arc.Core;
 import arc.graphics.Color;
@@ -66,7 +68,7 @@ public class CTBlocks{
 
     shieldedWall,
 
-    mender, mendProjector, overdriveProjector, overdriveDome, forceProjector, shockMine,
+    mender, mendProjector, overdriveProjector, overdriveDome, jiasu3, jiasu4, jiasu5, jiasu6,xiuli,forceProjector, shockMine,
 
     conveyor, titaniumConveyor, plastaniumConveyor, armoredConveyor, distributor, junction, itemBridge, phaseConveyor, sorter, invertedSorter, router,
     overflowGate, underflowGate, massDriver,
@@ -758,7 +760,7 @@ static {
             size = 2;
         }};
 
-        mender = new MendProjector("mender"){{
+        mender = new CTMendProjector2("mender"){{
             requirements(Category.effect, with(Items.lead, 30, Items.copper, 25));
             consumePower(0.3f);
             size = 1;
@@ -771,7 +773,7 @@ static {
             consumeItem(Items.silicon).boost();
         }};
 
-        mendProjector = new MendProjector("mend-projector"){{
+        mendProjector = new CTMendProjector2("mend-projector"){{
             requirements(Category.effect, with(Items.lead, 100, Items.titanium, 25, Items.silicon, 40, Items.copper, 50));
             consumePower(1.5f);
             size = 2;
@@ -783,7 +785,7 @@ static {
             consumeItem(Items.phaseFabric).boost();
         }};
 
-        overdriveProjector = new OverdriveProjector("overdrive-projector"){{
+        overdriveProjector = new CTOverdriveProjector("overdrive-projector"){{
             requirements(Category.effect, with(Items.lead, 100, Items.titanium, 75, Items.silicon, 75, Items.plastanium, 30));
             consumePower(3.50f);
             speedBoost = 1.45f;
@@ -792,7 +794,7 @@ static {
             consumeItem(Items.silicon).boost();
         }};
 
-        overdriveDome = new OverdriveProjector("overdrive-dome"){{
+        overdriveDome = new CTOverdriveProjector("overdrive-dome"){{
             requirements(Category.effect, with(Items.lead, 200, Items.titanium, 130, Items.silicon, 130, Items.plastanium, 80, Items.surgeAlloy, 120));
             consumePower(10f);
             size = 3;
@@ -803,7 +805,11 @@ static {
             //hasBoost = true;
             consumeItems(with(Items.phaseFabric, 2)).boost();
         }};
-
+        jiasu3=new CTOverdriveProjector("jiasu3"){{chuxi=2f; 颜色=Color.valueOf ("00ff07");}};
+        jiasu4=new CTOverdriveProjector("jiasu4"){{chuxi=2f; 颜色=baseColor;颜色=Color.valueOf ("0dd7f5");}};
+        jiasu5=new CTOverdriveProjector("jiasu5"){{chuxi=3f; 颜色=baseColor;颜色=Color.valueOf ("ff2c39");}};
+        jiasu6=new CTOverdriveProjector("jiasu6");
+        xiuli=new CTMendProjector2("xiuli1");
         forceProjector = new ForceProjector("force-projector"){{
             requirements(Category.effect, with(Items.lead, 100, Items.titanium, 75, Items.silicon, 125));
             size = 3;

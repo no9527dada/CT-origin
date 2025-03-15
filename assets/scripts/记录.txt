@@ -82,6 +82,8 @@ navalFortress.name = 海军要塞
 }
 单位的接口：
 {
+     drownTimeMultiplier = 4f;//淹没时间倍率
+    rotateSpeed = 1.8f;//转向速度
     mineWalls = true,墙上采矿
      mineFloor = true;地板采矿
     circleTarget = true //单位会围着攻击目标绕圈攻击

@@ -10,6 +10,7 @@ import arc.struct.ObjectSet;
 import arc.struct.Seq;
 import arc.util.Time;
 import creators.type.CTplanet;
+import creators.type.kuiShan;
 import creators.ui.CreatorsClassification;
 import creators.ui.CreatorsInfoDialog;
 import creators.ui.CreatorsInfoDialog2;
@@ -17,19 +18,24 @@ import creators.ui.CreatorsInfoDialog3;
 import creators.world.block.*;
 import creators.xvx.XVXDawnResearchDialog.CTPausedDialog;
 import mindustry.Vars;
+import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.pattern.ShootAlternate;
 import mindustry.game.EventType;
 import mindustry.game.Team;
 import mindustry.graphics.Layer;
 import mindustry.mod.Mod;
 import mindustry.mod.Scripts;
+import mindustry.type.Category;
 import mindustry.type.Planet;
 import mindustry.type.UnitType;
 import mindustry.ui.dialogs.BaseDialog;
 import mindustry.ui.dialogs.PausedDialog;
 import mindustry.world.Block;
+import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.blocks.distribution.Sorter;
 import mindustry.world.blocks.sandbox.ItemSource;
 import mindustry.world.blocks.sandbox.LiquidSource;
+import mindustry.world.meta.BuildVisibility;
 import rhino.Context;
 import rhino.Scriptable;
 import rhino.ScriptableObject;
@@ -37,13 +43,15 @@ import rhino.ScriptableObject;
 import java.util.Objects;
 
 import static CtCoreSystem.CoreSystem.compareVersions.compareVersions;
+import static CtCoreSystem.CoreSystem.type.CTColor.C;
 import static arc.Core.camera;
 import static mindustry.Vars.*;
+import static mindustry.type.ItemStack.with;
 
 public class Creators extends Mod {
 
 
-    static String MinVersion = "1.05";
+    static String MinVersion = "1.13";
 
     public Creators() {
         //地图禁用建筑隐藏
@@ -59,7 +67,7 @@ public class Creators extends Mod {
             if (Vars.mods.locateMod("ctcoresystem") != null) {
                 if (compareVersions(Vars.mods.getMod("ctcoresystem").meta.version, MinVersion) >= 0) {
                     //载入物品     //载入液体
-                    CTplanet.load();
+                    //CTplanet.load();
                     CTItem.load();
                     CTUnitTypes.load();
                     CTBlocks.load();
@@ -148,6 +156,7 @@ public class Creators extends Mod {
                 }
             }
             r.bannedUnits.addAll(U);
+            r.hideBannedBlocks = false;
         };
     }
 
@@ -158,6 +167,7 @@ public class Creators extends Mod {
 
     @Override
     public void init() {
+
         if (Vars.mods.locateMod("coreunloader-mod") != null) {
             CreatorsInfoDialog.show();
         } else {

@@ -61,7 +61,7 @@ SSY3.rotateTime = 1 * 60
 
 
 
-/*
+
 const GThree = new JavaAdapter(Planet, {
     load() {
         this.meshLoader = prov(() => new HexMesh(GThree, 6));
@@ -93,8 +93,8 @@ GThree.landCloudColor = new Color(1, 1, 1, 0.5);
 GThree.atmosphereColor = new Color(0.3, 0.7, 1.0);
 
 GThree.defaultCore = CTBlocks.coreShard;
-GThree.unlockedOnLand.add(CTBlocks.coreShard);*/
-//GThree.hiddenItems.addAll(Items.serpuloItems,Items.erekirItems)/* .removeAll(Items.erekirItems) */;
+GThree.unlockedOnLand.add(CTBlocks.coreShard);
+//GThree.hiddenItems.addAll(Items.serpuloItems,Items.erekirItems)/* .removeAll(Items.erekirItems) ;
 
 /* GThree.ruleSetter = r => {
     r.waveTeam = Team.malis;
@@ -112,7 +112,7 @@ GThree.unlockedOnLand.add(CTBlocks.coreShard);*/
     //r. dynamicColor = new Color(0.74, 0.49, 1,0.2)//已经探索过的区域颜色
     r.dynamicColor = new Color(0, 0, 0, 0.2);
 }; */
-exports.NaMeiXing = CTplanet.CTGThree;
+exports.NaMeiXing = GThree//CTplanet.CTGThree;
 const { whiteList } = require('white_list')//白名单
 Creators.setPlanet(CTplanet.CTGThree, whiteList);
 

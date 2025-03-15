@@ -16,7 +16,7 @@ const {
     Maps198, Maps196, Maps110, Maps193, Maps147, Maps45,
     Maps237, Maps155, Maps152, Maps52, Maps168, Maps27,
     Maps44, Maps23, Maps87, Maps64, Maps232,Maps225,Maps37,
-
+    Maps29,
     groundZero, saltFlats, frozenForest, biomassFacility,
     craters, ruinousShores, windsweptIslands, stainedMountains,
     extractionOutpost, coastline, navalFortress,
@@ -173,6 +173,14 @@ Events.on(ContentInitEvent, cons(e => {
         parent: 'coastline-CT',
         objectives: Seq.with(
             new Objectives.SectorComplete(coastline),
+        ),
+    });
+}));
+Events.on(ContentInitEvent, cons(e => {
+    lib.addToResearch(Maps29, {//星月海湾
+        parent: 'navalFortress-CT',
+        objectives: Seq.with(
+            new Objectives.SectorComplete(navalFortress),
         ),
     });
 }));

@@ -176,6 +176,12 @@ Maps267.localizedName = Core.bundle.format("LFangZhen");//L方阵
 exports.Maps267 = Maps267;
 
 
+const Maps29 = new SectorPreset("XinYueHaiWan", NaMeiXing, 29);//解锁噩爪
+Maps29.captureWave = 60;//
+Maps29.difficulty = 13;
+Maps29.localizedName = Core.bundle.format("XinYueHaiWan")// "星月海湾";//
+exports.Maps29 = Maps29;
+
 
 
 

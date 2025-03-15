@@ -8,7 +8,7 @@ const {
     monengjing2, monengjing3, buding, chuangshilizi, chuangshishenhun
     , chuangshiweichen, chuangshizhixing, jin, jinfen, molizhi,
     shimoxi, shiying, yuanshencanpian, zhayao, zijing1, zzjinbi,
-      molijinghuaye, moliye, qiangxiaolengqueye,
+    molijinghuaye, moliye, qiangxiaolengqueye,
     zhiwujinghuaye, suan, yuanwan0, dabaoshui, dabaoleng, dabaoshiyou, dabaozhiwujingyou,
     dabaoJHLiquid, dabaojinglianlio, dabaomoli, dabaozhiwu, dabaojingmoli,
     dabaoyedan, zhiwujingyou, jinglianlio, hejinboli, jinhuiboli,
@@ -239,7 +239,7 @@ exports.hunhe3 =
                 }
             },
             setBars() { lib.Health(this) }
-        }); 
+        });
         a.health = 8000;
         a.size = 3;
         a.insulated = true;
@@ -308,8 +308,8 @@ exports.qiang =
         a.buildCostMultiplier = 3;
         a.insulated = true;
         a.absorbLasers = true;
-       // a.lightningChance = 0.25;
-       // a.lightningLength = 64;
+        // a.lightningChance = 0.25;
+        // a.lightningLength = 64;
         a.chanceDeflect = 20;
         a.requirements = ItemStack.with(
             chuangshiweichen, 1,
@@ -391,17 +391,17 @@ exports.radar =
 
 
 
-const jiasu3 = extend(OverdriveProjector, "jiasu3", {}); //微晶超速仪I
-exports.jiasu3 = jiasu3
+//const jiasu3 = extend(OverdriveProjector, "jiasu3", {}); //微晶超速仪I
+exports.jiasu3 = CTBlocks.jiasu3
 
-const jiasu4 = extend(OverdriveProjector, "jiasu4", {}); //微晶超速仪II
-exports.jiasu4 = jiasu4
+//const jiasu4 = extend(OverdriveProjector, "jiasu4", {}); //微晶超速仪II
+exports.jiasu4 = CTBlocks.jiasu4
 
-const jiasu5 = extend(OverdriveProjector, "jiasu5", {}); //微晶超速仪III
-exports.jiasu5 = jiasu5
+//const jiasu5 = extend(OverdriveProjector, "jiasu5", {}); //微晶超速仪III
+exports.jiasu5 = CTBlocks.jiasu5
 
-const jiasu6 = extend(OverdriveProjector, "jiasu6", {}); //迷你微晶超速仪
-exports.jiasu6 = jiasu6
+//const jiasu6 = extend(OverdriveProjector, "jiasu6", {}); //迷你微晶超速仪
+exports.jiasu6 = CTBlocks.jiasu6
 require('BlocksLibes/fanjiasu');
 require('BlocksLibes/fanjiasu2');
 
@@ -590,13 +590,33 @@ exports.jianzaota2 = //建造塔2
         a.consumePower(1200 / 60);
         return a;
     })();
-exports.xiuli1 = //修理
-    (() => {
+exports.xiuli1 = CTBlocks.xiuli; //修理
+   /* (() => {
         const a = extend(MendProjector, "xiuli1", {});
         a.buildVisibility = BuildVisibility.shown;
         a.category = Category.effect;
+       *//* a.buildType = prov(() => {
+            return new JavaAdapter(MendProjector.MendBuild, {
+                draw() {
+                    this.super$draw();
+                    let realRange = this.range + this.phaseHeat * this.phaseRangeBoost;
+                    // let f = 1 - (Time.time / 100) % 1;
+                    // Draw.color(a.baseColor, a.phaseColor,this. phaseHeat);
+                    // Draw.alpha(this.heat * Mathf.absin(Time.time, 50 / Mathf.PI2, 1) * 0.5);
+                    // Draw.rect(a.topRegion, this.x, this.y);
+                    // Draw.alpha(1);
+                    // Lines.stroke((2 * f + 0.2) * this.heat);
+                    // Lines.square(this.x, this.y, Math.min(1 + (1 - f) * a.size * this.tilesize / 2, a.size * this.tilesize / 2));
+                    // Draw.reset();
+                    Draw.color(a.baseColor);
+                   // Lines.stroke(1, color);
+                    Lines.dashCircle(this.x, this.y, realRange);
+                    Draw.reset();
+                }
+            }, a);
+        });*//*
         return a;
-    })();
+    })();*/
 const A7 = lib.createBuildLimit(1);
 exports.xiuli2 = //修理
     (() => {
@@ -747,15 +767,15 @@ exports.weixiudian =
     })();
 
 
-    CTBlocks.hyperProcessor2.requirements = ItemStack.with(
-        Items.copper, 180,
-        Items.lead, 200,
-        guijingti, 435,
-        shimoxi, 220,
-        weijing2, 40,
-    ); CTBlocks.hyperProcessor2.liquidCapacity = 100;
-    CTBlocks.hyperProcessor2.consumeLiquid(moliye, 0.5);
-    CTBlocks.hyperProcessor2.range = 75 * 8;
+CTBlocks.hyperProcessor2.requirements = ItemStack.with(
+    Items.copper, 180,
+    Items.lead, 200,
+    guijingti, 435,
+    shimoxi, 220,
+    weijing2, 40,
+); CTBlocks.hyperProcessor2.liquidCapacity = 100;
+CTBlocks.hyperProcessor2.consumeLiquid(moliye, 0.5);
+CTBlocks.hyperProcessor2.range = 75 * 8;
 //-------------
 require('BlocksLibes/zhiliaoyi');
 require('BlocksLibes/jianshangyi');

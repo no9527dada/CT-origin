@@ -588,8 +588,9 @@ exports.kuoshan2 = (
 
 
 
-const DianHu = extend(PowerTurret, 'dianhu', {})//"霹雳闪"
-DianHu.shootType = (() => {
+const DianHu = extend(PowerTurret, 'dianhu', {})//"霹雳闪"葵伞
+DianHu.shootType =//new kuiShan.kuiShan1()
+  (() => {
     const a = new JavaAdapter(FlakBulletType, {});
     a.lifetime = 40;
     a.absorbable = false;
@@ -603,13 +604,13 @@ DianHu.shootType = (() => {
     a.shootEffect = Fx.none;
     a.smokeEffect = Fx.none;
     return a;
-})()
+})() 
 DianHu.canOverdrive = false;
 DianHu.reload = 35;
 DianHu.shootY = 0;
 DianHu.recoil = 0;
 DianHu.rotateSpeed = 0;
-DianHu.shootCone = 720;//射击瞄准角度
+DianHu.shootCone = 360;//射击瞄准角度
 DianHu.inaccuracy = 360;//精准，精度
 DianHu.consumePower(20);
 DianHu.shootLength = 0;
@@ -625,8 +626,21 @@ DianHu.hasLiquids = false;
 DianHu.liquidCapacity = 0;
 DianHu.shoot.shots = 100;
 DianHu.xRand = 5;
-DianHu.inaccuracy = 360;
 DianHu.coolantUsage = 0;//液体消耗量
+
+// DianHu.consumePower(20);
+// DianHu.inaccuracy = 0;//精准，精度
+// DianHu.reload = 35;
+// DianHu.targetAir = true; //空
+// DianHu.targetGround = false; //地
+// DianHu.shootSound = Sounds.spark;
+// DianHu.health = 260;
+// DianHu.range = 12 * 8;
+// DianHu.size = 3;
+// DianHu.shootY=0;
+// DianHu.recoil = 0;//武器后座
+// DianHu.rotateSpeed = 0;
+// DianHu.shootCone = 360;//射击瞄准角度
 DianHu.requirements = ItemStack.with(
     Items.lead, 400,
     Items.copper, 350,
@@ -639,8 +653,8 @@ DianHu.category = Category.turret;
 exports.DianHu = DianHu;
 
 const DianHu2 = extend(PowerTurret, 'dianhu2', {})//"霹雳闪2"
-DianHu2.shootType = (() => {
-
+DianHu2.shootType = shootType =
+(() => {
     const a = new JavaAdapter(FlakBulletType, {});
     a.lifetime = 20;
     a.absorbable = false;
@@ -1087,8 +1101,8 @@ const LanSeS = extend(PowerTurret, 'LanSeSpuer', {})
 LanSeS.shootType = (
     (() => {
         const b = new ShrapnelBulletType()
-        b.length = 45 * 8;
-        b.damage = 140;
+        b.length = 47 * 8;
+        b.damage = 180;
         b.width = 25;
         b.chargeEffect = new MultiEffect(Fx.lancerLaserCharge, Fx.lancerLaserChargeBegin);
         b.buildingDamageMultiplier = 0.15;
@@ -1105,14 +1119,14 @@ LanSeS.targetGround = true; //地
 LanSeS.targetAir = false;//空
 LanSeS.range = 44 * 8;
 LanSeS.liquidCapacity = 10; //液体容量
-LanSeS.consumePower(1700 / 60);
+LanSeS.consumePower(900 / 60);
 //LanSeS.outputsPower = true;//导电
 
 
 LanSeS.shoot.firstShotDelay = 90;
 LanSeS.shoot.shotDelay = 20
 LanSeS.recoil = 2;
-LanSeS.reload = 180;
+LanSeS.reload = 160;
 LanSeS.shake = 2;
 LanSeS.shootEffect = Fx.lancerLaserShoot;
 LanSeS.smokeEffect = Fx.none;
@@ -1161,7 +1175,7 @@ exports.lanse2 = (//飞逝
         v.accurateDelay = false;
         v.shootSound = Sounds.laser;
         v.consume(new ConsumeCoolant(0.5));
-        v.consumePower(12000 / 60);
+        v.consumePower(7000 / 60);
         v.requirements = ItemStack.with(
             Items.lead, 560,
             Items.copper, 320,
@@ -2710,7 +2724,7 @@ EZao.ammo(
         b.despawnEffect = Fx.none;
         b.trailSpacing = 20;
         b.hitSound = Sounds.railgun;//击中声音
-        b.damage = 200;
+        b.damage = 900;
         b.buildingDamageMultiplier = 0.2;
         b.reloadMultiplier = 1.5; //装弹速
         b.speed = 58 * 8;
@@ -2739,7 +2753,7 @@ EZao.ammo(
                 b.collidesAir = true;
                  b.trailEffect =Fx.none;
                 b.splashDamageRadius = 16;
-                b.splashDamage = 150;
+                b.splashDamage = 300;
                 b.buildingDamageMultiplier = 0.2;
                 b.hitEffect = Fx.none;
                 b.despawnEffect = DrawS.EZaoEffect;
@@ -2758,7 +2772,7 @@ EZao.ammo(
         b.despawnEffect = Fx.none;
         b.trailSpacing = 20;
         b.hitSound = Sounds.railgun;//击中声音
-        b.damage = 230;
+        b.damage = 1300;
         b.buildingDamageMultiplier = 0.2;
         b.speed = 58 * 8;
         b.hitShake = 6;
@@ -2774,7 +2788,7 @@ EZao.ammo(
                 b.collidesAir = true;
                  b.trailEffect =Fx.none;
                 b.splashDamageRadius = 16;
-                b.splashDamage = 250;
+                b.splashDamage = 420;
                 b.buildingDamageMultiplier = 0.2;
                 b.hitEffect = Fx.none
                 b.despawnEffect = DrawS.EZaoEffect;
@@ -2793,7 +2807,7 @@ EZao.ammo(
         b.despawnEffect = Fx.none;
         b.trailSpacing = 20;
         b.hitSound = Sounds.railgun;//击中声音
-        b.damage = 250;
+        b.damage = 1200;
         b.buildingDamageMultiplier = 0.2;
         b.speed = 58 * 8;
         b.hitShake = 6;
@@ -2812,7 +2826,7 @@ EZao.ammo(
                 b.collidesAir = true;
                  b.trailEffect =Fx.none;
                 b.splashDamageRadius = 16;
-                b.splashDamage = 320;
+                b.splashDamage = 350;
                 b.buildingDamageMultiplier = 0.2;
                 b.hitEffect = Fx.none
                 b.despawnEffect = DrawS.EZaoEffect;
@@ -2835,7 +2849,7 @@ EZao.ammo(
         b.despawnEffect = Fx.none;
         b.trailSpacing = 20;
         b.hitSound = Sounds.railgun;//击中声音
-        b.damage = 180;
+        b.damage = 500;
         b.buildingDamageMultiplier = 0.2;
         b.speed = 58 * 8;
         b.hitShake = 6;
@@ -2873,7 +2887,7 @@ EZao.ammo(
         b.despawnEffect = Fx.none;
         b.trailSpacing = 20;
         b.hitSound = Sounds.railgun;//击中声音
-        b.damage = 280;
+        b.damage = 1700;
         b.buildingDamageMultiplier = 0.2;
         b.speed = 58 * 8;
         b.hitShake = 6;
@@ -2890,7 +2904,7 @@ EZao.ammo(
                 b.collidesAir = true;
                  b.trailEffect =Fx.none;
                 b.splashDamageRadius = 16;
-                b.splashDamage = 550;
+                b.splashDamage = 800;
                 b.buildingDamageMultiplier = 0.2;;
                 b.hitEffect = Fx.none
                 b.despawnEffect = DrawS.EZaoEffect;
@@ -2925,7 +2939,7 @@ EZao.buildCostMultiplier = 2.5;
 EZao.coolantMultiplier = 0.7;
 EZao.scaledHealth = 150;
 EZao.consume(new ConsumeCoolant(1));
-EZao.consumePower(3500/60);
+EZao.consumePower(1500/60);
 EZao.setupRequirements(
 	Category.turret,
 	BuildVisibility.shown,

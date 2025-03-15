@@ -58,8 +58,11 @@ Events.on(ClientLoadEvent, cons(() => {
     let columns = 5;//列
     let iconWidth = 46;//贴图大小
     let padding = 3;//填充大小
-    let marginBottom = 0;//0为右下角，数字往上走，UI往右上角走
-    let marginRight = 310;//0为右下角，数字往上走，UI往左下角走
+     //let marginBottom = 0;//0为下角，数字加大，UI往上角走
+    //let marginRight = 110;//0为右面，数字加大，UI往左走
+
+    let marginBottom = 245;//0为下角，数字加大，UI往上角走
+    let marginRight = -3;//0为右面，数字加大，UI往左走
 
     let frag = CreatorsClassification.leftFrag(CreatorsClassification.FragConfigJS(rows, columns,
         CreatorsClassification.CategoryObjJS('creators-aa',

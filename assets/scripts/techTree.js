@@ -84,7 +84,7 @@ const {
     Maps53, Maps288, Maps72, Maps260, Maps258, Maps62,
     Maps198, Maps196, Maps110, Maps193, Maps147, Maps45,
     Maps237, Maps155, Maps152, Maps52, Maps168, Maps27,
-    Maps44, Maps23, Maps87, Maps64, Maps232, Maps225,
+    Maps44, Maps23, Maps87, Maps64, Maps232, Maps225,Maps29,
     groundZero
     , saltFlats
     , frozenForest
@@ -2405,7 +2405,7 @@ NaMeiXing.techTree = TechTree.nodeRoot(Core.bundle.format("creators.GThree"), CT
     lib.addToResearch(EZao, {
         parent: CTBlocks.foreshadow.name,
         objectives: Seq.with(
-            new Objectives.SectorComplete(coastline),//占领-边际海湾
+            new Objectives.SectorComplete(Maps29),//占领-星月海湾
         ),
     });
     lib.addToResearch(zongjipao, {
