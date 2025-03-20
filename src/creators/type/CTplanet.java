@@ -15,7 +15,7 @@ public class CTplanet{
             CTGThree;
 
     public static void load(){
-        CTGThree = new Planet("GradeThree2", mindustry.content.Planets.sun, 1f, 3){{
+        CTGThree = new Planet("GradeThree", mindustry.content.Planets.sun, 1f, 3){{
             generator = new CTSerpuloPlanetGenerator();
             meshLoader = () -> new HexMesh(this, 6);
             cloudMeshLoader = () -> new MultiMesh(

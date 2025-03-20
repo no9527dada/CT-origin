@@ -67,7 +67,7 @@ public class Creators extends Mod {
             if (Vars.mods.locateMod("ctcoresystem") != null) {
                 if (compareVersions(Vars.mods.getMod("ctcoresystem").meta.version, MinVersion) >= 0) {
                     //载入物品     //载入液体
-                    //CTplanet.load();
+                   // CTplanet.load();
                     CTItem.load();
                     CTUnitTypes.load();
                     CTBlocks.load();

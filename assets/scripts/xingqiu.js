@@ -114,7 +114,7 @@ GThree.unlockedOnLand.add(CTBlocks.coreShard);
 }; */
 exports.NaMeiXing = GThree//CTplanet.CTGThree;
 const { whiteList } = require('white_list')//白名单
-Creators.setPlanet(CTplanet.CTGThree, whiteList);
+Creators.setPlanet(GThree, whiteList);
 
 
 
